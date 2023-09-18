@@ -10,6 +10,15 @@
     _Supervisor:_ \ Thomas Corbat
 ]
 
+#v(2em)
+
+#figure(
+  image("images/cpp_meme.jpg", width: 80%),
+  caption: [
+    A meme representing the meaning of C++
+  ],
+)
+
 #pagebreak()
 
 #set align(left)
