@@ -39,7 +39,10 @@ Bla bla. @larman_applyingUmlAndPatterns_2004
 #bibliography("bibliography.bib")
 
 #pagebreak()
+#set heading(numbering: none)
+
+= Table of Figures
 #outline(
-  title: [List of Figures],
+  title: none,
   target: figure.where(kind: image),
 )
