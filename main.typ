@@ -5,6 +5,8 @@
 ]
 
 #text(1.5em)[
+    #datetime.today().display("[day].[month].[year]")
+    #v(1em)
     Jeremy Stucki \ Vina Zahnd
     #v(2em)
     _Supervisor:_ \ Thomas Corbat
