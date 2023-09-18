@@ -15,18 +15,22 @@
 #v(2em)
 
 #figure(
-  image("images/cpp_meme.jpg", width: 80%),
+  image("images/cpp_meme.jpg", width: 70%),
   caption: [
     A meme to lighten the mood
   ],
 )
 
+#set align(bottom)
+#image("images/ost_logo.svg", height: 3cm)
+
 #pagebreak()
 
-#set align(left)
+#set align(top + start)
 #set page(numbering: "1 / 1")
 
 = Abstract
+TODO
 
 #emph(text(gray)[
 Der Abstract richtet sich an den Spezialisten auf dem entsprechenden Gebiet und beschreibt
