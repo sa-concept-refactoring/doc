@@ -15,11 +15,15 @@
 #v(2em)
 
 #figure(
-  image("images/cpp_meme.jpg", width: 80%),
+  image("images/cpp_meme.jpg", width: 70%),
   caption: [
     A meme to lighten the mood
   ],
 )
+
+#set align(bottom)
+#image("images/ost_logo.svg", height: 2cm)
+#set align(top)
 
 #pagebreak()
 
@@ -27,6 +31,7 @@
 #set page(numbering: "1 / 1")
 
 = Abstract
+TODO
 
 #pagebreak()
 #outline(title: "Table of Contents")
