@@ -33,3 +33,7 @@
 #set heading(numbering: "1.")
 
 = Test
+Bla bla. @larman_applyingUmlAndPatterns_2004
+
+#pagebreak()
+#bibliography("bibliography.bib")
