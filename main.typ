@@ -15,7 +15,7 @@
 #figure(
   image("images/cpp_meme.jpg", width: 80%),
   caption: [
-    A meme representing the meaning of C++
+    A meme to lighten the mood
   ],
 )
 
@@ -37,3 +37,9 @@ Bla bla. @larman_applyingUmlAndPatterns_2004
 
 #pagebreak()
 #bibliography("bibliography.bib")
+
+#pagebreak()
+#outline(
+  title: [List of Figures],
+  target: figure.where(kind: image),
+)
