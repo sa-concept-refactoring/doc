@@ -23,11 +23,10 @@
 
 #set align(bottom)
 #image("images/ost_logo.svg", height: 2cm)
-#set align(top)
 
 #pagebreak()
 
-#set align(left)
+#set align(top + start)
 #set page(numbering: "1 / 1")
 
 = Abstract
