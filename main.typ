@@ -6,9 +6,9 @@
 
 #text(1.5em)[
     #datetime.today().display("[day].[month].[year]")
-    #v(1em)
+    #line()
     Jeremy Stucki \ Vina Zahnd
-    #v(2em)
+    #line()
     _Supervisor:_ \ Thomas Corbat
 ]
 
