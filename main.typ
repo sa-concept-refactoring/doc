@@ -1,32 +1,5 @@
-#set align(center)
+#include "title-page.typ"
 
-#text(2em)[
-    *SA - Concept Refactoring*
-]
-
-#text(1.5em)[
-    #datetime.today().display("[day].[month].[year]")
-    #line()
-    Jeremy Stucki \ Vina Zahnd
-    #line()
-    _Supervisor:_ \ Thomas Corbat
-]
-
-#v(2em)
-
-#figure(
-  image("images/cpp_meme.jpg", width: 70%),
-  caption: [
-    A meme to lighten the mood
-  ],
-)
-
-#set align(bottom)
-#image("images/ost_logo.svg", height: 3cm)
-
-#pagebreak()
-
-#set align(top + start)
 #set page(numbering: "1 / 1")
 
 = Abstract
