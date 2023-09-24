@@ -119,10 +119,16 @@ Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro 
 ])
 
 #pagebreak()
+#set heading(numbering: none)
+
+= Disclaimer
+Parts of this paper were rephrased by GPT-3.5.
+
+#pagebreak()
+
 #bibliography("bibliography.bib")
 
 #pagebreak()
-#set heading(numbering: none)
 
 = Table of Figures
 #outline(
