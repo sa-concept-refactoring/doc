@@ -41,6 +41,46 @@ SG-I)
 Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
 The language server features were tested using Visual Studio Code and the clangd extension.
 
+= Ideas
+
+== Transformations of Concept Usages
+
+A new refactoring could be provided to transform a function template using concepts between alternate forms.
+@transformation_idea_listing shows the different forms.
+
+#figure(
+  grid(
+    columns: (auto, auto),
+    gutter: 1em,
+    align(start + horizon)[
+      ```cpp
+      template<Hashable T>
+      void f(T) {}
+      ```
+    ],
+    align(start + horizon)[
+      ```cpp
+      template<typename T>
+      void f(T) requires Hashable<T> {}
+      ```
+    ],
+    align(start + horizon)[
+      ```cpp
+      void f(Hashable auto x) {}
+      ```
+    ],
+    align(start + horizon)[
+      ```cpp
+      template<typename T> requires Hashable<T>
+      void f(T) {}
+      ```
+    ],
+  ),
+  caption: [
+    Different ways to constrain a function template using concepts
+  ],
+) <transformation_idea_listing>
+
 = Introduction
 
 #emph(text(gray)[
