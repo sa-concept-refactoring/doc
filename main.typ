@@ -186,7 +186,7 @@ Parts of this paper were rephrased by GPT-3.5.
 
 #pagebreak()
 
-= Table of Listings
+= List of Listings
 #outline(
   title: none,
   target: figure.where(kind: raw),
