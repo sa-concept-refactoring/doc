@@ -152,28 +152,16 @@ A new refactoring could be provided to transform a function template using conce
 Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro Woche
 ])
 
-#set heading(numbering: none)
-
-= Glossary
-
-/ SA: Abbreviation for Semester-Arbeit. \ The term is used in the German academic context to refer to a Semester Project.
-
-= Appendices
-
-#emph(text(gray)[
-- Relevante Anhänge
-- Meeting Protokolle
-- Vereinbarungen
-- (SA/BA): Persönliche Berichte (0.5-1 Seite)
-- Entwicklerdokumentation
-- User Dokumentation
-- Sonstige Protokolle (z.B. von Usability Tests)
-])
-
 #pagebreak()
+#set heading(numbering: none)
 
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
+
+#pagebreak()
+
+= Glossary
+/ SA: Abbreviation for Semester-Arbeit. \ The term is used in the German academic context to refer to a Semester Project.
 
 #pagebreak()
 
@@ -194,3 +182,17 @@ Parts of this paper were rephrased by GPT-3.5.
   title: none,
   target: figure.where(kind: raw),
 )
+
+#pagebreak()
+
+= Appendices
+
+#emph(text(gray)[
+- Relevante Anhänge
+- Meeting Protokolle
+- Vereinbarungen
+- (SA/BA): Persönliche Berichte (0.5-1 Seite)
+- Entwicklerdokumentation
+- User Dokumentation
+- Sonstige Protokolle (z.B. von Usability Tests)
+])
