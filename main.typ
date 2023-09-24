@@ -32,7 +32,12 @@ SG-I)
 ])
 
 #pagebreak()
-#outline(title: "Table of Contents")
+
+#outline(
+  title: "Table of Contents",
+  indent: auto,
+)
+
 #pagebreak()
 
 #set heading(numbering: "1.")
