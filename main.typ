@@ -136,3 +136,11 @@ Parts of this paper were rephrased by GPT-3.5.
   title: none,
   target: figure.where(kind: image),
 )
+
+#pagebreak()
+
+= Table of Listings
+#outline(
+  title: none,
+  target: figure.where(kind: raw),
+)
