@@ -100,6 +100,8 @@ The language server features were tested using Visual Studio Code and the clangd
 Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro Woche
 ])
 
+#set heading(numbering: none)
+
 = Glossary
 
 #emph(text(gray)[
@@ -119,7 +121,6 @@ Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro 
 ])
 
 #pagebreak()
-#set heading(numbering: none)
 
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
