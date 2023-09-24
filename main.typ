@@ -48,7 +48,7 @@ The language server features were tested using Visual Studio Code and the clangd
 
 = Ideas
 
-== Transformations of Concept Usages
+== Transformation of Concept Usage
 
 A new refactoring could be provided to transform a function template using concepts between alternate forms.
 @transformation_idea_listing shows the different forms.
