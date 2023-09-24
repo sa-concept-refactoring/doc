@@ -156,9 +156,7 @@ Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro 
 
 = Glossary
 
-#emph(text(gray)[
-  - Kurze Erklärung der projektspezifischen Begriffe und Abkürzungen
-])
+/ SA: Abbreviation for Semester-Arbeit. \ The term is used in the German academic context to refer to a Semester Project.
 
 = Appendices
 
