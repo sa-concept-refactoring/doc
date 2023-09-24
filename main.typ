@@ -30,8 +30,9 @@ SG-I)
 
 #set heading(numbering: "1.")
 
-= Test
-Bla bla. @larman_applyingUmlAndPatterns_2004
+= Methods
+Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
+The language server features were tested using Visual Studio Code and the clangd extension.
 
 = Introduction
 
