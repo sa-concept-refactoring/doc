@@ -91,6 +91,8 @@ A new refactoring could be provided to transform a function template using conce
   ],
 ) <transformation_idea_listing>
 
+#pagebreak()
+
 = Introduction
 
 #emph(text(gray)[
