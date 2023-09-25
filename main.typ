@@ -46,6 +46,11 @@ SG-I)
 Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
 The language server features were tested using Visual Studio Code and the clangd extension.
 
+= Existing Language Server Features
+
+We did not find any specific language server features related to concepts.
+Some basics like symbol rename seem to work well though.
+
 = Ideas
 
 == Transformation of Concept Usage
