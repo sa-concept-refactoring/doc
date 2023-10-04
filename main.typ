@@ -56,7 +56,7 @@ Some basics like symbol rename seem to work well though.
 // - Übersicht über die kommende Kapitel
 
 == Initial Situation
-[https://github.com/llvm/llvm-project](LLVM project) is an open source repository on GitHub and contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
+#link("https://github.com/llvm/llvm-project")[LLVM project] is an open source repository on GitHub and contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
 
 == Problem Description
 As of the new changes of C++20 type constraints where introduced. 
