@@ -59,11 +59,11 @@ Some basics like symbol rename seem to work well though.
 #link("https://github.com/llvm/llvm-project")[LLVM project] is an open source repository on GitHub and contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
 
 == Problem Description
-As of the new changes of C++20 type constraints where introduced. 
+As of the new changes of C++20 type constraints were introduced. 
 For this new added feature not many refactoring options do currently exist which should be changed with our SA.
 
 == Project Goal
-The goal of this project is to contribute a refactoring feature to the LLVM project, for the newly added type constrints for C++.
+The goal of this project is to contribute a refactoring feature to the LLVM project, for the newly added type constraints for C++.
 
 === Ideas
 
