@@ -130,12 +130,19 @@ This report describes the analysis, elaboration and implementation of the work. 
 // - Extenes Design (UI)
 // - Entscheidungen: Alternativen erklären und Entscheidung nachvollziehbar begründen
 
+== Entscheidungen
+- VSCode
+- CLion
+
 = Implementation
 
 // - Beschreibung interessanter Implementationsaspekte
 // - Verwendete Technologien
 // - Nebenläufigkeit
 // - Vorgehen beim Testing
+
+== Testing
+The LLVM project has a strikt architechture for tests. To follow the project guidelines automated unit tests have to be written before a code contribution is accepted. 
 
 = Resultate
 
@@ -156,6 +163,25 @@ This report describes the analysis, elaboration and implementation of the work. 
 // - Projektplan, Vergleich ursprüngliche Planung, effektive Ausführung
 // - Zeiterfassung (Stunden pro Woche/Stunden pro Task-Kategorie, wie Implementation Doku, Meeting, etc.)
 // Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro Woche
+
+== Setup
+=== Windows
+
+Building LLVM:
++ git clone https://github.com/llvm/llvm-project
+	- `git clone git@github.com:llvm/llvm-project.git`
++ llvm projekt im clion öffnen
++ Ordner `llvm` öffnen und CMkeLists.tx im clion öffnen und cmake ausfürhen
++ File -> Settings -> Build, Execution, Deployment -> CMake -> CMake options ->
+	- `-DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra'`
++ Choose "cland" in target selector and start building
+
+
+=== Linux
+// TODO
+
+== Project Plan
+As there not much of a guideline only a rough plan can be provided. 
 
 #pagebreak()
 #set heading(numbering: none)
