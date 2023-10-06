@@ -1,4 +1,5 @@
 #include "title-page.typ"
+#import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
 
 #show raw: it => {
   if (it.block) {
@@ -219,6 +220,28 @@ Building LLVM:
 
 == Project Plan
 As there not much of a guideline only a rough plan can be provided. 
+
+#figure(
+  tablex(
+    columns: 15,
+    align: center + horizon,
+    stroke: none,
+    map-rows: (row, cells) => cells.map(c =>
+      if c == none {
+        c
+      } else {
+        (..c, fill: if row == 0 { aqua })
+      }
+    ),
+    /* --- header --- */
+    [*w1*], [*w2*], [*w3*], [*w4*], [*w5*], [*w6*], [*w7*], [*w8*], [*w9*], [*w10*], [*w11*], [*w12*], [*w13*], [*w14*], [*w15*],
+    /* ------------- */
+    [Setup], colspanx(3)[1. refactoring feature], colspanx(2)[optimization & testing], colspanx(2)[contribute to LLVM], colspanx(3, fill:blue)[], colspanx(2)[finish documentation], [hand in], [Apéro],
+    /* ------------- */
+    colspanx(6)[], colspanx(5)[2. refactoring feature], colspanx(4)[]
+  ),
+  caption: [ Project plan ],
+)
 
 #pagebreak()
 #set heading(numbering: none)
