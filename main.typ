@@ -73,9 +73,11 @@ For this new added feature not many refactoring options do currently exist which
 == Project Goal
 The goal of this project is to contribute a refactoring feature to the LLVM project, for the newly added type constraints for C++.
 
-=== Ideas
+#pagebreak()
 
-==== Transformation of Concept Usage
+== Ideas
+
+=== Transformation of Concept Usage
 
 A new refactoring could be provided to transform a function template using concepts between alternate forms.
 @transformation_idea_listing shows the different forms.
