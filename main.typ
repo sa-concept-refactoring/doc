@@ -147,7 +147,7 @@ The proposed refactoring would offer to extract these logical combinations into 
 
 
 == Structure of This Report
-This report describes the analysis, elaboration and implementation of the work. The document is divided into the following parts:
+This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
 
 // TODO descibe chapers
 
@@ -168,7 +168,7 @@ This report describes the analysis, elaboration and implementation of the work. 
 // - Extenes Design (UI)
 // - Entscheidungen: Alternativen erklären und Entscheidung nachvollziehbar begründen
 
-== Entscheidungen
+== Decisions
 - VSCode
 - CLion
 
@@ -180,7 +180,7 @@ This report describes the analysis, elaboration and implementation of the work. 
 // - Vorgehen beim Testing
 
 == Testing
-The LLVM project has a strikt architechture for tests. To follow the project guidelines automated unit tests have to be written before a code contribution is accepted. 
+The LLVM project strictly adheres to a well-defined architecture for testing. To align with project guidelines, automated unit tests must be authored prior to the acceptance of any code contributions.
 
 = Resultate
 
@@ -214,12 +214,16 @@ Building LLVM:
 	- `-DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra'`
 + Choose "cland" in target selector and start building
 
-
 === Linux
 // TODO
 
+== Time Tracking
+To monitor our working hours effectively, we have established a straightforward Google Sheet where we meticulously record information about our tasks, such as who is assigned to them, the task's nature, and the duration spent on each task. Additionally, each entry includes a brief comment detailing the specific work performed during that time.
+
+// TODO small summary of time tracking
+
 == Project Plan
-As there not much of a guideline only a rough plan can be provided. 
+Due to the absence of detailed guidelines, we can only offer a rough plan at this time.
 
 #figure(
   tablex(
