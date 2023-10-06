@@ -1,15 +1,24 @@
+#let title = "SA - Concept Refactoring"
+#let authors = ( "Jeremy Stucki", "Vina Zahnd" )
+#let supervisor = "Thomas Corbat"
+
+#set document(
+  title: title,
+  author: authors,
+)
+
 #set align(center)
 
 #text(2em)[
-    *SA - Concept Refactoring*
+    *#title*
 ]
 
 #text(1.5em)[
     #datetime.today().display("[day].[month].[year]")
     #line()
-    Jeremy Stucki \ Vina Zahnd
+    #authors.join("\n")
     #line()
-    _Supervisor:_ \ Thomas Corbat
+    _Supervisor:_ \ #supervisor
 ]
 
 #v(2em)
