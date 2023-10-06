@@ -115,6 +115,35 @@ A new refactoring could be provided to transform a function template using conce
   ],
 ) <transformation_idea_listing>
 
+=== Extraction of Conjunctions and Disjunctions
+
+Sometimes more than one constraint is used in a ```cpp requires``` clause.
+This is expressed by `||` and `&&` operators.
+The proposed refactoring would offer to extract these logical combinations into a new named concept.
+
+#figure(
+  ```cpp
+  template <typename U, typename T>
+  void bar(T a) requires std::integral<T> && Hashable<T> {
+    ...
+  }
+  ```,
+  caption: [ An existing conjunction ],
+) <conjunction_idea_listing>
+
+#figure(
+  ```cpp
+  template<class T>
+  concept NAME = std::integral<T> && Hashable<T>;
+
+  template <typename U, typename T>
+  void bar(T a) requires NAME<T> {
+    ...
+  }
+  ```,
+  caption: [ The proposed refactoring to the conjunction in @conjunction_idea_listing ],
+)
+
 #pagebreak()
 
 
