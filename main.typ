@@ -123,7 +123,7 @@ The proposed refactoring would offer to extract these logical combinations into 
 
 #figure(
   ```cpp
-  template <typename U, typename T>
+  template <typename T>
   void bar(T a) requires std::integral<T> && Hashable<T> {
     ...
   }
@@ -136,7 +136,7 @@ The proposed refactoring would offer to extract these logical combinations into 
   template<class T>
   concept NAME = std::integral<T> && Hashable<T>;
 
-  template <typename U, typename T>
+  template <typename T>
   void bar(T a) requires NAME<T> {
     ...
   }
