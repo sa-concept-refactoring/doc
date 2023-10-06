@@ -225,7 +225,6 @@ As there not much of a guideline only a rough plan can be provided.
   tablex(
     columns: 15,
     align: center + horizon,
-    stroke: none,
     map-rows: (row, cells) => cells.map(c =>
       if c == none {
         c
