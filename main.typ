@@ -42,6 +42,8 @@ TODO
 #pagebreak()
 
 #set heading(numbering: "1.")
+#show par: set block(below: 2em)
+#show figure: set block(below: 2em)
 
 = Methods
 Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
