@@ -1,11 +1,17 @@
 #include "title-page.typ"
 
-#show raw: it => block(
-  fill: luma(0xF0),
-  inset: 8pt,
-  radius: 5pt,
-  text(it)
-)
+#show raw: it => {
+  if (it.block) {
+    block(
+      fill: luma(0xF0),
+      inset: 8pt,
+      radius: 5pt,
+      text(it)
+    )
+  } else {
+    text(it)
+  }
+}
 
 #set page(numbering: "1 / 1")
 
