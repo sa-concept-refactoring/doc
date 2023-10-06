@@ -222,6 +222,9 @@ To monitor our working hours effectively, we have established a straightforward 
 
 // TODO small summary of time tracking
 
+#pagebreak()
+#set page(flipped: true)
+
 == Project Plan
 Due to the absence of detailed guidelines, we can only offer a rough plan at this time.
 
@@ -247,6 +250,7 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
 )
 
 #pagebreak()
+#set page(flipped: false)
 #set heading(numbering: none)
 
 = Disclaimer
