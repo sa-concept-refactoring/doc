@@ -78,7 +78,6 @@ The goal of this project is to contribute a refactoring feature to the LLVM proj
 == Ideas
 
 === Transformation of Concept Usage
-
 A new refactoring could be provided to transform a function template using concepts between alternate forms.
 @transformation_idea_listing shows the different forms.
 
@@ -116,7 +115,6 @@ A new refactoring could be provided to transform a function template using conce
 ) <transformation_idea_listing>
 
 === Extraction of Conjunctions and Disjunctions
-
 Sometimes more than one constraint is used in a ```cpp requires``` clause.
 This is expressed by `||` and `&&` operators.
 The proposed refactoring would offer to extract these logical combinations into a new named concept.
