@@ -46,16 +46,6 @@ TODO
 #show par: set block(below: 2em)
 #show figure: set block(below: 2em)
 
-= Methods
-Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
-The language server features were tested using Visual Studio Code and the clangd extension.
-
-= Existing Language Server Features
-
-We did not find any specific language server features related to concepts.
-Some basics like symbol rename seem to work well though.
-
-
 = Introduction
 
 // - Beschreibung der Ausgangslage
@@ -202,16 +192,25 @@ The LLVM project strictly adheres to a well-defined architecture for testing. To
 // - Zeiterfassung (Stunden pro Woche/Stunden pro Task-Kategorie, wie Implementation Doku, Meeting, etc.)
 // Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro Woche
 
+== Methods
+Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
+The language server features were tested using Visual Studio Code and the clangd extension.
+
+== Existing Language Server Features
+
+We did not find any specific language server features related to concepts.
+Some basics like symbol rename seem to work well though.
+
 == Setup
 === Windows
 
 Building LLVM:
-+ git clone https://github.com/llvm/llvm-project
++ Clone project from GitHub https://github.com/llvm/llvm-project
 	- `git clone git@github.com:llvm/llvm-project.git`
-+ llvm projekt im clion öffnen
-+ Ordner `llvm` öffnen und CMkeLists.tx im clion öffnen und cmake ausfürhen
++ open llvm projekt in Clion
++ Open folder `llvm/CMake.tx` in Clion and execute cmake
 + File -> Settings -> Build, Execution, Deployment -> CMake -> CMake options ->
-	- `-DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra'`
+	- add `-DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra'`
 + Choose "cland" in target selector and start building
 
 === Linux
