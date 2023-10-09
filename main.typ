@@ -275,22 +275,26 @@ To monitor our working hours effectively, we have established a straightforward 
 Due to the absence of detailed guidelines, we can only offer a rough plan at this time.
 
 #figure(
-  tablex(
-    columns: 15,
-    align: center + horizon,
-    map-rows: (row, cells) => cells.map(c =>
-      if c == none {
-        c
-      } else {
-        (..c, fill: if row == 0 { aqua })
-      }
-    ),
-    /* --- header --- */
-    [*w1*], [*w2*], [*w3*], [*w4*], [*w5*], [*w6*], [*w7*], [*w8*], [*w9*], [*w10*], [*w11*], [*w12*], [*w13*], [*w14*], [*w15*],
-    /* ------------- */
-    [Setup], colspanx(3)[1. refactoring feature], colspanx(2)[optimization & testing], colspanx(2)[contribute to LLVM], colspanx(3, fill:blue)[], colspanx(2)[finish documentation], [hand in], [Apéro],
-    /* ------------- */
-    colspanx(6)[], colspanx(5)[2. refactoring feature], colspanx(4)[]
+  box(
+    width: 100%,
+    tablex(
+      header: 1,
+      columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+      align: center + horizon,
+      map-rows: (row, cells) => cells.map(c =>
+        if c == none {
+          c
+        } else {
+          (..c, fill: if row == 0 { aqua })
+        }
+      ),
+      /* --- header --- */
+      [*w1*], [*w2*], [*w3*], [*w4*], [*w5*], [*w6*], [*w7*], [*w8*], [*w9*], [*w10*], [*w11*], [*w12*], [*w13*], [*w14*], [*w15*],
+      /* ------------- */
+      [Setup], colspanx(3)[1. refactoring feature], colspanx(2)[optimization & testing], colspanx(2)[contribute to LLVM], colspanx(3, fill:blue)[], colspanx(2)[finish documentation], [hand in], [Apéro],
+      /* ------------- */
+      colspanx(6)[], colspanx(5)[2. refactoring feature], colspanx(4)[]
+    )
   ),
   caption: [ Project plan ],
 )
