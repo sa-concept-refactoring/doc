@@ -137,7 +137,7 @@ The proposed refactoring would offer to extract these logical combinations into 
 
 === Concept Simplification
 
-From C++20 there are various shortcuts and terse syntax which can be used to simplify the code of concepts.
+With shortcuts and terse syntax concepts can be simplified.
 
 More details about the code simplification can be found here: #link("https://www.cppstories.com/2021/concepts-intro/#code-simplification").
 
