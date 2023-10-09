@@ -150,7 +150,7 @@ Unconstrained `auto` can be used to replace `T`:
     for (size_t i = 0; auto& elem : vec)
         std::cout << elem << (++i == vec.size() ? "\n" : ", ");
   }
-  ```,
+  ```, 
 caption: [Example of a concept]
 )
 
@@ -196,6 +196,25 @@ This report encompasses the analysis, elaboration, and implementation of the pro
 // - Bestehende Infrastruktur
 // - Abhängig vom Projekt: Risikoanalyse
 // - Beschreibung (externen) existierenden Schnittstellen
+
+== LLVM (Low Level Virtual Machine)
+
+To fuilfill the project goal it is important to know what LLVM is and how it works. 
+An image should help to understand the architecture:
+
+#figure(
+  image("images/llvm_architecture.jpeg", width: 80%),
+  caption: [
+    diagram showing architecture of LLVM,
+    source: @LLVM_compiler_architecture
+  ],
+)
+
+== CLangd
+
+Clangd is the language server which lives in the #link("https://github.com/llvm/llvm-project")[llvm-project] repository under `clang-tools-extra/clangd`. For this project the goal is to add refactoring features which can be found within the clangd folder `tweaks`.
+
+== Environment
 
 = Design
 
