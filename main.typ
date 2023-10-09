@@ -135,6 +135,53 @@ The proposed refactoring would offer to extract these logical combinations into 
 
 #pagebreak()
 
+=== Concept Simplification
+
+From C++20 there are various shortcuts and terse syntax which can be used to simplify the code of concepts.
+
+More details about the code simplification can be found here: #link("https://www.cppstories.com/2021/concepts-intro/#code-simplification").
+
+Unconstrained `auto` can be used to replace `T`:
+
+#figure(
+  ```cpp
+  template <typename T>
+  void print(const std::vector<T>& vec) {
+    for (size_t i = 0; auto& elem : vec)
+        std::cout << elem << (++i == vec.size() ? "\n" : ", ");
+  }
+  ```,
+caption: [Example of a concept]
+)
+
+#figure(
+  ```cpp
+  void print2(const std::vector<auto>& vec) {
+    for (size_t i = 0; auto& elem : vec)
+        std::cout << elem << (++i == vec.size() ? "\n" : ", ");
+  }
+  ```,
+caption: [Simplified concept]
+)
+
+Also when using `concept` within the requires clause it can be simplified for example: 
+
+#figure(
+  ```cpp
+  template <typename T>
+  requires concept<T>
+  auto func(T param) { }
+  ```,
+caption: [Example of a concept with concept requirement]
+)
+
+#figure(
+  ```cpp
+  auto func(concept auto param) { }
+  ```,
+caption: [Simplified concept without requires clause]
+)
+
 
 == Structure of This Report
 This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
