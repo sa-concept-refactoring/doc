@@ -227,9 +227,11 @@ caption: [Simplified concept without requires clause]
 
 = Development Process
 == Workflow
+
 == Setup
 === Windows
 
+// TODO: Vina - add more text
 Building LLVM:
 + Clone project from GitHub https://github.com/llvm/llvm-project
 	- `git clone git@github.com:llvm/llvm-project.git`
@@ -240,7 +242,8 @@ Building LLVM:
 + Choose "cland" in target selector and start building
 
 === Linux
-// TODO
+
+// TODO: Jeremy
 
 = Project Management
 // - Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
@@ -252,7 +255,7 @@ Building LLVM:
 Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
 The language server features were tested using Visual Studio Code and the clangd extension.
 
-== Project Plan
+#set page(flipped: true)
 
 == Project Plan
 Due to the absence of detailed guidelines, we can only offer a rough plan at this time.
@@ -292,8 +295,6 @@ To monitor our working hours effectively, we have established a straightforward 
 // TODO small summary of time tracking
 
 #pagebreak()
-#set page(flipped: true)
-
 
 = Conclusion
 // - Zusammenfassung
