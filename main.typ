@@ -17,7 +17,7 @@
 #set page(numbering: "1 / 1")
 
 = Abstract
-TODO
+// TODO
 
 // Der Abstract richtet sich an den Spezialisten auf dem entsprechenden Gebiet und beschreibt
 // daher in erster Linie die (neuen, eigenen) Ergebnisse und Resultate der Arbeit. (Aus
@@ -66,9 +66,47 @@ The goal of this project is to contribute a refactoring feature to the LLVM proj
 
 #pagebreak()
 
-== Ideas
+// TODO where to place this? Is it needed?
+= Structure of This Report
+This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
 
-=== Transformation of Concept Usage
+// TODO descibe chapers
+
+= Analysis
+// - Beschreibung des System-Kontexts
+// - Funktionale und nicht-Funktionale Anforderungen
+// - Use Cases/Scenarios/User Storys
+// - Bestehende Infrastruktur
+// - Abhängig vom Projekt: Risikoanalyse
+// - Beschreibung (externen) existierenden Schnittstellen
+
+== What is a Language Server?
+
+To fuilfill the project goal it is important to know what LLVM is and how it works. 
+An image should help to understand the architecture:
+
+#figure(
+  image("images/llvm_architecture.jpeg", width: 80%),
+  caption: [
+    diagram showing architecture of LLVM,
+    source: @LLVM_compiler_architecture
+  ],
+)
+
+== The clangd Language Server
+
+Clangd is the language server which lives in the #link("https://github.com/llvm/llvm-project")[llvm-project] repository under `clang-tools-extra/clangd`. For this project the goal is to add refactoring features which can be found within the clangd folder `tweaks`.
+
+=== Existing Features
+We did not find any specific language server features related to concepts.
+Some basics like symbol rename seem to work well though.
+
+=== Testing
+The LLVM project strictly adheres to a well-defined architecture for testing. To align with project guidelines, automated unit tests must be authored prior to the acceptance of any code contributions.
+
+= Ideas
+
+== Requirement Transformation
 A new refactoring could be provided to transform a function template using concepts between alternate forms.
 @transformation_idea_listing shows the different forms.
 
@@ -105,7 +143,7 @@ A new refactoring could be provided to transform a function template using conce
   ],
 ) <transformation_idea_listing>
 
-=== Extraction of Conjunctions and Disjunctions
+== Extraction of Conjunctions and Disjunctions
 Sometimes more than one constraint is used in a ```cpp requires``` clause.
 This is expressed by `||` and `&&` operators.
 The proposed refactoring would offer to extract these logical combinations into a new named concept.
@@ -135,7 +173,7 @@ The proposed refactoring would offer to extract these logical combinations into 
 
 #pagebreak()
 
-=== Concept Simplification
+== Concept Simplification
 
 With shortcuts and terse syntax concepts can be simplified.
 
@@ -182,91 +220,13 @@ caption: [Example of a concept with concept requirement]
 caption: [Simplified concept without requires clause]
 )
 
-
-== Structure of This Report
-This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
-
-// TODO descibe chapers
-
-= Analysis
-
-// - Beschreibung des System-Kontexts
-// - Funktionale und nicht-Funktionale Anforderungen
-// - Use Cases/Scenarios/User Storys
-// - Bestehende Infrastruktur
-// - Abhängig vom Projekt: Risikoanalyse
-// - Beschreibung (externen) existierenden Schnittstellen
-
-== LLVM (Low Level Virtual Machine)
-
-To fuilfill the project goal it is important to know what LLVM is and how it works. 
-An image should help to understand the architecture:
-
-#figure(
-  image("images/llvm_architecture.jpeg", width: 80%),
-  caption: [
-    diagram showing architecture of LLVM,
-    source: @LLVM_compiler_architecture
-  ],
-)
-
-== CLangd
-
-Clangd is the language server which lives in the #link("https://github.com/llvm/llvm-project")[llvm-project] repository under `clang-tools-extra/clangd`. For this project the goal is to add refactoring features which can be found within the clangd folder `tweaks`.
-
-== Environment
-
-= Design
-
-// - Beschreibung des Entwurfs der Lösung
-// - Architektur-Übersicht (Anmerkung das C4-Modell gibt eine gute Abstufung der Details)
-// - Internes Design (Subsysteme, Komponenten, Klassen)
-// - Extenes Design (UI)
-// - Entscheidungen: Alternativen erklären und Entscheidung nachvollziehbar begründen
-
-== Decisions
-- VSCode
-- CLion
-
-= Implementation
-
-// - Beschreibung interessanter Implementationsaspekte
-// - Verwendete Technologien
-// - Nebenläufigkeit
-// - Vorgehen beim Testing
-
+= First Refactoring
+== Design
+== Implementation
 == Testing
-The LLVM project strictly adheres to a well-defined architecture for testing. To align with project guidelines, automated unit tests must be authored prior to the acceptance of any code contributions.
 
-= Resultate
-
-// - Zielerreichung
-// - Auswertung Erfüllung der Anforderungen
-// - Projektmetriken
-
-= Conclusion
-
-// - Zusammenfassung
-// - Evaluation der Ergebnisse
-// - Zielerreichung/offene Punkte
-// - Ausblick, weiterführende Schritte
-
-= Project Management
-
-// - Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
-// - Projektplan, Vergleich ursprüngliche Planung, effektive Ausführung
-// - Zeiterfassung (Stunden pro Woche/Stunden pro Task-Kategorie, wie Implementation Doku, Meeting, etc.)
-// Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro Woche
-
-== Methods
-Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
-The language server features were tested using Visual Studio Code and the clangd extension.
-
-== Existing Language Server Features
-
-We did not find any specific language server features related to concepts.
-Some basics like symbol rename seem to work well though.
-
+= Development Process
+== Workflow
 == Setup
 === Windows
 
@@ -282,13 +242,17 @@ Building LLVM:
 === Linux
 // TODO
 
-== Time Tracking
-To monitor our working hours effectively, we have established a straightforward Google Sheet where we meticulously record information about our tasks, such as who is assigned to them, the task's nature, and the duration spent on each task. Additionally, each entry includes a brief comment detailing the specific work performed during that time.
+= Project Management
+// - Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
+// - Projektplan, Vergleich ursprüngliche Planung, effektive Ausführung
+// - Zeiterfassung (Stunden pro Woche/Stunden pro Task-Kategorie, wie Implementation Doku, Meeting, etc.)
+// Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro Woche
 
-// TODO small summary of time tracking
+== Methods
+Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
+The language server features were tested using Visual Studio Code and the clangd extension.
 
-#pagebreak()
-#set page(flipped: true)
+== Project Plan
 
 == Project Plan
 Due to the absence of detailed guidelines, we can only offer a rough plan at this time.
@@ -322,6 +286,24 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
 #set page(flipped: false)
 #set heading(numbering: none)
 
+== Time Tracking
+To monitor our working hours effectively, we have established a straightforward Google Sheet where we meticulously record information about our tasks, such as who is assigned to them, the task's nature, and the duration spent on each task. Additionally, each entry includes a brief comment detailing the specific work performed during that time.
+
+// TODO small summary of time tracking
+
+#pagebreak()
+#set page(flipped: true)
+
+
+= Conclusion
+// - Zusammenfassung
+// - Evaluation der Ergebnisse
+// - Zielerreichung/offene Punkte
+// - Ausblick, weiterführende Schritte
+
+= Outlook
+= Personal Reports
+
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
 
@@ -332,6 +314,7 @@ Parts of this paper were rephrased by GPT-3.5.
 
 #pagebreak()
 
+= Bibliography
 #bibliography("bibliography.bib")
 
 #pagebreak()
