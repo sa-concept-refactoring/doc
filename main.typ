@@ -452,12 +452,13 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
 
 #pagebreak()
 #set page(flipped: false)
-#set heading(numbering: none)
 
 == Time Tracking
 To monitor our working hours effectively, we have established a straightforward Google Sheet where we meticulously record information about our tasks, such as who is assigned to them, the task's nature, and the duration spent on each task. Additionally, each entry includes a brief comment detailing the specific work performed during that time.
 
 // TODO small summary of time tracking
+
+#set heading(numbering: none)
 
 = Conclusion
 // - Zusammenfassung
