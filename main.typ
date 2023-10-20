@@ -107,10 +107,19 @@ A lot of guidelines are written down but some things seem to be missing.
 While refactoring the first feature the question came up if trailing returns should be used or not.
 Unfortunately this case is not described within the coding guidelines and after looking at other code snippets it was decided to stick with the non trailing version of return values.
 
-== Project Structure
+=== Coding Formatter
+To fulfill the formatting guidelines there is a formatter within the project which styles the files according to the guidelines.
+
+To check ensure that the format is correct, a job is running on Github for Pull-Request.
+The Pull-Request can only be merged if the job finishes successfully.
+
+// TODO: add link
+
+== Refactorings in clangd
+
+=== Project Structure
 
 The LLVM project is quite big and it took a while to figure out how it is structured.
-
 For refactoring features classes can be created in the following directory:
 - llvm-project
   - clang-tools-extra
@@ -118,12 +127,15 @@ For refactoring features classes can be created in the following directory:
       - refactor
         - tweaks
 
-=== Existing Features
-We did not find any specific language server features related to concepts.
-Some basics like symbol rename seem to work well though.
+=== Existing Refactorings
+Looking at the refactoring features no feature could be found which can be used on concepts.
+As concepts were introduced with C++20 it is quite to the world of C++ and therefore not much of support exists yet.
+
+For other scenarios multiple refactorings already exist e.g. switching statements within an if.
+Looking at the existing refactoring code helped to understand the how a refactoring is done.
 
 === Testing
-The LLVM project strictly adheres to a well-defined architecture for testing. To align with project guidelines, automated unit tests must be authored prior to the acceptance of any code contributions.
+The LLVM project strictly adheres to a well-defined architecture for testing. To align with #link("https://clangd.llvm.org/design/code.html#testing")[project guidelines], automated unit tests must be authored prior to the acceptance of any code contributions.
 
 Unit tests can be added within this directory:
 - llvm-project
@@ -131,6 +143,52 @@ Unit tests can be added within this directory:
     - clangd
       - unittests
 
+#pagebreak()
+
+=== Class Functions and Structure
+
+// TODO: describe `prepare`
+*```cpp prepare(const Selection &Inputs)```:* \
+Within the `prepare` function it needs to be checked if a refactoring is possible on the selected area.
+
+// TODO: decribe `apply` 
+*```cpp apply(const Selection &Inputs)```:* \
+Within the `apply` function the actual refactoring is taking place.
+
+
+General class structure for refactoring features:
+```cpp
+namespace clang {
+namespace clangd {
+namespace {
+/// Feature description
+class <ClassName> : public Tweak {
+public:
+  const char *id() const final;
+
+  bool prepare(const Selection &Inputs) override;
+  Expected<Effect> apply(const Selection &Inputs) override;
+  std::string title() const override { return "Refactoring Title"; }
+  llvm::StringLiteral kind() const override {
+    return CodeAction::REFACTOR_KIND;
+  }
+};
+
+REGISTER_TWEAK(<ClassName>)
+
+bool <ClassName>::prepare(const Selection &Inputs) {
+  // Check if refactoring is possible
+}
+
+Expected<Tweak::Effect> <ClassName>::apply(const Selection &Inputs) {
+  // Refactoring code
+}
+
+} // namespace
+} // namespace clangd
+} // namespace clang
+
+```
 #pagebreak()
 
 = Refactoring Ideas
@@ -252,6 +310,9 @@ caption: [Simplified concept without requires clause]
 #pagebreak()
 
 = First Refactoring
+
+*Pull-Request:* https://github.com/llvm/llvm-project/pull/69693
+
 == Design
 == Implementation
 == Testing
