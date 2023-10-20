@@ -193,7 +193,7 @@ Expected<Tweak::Effect> <ClassName>::apply(const Selection &Inputs) {
 
 = Refactoring Ideas
 
-== Requirement Transformation
+== Requirement Transformation <first_idea>
 A new refactoring could be provided to transform a function template using concepts between alternate forms.
 @transformation_idea_listing shows the different forms.
 
@@ -310,11 +310,81 @@ caption: [Simplified concept without requires clause]
 #pagebreak()
 
 = First Refactoring
+For the first refactoring a subset of the initial idea (@first_idea) was implemented.
+The following transformations are made possible by it.
 
-*Pull-Request:* https://github.com/llvm/llvm-project/pull/69693
+#figure(
+  table(
+    columns: (1fr, 1fr),
+    align: horizon,
+    [*Before*], [*After*],
+    ```cpp
+    template <typename T>
+      void f(T) requires foo<T> {}
+    ```,
+    ```cpp
+    template <foo T>
+    void f(T) {}
+    ``` ,
+    ```cpp
+    template <typename T>
+    requires foo<T>
+    void f(T)
+    ```,
+    ```cpp
+    template <foo T>
+    void f(T) {}
+    ```,
+  ),
+  caption: "Capabilities of the first refactoring",
+)
 
 == Design
+The refactoring will only hand simple cases for now.
+This however can easily be expanded on in the future.
+The restrictions for now are that only function templates are supported and conjunctions & disjunctions of concept requirements are not.
+
+During the preparation phase the following elements need be captured.
+They will be stored as a member of the tweak object and then used during the apply phase.
+
+#figure(
+  tablex(
+    columns: 2,
+    auto-vlines: false,
+    ```cpp
+    template <typename T>
+              ^^^^^^^^^^
+      void f(T) requires foo<T> {}
+    ```,
+    [
+      *Template Type Parameter Declaration* \
+      Will be updated using the concept found in the concept specialization expression below.
+    ],
+    ```cpp
+    template <typename T>
+      void f(T) requires foo<T> {}
+                         ^^^^^^
+    ```,
+    [
+      *Concept Specialization Expression* \
+      Will be removed.
+    ],
+    ```cpp
+    template <typename T>
+      void f(T) requires foo<T> {}
+                ^^^^^^^^
+    ```,
+    [
+      *Requires Token* \
+      Will be removed.
+    ],
+  ),
+  caption: "Elements captured for the first refactoring",
+)
+
 == Implementation
+*Pull-Request:* https://github.com/llvm/llvm-project/pull/69693
+
 == Testing
 
 #pagebreak()
