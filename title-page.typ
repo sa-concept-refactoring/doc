@@ -32,4 +32,3 @@
 
 #set align(bottom)
 #image("images/ost_logo.svg", height: 3cm)
-#pagebreak()

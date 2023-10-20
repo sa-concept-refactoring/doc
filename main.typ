@@ -14,6 +14,14 @@
   }
 }
 
+#show heading: it => {
+  if (it.level == 1) {
+    pagebreak()
+  }
+
+  it
+}
+
 #set page(numbering: "1 / 1")
 
 = Abstract
@@ -33,14 +41,10 @@
 // - Der Umfang beträgt in der Regel 3-5 Seiten.
 // - Bilder sind hier sinnvoll
 
-#pagebreak()
-
 #outline(
   title: "Table of Contents",
   indent: auto,
 )
-
-#pagebreak()
 
 #set heading(numbering: "1.")
 #show par: set block(below: 2em)
@@ -64,15 +68,11 @@ For this new added feature not many refactoring options do currently exist which
 == Project Goal
 The goal of this project is to contribute a refactoring feature to the LLVM project, for the newly added type constraints for C++.
 
-#pagebreak()
-
 // TODO where to place this? Is it needed?
 = Structure of This Report
 This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
 
 // TODO descibe chapers
-
-#pagebreak()
 
 = Analysis
 // - Beschreibung des System-Kontexts
@@ -189,7 +189,6 @@ Expected<Tweak::Effect> <ClassName>::apply(const Selection &Inputs) {
 } // namespace clang
 
 ```
-#pagebreak()
 
 = Refactoring Ideas
 
@@ -307,8 +306,6 @@ caption: [Example of a concept with concept requirement]
 caption: [Simplified concept without requires clause]
 )
 
-#pagebreak()
-
 = First Refactoring
 For the first refactoring a subset of the initial idea (@first_idea) was implemented.
 The following transformations are made possible by it.
@@ -387,8 +384,6 @@ They will be stored as a member of the tweak object and then used during the app
 
 == Testing
 
-#pagebreak()
-
 = Development Process
 
 == Workflow
@@ -414,8 +409,6 @@ Building LLVM:
 === Linux
 
 // TODO: Jeremy
-
-#pagebreak()
 
 = Project Management
 // - Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
@@ -466,37 +459,23 @@ To monitor our working hours effectively, we have established a straightforward 
 
 // TODO small summary of time tracking
 
-#pagebreak()
-
 = Conclusion
 // - Zusammenfassung
 // - Evaluation der Ergebnisse
 // - Zielerreichung/offene Punkte
 // - Ausblick, weiterführende Schritte
 
-#pagebreak()
-
 = Outlook
 
-#pagebreak()
-
 = Personal Reports
-
-#pagebreak()
 
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
 
-#pagebreak()
-
 = Glossary
 / SA: Abbreviation for Semester-Arbeit. \ The term is used in the German academic context to refer to a Semester Project.
 
-#pagebreak()
-
 #bibliography("bibliography.bib")
-
-#pagebreak()
 
 = Table of Figures
 #outline(
@@ -504,15 +483,11 @@ Parts of this paper were rephrased by GPT-3.5.
   target: figure.where(kind: image),
 )
 
-#pagebreak()
-
 = List of Listings
 #outline(
   title: none,
   target: figure.where(kind: raw),
 )
-
-#pagebreak()
 
 = Appendices
 
