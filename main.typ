@@ -72,6 +72,8 @@ This report encompasses the analysis, elaboration, and implementation of the pro
 
 // TODO descibe chapers
 
+#pagebreak()
+
 = Analysis
 // - Beschreibung des System-Kontexts
 // - Funktionale und nicht-Funktionale Anforderungen
@@ -97,6 +99,25 @@ An image should help to understand the architecture:
 
 Clangd is the language server which lives in the #link("https://github.com/llvm/llvm-project")[llvm-project] repository under `clang-tools-extra/clangd`. For this project the goal is to add refactoring features which can be found within the clangd folder `tweaks`.
 
+== Coding Guidelines
+
+As all big projects the LLVM also has defined condign guidelines which should be followed.
+The documentation is written really well and can be found #link("https://llvm.org/docs/CodingStandards.html")[here].
+A lot of guidelines are written down but some things seem to be missing. 
+While refactoring the first feature the question came up if trailing returns should be used or not.
+Unfortunately this case is not described within the coding guidelines and after looking at other code snippets it was decided to stick with the non trailing version of return values.
+
+== Project Structure
+
+The LLVM project is quite big and it took a while to figure out how it is structured.
+
+For refactoring features classes can be created in the following directory:
+- llvm-project
+  - clang-tools-extra
+    - clangd
+      - refactor
+        - tweaks
+
 === Existing Features
 We did not find any specific language server features related to concepts.
 Some basics like symbol rename seem to work well though.
@@ -104,7 +125,15 @@ Some basics like symbol rename seem to work well though.
 === Testing
 The LLVM project strictly adheres to a well-defined architecture for testing. To align with project guidelines, automated unit tests must be authored prior to the acceptance of any code contributions.
 
-= Ideas
+Unit tests can be added within this directory:
+- llvm-project
+  - clang-tools-extra
+    - clangd
+      - unittests
+
+#pagebreak()
+
+= Refactoring Ideas
 
 == Requirement Transformation
 A new refactoring could be provided to transform a function template using concepts between alternate forms.
@@ -220,15 +249,25 @@ caption: [Example of a concept with concept requirement]
 caption: [Simplified concept without requires clause]
 )
 
+#pagebreak()
+
 = First Refactoring
 == Design
 == Implementation
 == Testing
 
+#pagebreak()
+
 = Development Process
+
 == Workflow
 
 == Setup
+
+== Git
+To make life easier it was decided to create a repository on Github and make the whole work open source. 
+As there was an already existing pipeline from the original llvm project it self the decision came rather quick as otherwise there could have popped up a lot of different problems and issues.
+
 === Windows
 
 // TODO: Vina - add more text
@@ -244,6 +283,8 @@ Building LLVM:
 === Linux
 
 // TODO: Jeremy
+
+#pagebreak()
 
 = Project Management
 // - Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
@@ -302,8 +343,15 @@ To monitor our working hours effectively, we have established a straightforward 
 // - Zielerreichung/offene Punkte
 // - Ausblick, weiterführende Schritte
 
+#pagebreak()
+
 = Outlook
+
+#pagebreak()
+
 = Personal Reports
+
+#pagebreak()
 
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
@@ -315,7 +363,6 @@ Parts of this paper were rephrased by GPT-3.5.
 
 #pagebreak()
 
-= Bibliography
 #bibliography("bibliography.bib")
 
 #pagebreak()
