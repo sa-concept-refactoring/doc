@@ -90,8 +90,7 @@ An image should help to understand the architecture:
 #figure(
   image("images/llvm_architecture.jpeg", width: 80%),
   caption: [
-    diagram showing architecture of LLVM,
-    source: @LLVM_compiler_architecture
+    diagram showing architecture of LLVM, @LLVM_compiler_architecture
   ],
 )
 
@@ -134,7 +133,7 @@ As concepts were introduced with C++20 it is quite to the world of C++ and there
 For other scenarios multiple refactorings already exist e.g. switching statements within an if.
 Looking at the existing refactoring code helped to understand the how a refactoring is done.
 
-=== Testing
+=== Testing <testing>
 The LLVM project strictly adheres to a well-defined architecture for testing. To align with #link("https://clangd.llvm.org/design/code.html#testing")[project guidelines], automated unit tests must be authored prior to the acceptance of any code contributions.
 
 Unit tests can be added within this directory:
@@ -332,6 +331,14 @@ The following transformations are made possible by it.
     template <foo T>
     void f(T) {}
     ```,
+    ```cpp
+    template <template <typename> class Foo, typename T>
+    void f() requires std::integral<T> {}
+    ```,
+    ```cpp
+    template <template <typename> class Foo, std::integral T> 
+    void f() {}
+    ```,
   ),
   caption: "Capabilities of the first refactoring",
 )
@@ -382,17 +389,52 @@ They will be stored as a member of the tweak object and then used during the app
 == Implementation
 *Pull-Request:* https://github.com/llvm/llvm-project/pull/69693
 
+=== Usage
+To use the feature the user needs to hover over the requires clause e.g. `std::integral<T>`.
+Then right click to show the code options. 
+To see the possible refactorings the option "Refactoring" needs to be clicked and then the newly added feature "Inline concept requirement" will appear within the listed options.
+
+#figure(
+  image("images/screenshot_inline_concept.png", width: 50%),
+  caption: [
+    screenshot showing the option to inline the concept requirement
+  ],
+)
+
+=== AST Analysis
+
+
 == Testing
+
+To test the code unittests needed to be written as described in the @testing[Testing chapter].
 
 = Development Process
 
 == Workflow
 
-== Setup
+#figure(
+  image("drawio/project-organisation.drawio.svg", width: 100%),
+  caption: [
+    diagram showing structure and workflow of the project
+  ],
+)
 
-== Git
+=== Git
 To make life easier it was decided to create a repository on Github and make the whole work open source. 
 As there was an already existing pipeline from the original llvm project it self the decision came rather quick as otherwise there could have popped up a lot of different problems and issues.
+
+== Setup
+To use the clangd locally the the project needs to be builded locally. 
+Clion is a good option for this as it provides all needed tools out of the box so threre is no need to install different tools outside of Clion.
+For testing the current build a small test project was used within VSCode.
+Within the VSCode a settings file is required to define the path to the clangd build.
+
+*`settings.json`:*
+```cpp
+{
+    "clangd.path": "..\\llvm-project\\llvm\\cmake-build-release\\bin\\clangd.exe"
+}
+```
 
 === Windows
 
