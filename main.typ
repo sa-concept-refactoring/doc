@@ -1,5 +1,7 @@
-#include "title-page.typ"
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
+#import "progress-bar.typ": alert
+
+#include "title-page.typ"
 
 #show raw: it => {
   if (it.block) {
@@ -22,7 +24,14 @@
   it
 }
 
-#set page(numbering: "1 / 1")
+#set page(numbering: "1 / 1", footer: [
+  #locate(loc => {
+    let pageCounter = counter(page)
+    let total = pageCounter.final(loc).first()
+    let current = pageCounter.at(loc).first()
+    alert(current / total)
+  })
+])
 
 = Abstract
 // TODO
