@@ -25,7 +25,7 @@
   it
 }
 
-#set page(numbering: "1 / 1")
+#set page(numbering: "1 / 1") if not luschtig
 
 #set page(
   footer: [
