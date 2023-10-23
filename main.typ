@@ -104,9 +104,7 @@ An image should help to understand the architecture:
 
 #figure(
   image("images/llvm_architecture.jpeg", width: 80%),
-  caption: [
-    diagram showing architecture of LLVM, @LLVM_compiler_architecture
-  ],
+  caption: [ Diagram showing architecture of LLVM @LLVM_compiler_architecture ],
 )
 
 == The clangd Language Server
@@ -251,9 +249,7 @@ A new refactoring could be provided to transform a function template using conce
       ```
     ],
   ),
-  caption: [
-    Different ways to constrain a function template using concepts
-  ],
+  caption: [ Different ways to constrain a function template using concepts ],
 ) <transformation_idea_listing>
 
 == Extraction of Conjunctions and Disjunctions
@@ -302,7 +298,7 @@ Unconstrained `auto` can be used to replace `T`:
         std::cout << elem << (++i == vec.size() ? "\n" : ", ");
   }
   ```, 
-caption: [Example of a concept]
+  caption: [ Example of a concept ],
 )
 
 #figure(
@@ -312,7 +308,7 @@ caption: [Example of a concept]
         std::cout << elem << (++i == vec.size() ? "\n" : ", ");
   }
   ```,
-caption: [Simplified concept]
+  caption: [ Simplified concept ],
 )
 
 Also when using `concept` within the requires clause it can be simplified for example: 
@@ -323,14 +319,14 @@ Also when using `concept` within the requires clause it can be simplified for ex
   requires concept<T>
   auto func(T param) { }
   ```,
-caption: [Example of a concept with concept requirement]
+  caption: [ Example of a concept with concept requirement ],
 )
 
 #figure(
   ```cpp
   auto func(concept auto param) { }
   ```,
-caption: [Simplified concept without requires clause]
+  caption: [ Simplified concept without requires clause ],
 )
 
 = First Refactoring (Inline Concept Requirement)
@@ -423,7 +419,7 @@ They will be stored as a member of the tweak object and then used during the app
       Will be removed.
     ],
   ),
-  caption: "Elements captured for the first refactoring",
+  caption: [ Elements captured for the first refactoring ],
 )
 
 === Considerations
@@ -454,7 +450,7 @@ The refactoring should be as defensive as possible and only apply when it is cle
       This is a temporary restriction that could be lifted in the future.
     ],
   ),
-  caption: "Checks made during the first refactoring",
+  caption: [ Checks made during the first refactoring ],
 )
 
 #pagebreak()
@@ -468,9 +464,7 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
 
 #figure(
   image("images/screenshot_inline_concept.png", width: 50%),
-  caption: [
-    screenshot showing the option to inline the concept requirement
-  ],
+  caption: [ Screenshot showing the option to inline the concept requirement ],
 )
 
 === AST Analysis
@@ -481,9 +475,7 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
 
 #figure(
   image("drawio/project-organisation.drawio.svg", width: 100%),
-  caption: [
-    diagram showing structure and workflow of the project
-  ],
+  caption: [ Diagram showing structure and workflow of the project ],
 )
 
 === Git
