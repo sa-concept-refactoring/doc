@@ -23,9 +23,6 @@
 }
 
 #set page(numbering: "1 / 1")
-#let test = page;
-
-test: 
 
 = Abstract
 // TODO
