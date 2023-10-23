@@ -99,7 +99,7 @@ This report encompasses the analysis, elaboration, and implementation of the pro
 
 == What is a Language Server?
 
-To fuilfill the project goal it is important to know what LLVM is and how it works. 
+To fulfill the project goal it is important to know what LLVM is and how it works. 
 An image should help to understand the architecture:
 
 #figure(
@@ -125,16 +125,16 @@ Clangd is the language server which lives in the #link("https://github.com/llvm/
 
 == Coding Guidelines
 
-As all big projects the LLVM also has defined condign guidelines which should be followed.
+As all big projects the LLVM also has defined coding guidelines which should be followed.
 The documentation is written really well and can be found #link("https://llvm.org/docs/CodingStandards.html")[here].
 A lot of guidelines are written down but some things seem to be missing. 
 While refactoring the first feature the question came up if trailing returns should be used or not.
 Unfortunately this case is not described within the coding guidelines and after looking at other code snippets it was decided to stick with the non trailing version of return values.
 
-=== Coding Formatter
+=== Code Formatter
 To fulfill the formatting guidelines there is a formatter within the project which styles the files according to the guidelines.
 
-To check ensure that the format is correct, a job is running on Github for Pull-Request.
+To check ensure that the format is correct, a job is running on GitHub for Pull-Request.
 The Pull-Request can only be merged if the job finishes successfully.
 
 // TODO: add link
@@ -144,12 +144,8 @@ The Pull-Request can only be merged if the job finishes successfully.
 === Project Structure
 
 The LLVM project is quite big and it took a while to figure out how it is structured.
-For refactoring features classes can be created in the following directory:
-- llvm-project
-  - clang-tools-extra
-    - clangd
-      - refactor
-        - tweaks
+For refactoring features classes can be created in the following directory: \
+`llvm-project/clang-tools-extra/clangd/refactor/tweaks`.
 
 === Existing Refactorings
 Looking at the refactoring features no feature could be found which can be used on concepts.
