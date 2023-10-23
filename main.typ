@@ -1,6 +1,7 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
 #import "progress-bar.typ": alert
 
+#import "title-page.typ": luschtig
 #include "title-page.typ"
 
 #show raw: it => {
@@ -24,14 +25,18 @@
   it
 }
 
-#set page(numbering: "1 / 1", footer: [
-  #locate(loc => {
-    let pageCounter = counter(page)
-    let total = pageCounter.final(loc).first()
-    let current = pageCounter.at(loc).first()
-    alert(current / total)
-  })
-])
+#set page(numbering: "1 / 1")
+
+#set page(
+  footer: [
+    #locate(loc => {
+      let pageCounter = counter(page)
+      let total = pageCounter.final(loc).first()
+      let current = pageCounter.at(loc).first()
+      alert(current / total)
+    })
+  ],
+) if luschtig
 
 = Abstract
 // TODO

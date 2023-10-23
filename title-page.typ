@@ -1,5 +1,7 @@
 #import "progress-bar.typ": alert
 
+#let luschtig = false
+
 #let title = "SA - Concept Refactoring"
 #let authors = ( "Jeremy Stucki", "Vina Zahnd" )
 #let supervisor = "Thomas Corbat"
@@ -25,18 +27,19 @@
 
 #v(2em)
 
-*Documentation Progress:*
-#locate(location =>
-{
-  let maxPageNumber = counter(page).final(location).first()
-  let pagesRequired = 120
-  let barWidth = maxPageNumber / pagesRequired
+#if luschtig {
+  [*Documentation Progress:*]
+  locate(location => {
+    let maxPageNumber = counter(page).final(location).first()
+    let pagesRequired = 120
+    let barWidth = maxPageNumber / pagesRequired
 
-  alert(barWidth)
-})
+    alert(barWidth)
+  })
+}
 
 #figure(
-  image("images/cpp_meme.jpg", width: 50%),
+  image("images/cpp_meme.jpg", width: if luschtig { 50% } else { 70% }),
   caption: [
     A meme to lighten the mood
   ],
