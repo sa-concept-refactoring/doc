@@ -74,7 +74,7 @@
 // - Übersicht über die kommende Kapitel
 
 == Initial Situation
-#link("https://github.com/llvm/llvm-project")[LLVM project] is an open source repository on GitHub and contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
+The LLVM project @llvm_github is an open source repository on GitHub and contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
 
 == Problem Description
 As of the new changes of C++20 type constraints were introduced. 
