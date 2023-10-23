@@ -482,21 +482,14 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
 To make life easier it was decided to create a repository on Github and make the whole work open source. 
 As there was an already existing pipeline from the original llvm project it self the decision came rather quick as otherwise there could have popped up a lot of different problems and issues.
 
+#pagebreak()
 == Setup
-To use the clangd locally the the project needs to be builded locally. 
-Clion is a good option for this as it provides all needed tools out of the box so threre is no need to install different tools outside of Clion.
-For testing the current build a small test project was used within VSCode.
-Within the VSCode a settings file is required to define the path to the clangd build.
-
-*`settings.json`:*
-```cpp
-{
-    "clangd.path": "..\\llvm-project\\llvm\\cmake-build-release\\bin\\clangd.exe"
-}
-```
+CLion was used as an IDE since it has great support for CMake as well as very good autocomplete, search and debugging capabilities.
+VS Code with the clangd extension @clangd_extension was then configured to use the locally built language server using the `clangd.path` setting.
 
 === Windows
 
+// TODO: Vina - Mention which compiler was used (Visual Studio probably)
 // TODO: Vina - add more text
 Building LLVM:
 + Clone project from GitHub https://github.com/llvm/llvm-project
@@ -507,9 +500,19 @@ Building LLVM:
 	- add `-DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra'`
 + Choose "cland" in target selector and start building
 
+*`settings.json`:*
+```cpp
+{
+    "clangd.path": "..\\llvm-project\\llvm\\cmake-build-release\\bin\\clangd.exe"
+}
+```
+
 === Linux
 
-// TODO: Jeremy
+The project was built using ninja and gcc12.
+Tests with the language server were performed using VSCodium @VSCodium, a fork of VS Code without telemetry. \
+
+The hardware used was an AMD Ryzen™ PRO 4750U (8 core mobile) and a AMD Ryzen™ 9 5900X (12 core desktop) CPU with 48 gigabytes of system memory.
 
 = Project Management
 // - Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
