@@ -47,6 +47,7 @@ test:
 #outline(
   title: "Table of Contents",
   indent: auto,
+  target: heading.where(level: 1).or(heading.where(level: 2))
 )
 
 #set heading(numbering: "1.")
