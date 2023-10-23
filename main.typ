@@ -325,9 +325,14 @@ caption: [Example of a concept with concept requirement]
 caption: [Simplified concept without requires clause]
 )
 
-= First Refactoring
+= First Refactoring (Inline Concept Requirement)
 For the first refactoring a subset of the initial idea (@first_idea) was implemented.
-The following transformations are made possible by it.
+The patch has also been submitted upstream as a pull request on GitHub @pull_request_of_first_refactoring.
+
+Only simple cases are handled for now, however the functionality could easily be expanded upon in the future.
+The restrictions for now are that only function templates are supported and conjunctions & disjunctions of concept requirements are not.
+
+Some examples of what this refactoring can do as of now can be found in the table below.
 
 #figure(
   table(
@@ -363,13 +368,20 @@ The following transformations are made possible by it.
   caption: "Capabilities of the first refactoring",
 )
 
-== Design
-The refactoring will only hand simple cases for now.
-This however can easily be expanded on in the future.
-The restrictions for now are that only function templates are supported and conjunctions & disjunctions of concept requirements are not.
+== Testing
 
+To test the implementation unit tests were written as described in @testing. \
+There are a total of 11 tests, which consist of the following:
+- 4 availability tests
+- 4 unavailability tests
+- 3 application tests
+
+#pagebreak()
+== Implementation
+
+=== Captured Elements
 During the preparation phase the following elements need be captured.
-They will be stored as a member of the tweak object and then used during the apply phase.
+They will be stored as a member of the tweak object and then used during the application phase.
 
 #figure(
   tablex(
@@ -406,10 +418,42 @@ They will be stored as a member of the tweak object and then used during the app
   caption: "Elements captured for the first refactoring",
 )
 
-== Implementation
-*Pull-Request:* https://github.com/llvm/llvm-project/pull/69693
+=== Considerations
+The refactoring should be as defensive as possible and only apply when it is clear that it will apply correctly. The following checks are made during the preparation phase to ensure this.
 
+#figure(
+  table(
+    columns: (1fr, 1.5fr),
+    align: start,
+    [*Check*], [*Reasoning*],
+    [
+      The selected ```cpp requires``` clause only contains a single requirement.
+    ],
+    [
+      Combined concept requirements are complex to handle and would increase the complexity drastically.
+    ],
+    [
+      The selected concept requirement only contains a single type argument.
+    ],
+    [
+      With multiple type arguments inlining would not be possible.
+    ],
+    [
+      The concept requirement has a parent of either a function or a function template.
+    ],
+    [
+      To restrict the refactoring to function templates only.
+      This is a temporary restriction that could be lifted in the future.
+    ],
+  ),
+  caption: "Checks made during the first refactoring",
+)
+
+#pagebreak()
 === Usage
+// Note from @jeremystucki: This seems to be too specific to vs-code.
+// Maybe we should document how it appears from a language server perspective.
+// We could keep the screenshot however, but maybe in a light theme so it's better for print.
 To use the feature the user needs to hover over the requires clause e.g. `std::integral<T>`.
 Then right click to show the code options. 
 To see the possible refactorings the option "Refactoring" needs to be clicked and then the newly added feature "Inline concept requirement" will appear within the listed options.
@@ -422,13 +466,6 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
 )
 
 === AST Analysis
-
-
-== Testing
-
-To test the code unittests needed to be written as described in the @testing[Testing chapter].
-
-// TODO: documnt how many tests of which kind
 
 = Development Process
 
