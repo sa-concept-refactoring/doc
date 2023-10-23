@@ -23,6 +23,9 @@
 }
 
 #set page(numbering: "1 / 1")
+#let test = page;
+
+test: 
 
 = Abstract
 // TODO
@@ -98,6 +101,16 @@ An image should help to understand the architecture:
 
 Clangd is the language server which lives in the #link("https://github.com/llvm/llvm-project")[llvm-project] repository under `clang-tools-extra/clangd`. For this project the goal is to add refactoring features which can be found within the clangd folder `tweaks`.
 
+=== Language Server Protocol
+
+// TODO: describe LSP and which part of the LSP do we use etc.
+
+// https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_codeAction
+
+// https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeAction_resolve
+
+// https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeAction_resolve
+
 == Coding Guidelines
 
 As all big projects the LLVM also has defined condign guidelines which should be followed.
@@ -142,6 +155,9 @@ Unit tests can be added within this directory:
     - clangd
       - unittests
 
+
+// TODO: explain test concept of clangd (for tweaks)
+
 #pagebreak()
 
 === Class Functions and Structure
@@ -153,7 +169,6 @@ Within the `prepare` function it needs to be checked if a refactoring is possibl
 // TODO: decribe `apply` 
 *```cpp apply(const Selection &Inputs)```:* \
 Within the `apply` function the actual refactoring is taking place.
-
 
 General class structure for refactoring features:
 ```cpp
@@ -188,6 +203,11 @@ Expected<Tweak::Effect> <ClassName>::apply(const Selection &Inputs) {
 } // namespace clang
 
 ```
+
+== AST
+
+// TODO: describe AST tree
+// - who and by who is it generated etc.
 
 = Refactoring Ideas
 
@@ -408,6 +428,8 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
 
 To test the code unittests needed to be written as described in the @testing[Testing chapter].
 
+// TODO: documnt how many tests of which kind
+
 = Development Process
 
 == Workflow
@@ -509,6 +531,8 @@ To monitor our working hours effectively, we have established a straightforward 
 // - Ausblick, weiterführende Schritte
 
 = Outlook
+
+= Learnings
 
 = Personal Reports
 
