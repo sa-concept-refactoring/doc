@@ -155,12 +155,8 @@ Looking at the existing refactoring code helped to understand the how a refactor
 === Testing <testing>
 The LLVM project strictly adheres to a well-defined architecture for testing. To align with #link("https://clangd.llvm.org/design/code.html#testing")[project guidelines], automated unit tests must be authored prior to the acceptance of any code contributions.
 
-Unit tests can be added within this directory:
-- llvm-project
-  - clang-tools-extra
-    - clangd
-      - unittests
-
+Unit tests can be added within this directory: \
+`llvm-project/clang-tools-extra/clangd/unittests`
 
 // TODO: explain test concept of clangd (for tweaks)
 
