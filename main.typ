@@ -554,7 +554,7 @@ The project was built using ninja and Visual Studio.
 The hardwae used was a Intel(R) Core(TM) i7-10510U CPU with 16 gigabytes of system memory.
 
 #figure(
-  image("images/sreenshot_build_options_windows.png", width: 100%),
+  image("images/screenshot_build_options_windows.png", width: 100%),
   caption: [
     screenshot showing build settings in CLion on Windows
   ],

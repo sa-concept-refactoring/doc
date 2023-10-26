@@ -1,6 +1,6 @@
 #import "progress-bar.typ": alert
 
-#let luschtig = false
+#let luschtig = true
 
 #let title = "SA - Concept Refactoring"
 #let authors = ( "Jeremy Stucki", "Vina Zahnd" )
