@@ -115,18 +115,30 @@ Clangd is the language server which lives in the #link("https://github.com/llvm/
 
 === Language Server Protocol
 
-// TODO: describe LSP and which part of the LSP do we use etc.
+The Language Server Protocol (LSP) is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers, which provide language-specific analysis, completion, and other coding features.
+The defined 
+
+For this project the Code Action Request and the Code Action Resolve Request is used.
 
 // https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_codeAction
 
 // https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeAction_resolve
 
-// https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeAction_resolve
+#figure(
+  image("images/lsp-sequence-diagram.png", width: 80%),
+  caption: [
+    diagram showing Code Action and Code Action Resolve Request
+  ],
+)
 
 ==== Code Action Request
 
-The code action request is sent from clien to server to compute commands for a given text document and range.
+The code action request is sent from client to server to compute commands for a given text document and range.
 To make the server useful in many clients, the command actions should be handled by the server and not by the client.
+
+==== Code Action Resolve Request
+
+The Resolve Request is sent from the client to the server to resolve additional information for a given code action. 
 
 == Coding Guidelines
 
