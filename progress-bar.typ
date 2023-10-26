@@ -1,5 +1,5 @@
 #let alert(progress, fill: gray) = {
-    let colorScale = (red, yellow, orange, green)
+    let colorScale = (red, orange, yellow, green)
     let colorScalePosition = if progress < 0.25 {0} 
       else if progress < 0.5 {1} 
       else if progress < 0.75 {2} 
