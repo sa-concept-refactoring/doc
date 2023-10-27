@@ -1,5 +1,5 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
-#import "progress-bar.typ": alert
+#import "progress-bar.typ": printProgressBar
 
 #import "title-page.typ": luschtig
 #include "title-page.typ"
@@ -33,7 +33,7 @@
       let pageCounter = counter(page)
       let total = pageCounter.final(loc).first()
       let current = pageCounter.at(loc).first()
-      alert(current / total)
+      printProgressBar(current / total)
     })
   ],
 ) if luschtig
@@ -300,7 +300,7 @@ The proposed refactoring would offer to extract these logical combinations into 
 
 #pagebreak()
 
-== Concept Simplification
+== Concept Simplification <third_idea>
 
 With shortcuts and terse syntax concepts can be simplified.
 
@@ -310,25 +310,20 @@ Unconstrained `auto` can be used to replace `T`:
 
 #figure(
   ```cpp
-  template <typename T>
-  void print(const std::vector<T>& vec) {
-    for (size_t i = 0; auto& elem : vec)
-        std::cout << elem << (++i == vec.size() ? "\n" : ", ");
-  }
+  template <std::integral T>
+  auto f(T) -> void {}
   ```, 
 caption: [Example of a concept]
 )
 
 #figure(
   ```cpp
-  void print2(const std::vector<auto>& vec) {
-    for (size_t i = 0; auto& elem : vec)
-        std::cout << elem << (++i == vec.size() ? "\n" : ", ");
-  }
+    auto f(auto Tpl) -> void {}
   ```,
 caption: [Simplified concept]
 )
 
+// TODO: @vina this is somehow not possible, check why
 Also when using `concept` within the requires clause it can be simplified for example: 
 
 #figure(
@@ -412,7 +407,7 @@ They will be stored as a member of the tweak object and then used during the app
     ```cpp
     template <typename T>
               ^^^^^^^^^^
-      void f(T) requires foo<T> {}
+    void f(T) requires foo<T> {}
     ```,
     [
       *Template Type Parameter Declaration* \
@@ -420,8 +415,8 @@ They will be stored as a member of the tweak object and then used during the app
     ],
     ```cpp
     template <typename T>
-      void f(T) requires foo<T> {}
-                         ^^^^^^
+    void f(T) requires foo<T> {}
+                       ^^^^^^
     ```,
     [
       *Concept Specialization Expression* \
@@ -429,8 +424,8 @@ They will be stored as a member of the tweak object and then used during the app
     ],
     ```cpp
     template <typename T>
-      void f(T) requires foo<T> {}
-                ^^^^^^^^
+    void f(T) requires foo<T> {}
+              ^^^^^^^^
     ```,
     [
       *Requires Token* \
@@ -449,13 +444,13 @@ The refactoring should be as defensive as possible and only apply when it is cle
     align: start,
     [*Check*], [*Reasoning*],
     [
-      The selected ```cpp requires``` clause only contains a single requirement.
+      The selected ```cpp requires``` clause only contain a single requirement.
     ],
     [
       Combined concept requirements are complex to handle and would increase the complexity drastically.
     ],
     [
-      The selected concept requirement only contains a single type argument.
+      The selected concept requirement only contain a single type argument.
     ],
     [
       With multiple type arguments inlining would not be possible.
@@ -471,7 +466,35 @@ The refactoring should be as defensive as possible and only apply when it is cle
   caption: "Checks made during the first refactoring",
 )
 
-#pagebreak()
+=== AST Analysis
+
+To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
+
+On the left the AST tree is shown of the code on the right:
+
+#table(
+  columns: (1fr, 1fr),
+  align: center,
+  stroke: none,
+  [*AST*], [*Code*],
+  [
+    #figure(
+      image("images/screenshot_ast_first_refactoring.png", width: 80%),
+      caption: [
+        screenshot of AST analysis of code which can be used for first refactoring
+      ],
+    )
+  ],
+  [
+    ```cpp
+    template<typename T>
+    void bar(T a) requires Foo<T> {
+      a.abc();
+    }
+    ```
+  ],
+)
+
 === Usage
 // Note from @jeremystucki: This seems to be too specific to vs-code.
 // Maybe we should document how it appears from a language server perspective.
@@ -488,9 +511,95 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
   ],
 )
 
+= Second Refactoring (Simplify Concept)
+
+For the second refactoring a subset of the initial idea (@third_idea) was implemented.
+The refactoring is replacing the generic parameter `T` with `auto`.
+
+Following examples are showing how the code would be refactored.
+This refactoring heps reducing the amount 
+
+#figure(
+  table(
+    columns: (1fr, 1fr),
+    align: horizon,
+    [*Before*], [*After*],
+    [
+      ```cpp
+      template<std::integral T>
+      auto f(T) -> void
+      {}
+      ```
+    ],
+    [
+      ```cpp
+      auto f(auto T) -> void
+      {}
+      ```
+    ],
+    [
+      ```cpp
+      template <typename...ArgTypes>
+      auto f(ArgTypes...p) -> void
+      {}
+      ```
+    ],
+    [
+      ```cpp
+      auto f(auto ...p) -> void
+      {}
+      ```
+    ],
+    [
+      ```cpp
+      // TODO
+      ```
+    ],
+    [
+      ```cpp
+      auto f(std::integral auto T) -> void
+      {}
+      ```
+    ],
+    [
+      ```cpp
+      // TODO
+      ```
+    ],
+    [
+      ```cpp
+      auto features(std::integral auto const ** Values) -> void
+      {}
+      ```
+    ],
+  ),
+  caption: "Capabilities of the second refactoring",
+)
+
+== Testing
+// Note @vina: should we past the test cases here? 
+
+== Implementation
+
+=== Captured Elements
+// TODO
+
+// Note @vina: "Function Prerequisit" instead of Considerations? The text from the first refactoring can be copied, but this would not be really nice to read
+// === Considerations
+=== Function Prerequisit
+
+To replace the template type parameter within a template or concept the code needs to be checked if a replacement is possible.
+
+- The template type paremeter is not used within the body
+- A template definition needs to be in place
+- Only one type parameter is used
+- The parameter type is not used in a `Map`, `Set`, `List`, `Array` or any other collection
+- No requires clause should be present
+
 === AST Analysis
 
-To get to know the tructure of the concept which needs to refactored the AST tree gives a good overview.
+// NOTE @vina: sameproblem as above, the text can be copied...
+To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
 
 On the left the AST tree is shown of the code on the right:
 
@@ -501,21 +610,22 @@ On the left the AST tree is shown of the code on the right:
   [*AST*], [*Code*],
   [
     #figure(
-      image("images/screenshot_ast.png", width: 80%),
+      image("images/screenshot_ast_second_refactoring.png", width: 80%),
       caption: [
-        screenshot of AST analysis of a concept
+        screenshot of AST analysis of code which can be used for second refactoring
       ],
     )
   ],
   [
     ```cpp
-    template<typename T>
-    void bar(T a) requires Foo<T> {
-      a.abc();
-    }
+    template<std::integral T>
+    auto f(T) -> void
+    {}
     ```
   ],
 )
+
+== Usage
 
 = Development Process
 

@@ -1,6 +1,6 @@
-#import "progress-bar.typ": alert
+#import "progress-bar.typ": printProgressBar
 
-#let luschtig = true
+#let luschtig = false
 
 #let title = "SA - Concept Refactoring"
 #let authors = ( "Jeremy Stucki", "Vina Zahnd" )
@@ -34,7 +34,7 @@
     let pagesRequired = 120
     let barWidth = maxPageNumber / pagesRequired
 
-    alert(barWidth)
+    printProgressBar(barWidth)
   })
 }
 
