@@ -25,6 +25,8 @@
   it
 }
 
+#set text(font: ("Comic Sans MS")) if luschtig
+
 #set page(numbering: "1 / 1") if not luschtig
 
 #set page(
