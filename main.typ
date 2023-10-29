@@ -21,7 +21,6 @@
   if (it.level == 1) {
     pagebreak()
   }
-
   it
 }
 
@@ -35,7 +34,7 @@
       let pageCounter = counter(page)
       let total = pageCounter.final(loc).first()
       let current = pageCounter.at(loc).first()
-      printProgressBar(current / total)
+      printProgressBar(current / total, label: {str(current) + "/" + str(total)})
     })
   ],
 ) if luschtig
@@ -159,6 +158,7 @@ The Pull-Request can only be merged if the job finishes successfully.
 // TODO: add link
 
 == Refactorings in clangd
+Each refactoring option within clangd has its own class.
 
 === Project Structure
 
@@ -183,17 +183,14 @@ Unit tests are added to `llvm-project/clang-tools-extra/clangd/unittests`
 
 #pagebreak()
 
-=== Class Functions and Structure
+=== Code Actions
 
-// TODO: describe `prepare`
-*```cpp prepare(const Selection &Inputs)```:* \
-Within the `prepare` function it needs to be checked if a refactoring is possible on the selected area.
+Tweaks supply the majority of code actions in the LSP system. These compact plugins implement the Tweak interface and reside in the `refactor/tweaks` directory, where they are registered through the linker. 
+When presented with a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
+These fundamental components constitute the foundation of the LSP code-actions flow.
 
-// TODO: decribe `apply` 
-*```cpp apply(const Selection &Inputs)```:* \
-Within the `apply` function the actual refactoring is taking place.
+Each tweak has it's own class and is structured as follows:
 
-General class structure for refactoring features:
 ```cpp
 namespace clang {
 namespace clangd {
@@ -226,6 +223,23 @@ Expected<Tweak::Effect> <ClassName>::apply(const Selection &Inputs) {
 } // namespace clang
 
 ```
+
+// TODO: describe from LSP perspective
+*```cpp bool prepare(const Selection &Inputs)```:* \
+Within the `prepare` function it needs to be checked if a refactoring is possible on the selected area.
+The function is returning a boolean indicating wether the action is availible and should be shown to the user.
+As this function should be fast only non-trivial work should be done within.
+If the action requires trivial work it should be moved to the `apply` function.
+
+// TODO check if this is correct
+The function is triggered as soon as the "Refactoring" option within the Visual Studio Code is used.
+
+*```cpp Expected<Tweak::Effect> apply(const Selection &Inputs)```:* \
+Within the `apply` function the actual refactoring is taking place.
+The function is triggered as soon as the rafactoring tweak has ben clicked.
+It is expected that the `prepare` function has been called before to ensure that the second part of the action is working without problems.
+
+It returns the effect which should be done on the clients side.
 
 == AST
 
@@ -517,6 +531,7 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
 
 For the second refactoring a subset of the initial idea (@third_idea) was implemented.
 The refactoring is replacing the generic parameter `T` with `auto`.
+This tweak helps to reduce the amount of lines and makes the code more readable.
 
 Following examples are showing how the code would be refactored.
 This refactoring heps reducing the amount 
@@ -554,7 +569,9 @@ This refactoring heps reducing the amount
     ],
     [
       ```cpp
-      // TODO
+      template<std::integral T>
+      auto f(T Tpl) -> void
+      {}
       ```
     ],
     [
@@ -565,13 +582,14 @@ This refactoring heps reducing the amount
     ],
     [
       ```cpp
-      // TODO
+      template<std::integral T>
+      auto f(T const ** Tpl) -> void
+      {}
       ```
     ],
     [
       ```cpp
-      auto features(std::integral auto const ** Values) -> void
-      {}
+      auto features(std::integral auto const ** Values) -> void {}
       ```
     ],
   ),
@@ -584,7 +602,34 @@ This refactoring heps reducing the amount
 == Implementation
 
 === Captured Elements
-// TODO
+During the preparation phase the following elements need be captured.
+They will be stored as a member of the tweak object and then used during the application phase.
+
+#figure(
+  tablex(
+    columns: 2,
+    auto-vlines: false,
+    ```cpp
+    template <typename T>
+    ^^^^^^^^^^^^^^^^^^^^^
+    auto f(T param) {}
+    ```,
+    [
+      *Template Declaration* \
+      Will be removed.
+    ],
+    ```cpp
+    template <typename T>
+    auto f(T param) {}
+           ^
+    ```,
+    [
+      *Type Paramter* \
+      Will be replaced with `auto`.
+    ],
+  ),
+  caption: "Elements captured for the second refactoring",
+)
 
 // Note @vina: "Function Prerequisit" instead of Considerations? The text from the first refactoring can be copied, but this would not be really nice to read
 // === Considerations
@@ -592,11 +637,44 @@ This refactoring heps reducing the amount
 
 To replace the template type parameter within a template or concept the code needs to be checked if a replacement is possible.
 
-- The template type paremeter is not used within the body
-- A template definition needs to be in place
-- Only one type parameter is used
-- The parameter type is not used in a `Map`, `Set`, `List`, `Array` or any other collection
-- No requires clause should be present
+#figure(
+  table(
+    columns: (1fr, 1.5fr),
+    align: start,
+    [*Check*], [*Reasoning*],
+    [
+      The template type paremeter is not used within the body.
+    ],
+    [
+      If the type parameter is used within the body it is unsure if the type can be replaced with `auto` as the logic of the code would be needed to check.
+    ],
+    [
+      A template definition needs to be in place.
+    ],
+    [
+      If the template definition is not present the logic of this refactoring can't be applied.
+    ],
+    [
+      Only one type parameter is used.
+    ],
+    [
+      To keep the refactoring simple it is only supports replacing one type parameter.
+    ],
+    [
+      The parameter type is not used in a `Map`, `Set`, `List`, `Array` or any other collection
+    ],
+    [
+        The `auto` keyword can't be used as type of a collection.
+    ],
+    [
+      No requires clause should be present.
+    ],
+    [
+      As the refactoring is removing the type parameter the `requires` clause would not be valid anymore.
+    ]
+  ),
+  caption: "Checks made during the second refactoring",
+)
 
 === AST Analysis
 
@@ -674,6 +752,21 @@ After the clangd build is completed the language server within VS Code needs to 
 === Windows
 
 The project was built using ninja and Visual Studio.
+
+The Visual Studio was installed with the following components:
+- C++ ATL for latest v143 build tools
+- Security Issue Analysis
+- C++ Build Insihgts
+- Just-In-Time debuger
+- C++ profiling tools
+- C++ CMake tools for Windows
+- Test Adapter for Boost.Test 
+- Test Adapter for Google Test
+- Live Share
+- IntelliCode
+- C++ AddressSanitizer
+- Windows 11 SDK
+- vcpkg package manager
 
 The hardwae used was a Intel(R) Core(TM) i7-10510U CPU with 16 gigabytes of system memory.
 

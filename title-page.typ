@@ -34,7 +34,7 @@
     let pagesRequired = 120
     let barWidth = maxPageNumber / pagesRequired
 
-    printProgressBar(barWidth)
+    printProgressBar(barWidth, label: {str(maxPageNumber) + "/" + str(pagesRequired)})
   })
 }
 
