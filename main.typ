@@ -196,25 +196,25 @@ namespace clang {
 namespace clangd {
 namespace {
 /// Feature description
-class <ClassName> : public Tweak {
+class RefactorExample : public Tweak {
 public:
   const char *id() const final;
 
   bool prepare(const Selection &Inputs) override;
   Expected<Effect> apply(const Selection &Inputs) override;
-  std::string title() const override { return "Refactoring Title"; }
+  std::string title() const override { return "A Refactoring Example"; }
   llvm::StringLiteral kind() const override {
     return CodeAction::REFACTOR_KIND;
   }
 };
 
-REGISTER_TWEAK(<ClassName>)
+REGISTER_TWEAK(RefactorExample)
 
-bool <ClassName>::prepare(const Selection &Inputs) {
+bool RefactorExample::prepare(const Selection &Inputs) {
   // Check if refactoring is possible
 }
 
-Expected<Tweak::Effect> <ClassName>::apply(const Selection &Inputs) {
+Expected<Tweak::Effect> RefactorExample::apply(const Selection &Inputs) {
   // Refactoring code
 }
 
@@ -222,6 +222,38 @@ Expected<Tweak::Effect> <ClassName>::apply(const Selection &Inputs) {
 } // namespace clangd
 } // namespace clang
 
+```
+
+When the client requests the list of possible code actions, the tweak classes are being converted to JSON and then sent to the client.
+The above class could look like this when it is sent to the client:
+
+```json
+[
+  {
+    "command": {
+      "arguments": [
+        {
+          "file": "<path to class where request was sent>",
+          "selection": {
+            "end": {
+              "character": 21,
+              "line": 16
+            },
+            "start": {
+              "character": 21,
+              "line": 16
+            }
+          },
+          "tweakID": "RefactorExample"
+        }
+      ],
+      "command": "clangd.applyTweak",
+      "title": "A Refactoring Example"
+    },
+    "kind": "refactor",
+    "title": "A Refactoring Example"
+  }
+]
 ```
 
 // TODO: describe from LSP perspective
@@ -511,8 +543,7 @@ On the left the AST tree is shown of the code on the right:
 )
 
 == Usage
-// Note from @jeremystucki: This seems to be too specific to vs-code.
-// Maybe we should document how it appears from a language server perspective.
+// TODO: Maybe we should document how it appears from a language server perspective. => JSON
 
 ==== VS Code
 To use the feature the user needs to hover over the requires clause e.g. `std::integral<T>`.
@@ -583,7 +614,7 @@ This refactoring heps reducing the amount
 )
 
 == Testing
-// Note @vina: should we past the test cases here? 
+// Note @vina: should we paste the test cases here? 
 
 == Implementation
 
@@ -664,7 +695,7 @@ To replace the template type parameter within a template or concept the code nee
 
 === AST Analysis
 
-// NOTE @vina: sameproblem as above, the text can be copied...
+// NOTE @vina: same problem as above, the text can be copied...
 To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
 
 On the left the AST tree is shown of the code on the right:
@@ -717,21 +748,25 @@ VS Code with the clangd extension @clangd_extension and cmake extension @cmake_e
     "clangd.path": "..\\llvm-project\\llvm\\cmake-build-release\\bin\\clangd.exe"
 
     // Linux
-    "clangd.path": "../llvm-project/llvm/cmake-build-release/bin/clangd.exe"
+    "clangd.path": "../llvm-project/llvm/cmake-build-release/bin/clangd"
 }
 ```
 
 *Building Clangd in CLion:*
 + Clone project from GitHub https://github.com/llvm/llvm-project
 	- `git clone git@github.com:llvm/llvm-project.git`
-+ Open llvm project in Clion
-+ Open folder `llvm/CMake.tx` in Clion and execute cmake
++ Open llvm project in CLion
++ Open folder `llvm/CMake.txt` in CLion and execute cmake
 + File -> Settings -> Build, Execution, Deployment -> CMake -> CMake options
 	- add `-DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra'`
 + Choose "clangd" in target selector and start building
 
 After the clangd build is completed the language server within VS Code needs to be restarted to use the current build.
 + Ctrl. + p : `>Restart language Server`
+
+
+_Note:_ When using Windows, all programs using clangd.exe have to be closed to be able to build clangd successfully.
+In this example this applies to VSCode.
 
 === Windows
 
@@ -740,8 +775,8 @@ The project was built using ninja and Visual Studio.
 The Visual Studio was installed with the following components:
 - C++ ATL for latest v143 build tools
 - Security Issue Analysis
-- C++ Build Insihgts
-- Just-In-Time debuger
+- C++ Build Insights
+- Just-In-Time debugger
 - C++ profiling tools
 - C++ CMake tools for Windows
 - Test Adapter for Boost.Test 
