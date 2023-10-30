@@ -488,30 +488,29 @@ To get to know the structure of the code which needs to be refactored, the AST t
 
 On the left the AST tree is shown of the code on the right:
 
-#table(
-  columns: (1fr, 1fr),
-  align: center,
-  stroke: none,
-  [*AST*], [*Code*],
-  [
-    #figure(
-      image("images/screenshot_ast_first_refactoring.png", width: 80%),
-      caption: [
-        screenshot of AST analysis of code which can be used for first refactoring
-      ],
-    )
-  ],
-  [
-    ```cpp
-    template<typename T>
-    void bar(T a) requires Foo<T> {
-      a.abc();
-    }
-    ```
-  ],
+
+#figure(
+  table(
+    columns: (1fr, 1fr),
+    align: center,
+    stroke: none,
+    [*AST*], [*Code*],
+    image("images/screenshot_ast_first_refactoring.png", width: 80%),
+    [
+      ```cpp
+      template<typename T>
+      void bar(T a) requires Foo<T> {
+        a.abc();
+      }
+      ```
+    ],
+  ),
+  caption: [
+    AST analysis of second refactoring
+  ]
 )
 
-=== Usage
+== Usage
 // Note from @jeremystucki: This seems to be too specific to vs-code.
 // Maybe we should document how it appears from a language server perspective.
 
@@ -544,20 +543,20 @@ This refactoring heps reducing the amount
     [
       ```cpp
       template<std::integral T>
-      auto f(T) -> void
+      auto f(T param) -> void
       {}
       ```
     ],
     [
       ```cpp
-      auto f(auto T) -> void
+      auto f(std::integral auto param) -> void
       {}
       ```
     ],
     [
       ```cpp
-      template <typename...ArgTypes>
-      auto f(ArgTypes...p) -> void
+      template <typename...T>
+      auto f(T...p) -> void
       {}
       ```
     ],
@@ -570,26 +569,13 @@ This refactoring heps reducing the amount
     [
       ```cpp
       template<std::integral T>
-      auto f(T Tpl) -> void
+      auto f(T const ** p) -> void
       {}
       ```
     ],
     [
       ```cpp
-      auto f(std::integral auto T) -> void
-      {}
-      ```
-    ],
-    [
-      ```cpp
-      template<std::integral T>
-      auto f(T const ** Tpl) -> void
-      {}
-      ```
-    ],
-    [
-      ```cpp
-      auto features(std::integral auto const ** Values) -> void {}
+      auto f(std::integral auto const ** p) -> void {}
       ```
     ],
   ),
@@ -610,22 +596,22 @@ They will be stored as a member of the tweak object and then used during the app
     columns: 2,
     auto-vlines: false,
     ```cpp
-    template <typename T>
-    ^^^^^^^^^^^^^^^^^^^^^
-    auto f(T param) {}
+    template <std::integral T>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    auto f(T param) -> void {}
     ```,
     [
       *Template Declaration* \
       Will be removed.
     ],
     ```cpp
-    template <typename T>
-    auto f(T param) {}
+    template <std::integral T>
+    auto f(T param) -> void {}
            ^
     ```,
     [
       *Type Paramter* \
-      Will be replaced with `auto`.
+      Will be replaced with ```cpp std::integral auto```.
     ],
   ),
   caption: "Elements captured for the second refactoring",
@@ -682,28 +668,26 @@ To replace the template type parameter within a template or concept the code nee
 To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
 
 On the left the AST tree is shown of the code on the right:
-
-#table(
-  columns: (1fr, 1fr),
-  align: center,
-  stroke: none,
-  [*AST*], [*Code*],
-  [
-    #figure(
-      image("images/screenshot_ast_second_refactoring.png", width: 80%),
-      caption: [
-        screenshot of AST analysis of code which can be used for second refactoring
-      ],
-    )
-  ],
-  [
-    ```cpp
-    template<std::integral T>
-    auto f(T) -> void
-    {}
-    ```
+#figure(
+  table(
+    columns: (1fr, 1fr),
+    align: center,
+    stroke: none,
+    [*AST*], [*Code*],
+    image("images/screenshot_ast_second_refactoring.png", width: 80%),
+    [
+      ```cpp
+      template<std::integral T>
+      auto f(T param) -> void
+      {}
+      ```
+    ],
+  ),
+  caption: [
+    AST analysis of second refactoring
   ],
 )
+
 
 == Usage
 
