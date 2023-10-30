@@ -20,7 +20,10 @@
           height: 12pt,
           radius: 4pt,
           inset: 5pt
-        )[#{label}]
+        )[
+          #set align(horizon)
+          #{label}
+        ]
       ],
     )
   }
