@@ -15,7 +15,7 @@ jobs:
     - uses: DeterminateSystems/nix-installer-action@main
     - uses: DeterminateSystems/magic-nix-cache-action@main
     - run: mkdir out
-    - run: nix run github:typst/typst/v0.8.0 -- compile main.typ out/main.pdf
+    - run: nix run github:typst/typst/v0.9.0 -- compile main.typ out/main.pdf
     - uses: actions/upload-pages-artifact@v1
       with: { path: 'out' }
 
