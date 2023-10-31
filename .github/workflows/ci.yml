@@ -12,8 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: DeterminateSystems/nix-installer-action@main
-    - uses: DeterminateSystems/magic-nix-cache-action@main
+    - uses: DeterminateSystems/nix-installer-action@v6
+    - uses: DeterminateSystems/magic-nix-cache-action@v2
     - run: mkdir out
     - run: nix run github:typst/typst/v0.9.0 -- compile main.typ out/main.pdf
     - uses: actions/upload-pages-artifact@v1
