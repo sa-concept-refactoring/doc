@@ -564,14 +564,13 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
   ],
 )
 
-= Second Refactoring (Simplify Concept)
+= Second Refactoring (Convert Function Template to Abbreviated Form)
 
-For the second refactoring a subset of the initial idea (@third_idea) was implemented.
-The refactoring is replacing the generic parameter `T` with `auto`.
-This tweak helps to reduce the amount of lines and makes the code more readable.
+For the second refactoring a subset of the third idea (@third_idea) was implemented.
+It replaces explicit function template declarations with abbreviated declarations using auto parameters.
+This tweak helps to reduce the number of lines and makes the code more readable.
 
-Following examples are showing how the code would be refactored.
-This refactoring heps reducing the amount 
+The following examples show how the code would be refactored.
 
 #figure(
   table(
@@ -581,64 +580,34 @@ This refactoring heps reducing the amount
     [
       ```cpp
       template<std::integral T>
-      auto f(T param) -> void
-      {}
+      auto f(T param)
       ```
     ],
     [
       ```cpp
-      auto f(std::integral auto param) -> void
-      {}
+      auto f(std::integral auto param)
       ```
     ],
     [
       ```cpp
-      template<std::integral T>
-      auto f(T param) -> void
-      {}
+      template <typename ...T>
+      auto f(T ...p)
       ```
     ],
     [
       ```cpp
-      auto f(std::integral auto param) -> void
-      {}
-      ```
-    ],
-    [
-      ```cpp
-      template <typename...T>
-      auto f(T...p) -> void
-      {}
-      ```
-    ],
-    [
-      ```cpp
-      auto f(auto ...p) -> void
-      {}
+      auto f(auto ...p)
       ```
     ],
     [
       ```cpp
       template<std::integral T>
-      auto f(T const ** p) -> void
-      {}
+      auto f(T const ** p)
       ```
     ],
     [
       ```cpp
-      auto f(std::integral auto const ** p) -> void {}
-      ```
-    ],
-    [
-      ```cpp
-      template <typename T>
-      requires std::integral<T>
-      auto f(T param) -> void {}
-      ```
-    ],
-    [
-      ```cpp
-    auto f(auto param) -> void {}
+      auto f(std::integral auto const ** p)
       ```
     ],
   ),
