@@ -348,46 +348,52 @@ The proposed refactoring would offer to extract these logical combinations into 
 
 #pagebreak()
 
-== Concept Simplification <third_idea>
+== Abbreviation of Function Templates <third_idea>
 
-With shortcuts and terse syntax concepts can be simplified.
+Regular function templates could be converted to the abbreviated form, which uses auto parameters.
 
-More details about the code simplification can be found here: #link("https://www.cppstories.com/2021/concepts-intro/#code-simplification").
-
-Unconstrained `auto` can be used to replace `T`:
+Here is an example of a simple case with a concept constrained type parameter.
+The resulting signature is identical to the original one.
 
 #figure(
-  ```cpp
-  template <std::integral T>
-  auto f(T) -> void {}
-  ```, 
-caption: [Example of a concept]
+  grid(
+    columns: (auto, auto),
+    gutter: 1em,
+    align(start)[
+      ```cpp
+      template <std::integral T>
+      auto f(T) -> void {}
+      ```
+    ],
+    align(start + horizon)[
+      ```cpp
+      auto f(std::integral auto Tpl) -> void {}
+      ```
+    ]
+  ),
+  caption: [A function template and its abbreviated form]
 )
 
-#figure(
-  ```cpp
-    auto f(auto Tpl) -> void {}
-  ```,
-caption: [Simplified concept]
-)
-
-// TODO: @vina this is somehow not possible, check why
-Also when using `concept` within the requires clause it can be simplified for example: 
+This refactoring could potentially also be combined with the first idea (@first_idea) to directly convert a requires clause into an auto parameter like this.
 
 #figure(
-  ```cpp
-  template <typename T>
-  requires concept<T>
-  auto func(T param) { }
-  ```,
-caption: [Example of a concept with concept requirement]
-)
-
-#figure(
-  ```cpp
-  auto func(concept auto param) { }
-  ```,
-caption: [Simplified concept without requires clause]
+  grid(
+    columns: (auto, auto),
+    gutter: 1em,
+    align(start)[
+      ```cpp
+      template <typename T>
+      requires concept<T>
+      auto func(T param) { }
+      ```
+    ],
+    align(start + horizon)[
+      ```cpp
+      auto func(concept auto param) { }
+      ```
+    ]
+  ),
+  caption: [A requires clause directly being converted to an abbreviated function template]
 )
 
 = First Refactoring (Inline Concept Requirement)
