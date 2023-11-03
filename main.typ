@@ -441,6 +441,7 @@ Some examples of what this refactoring can do as of now can be found in the tabl
 
 == Testing
 
+// TODO: add tests to appendix
 To test the implementation unit tests were written as described in @testing. \
 There are a total of 11 tests, which consist of the following:
 - 4 availability tests
@@ -549,7 +550,7 @@ On the left the AST tree is shown of the code on the right:
 )
 
 == Usage
-// TODO: Maybe we should document how it appears from a language server perspective. => JSON
+// TODO: document where the refactoring option is available when right clicking
 
 ==== VS Code
 To use the feature the user needs to hover over the requires clause e.g. `std::integral<T>`.
@@ -592,6 +593,19 @@ This refactoring heps reducing the amount
     ],
     [
       ```cpp
+      template<std::integral T>
+      auto f(T param) -> void
+      {}
+      ```
+    ],
+    [
+      ```cpp
+      auto f(std::integral auto param) -> void
+      {}
+      ```
+    ],
+    [
+      ```cpp
       template <typename...T>
       auto f(T...p) -> void
       {}
@@ -615,12 +629,24 @@ This refactoring heps reducing the amount
       auto f(std::integral auto const ** p) -> void {}
       ```
     ],
+    [
+      ```cpp
+      template <typename T>
+      requires std::integral<T>
+      auto f(T param) -> void {}
+      ```
+    ],
+    [
+      ```cpp
+    auto f(auto param) -> void {}
+      ```
+    ],
   ),
   caption: "Capabilities of the second refactoring",
 )
 
 == Testing
-// Note @vina: should we paste the test cases here? 
+// TODO: add tests to appendix
 
 == Implementation
 
@@ -684,10 +710,10 @@ To replace the template type parameter within a template or concept the code nee
       To keep the refactoring simple it is only supports replacing one type parameter.
     ],
     [
-      The parameter type is not used in a `Map`, `Set`, `List`, `Array` or any other collection
+      The parameter type is not used within a container (e.g. `map`, `set`, `list`, `array`)
     ],
     [
-        The `auto` keyword can't be used as type of a collection.
+        The `auto` keyword can't be used for containers.
     ],
     [
       No requires clause should be present.
@@ -698,6 +724,41 @@ To replace the template type parameter within a template or concept the code nee
   ),
   caption: "Checks made during the second refactoring",
 )
+
+==== Not Supported Cases
+
+```cpp
+// The keyword `auto` can't be used within containers
+template<typename T>
+auto foo(vector<T> param) -> void {}
+
+template<typename T>
+auto foo(list<T> param) -> void {}
+
+template<class T, size_t N>
+auto foo(T (&a)[N], int size) -> void {}
+
+// Using template declaration multiple times for function parameters
+template<std::integral T>
+auto foo(T param, T anotherParam) -> void {}
+
+// Template type parameter is used within the function body
+template<std::integral T>
+auto foo(T param) -> void {
+  if constexpr (std::is_unsigned_v<T>) {
+      std::cout << "The type is an unsigned integer." << std::endl;
+  } else {
+      std::cout << "The type is not an unsigned integer." << std::endl;
+  }
+}
+
+// Order in template definition different then the function parameters
+// destroys calling of the function
+// e.g.: foo<string, int)(2, "hi");
+// when making both param auto the order of the types in `<>` changes!! 
+template <typename T, std::integral U>
+auto foo(U param, T param2) -> void {}
+```
 
 === AST Analysis
 
