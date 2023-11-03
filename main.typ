@@ -19,7 +19,7 @@
 
 #show heading: it => {
   if (it.level == 1) {
-    pagebreak()
+    pagebreak(weak: true)
   }
   it
 }
