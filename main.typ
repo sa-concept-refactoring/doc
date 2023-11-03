@@ -579,13 +579,13 @@ The following examples show how the code would be refactored.
     [*Before*], [*After*],
     [
       ```cpp
-      template<std::integral T>
+      template <typename T>
       auto f(T param)
       ```
     ],
     [
       ```cpp
-      auto f(std::integral auto param)
+      auto f(auto param)
       ```
     ],
     [
@@ -601,7 +601,18 @@ The following examples show how the code would be refactored.
     ],
     [
       ```cpp
-      template<std::integral T>
+      template <std::integral T>
+      auto f(T param)
+      ```
+    ],
+    [
+      ```cpp
+      auto f(std::integral auto param)
+      ```
+    ],
+    [
+      ```cpp
+      template <std::integral T>
       auto f(T const ** p)
       ```
     ],
@@ -613,6 +624,39 @@ The following examples show how the code would be refactored.
   ),
   caption: "Capabilities of the second refactoring",
 )
+
+== Call Site Implications
+
+The refactoring should not change the signature of the method.
+In this case the type parameter order should stay the same.
+This is only the case if the auto parameters are in the same order as their original template type arguments.
+
+For example the following results int two different signatures.
+
+#figure(
+  grid(
+    columns: (auto, auto),
+    gutter: 1em,
+    align(start)[
+      ```cpp
+      template<typename T, typename U>
+      auto foo(U param1, T param2)
+      ```
+    ],
+    align(start + horizon)[
+      ```cpp
+      auto foo(auto param1, auto param2) 
+      ```
+    ]
+  ),
+  caption: [Example to illustrate call site differences of auto params],
+)
+
+When calling this method with ```cpp foo<int, float>(1.0, 2)``` only the version on the left would compile as the parameter types would be `int` for `param1` and `float` for `param2`. The second version would be the opposite, `int` for `param1` and `float` for `param2`, which then breaks the call as the parameter types don't match.
+ 
+For the refactoring this means that we can only support cases where the order of type arguments stays the same, so the template type arguments need to appear in the same order as the parameters using those types.
+
+#pagebreak()
 
 == Testing
 // TODO: add tests to appendix
