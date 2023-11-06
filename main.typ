@@ -75,14 +75,15 @@
 // - Übersicht über die kommende Kapitel
 
 == Initial Situation
-The LLVM project @llvm_github is an open source repository on GitHub and contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
+The LLVM project @llvm_github is an open source project, whose source code is available on GitHub.
+It contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
 
 == Problem Description
-As of the new changes of C++20 type constraints were introduced. 
-For this new added feature not many refactoring options do currently exist which should be changed with our SA.
+The clangd subproject contains a few refactor operations, but none specific to C++20 concepts yet.
 
 == Project Goal
-The goal of this project is to contribute a refactoring feature to the LLVM project, for the newly added type constraints for C++.
+The goal of this semester project is to come up with new ideas for refactor operations specific to concepts and to implement some of them.
+Ideally they should be submitted upstream as a Pull Request.
 
 // TODO where to place this? Is it needed?
 = Structure of This Report
@@ -520,6 +521,8 @@ The refactoring should be as defensive as possible and only apply when it is cle
   ),
   caption: "Checks made during the first refactoring",
 )
+
+#pagebreak()
 
 === AST Analysis
 
