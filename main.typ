@@ -904,12 +904,14 @@ The language server features were tested using Visual Studio Code and the clangd
 == Project Plan
 Due to the absence of detailed guidelines, we can only offer a rough plan at this time.
 
+#let numberOfWeeks = 15
+
 #figure(
   box(
     width: 100%,
     tablex(
       header: 1,
-      columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+      columns: range(1, numberOfWeeks + 1).map(_ => 1fr),
       align: center + horizon,
       map-rows: (row, cells) => cells.map(c =>
         if c == none {
@@ -919,7 +921,7 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
         }
       ),
       /* --- header --- */
-      [*w1*], [*w2*], [*w3*], [*w4*], [*w5*], [*w6*], [*w7*], [*w8*], [*w9*], [*w10*], [*w11*], [*w12*], [*w13*], [*w14*], [*w15*],
+      ..range(1, numberOfWeeks + 1).map(w => strong("w" + str(w))),
       /* ------------- */
       [Setup], colspanx(3)[1. refactoring feature], colspanx(2)[optimization & testing], colspanx(2)[contribute to LLVM], colspanx(3, fill:blue)[], colspanx(2)[finish documentation], [hand in], [Apéro],
       /* ------------- */
