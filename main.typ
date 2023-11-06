@@ -906,29 +906,115 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
 
 #let numberOfWeeks = 15
 
-#figure(
-  box(
-    width: 100%,
-    tablex(
-      header: 1,
-      columns: range(1, numberOfWeeks + 1).map(_ => 1fr),
-      align: center + horizon,
-      map-rows: (row, cells) => cells.map(c =>
-        if c == none {
-          c
-        } else {
-          (..c, fill: if row == 0 { aqua })
-        }
-      ),
-      /* --- header --- */
-      ..range(1, numberOfWeeks + 1).map(w => strong("w" + str(w))),
-      /* ------------- */
-      [Setup], colspanx(3)[1. refactoring feature], colspanx(2)[optimization & testing], colspanx(2)[contribute to LLVM], colspanx(3, fill:blue)[], colspanx(2)[finish documentation], [hand in], [Apéro],
-      /* ------------- */
-      colspanx(6)[], colspanx(5)[2. refactoring feature], colspanx(4)[]
-    )
+// #figure(
+//   box(
+//     width: 100%,
+//     tablex(
+//       header: 1,
+//       columns: range(1, numberOfWeeks + 1).map(_ => 1fr),
+//       align: center + horizon,
+//       map-rows: (row, cells) => cells.map(c =>
+//         if c == none {
+//           c
+//         } else {
+//           (..c, fill: if row == 0 { aqua })
+//         }
+//       ),
+//       /* --- header --- */
+//       ..range(1, numberOfWeeks + 1).map(w => strong("w" + str(w))),
+//       /* ------------- */
+//       [Setup], colspanx(3)[1. refactoring feature], colspanx(2)[optimization & testing], colspanx(2)[contribute to LLVM], colspanx(3, fill:blue)[], colspanx(2)[finish documentation], [hand in], [Apéro],
+//       /* ------------- */
+//       colspanx(6)[], colspanx(5)[2. refactoring feature], colspanx(4)[]
+//     )
+//   ),
+//   caption: [ Project plan ],
+// )
+
+#let epic(
+  title: none,
+  startWeek: int,
+  backgroundColor: color,
+  foregroundColor: color,
+  inset: 8pt,
+  textSize: 0.9em,
+  itemStroke: white + 2pt,
+  items
+) = [
+  #let itemBox(width, content) = box(
+    width: 100% * width / (numberOfWeeks - (startWeek - 1)),
+    inset: inset,
+    fill: backgroundColor,
+    stroke: itemStroke,
+    text(
+      spacing: 100%,
+      fill: foregroundColor,
+      weight: "bold",
+      content
+    ),
+  )
+
+  #pad(left: 100% * (startWeek - 1) / numberOfWeeks, [
+    #set text(size: textSize)
+    #if title != none [
+      *#title* \
+    ]
+    #set text(spacing: 0%)
+    #for item in items {
+      itemBox(item.at(0), item.at(1))      
+    }
+  ])
+]
+
+#epic(
+  startWeek: 1,
+  backgroundColor: aqua,
+  foregroundColor: black,
+  inset: 4pt,
+  textSize: 1em,
+  itemStroke: none,
+  range(1, numberOfWeeks + 1)
+    .map(weekNum => (1, align(center, [w#str(weekNum)]))),
+)
+
+#epic(
+  title: "Documentation",
+  startWeek: 1,
+  backgroundColor: blue,
+  foregroundColor: white,
+  (
+    (2, "Setup"),
+    (8, "Ongoing documentation"),
+    (2, "Refinement"),
+    (2, "Abstract"),
+    (1, "Final"),
   ),
-  caption: [ Project plan ],
+)
+
+#epic(
+  title: "1. Refactoring",
+  startWeek: 2,
+  backgroundColor: green,
+  foregroundColor: white,
+  (
+    (2, "Analysis"),
+    (2, "Implemenatation"),
+    (2, "Refinement"),
+    (2, "Pull Request"),
+  ),
+)
+
+#epic(
+  title: "2. Refactoring",
+  startWeek: 6,
+  backgroundColor: orange,
+  foregroundColor: white,
+  (
+    (2, "Analysis"),
+    (2, "Implemenatation"),
+    (2, "Refinement"),
+    (2, "Pull Request"),
+  ),
 )
 
 #pagebreak()
