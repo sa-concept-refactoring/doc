@@ -986,7 +986,7 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
     (2, "Setup"),
     (8, "Ongoing documentation"),
     (2, "Refinement"),
-    (2, "Abstract"),
+    (2, [Abstract & MS #footnote[Management Summary]]),
     (1, "Final"),
   ),
 )
