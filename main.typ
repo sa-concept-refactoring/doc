@@ -490,7 +490,7 @@ They will be stored as a member of the tweak object and then used during the app
   caption: "Elements captured for the first refactoring",
 )
 
-=== Considerations
+=== Function Prerequisite
 The refactoring should be as defensive as possible and only apply when it is clear that it will apply correctly. The following checks are made during the preparation phase to ensure this.
 
 #figure(
@@ -693,8 +693,6 @@ They will be stored as a member of the tweak object and then used during the app
   caption: "Elements captured for the second refactoring",
 )
 
-// Note @vina: "Function Prerequisite" instead of Considerations? The text from the first refactoring can be copied, but this would not be really nice to read
-// === Considerations
 === Function Prerequisite
 
 To replace the template type parameter within a template or concept the code needs to be checked if a replacement is possible.
@@ -802,7 +800,12 @@ On the left the AST tree is shown of the code on the right:
 
 == Usage
 
+To use the refactoring the cursor can be anywhere on or within the function. 
+
+
 = Development Process
+
+To achieve this refactoring the whole function needs to be checked for usages of the defined template type parameters
 
 == Workflow
 
@@ -845,8 +848,8 @@ After the clangd build is completed the language server within VS Code needs to 
 + Ctrl. + p : `>Restart language Server`
 
 
-_Note:_ When using Windows, all programs using clangd.exe have to be closed to be able to build clangd successfully.
-In this example this applies to VSCode.
+_Note:_ When using Windows, clangd.exe should not be in use to build clangd successfully.
+In this example this applies to VSCode when the language server has started.
 
 === Windows
 
