@@ -259,7 +259,7 @@ The above class could look like this when it is sent to the client:
 // TODO: describe from LSP perspective
 *```cpp bool prepare(const Selection &Inputs)```:* \
 Within the `prepare` function it needs to be checked if a refactoring is possible on the selected area.
-The function is returning a boolean indicating wether the action is availible and should be shown to the user.
+The function is returning a boolean indicating wether the action is available and should be shown to the user.
 As this function should be fast only non-trivial work should be done within.
 If the action requires trivial work it should be moved to the `apply` function.
 
@@ -268,7 +268,7 @@ The function is triggered as soon as the "Refactoring" option within the Visual 
 
 *```cpp Expected<Tweak::Effect> apply(const Selection &Inputs)```:* \
 Within the `apply` function the actual refactoring is taking place.
-The function is triggered as soon as the rafactoring tweak has ben clicked.
+The function is triggered as soon as the refactoring tweak has ben clicked.
 It is expected that the `prepare` function has been called before to ensure that the second part of the action is working without problems.
 
 It returns the effect which should be done on the clients side.
@@ -686,16 +686,16 @@ They will be stored as a member of the tweak object and then used during the app
            ^
     ```,
     [
-      *Type Paramter* \
+      *Type Parameter* \
       Will be replaced with ```cpp std::integral auto```.
     ],
   ),
   caption: "Elements captured for the second refactoring",
 )
 
-// Note @vina: "Function Prerequisit" instead of Considerations? The text from the first refactoring can be copied, but this would not be really nice to read
+// Note @vina: "Function Prerequisite" instead of Considerations? The text from the first refactoring can be copied, but this would not be really nice to read
 // === Considerations
-=== Function Prerequisit
+=== Function Prerequisite
 
 To replace the template type parameter within a template or concept the code needs to be checked if a replacement is possible.
 
@@ -705,7 +705,7 @@ To replace the template type parameter within a template or concept the code nee
     align: start,
     [*Check*], [*Reasoning*],
     [
-      The template type paremeter is not used within the body.
+      The template type parameter is not used within the body.
     ],
     [
       If the type parameter is used within the body it is unsure if the type can be replaced with `auto` as the logic of the code would be needed to check.
