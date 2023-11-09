@@ -27,14 +27,30 @@ Clangd is a language server which lives within the LLVM project.
 It understands the C++ code and contains smart features like code completion, compile errors and go-to-definitions.
 
 == Problem Description
-The clangd sub project contains a few refactor operations, but none specific to C++20 concepts yet.
+When coding in C++ features like code refactorings are very helpful tool.
+They can help detect bad code or can help to optimize it.
+To make these features available to all IDEs the language server clangd can be used.
+
+Unfortunately not many refactorings are available, especially not for the newest C++ 20 version.
+Therefore it would be nice to have some support for new language features like concepts.
+It would make coding much more convenient and make the developer aware of other ways of writing code using the newly added features.
 
 == Project Goal
 The goal of this semester project is to come up with new ideas for refactor operations specific to concepts and to implement some of them.
 Ideally they should be submitted upstream as a Pull Request.
 
-// TODO where to place this? Is it needed?
 = Structure of This Report
 This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
 
-// TODO describe chapters
+*@analysis:* Captures the findings from the research conducted on the foundational principles of the clangd Language Server.
+
+*@refactoring_ideas:* Lists the collected ideas for a potential refactoring.
+
+*@inline_concept_requirement:* Describes the implementation process and result of the refactoring "inline concept requirement".
+
+*@convert_to_abbreviated_form:* Describes the implementation process and result of the refactoring "Convert to abbreviated form".
+
+*@development_process:* Gives insight about how the development environment was set up and which steps were needed to make the llvm project compile locally.
+
+*@conclusion:* Summarizes key findings, insights, and implication of the project.
+

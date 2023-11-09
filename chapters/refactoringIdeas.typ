@@ -1,4 +1,4 @@
-= Refactoring Ideas
+= Refactoring Ideas <refactoring_ideas>
 
 == Requirement Transformation <first_idea>
 A new refactoring could be provided to transform a function template using concepts between alternate forms.

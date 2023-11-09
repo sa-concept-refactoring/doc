@@ -1,6 +1,6 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
 
-= First Refactoring (Inline Concept Requirement)
+= First Refactoring (Inline Concept Requirement) <inline_concept_requirement>
 For the first refactoring a subset of the initial idea (@first_idea) was implemented.
 The patch has also been submitted upstream as a pull request on GitHub @pull_request_of_first_refactoring.
 

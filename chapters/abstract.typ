@@ -1,4 +1,4 @@
-= Abstract
+= Abstract <abstract>
 // TODO
 
 // Der Abstract richtet sich an den Spezialisten auf dem entsprechenden Gebiet und beschreibt

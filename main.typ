@@ -23,6 +23,16 @@
   it
 }
 
+#show ref: it =>{
+  if it.element == none{
+    text(fill: red)[(?)]  
+  } else if it.element.func() == heading {
+    link(it.target, "Chapter " + str(counter(heading).at(it.element.location()).first()) + ", " + it.element.body)
+  } else {
+    it
+  }
+}
+
 #set text(font: ("Comic Sans MS")) if luschtig
 #set page(numbering: "1 / 1") if not luschtig
 
@@ -53,13 +63,14 @@
 #include "chapters/convertToAbbreviatedForm.typ"
 #include "chapters/developmentProcess.typ"
 
-#set heading(numbering: none)
 
-= Conclusion
+= Conclusion <conclusion>
 // - Zusammenfassung
 // - Evaluation der Ergebnisse
 // - Zielerreichung/offene Punkte
 // - Ausblick, weiterführende Schritte
+
+#set heading(numbering: none)
 
 = Outlook
 
