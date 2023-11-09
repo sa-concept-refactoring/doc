@@ -53,4 +53,3 @@ This report encompasses the analysis, elaboration, and implementation of the pro
 *@development_process:* Gives insight about how the development environment was set up and which steps were needed to make the llvm project compile locally.
 
 *@conclusion:* Summarizes key findings, insights, and implication of the project.
-
