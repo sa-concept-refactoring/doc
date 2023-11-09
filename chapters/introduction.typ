@@ -37,4 +37,4 @@ Ideally they should be submitted upstream as a Pull Request.
 = Structure of This Report
 This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
 
-// TODO descibe chapers
+// TODO describe chapters
