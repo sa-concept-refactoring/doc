@@ -7,7 +7,7 @@
 // - Übersicht über die kommende Kapitel
 
 == Initial Situation
-The programming language C++ is constantly developed further by the standard committee @standard_committee. 
+// The programming language C++ is constantly developed further by the standard committee @standard_committee. 
 With the newest changes of C++ 20, type constraints were introduced with which the functionality of template parameters can be specified.
 The so called "Concepts" allow to name predicates for template arguments.
 

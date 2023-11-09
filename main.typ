@@ -24,10 +24,9 @@
 }
 
 #show ref: it =>{
-  if it.element == none{
-    text(fill: red)[(?)]  
-  } else if it.element.func() == heading {
-    link(it.target, "Chapter " + str(counter(heading).at(it.element.location()).first()) + ", " + it.element.body)
+  if it.element != none and it.element.func() == heading {
+    let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location()))
+    link(it.target, it.element.supplement + " " + number + " " + it.element.body)
   } else {
     it
   }
