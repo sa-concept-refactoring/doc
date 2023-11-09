@@ -37,10 +37,14 @@ A new refactoring could be provided to transform a function template using conce
   ],
 ) <transformation_idea_listing>
 
+#pagebreak(weak: true)
 == Extraction of Conjunctions and Disjunctions
 Sometimes more than one constraint is used in a ```cpp requires``` clause.
 This is expressed by `||` and `&&` operators.
 The proposed refactoring would offer to extract these logical combinations into a new named concept.
+
+One possible hurdle for this refactoring could be that there is no way to trigger a rename of this new concept.
+This seems to be a limitation of the language server protocol @lsp_issue_724 @lsp_issue_764.
 
 #figure(
   ```cpp
@@ -65,8 +69,7 @@ The proposed refactoring would offer to extract these logical combinations into 
   caption: [ The proposed refactoring to the conjunction in @conjunction_idea_listing ],
 )
 
-#pagebreak()
-
+#pagebreak(weak: true)
 == Abbreviation of Function Templates <third_idea>
 
 Regular function templates could be converted to the abbreviated form, which uses auto parameters.
