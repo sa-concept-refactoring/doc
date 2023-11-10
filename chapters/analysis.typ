@@ -51,21 +51,19 @@ The details of the requests shown in the flow diagram are explained further in t
   ],
 )
 
-==== Code Action Request
+=== Code Action Request
 
 The code action request is sent from client to server to compute commands for a given text document and range.
 To make the server useful in many clients, the command actions should be handled by the server and not by the client.
 // Kommentar Jeremy: Die Zile grad obe a dem Kommentar isch irgendwie chli redundant, da hemmer ja scho in de introduction.
 // Kommentar Vina: Chamer ja glich namal erwähne, da ischs eifach detailierter beschriebe
 
-==== Code Action Resolve Request
+=== Executing a Command
 
-// Kommentar Vina: das isch glaub s falsche, ich glaub es isch das: https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#workspace_executeCommand
-
-The Resolve Request is sent from the client to the server to resolve additional information for a given code action.
+To apply a code change on the client side the client sends a `workspace/executeCommand` to the server.
+The server can then create a WorkspaceEdit @lsp_workspace_edit structure and apply the changes to the workspace by sending a `workspace/applyEdit` @lsp_workspace_apply_edit command to the client.
 
 // Kommentar Jeremy: Mer sett no sege wie jetz de command usgfüert wird. Bis jetz erkläre mer nur wiemer dezue chonnt.
-// Kommentar Jeremy: Im debugger luege ob resolve request überhaupt usgfüert wird
 
 == The clangd Language Server
 

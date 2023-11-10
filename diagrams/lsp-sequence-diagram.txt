@@ -1,0 +1,13 @@
+sequenceDiagram
+
+    Note over Client,Server: Code Action Request
+    Client->>+Server: textDocument/codeAction (CodeActionParams)
+    Server->>+Client: (Command | CodeAction)[] | null
+    
+    Note over Client,Server: Execute a Command
+    Client->>Server: workspace/executeCommand (ExecuteCommandParams)
+    Server->>+Client: LSPAny | error
+
+    Note over Client,Server: Apply a WorkspaceEdit
+    Server->>+Client: workspace/applyEdit (ApplyWorkspaceEditParams)
+    Client->>+Server: ApplyWorkspaceEditResult | error
