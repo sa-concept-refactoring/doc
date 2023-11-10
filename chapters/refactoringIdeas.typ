@@ -3,6 +3,7 @@
 == Requirement Transformation <first_idea>
 A new refactoring could be provided to transform a function template using concepts between alternate forms.
 @transformation_idea_listing shows the different forms.
+They all result in an identical function signature.
 
 #figure(
   grid(
@@ -72,10 +73,12 @@ This seems to be a limitation of the language server protocol @lsp_issue_724 @ls
 #pagebreak(weak: true)
 == Abbreviation of Function Templates <third_idea>
 
-Regular function templates could be converted to the abbreviated form, which uses auto parameters.
+Regular function templates could be converted to their abbreviated form, which uses auto parameters instead of explicit template arguments.
 
-Here is an example of a simple case with a concept constrained type parameter.
+@abbreviation shows an example of a simple case with a concept constrained type parameter.
 The resulting signature is identical to the original one.
+
+This refactoring could potentially also be combined with the first idea (@first_idea) to directly convert a requires clause into an auto parameter (@combined_refactoring).
 
 #figure(
   grid(
@@ -94,9 +97,7 @@ The resulting signature is identical to the original one.
     ]
   ),
   caption: [A function template and its abbreviated form]
-)
-
-This refactoring could potentially also be combined with the first idea (@first_idea) to directly convert a requires clause into an auto parameter like this.
+) <abbreviation>
 
 #figure(
   grid(
@@ -116,4 +117,4 @@ This refactoring could potentially also be combined with the first idea (@first_
     ]
   ),
   caption: [A requires clause directly being converted to an abbreviated function template]
-)
+) <combined_refactoring>
