@@ -1,8 +1,8 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
 
-= First Refactoring (Inline Concept Requirement) <inline_concept_requirement>
+= Refactoring — Inline Concept Requirement <inline_concept_requirement>
 For the first refactoring a subset of the initial idea (@first_idea) was implemented.
-The patch has also been submitted upstream as a pull request on GitHub @pull_request_of_first_refactoring.
+The resulting patch has also been submitted upstream as a pull request on GitHub @pull_request_of_first_refactoring.
 
 Only simple cases are handled for now, however the functionality could easily be expanded upon in the future.
 The restrictions for now are that only function templates are supported and conjunctions & disjunctions of concept requirements are not.

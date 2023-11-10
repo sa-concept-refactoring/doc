@@ -1,6 +1,6 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
 
-= Second Refactoring (Convert Function Template to Abbreviated Form) <convert_to_abbreviated_form>
+= Second Refactoring — Convert Function Template to Abbreviated Form <convert_to_abbreviated_form>
 
 For the second refactoring a subset of the third idea (@third_idea) was implemented.
 It replaces explicit function template declarations with abbreviated declarations using auto parameters.
