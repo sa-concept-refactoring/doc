@@ -85,7 +85,8 @@ They will be stored as a member of the tweak object and then used during the app
   caption: "Elements captured for the \"Inline Concept Requirement\" refactoring",
 )
 
-=== Function Prerequisites
+#pagebreak()
+=== Prerequisites
 The refactoring should be as defensive as possible and only apply when it is clear that it will apply correctly.
 The following checks are made during the preparation phase to ensure this.
 
@@ -119,12 +120,12 @@ The following checks are made during the preparation phase to ensure this.
 )
 
 #pagebreak()
-
 === AST Analysis
 
 To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
+In @first_refactoring_ast the AST tree of a simple template method is shown with the corresponding source code.
 
-In @first_refactoring_ast the AST tree of a simple template method is shown with the corresponding source code to the right of it.
+TODO: Write actual analysis
 
 #figure(
   grid(
@@ -152,10 +153,11 @@ There are a total of 11 tests, which consist of the following:
 - 4 unavailability tests
 - 3 application tests
 
+#pagebreak()
 == Usage
 // TODO: document where the refactoring option is available when right clicking
 
-==== VS Code
+=== VS Code
 To use the feature the user needs to hover over the requires clause e.g. `std::integral<T>`.
 Then right click to show the code options. 
 To see the possible refactorings the option "Refactoring" needs to be clicked and then the newly added feature "Inline concept requirement" will appear within the listed options.
@@ -163,6 +165,6 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
 #figure(
   image("../images/screenshot_inline_concept.png", width: 50%),
   caption: [
-    screenshot showing the option to inline the concept requirement
+    Screenshot showing the option to inline a concept requirement
   ],
 )
