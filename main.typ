@@ -25,7 +25,7 @@
 
 #show ref: it =>{
   if it.element != none and it.element.func() == heading {
-    let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location())).slice(0, -1)
+    let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location())).trim(".", at: end)
     link(it.target, it.element.supplement + " " + number + ", " + it.element.body)
   } else {
     it
