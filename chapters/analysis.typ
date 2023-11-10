@@ -9,8 +9,17 @@
 // Kommentar Jeremy: Das sett mer vermuetli splitte in "what is llvm" und "what is a language server"
 == What is a Language Server?
 
-To fulfill the project goal it is important to know what LLVM is and how it works. 
-An image should help to understand the architecture:
+A language server provides language-specific features such as code completion, syntax highlighting, error checking and other services to enhance the capabilities of code editors.
+The Language Server Protocol (LSP) is a standardized communication protocol to which allows the language server to interact with the editor or IDE.
+
+By using a common protocol like @LSP the same language server can be used by different editors which support the protocol.
+This reduces the effort required to integrate language-specific features into various development environments.
+This allows developers to have a more efficient and feature-rich coding experience, regardless of the programming language they are working with. 
+
+Language servers are used within modern IDEs and code editors such as Visual Studio Code, Atom and Sublime Text.
+
+The LLVM project is a collection of modular and reusable compiler and toolchain technologies.
+One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objective-C compiler.
 
 #figure(
   image("../images/llvm_architecture.jpeg", width: 80%),
@@ -19,13 +28,15 @@ An image should help to understand the architecture:
   ],
 )
 
+Code refactorings for C++ can be found within the clangd language server with is based on the clang compiler.
+
 == The clangd Language Server
 
 // Kommentar Jeremy: Mer settet links ned eifach so dinne ha, es sett alles ide bibliographie si
 Clangd is the language server which lives in the #link("https://github.com/llvm/llvm-project")[llvm-project] repository under `clang-tools-extra/clangd`. For this project the goal is to add refactoring features which can be found within the clangd folder `tweaks`.
 
 // Kommentar Jeremy: Das chammer eigentlich es level ufe neh (2 statt 3) und obe am "clangd language server" chapter here tue.
-=== Language Server Protocol
+=== Language Server Protocol <LSP>
 
 The Language Server Protocol (LSP) is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers, which provide language-specific analysis, completion, and other coding features.
 The defined 
