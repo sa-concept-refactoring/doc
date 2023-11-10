@@ -18,7 +18,7 @@ This allows developers to have a more efficient and feature-rich coding experien
 
 Language servers are used within modern IDEs and code editors such as Visual Studio Code, Atom and Sublime Text.
 
-The LLVM project is a collection of modular and reusable compiler and toolchain technologies.
+The LLVM project @llvm_github is a collection of modular and reusable compiler and toolchain technologies.
 One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objective-C compiler.
 
 #figure(
@@ -30,16 +30,9 @@ One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objectiv
 
 Code refactorings for C++ can be found within the clangd language server with is based on the clang compiler.
 
-== The clangd Language Server
-
-// Kommentar Jeremy: Mer settet links ned eifach so dinne ha, es sett alles ide bibliographie si
-Clangd is the language server which lives in the #link("https://github.com/llvm/llvm-project")[llvm-project] repository under `clang-tools-extra/clangd`. For this project the goal is to add refactoring features which can be found within the clangd folder `tweaks`.
-
-// Kommentar Jeremy: Das chammer eigentlich es level ufe neh (2 statt 3) und obe am "clangd language server" chapter here tue.
-=== Language Server Protocol <LSP>
+== Language Server Protocol <LSP>
 
 The Language Server Protocol (LSP) is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers, which provide language-specific analysis, completion, and other coding features.
-The defined 
 
 For this project the Code Action Request and the Code Action Resolve Request are used.
 
@@ -48,6 +41,9 @@ For this project the Code Action Request and the Code Action Resolve Request are
 // https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeAction_resolve
 
 // Kommentar Jeremy: Vellecht no 1-2 Sätz dass mers ide folgende Absätz werdet erlütere?
+The flow chart is showing a quick overview of the requests used for refactoring features.
+The details of the requests shown in the flow diagram are explained further in the following chapters.
+
 #figure(
   image("../images/lsp-sequence-diagram.png", width: 80%),
   caption: [
@@ -60,26 +56,34 @@ For this project the Code Action Request and the Code Action Resolve Request are
 The code action request is sent from client to server to compute commands for a given text document and range.
 To make the server useful in many clients, the command actions should be handled by the server and not by the client.
 // Kommentar Jeremy: Die Zile grad obe a dem Kommentar isch irgendwie chli redundant, da hemmer ja scho in de introduction.
+// Kommentar Vina: Chamer ja glich namal erwähne, da ischs eifach detailierter beschriebe
 
 ==== Code Action Resolve Request
+
+// Kommentar Vina: das isch glaub s falsche, ich glaub es isch das: https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#workspace_executeCommand
 
 The Resolve Request is sent from the client to the server to resolve additional information for a given code action.
 
 // Kommentar Jeremy: Mer sett no sege wie jetz de command usgfüert wird. Bis jetz erkläre mer nur wiemer dezue chonnt.
 // Kommentar Jeremy: Im debugger luege ob resolve request überhaupt usgfüert wird
 
+== The clangd Language Server
+
+Clangd is the language server which lives in the llvm-project repository @llvm_github under `clang-tools-extra/clangd`. 
+It understands C++ code and adds smart features like code completion, compile errors and go-to-definition.
+
+The C++ refactoring features can be found within the clangd under the `tweaks` folder.
+
 == Coding Guidelines
 
-As all big projects LLVM also has defined coding guidelines which should be followed.
-// Kommentar Jeremy: Link id bibliographie
-The documentation is written really well and can be found #link("https://llvm.org/docs/CodingStandards.html")[here].
-A lot of guidelines are written down but some things seem to be missing. 
-While refactoring the first feature the question came up if trailing returns should be used or not.
-Unfortunately this is not described within the coding guidelines.
+As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
+The documentation is written really well and is easy to understand which makes it easy to follow.
+A lot of guidelines are described but some things seem to be missing like the usage of trailing return types.
 
 === Code Formatter
-To fulfill the formatting guidelines there is a formatter within the project which styles the files according to the guidelines.
-To ensure that the format is correct, a check is run on GitHub for Pull-Requests, which can only be merged if the check is succesful.
+To fulfill the formatting guidelines there is a formatter within the project to styles the files according to the guidelines.
+A check run on GitHub is ensuring that the format of the code is correct.
+Only when the formatter has been run successfully a Pull-Request is allowed to be merged.
 
 // TODO: add link
 
@@ -100,10 +104,8 @@ For other scenarios multiple refactoring operations already exist (e.g. switchin
 Looking at existing refactoring code helped to understand how a refactoring is structured and implemented.
 
 === Testing <testing>
-// TODO: Bibliographie
-The LLVM project strictly adheres to a well-defined architecture for testing. To align with #link("https://clangd.llvm.org/design/code.html#testing")[project guidelines], automated unit tests must be authored prior to the acceptance of any code contributions. 
-// TODO: Bibliographie
-The name of these files is usually the name of the class itself and use the #link("https://clangd.llvm.org/design/code.html#testing")[googletest framework].
+The LLVM project strictly adheres to a well-defined architecture for testing. To align with project guidelines @clangd_testing, automated unit tests must be authored prior to the acceptance of any code contributions. 
+The name of these files is usually the name of the class itself and use the googletest framework @googletest_framework.
 
 Unit tests are added to `llvm-project/clang-tools-extra/clangd/unittests`
 
