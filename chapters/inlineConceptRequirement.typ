@@ -16,7 +16,7 @@ Some examples of what this refactoring can do as of now can be found in the tabl
     [*Before*], [*After*],
     ```cpp
     template <typename T>
-      void f(T) requires foo<T> {}
+    void f(T) requires foo<T> {}
     ```,
     ```cpp
     template <foo T>
@@ -32,25 +32,16 @@ Some examples of what this refactoring can do as of now can be found in the tabl
     void f(T) {}
     ```,
     ```cpp
-    template <template <typename> class Foo, typename T>
+    template <typename T>
     void f() requires std::integral<T> {}
     ```,
     ```cpp
-    template <template <typename> class Foo, std::integral T> 
+    template <std::integral T> 
     void f() {}
     ```,
   ),
   caption: "Capabilities of the first refactoring",
 )
-
-== Testing
-
-// TODO: add tests to appendix
-To test the implementation unit tests were written as described in @testing. \
-There are a total of 11 tests, which consist of the following:
-- 4 availability tests
-- 4 unavailability tests
-- 3 application tests
 
 #pagebreak()
 == Implementation
@@ -91,11 +82,12 @@ They will be stored as a member of the tweak object and then used during the app
       Will be removed.
     ],
   ),
-  caption: "Elements captured for the first refactoring",
+  caption: "Elements captured for the \"Inline Concept Requirement\" refactoring",
 )
 
-=== Function Prerequisite
-The refactoring should be as defensive as possible and only apply when it is clear that it will apply correctly. The following checks are made during the preparation phase to ensure this.
+=== Function Prerequisites
+The refactoring should be as defensive as possible and only apply when it is clear that it will apply correctly.
+The following checks are made during the preparation phase to ensure this.
 
 #figure(
   table(
@@ -107,6 +99,7 @@ The refactoring should be as defensive as possible and only apply when it is cle
     ],
     [
       Combined concept requirements are complex to handle and would increase the complexity drastically.
+      This is a temporary restriction that could be lifted in the future.
     ],
     [
       The selected concept requirement only contain a single type argument.
@@ -122,7 +115,7 @@ The refactoring should be as defensive as possible and only apply when it is cle
       This is a temporary restriction that could be lifted in the future.
     ],
   ),
-  caption: "Checks made during the first refactoring",
+  caption: "Checks made during the preparation phase of the \"Inline Concept Requirement\" refactoring",
 )
 
 #pagebreak()
@@ -131,29 +124,33 @@ The refactoring should be as defensive as possible and only apply when it is cle
 
 To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
 
-On the left the AST tree is shown of the code on the right:
-
+In @first_refactoring_ast the AST tree of a simple template method is shown with the corresponding source code to the right of it.
 
 #figure(
-  table(
+  grid(
     columns: (1fr, 1fr),
-    align: center,
-    stroke: none,
+    row-gutter: 8pt,
     [*AST*], [*Code*],
     image("../images/screenshot_ast_first_refactoring.png", width: 80%),
-    [
       ```cpp
       template<typename T>
       void bar(T a) requires Foo<T> {
         a.abc();
       }
-      ```
-    ],
+      ```,
   ),
-  caption: [
-    AST analysis of second refactoring
-  ]
-)
+  caption: "AST analysis of the \"Inline Concept Requirement\" refactoring",
+) <first_refactoring_ast>
+
+#pagebreak()
+== Testing
+
+// TODO: add tests to appendix
+To test the implementation unit tests were written as described in @testing. \
+There are a total of 11 tests, which consist of the following:
+- 4 availability tests
+- 4 unavailability tests
+- 3 application tests
 
 == Usage
 // TODO: document where the refactoring option is available when right clicking

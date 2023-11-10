@@ -98,31 +98,6 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
 
 #let numberOfWeeks = 15
 
-// #figure(
-//   box(
-//     width: 100%,
-//     tablex(
-//       header: 1,
-//       columns: range(1, numberOfWeeks + 1).map(_ => 1fr),
-//       align: center + horizon,
-//       map-rows: (row, cells) => cells.map(c =>
-//         if c == none {
-//           c
-//         } else {
-//           (..c, fill: if row == 0 { aqua })
-//         }
-//       ),
-//       /* --- header --- */
-//       ..range(1, numberOfWeeks + 1).map(w => strong("w" + str(w))),
-//       /* ------------- */
-//       [Setup], colspanx(3)[1. refactoring feature], colspanx(2)[optimization & testing], colspanx(2)[contribute to LLVM], colspanx(3, fill:blue)[], colspanx(2)[finish documentation], [hand in], [Apéro],
-//       /* ------------- */
-//       colspanx(6)[], colspanx(5)[2. refactoring feature], colspanx(4)[]
-//     )
-//   ),
-//   caption: [ Project plan ],
-// )
-
 #let epic(
   title: none,
   startWeek: int,

@@ -112,38 +112,40 @@ Each tweak has it's own class and is structured as follows:
 // Kommentar Jeremy: Code size vellecht chli chlinner mache
 // Kommentar Jeremy: Listing
 
-```cpp
-namespace clang {
-namespace clangd {
-namespace {
-/// Feature description
-class RefactorExample : public Tweak {
-public:
-  const char *id() const final;
+#[
+  #set text(size: 0.8em)
+  ```cpp
+  namespace clang {
+  namespace clangd {
+  namespace {
+  /// Feature description
+  class RefactorExample : public Tweak {
+  public:
+    const char *id() const final;
 
-  bool prepare(const Selection &Inputs) override;
-  Expected<Effect> apply(const Selection &Inputs) override;
-  std::string title() const override { return "A Refactoring Example"; }
-  llvm::StringLiteral kind() const override {
-    return CodeAction::REFACTOR_KIND;
+    bool prepare(const Selection &Inputs) override;
+    Expected<Effect> apply(const Selection &Inputs) override;
+    std::string title() const override { return "A Refactoring Example"; }
+    llvm::StringLiteral kind() const override {
+      return CodeAction::REFACTOR_KIND;
+    }
+  };
+
+  REGISTER_TWEAK(RefactorExample)
+
+  bool RefactorExample::prepare(const Selection &Inputs) {
+    // Check if refactoring is possible
   }
-};
 
-REGISTER_TWEAK(RefactorExample)
+  Expected<Tweak::Effect> RefactorExample::apply(const Selection &Inputs) {
+    // Refactoring code
+  }
 
-bool RefactorExample::prepare(const Selection &Inputs) {
-  // Check if refactoring is possible
-}
-
-Expected<Tweak::Effect> RefactorExample::apply(const Selection &Inputs) {
-  // Refactoring code
-}
-
-} // namespace
-} // namespace clangd
-} // namespace clang
-
-```
+  } // namespace
+  } // namespace clangd
+  } // namespace clang
+  ```
+]
 
 // Kommentar Jeremy: Da isch ned ganz korrekt, zersch wird prepare ufgrüeft.
 // Kommentar Jeremy: Es wird en array an actions zrugg gschickt, ned "tweak class as json".
