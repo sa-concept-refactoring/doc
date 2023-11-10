@@ -7,6 +7,7 @@
 // - Übersicht über die kommende Kapitel
 
 == Initial Situation
+// Kommentar Jeremy: Glaub es isch allne Leser bewusst dass C++ en Programmiersprach isch. Glaub so details chemmer uslah.
 // The programming language C++ is constantly developed further by the standard committee @standard_committee. 
 With C++20 constraints were introduced which allow specification of requirements for template arguments.
 Concepts are a way of abstracting these constraints.
