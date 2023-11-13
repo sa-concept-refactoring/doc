@@ -121,11 +121,17 @@ The following checks are made during the preparation phase to ensure this.
 
 #pagebreak()
 === AST Analysis
-
-To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
+To get to know the structure of the code which needs to be refactored the AST tree gives a good overview.
 In @first_refactoring_ast the AST tree of a simple template method is shown with the corresponding source code.
 
-TODO: Write actual analysis
+The outermost `FunctionTemplate` contains the template type parameters, as well as the function definition.
+The `requires` clause is represented by a `ConceptSpecialization` with a corresponding `Concept reference`.
+
+During the refactor operation the AST is traversed upwards from the selected node until a `Concept reference` is hit.
+
+Some tokens are not present in the AST itself.
+For example the ```cpp requires``` clause.
+To capture it it was necessary to look at the tokenized version of the code.
 
 #figure(
   grid(
@@ -140,7 +146,7 @@ TODO: Write actual analysis
       }
       ```,
   ),
-  caption: "AST analysis of the \"Inline Concept Requirement\" refactoring",
+  caption: "AST example for the \"Inline Concept Requirement\" refactoring",
 ) <first_refactoring_ast>
 
 #pagebreak()

@@ -4,15 +4,21 @@
 #import "title-page.typ": luschtig
 
 #show raw: it => {
+  let backgroundColor = luma(0xF0)
   if (it.block) {
     block(
-      fill: luma(0xF0),
+      fill: backgroundColor,
       inset: 8pt,
       radius: 5pt,
-      text(it)
+      it,
     )
   } else {
-    text(it)
+    box(
+      fill: backgroundColor,
+      outset: 2pt,
+      radius: 2pt, 
+      it,
+    )
   }
 }
 
