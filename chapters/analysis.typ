@@ -165,34 +165,37 @@ The above class could look like this when it is sent to the client:
 
 // Kommentar Jeremy: Code size vellecht chli chlinner mache
 // Kommentar Jeremy: Listing
-```json
-[
-  {
-    "command": {
-      "arguments": [
-        {
-          "file": "<path to class where request was sent>",
-          "selection": {
-            "end": {
-              "character": 21,
-              "line": 16
+#[
+  #set text(size: 0.8em)
+  ```json
+  [
+    {
+      "command": {
+        "arguments": [
+          {
+            "file": "<path to class where request was sent>",
+            "selection": {
+              "end": {
+                "character": 21,
+                "line": 16
+              },
+              "start": {
+                "character": 21,
+                "line": 16
+              }
             },
-            "start": {
-              "character": 21,
-              "line": 16
-            }
-          },
-          "tweakID": "RefactorExample"
-        }
-      ],
-      "command": "clangd.applyTweak",
+            "tweakID": "RefactorExample"
+          }
+        ],
+        "command": "clangd.applyTweak",
+        "title": "A Refactoring Example"
+      },
+      "kind": "refactor",
       "title": "A Refactoring Example"
-    },
-    "kind": "refactor",
-    "title": "A Refactoring Example"
-  }
+    }
+  ]
+  ```
 ]
-```
 
 // TODO: describe from LSP perspective
 *```cpp bool prepare(const Selection &Inputs)```:* \
