@@ -76,6 +76,8 @@
 = Learnings
 
 = Personal Reports
+Notes Jeremy:
+- No C++20 (no ranges, no concepts) in clangd itself
 
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
