@@ -7,8 +7,8 @@
 // - Übersicht über die kommende Kapitel
 
 == Initial Situation
-// Kommentar Jeremy: Glaub es isch allne Leser bewusst dass C++ en Programmiersprach isch. Glaub so details chemmer uslah.
-// The programming language C++ is constantly developed further by the standard committee @standard_committee. 
+
+The programming language C++ is constantly developed further by the standard committee @cpp_standard_committee. 
 With C++20 type constraints were introduced which allow specification of requirements for template arguments.
 Concepts are a way of abstracting these constraints. @constraints_and_concepts
 
@@ -40,18 +40,3 @@ It would make coding much more convenient and make the developer aware of other 
 == Project Goal
 The goal of this semester project is to come up with new ideas for refactor operations specific to concepts and to implement some of them.
 Ideally they should be submitted upstream as a Pull Request.
-
-= Structure of This Report
-This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
-
-*@analysis:* Captures the findings from the research conducted on the foundational principles of the language server protocol and clangd in particular.
-
-*@refactoring_ideas:* Lists the collected ideas for potential refactorings.
-
-*@inline_concept_requirement:* Describes the implementation process and result of the refactoring "Inline Concept Requirement".
-
-*@convert_to_abbreviated_form:* Describes the implementation process and result of the refactoring "Convert Function Template to Abbreviated Form".
-
-*@development_process:* Gives insight about how the development environment was set up and which steps were needed to make the llvm project compile locally.
-
-*@conclusion:* Summarizes key findings, insights, and implication of the project.
