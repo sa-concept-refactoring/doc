@@ -70,13 +70,13 @@ For this project the focus is set on the LLVM-Project which is explained in @lvv
 
 === LSP Features for Refactoring
 
-To apply a refactoring using LSP three steps are needed to complete it. 
+To apply a refactoring using the LSP three steps are needed. 
 
 + Action Request
 + Execute Command
 + Apply Edit
 
-The flow chart @lsp-sequence-diagram is showing a quick overview of the requests used for refactoring features.
+The flow chart @lsp-sequence-diagram shows a quick overview of the requests used for refactoring features.
 The details of the requests shown in the flow diagram are explained further in the following chapters.
 
 #figure(
@@ -94,7 +94,7 @@ These actions
 The code action request is sent from client to server to compute commands for a given text document and range. 
 To make the server useful in many clients, the command actions should be handled by the server and not by the client.
 
-When the client requests the list of possible code actions are sent as JSON to the client.
+When the client requests the list of possible code actions, they are sent as JSON to the client.
 @json_code_action_request_response shows an example answer to the Code Action Request.
 
 #figure(
@@ -130,7 +130,7 @@ When the client requests the list of possible code actions are sent as JSON to t
     ```
   ],
   caption: [
-    example of answer to code action request
+    Example answer to a code action request
   ],
 ) <json_code_action_request_response>
 ]
@@ -146,7 +146,7 @@ The server can then create a WorkspaceEdit @lsp_workspace_edit structure and app
 The LLVM project @llvm_github is a collection of modular and reusable compiler and toolchain technologies.
 One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objective-C compiler.
 
-@llvm_illustration illustrates on how hte sub-projects are compiled.
+@llvm_illustration illustrates how the sub-projects are compiled.
 
 #figure(
   image("../images/llvm_architecture.jpeg", width: 80%),
@@ -174,7 +174,7 @@ The documentation is written really well and is easy to understand which makes i
 A lot of guidelines are described but some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
 
 === Code Formatter
-To fulfill the formatting guidelines there is a formatter `clang-format` within the project to styles the files according to the guidelines.
+To fulfill the formatting guidelines there is a formatter `clang-format` within the project to style the files according to the guidelines.
 A check run on GitHub is ensuring that the format of the code is correct.
 Only when the formatter has been run successfully a Pull-Request is allowed to be merged.
 
@@ -205,7 +205,7 @@ Unit tests are added to `llvm-project/clang-tools-extra/clangd/unittests`.
 
 // TODO: explain test concept of clangd (for tweaks)
 
-For testing tweaks four functions are typically used `EXPECT_THAT`, `EXPECT_AVAILABLE`, `EXPECT_UNAVAILABLE`.
+For testing tweaks three functions are typically used: `EXPECT_THAT`, `EXPECT_AVAILABLE`, and `EXPECT_UNAVAILABLE`.
 
 / `EXPECT_THAT` : #[
 Executes the `apply` function and compares the result with the expected code.
@@ -223,14 +223,14 @@ The `prepare` function is executed.
 
 === Code Actions
 
-All refactoring features so called "tweaks" reside in the `refactor/tweaks` directory, where they are registered through the linker. 
+All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered through the linker. 
 The return type of a tweak is always a Code Action, which represents a change that can be performed in code. @code_action
 These compact plugins inherit the Tweak class which acts as a interface base.
 // TODO: Das liesse sich schön visualisieren.
 When presented with a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
 These fundamental components constitute the foundation of the LSP code-actions flow.
 
-Each tweak has it's own class the structure of this class is demonstrated in @tweak_structure.
+Each tweak has its own class. The structure of this class is demonstrated in @tweak_structure.
 
 #figure(
  [
@@ -268,7 +268,7 @@ Each tweak has it's own class the structure of this class is demonstrated in @tw
     ```
   ],
   caption: [
-    structure of tweak class
+    Structure of tweak class
   ],
 ) <tweak_structure>
 
