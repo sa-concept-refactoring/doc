@@ -9,35 +9,35 @@
 // - Beschreibung (externen) existierenden Schnittstellen
 
 This chapter documents the research of the Language Server Protocol (LSP), clangd, AST and the newly added construct in C++ 20, concepts.
-To be able to contribute to the LLVM project @llvm_github it is important to understand some of the fundamentals explained in the following chapters.
+To be able to contribute to the LLVM project @llvm_github it is important to understand the fundamentals explained in the following chapters.
 
 == Language Server Protocol (LSP)
 
 // TODO: show different editors with the same refactoring features (maybe with own implementation)
 
-The Language Server Protocol, short LSP, is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers, which provide language-specific feature such as code completion, syntax highlighting, error checking and other services to enhance the capabilities of code editors.
+The Language Server Protocol, short LSP, is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers, which provide language-specific features such as code completion, syntax highlighting, error checking and other services to enhance the capabilities of code editors.
 
 @language_server_sequence shows an example for how a tool and a language server communicate during a routine editing session.
 
 #figure(
   image("../images/language_server_sequence.png"),
   caption: [
-    diagram showing example communication between IDE and Language Server @lsp_overview
+    Diagram showing example communication between IDE and Language Server @lsp_overview
   ],
 ) <language_server_sequence>
 
 The development tool is sending notifications and requests to the language server. 
 The language server can then respond with the document URI and position of the symbol's definition inside the document for example.
 
-The idea of LSP described by Microsoft:
+The idea of the LSP as described by Microsoft:
 
 #quote(attribution: [#cite(<lsp>, form: "author" )], block: true)[
 The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how such servers and development tools communicate. This way, a single Language Server can be re-used in multiple development tools, which in turn can support multiple languages with minimal effort.
 ]
 
-By using a common protocol like the same language server can be used by different editors which support the protocol.
-This reduces the effort required to integrate language-specific features into various development environments.
-This allows developers to have a more efficient and feature-rich coding experience, regardless of the programming language they are working with. 
+By using a common protocol the same language server can be used by different editors which support the protocol.
+This reduces the effort required to integrate language-specific features into various development environments,
+allowing developers to have a more efficient and feature-rich coding experience, regardless of the programming language they are working with. 
 
 Language servers are used within modern IDEs and code editors such as Visual Studio Code, Atom and Sublime Text.
 
@@ -63,7 +63,7 @@ For this project the focus is set on the LLVM-Project which is explained in @lvv
     [C/C++/Objective-C], [Jacob Dufault, MaskRay, topisani], [MaskRay], [C++]
   ),
   caption: [
-    table showing C++ language servers implementing the LSP @lsp_implementations
+    C++ language servers implementing the LSP @lsp_implementations
   ]
 ) <cpp-implementation>
 ]
