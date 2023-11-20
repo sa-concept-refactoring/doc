@@ -86,9 +86,6 @@ The details of the requests shown in the flow diagram are explained further in t
   ],
 ) <lsp-sequence-diagram>
 
-For this project the Code Action Request and the Code Action Resolve Request are used.
-These actions 
-
 // TODO: add json examples
 / Code Action Request: #[
 The code action request is sent from client to server to compute commands for a given text document and range. 
