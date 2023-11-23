@@ -148,7 +148,7 @@ One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objectiv
 #figure(
   image("../images/llvm_architecture.jpeg", width: 80%),
   caption: [
-    diagram showing architecture of LLVM, @LLVM_compiler_architecture
+    Diagram showing architecture of LLVM @LLVM_compiler_architecture
   ],
 ) <llvm_illustration>
 
