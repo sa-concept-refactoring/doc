@@ -135,11 +135,8 @@ The biggest hurdle of this refactoring was the `requires` keyword itself,
 which was quite hard to track down as it is not part of the AST itself.
 To figure out where exaclty it is located in the source code it was necessary to resort to the token representation of the source range.
 
-#[
-  #set heading(numbering: none)
-  === Pull Request
-  Our implementation has been submitted upstream as a Pull Request @pull_request_of_first_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
-]
+=== Pull Request
+Our implementation has been submitted upstream as a Pull Request @pull_request_of_first_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
 
 #pagebreak()
 == Limitations <limitations_of_first_refactoring>
@@ -147,46 +144,42 @@ To keep the scope of the implementation managable it was decided to leave some f
 These limitations however could be lifted in a future version.
 The implementation is built so it actively looks for these patterns and does not offer the refactoring operation if one is present.
 
-#[
-  #set heading(numbering: none)
+=== Combined Concept Requirements
+Handling combined require clauses would certainly be possible,
+however it would increase the complexity of the refactoring code significantly.
+Since working on the LLVM project is new for both of us we decided to leave it out for now.
+#figure(
+  ```cpp
+  template <typename T, typename U>
+  requires foo<T> && foo<U>
+  void f(T)
+  ```,
+  caption: "Combined concept requirement",
+)
 
-  === Combined Concept Requirements
-  Handling combined require clauses would certainly be possible,
-  however it would increase the complexity of the refactoring code significantly.
-  Since working on the LLVM project is new for both of us we decided to leave it out for now.
-  #figure(
-    ```cpp
-    template <typename T, typename U>
-    requires foo<T> && foo<U>
-    void f(T)
-    ```,
-    caption: "Combined concept requirement",
-  )
+=== Class Templates
+Handling class templates would not have been a big stretch,
+however the testing involved to make sure it works correctly would have taken a significant amount of time.
+To keep the momentum going this was not implemented.
+#figure(
+  ```cpp
+  template <typename T>
+  requires foo<T>
+  class Bar;
+  ```,
+  caption: "Class template",
+)
 
-  === Class Templates
-  Handling class templates would not have been a big stretch,
-  however the testing involved to make sure it works correctly would have taken a significant amount of time.
-  To keep the momentum going this was not implemented.
-  #figure(
-    ```cpp
-    template <typename T>
-    requires foo<T>
-    class Bar;
-    ```,
-    caption: "Class template",
-  )
-
-  === Multiple Type Arguments
-  If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
-  #figure(
-    ```cpp
-    template <typename T>
-    requires std::convertible_to<int, T>
-    void f(T)
-    ```,
-    caption: "Function template with multiple type arguments",
-  )
-]
+=== Multiple Type Arguments
+If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
+#figure(
+  ```cpp
+  template <typename T>
+  requires std::convertible_to<int, T>
+  void f(T)
+  ```,
+  caption: "Function template with multiple type arguments",
+)
 
 #pagebreak()
 == Testing

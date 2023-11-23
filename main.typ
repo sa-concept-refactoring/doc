@@ -26,7 +26,12 @@
   if (it.level == 1) {
     pagebreak(weak: true)
   }
-  it
+
+  if (it.level >= 3) {
+    block(it.body)
+  } else {
+    it
+  }
 }
 
 #show ref: it =>{
