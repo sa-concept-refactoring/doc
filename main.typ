@@ -38,6 +38,7 @@
   }
 }
 
+#set terms(hanging-indent: 0pt)
 #set text(font: ("Comic Sans MS")) if luschtig
 #set page(numbering: "1 / 1") if not luschtig
 
@@ -62,6 +63,7 @@
 #show figure: set block(below: 2em)
 
 #include "chapters/introduction.typ"
+#include "chapters/structureOfThisReport.typ"
 #include "chapters/analysis.typ"
 #include "chapters/refactoringIdeas.typ"
 #include "chapters/inlineConceptRequirement.typ"
