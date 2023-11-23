@@ -1,11 +1,11 @@
-#import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
+#import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx, hlinex
 
 = Refactoring — Convert Function Template to Abbreviated Form <convert_to_abbreviated_form>
-For the second refactoring a subset of the third idea (@third_idea) was implemented.
+For the second refactoring a subset of the third idea (@third_idea) should be implemented.
 It replaces explicit function template declarations with abbreviated declarations using auto parameters.
 This tweak helps to reduce the number of lines and makes the code more readable.
 
-The following examples show how the code would be refactored.
+@second_refactoring_capabilities shows examples of what this refactoring will be able to do.
 
 #figure(
   table(
@@ -58,49 +58,15 @@ The following examples show how the code would be refactored.
     ],
   ),
   caption: "Capabilities of the second refactoring",
-)
+) <second_refactoring_capabilities>
 
 #pagebreak()
-== Call Site Implications
-
-The refactoring must not change the signature of the method.
-In this case the type parameter order must stay the same.
-This is only the case if the auto parameters are in the same order as their original template arguments.
-
-For example the two methods in @call_site_differences result in two different signatures.
-When calling these methods with ```cpp foo<int, float>(1.0, 2)``` only the version on the left would compile as the parameter types would be `int` for `param1` and `float` for `param2`. The second version would be the opposite, `int` for `param1` and `float` for `param2`, which then breaks the call as the parameter types don't match.
-
-For the refactoring this means that we can only support cases where the order of type arguments stays the same, so the template type arguments need to appear in the same order as the parameters using those types.
-
-#figure(
-  grid(
-    columns: (auto, auto),
-    gutter: 1em,
-    align(start)[
-      ```cpp
-      template<typename T, typename U>
-      auto foo(U param1, T param2)
-      ```
-    ],
-    align(start + horizon)[
-      ```cpp
-      auto foo(auto param1, auto param2) 
-      ```
-    ]
-  ),
-  caption: [Example to illustrate call site differences of auto params],
-) <call_site_differences>
-
-#pagebreak()
-== Testing
-// TODO: add tests to appendix
-
-#pagebreak()
-== Implementation
+== Analysis
+TODO
 
 === Captured Elements
-During the preparation phase the following elements need be captured.
-They will be stored as a member of the tweak object and then used during the application phase.
+@second_refactoring_captured_elements shows the captured elements and their purpose.
+A reference to them will be stored as a member of the tweak object during the preparation phase and used during the application phase.
 
 #figure(
   tablex(
@@ -135,7 +101,80 @@ They will be stored as a member of the tweak object and then used during the app
     ],
   ),
   caption: "Elements captured for the second refactoring",
-)
+) <second_refactoring_captured_elements>
+
+=== Call Site Implications
+The refactoring must not change the signature of the method.
+In regards to this specific refactoring the order of type parameters must stay the same.
+This is only the case if the auto parameters are in the same order as their original template arguments.
+
+For example the two methods in @call_site_differences result in two different signatures.
+When calling these methods with ```cpp foo<int, float>(1.0, 2)``` only the version on the left would compile as the parameter types would be `int` for `param1` and `float` for `param2`. The second version would be the opposite, `int` for `param1` and `float` for `param2`, which then breaks the call as the parameter types don't match.
+
+For the refactoring this means that we can only support cases where the order of type arguments stays the same, so the template type arguments need to appear in the same order as the parameters using those types.
+
+#figure(
+  grid(
+    columns: (auto, auto),
+    gutter: 1em,
+    align(start)[
+      ```cpp
+      template<typename T, typename U>
+      auto foo(U param1, T param2)
+      ```
+    ],
+    align(start + horizon)[
+      ```cpp
+      auto foo(auto param1, auto param2) 
+      ```
+    ]
+  ),
+  caption: [Example to illustrate call site differences of auto params],
+) <call_site_differences>
+
+#pagebreak()
+=== AST
+
+// NOTE @vina: same problem as above, the text can be copied...
+To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
+In @second_refactoring_ast the AST tree of a function template is shown with the corresponding source code on the right.
+
+TODO: Write actual analysis
+
+#figure(
+  tablex(
+    columns: (5pt, 160pt, 30pt, 240pt),
+    align: center + horizon,
+    auto-vlines: false,
+    auto-hlines: false,
+    [],
+    [ *Before* ],
+    [],
+    [ *After* ],
+    hlinex(),
+    [],
+    ```cpp
+    template<std::integral T>
+    auto f(T param) -> void
+    {}
+    ```,
+    [],
+    ```cpp
+    auto f(std::integral auto param) -> void
+    {}
+    ```,
+    hlinex(),
+    colspanx(4)[#image("../images/ast_second_refactoring.png")],
+  ),
+  caption: "AST example for the \"Inline Concept Requirement\" refactoring",
+) <second_refactoring_ast>
+
+#pagebreak()
+== Testing
+// TODO: add tests to appendix
+
+#pagebreak()
+== Implementation
 
 #pagebreak()
 === Prerequisites
@@ -214,35 +253,6 @@ They will be stored as a member of the tweak object and then used during the app
 // template <typename T, std::integral U>
 // auto foo(U param, T param2) -> void {}
 // ```
-
-#pagebreak()
-=== AST Analysis
-
-// NOTE @vina: same problem as above, the text can be copied...
-To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
-In @second_refactoring the AST tree of a function template is shown with the corresponding source code on the right.
-
-TODO: Write actual analysis
-
-#figure(
-  table(
-    columns: (1fr, 1fr),
-    align: center,
-    stroke: none,
-    [*AST*], [*Code*],
-    image("../images/screenshot_ast_second_refactoring.png", width: 80%),
-    [
-      ```cpp
-      template<std::integral T>
-      auto f(T param) -> void
-      {}
-      ```
-    ],
-  ),
-  caption: [
-    AST analysis of second refactoring
-  ],
-) <second_refactoring>
 
 == Usage
 TODO
