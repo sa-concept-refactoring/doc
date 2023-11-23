@@ -4,8 +4,8 @@
 For the first refactoring a subset of the initial idea (@first_idea) should be implemented.
 Specifically the inlining of an explicit ```cpp requires``` clause into a constrained function template.
 @capabilities_of_first_refactoring shows some examples of what this refactoring will be able to do.
-@limitations_of_first_refactoring_figure shows examples of what it will not be able to do.
-The intentional limitations are discussed further in @limitations_of_first_refactoring.
+
+Limitations of the refactoring are discussed in @limitations_of_first_refactoring.
 
 #figure(
   table(
@@ -40,42 +40,6 @@ The intentional limitations are discussed further in @limitations_of_first_refac
   ),
   caption: "Capabilities of the first refactoring",
 ) <capabilities_of_first_refactoring>
-
-#figure(
-  table(
-    columns: (1fr, 1fr),
-    align: horizon,
-    [*Before*], [*After*],
-    ```cpp
-    template <typename T, typename U>
-    requires foo<T> && foo<U>
-    void f(T)
-    ```,
-    ```cpp
-    template <foo T, foo U>
-    void f(T)
-    ```,
-    ```cpp
-    template <typename T>
-    requires foo<T>
-    class Bar;
-    ```,
-    ```cpp
-    template <foo T>
-    class Bar;
-    ```,
-    ```cpp
-    template <typename T>
-    requires std::convertible_to<int, T>
-    void f(T)
-    ```,
-    ```cpp
-    template <std::convertible_to<int> T>
-    void f(T)
-    ```,
-  ),
-  caption: "Intentional limitations of the first refactoring",
-) <limitations_of_first_refactoring_figure>
 
 #pagebreak()
 == Analysis
@@ -171,29 +135,58 @@ The biggest hurdle of this refactoring was the `requires` keyword itself,
 which was quite hard to track down as it is not part of the AST itself.
 To figure out where exaclty it is located in the source code it was necessary to resort to the token representation of the source range.
 
-=== Pull Request
-Our implementation has been submitted upstream as a Pull Request /* TODO: Link */ and as of #datetime.today().display("[month repr:long] [year]") is still awaiting review.
+#[
+  #set heading(numbering: none)
+  === Pull Request
+  Our implementation has been submitted upstream as a Pull Request @pull_request_of_first_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+]
 
 #pagebreak()
-== Intentional Limitations <limitations_of_first_refactoring>
+== Limitations <limitations_of_first_refactoring>
 To keep the scope of the implementation managable it was decided to leave some features out.
 These limitations however could be lifted in a future version.
-The implementation is built so it actively looks for these patterns and does not offer the refactoring operation if it occurs one.
+The implementation is built so it actively looks for these patterns and does not offer the refactoring operation if one is present.
 
-=== Combined Concept Requirements
-Handling combined require clauses like `foo<T> && bar<U>` would certainly be possible,
-however it would increase the complexity of the refactoring code significantly.
-Since working on the LLVM project is new for both of us we decided to leave it out for now.
+#[
+  #set heading(numbering: none)
 
-=== Class Templates
-Handling class templates would not have been a big stretch,
-however the testing involved to make sure it works correctly would have taken a significant amount of time.
-// TODO: Maybe find better excuse
-To keep our momentum going this was not implemented.
+  === Combined Concept Requirements
+  Handling combined require clauses would certainly be possible,
+  however it would increase the complexity of the refactoring code significantly.
+  Since working on the LLVM project is new for both of us we decided to leave it out for now.
+  #figure(
+    ```cpp
+    template <typename T, typename U>
+    requires foo<T> && foo<U>
+    void f(T)
+    ```,
+    caption: "Combined concept requirement",
+  )
 
-=== Multiple Type Arguments
-If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
-The reason for this is once again that the scope of the implementation should be limited.
+  === Class Templates
+  Handling class templates would not have been a big stretch,
+  however the testing involved to make sure it works correctly would have taken a significant amount of time.
+  To keep the momentum going this was not implemented.
+  #figure(
+    ```cpp
+    template <typename T>
+    requires foo<T>
+    class Bar;
+    ```,
+    caption: "Class template",
+  )
+
+  === Multiple Type Arguments
+  If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
+  #figure(
+    ```cpp
+    template <typename T>
+    requires std::convertible_to<int, T>
+    void f(T)
+    ```,
+    caption: "Function template with multiple type arguments",
+  )
+]
 
 #pagebreak()
 == Testing
