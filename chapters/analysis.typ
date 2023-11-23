@@ -288,7 +288,7 @@ It returns the effect which should be done on the client side.
 
 == Abstract Syntax Tree (AST)
 
-The Abstract Syntax Tree short AST, is a syntax tree representing the abstract syntactic structure of a text.
+The Abstract Syntax Tree, short AST, is a syntax tree representing the abstract syntactic structure of a text.
 It represents the syntactic structure of source code written in a programming language, capturing its grammar and organization in a tree-like form.
 It provides a structured way to analyze and manipulate the code, making it easier for tools like code analyzers, code editors, and IDEs to understand and work with the code. @ast_twilio
 
