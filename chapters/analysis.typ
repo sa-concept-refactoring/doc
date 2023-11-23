@@ -88,10 +88,10 @@ The details of the requests shown in the flow diagram are explained further in t
 
 // TODO: add json examples
 / Code Action Request: #[
-The code action request is sent from client to server to compute commands for a given text document and range. 
+The code action request is sent from client to server to compute commands for a given text document and range.
 To make the server useful in many clients, the command actions should be handled by the server and not by the client.
 
-When the client requests the list of possible code actions, they are sent as JSON to the client.
+When a client requests possible code actions, the server computes which ones apply and sends them back in a JSON-encoded response.
 @json_code_action_request_response shows an example answer to the Code Action Request.
 
 #figure(
