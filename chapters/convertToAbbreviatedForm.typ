@@ -1,10 +1,9 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx, hlinex
 
 = Refactoring — Convert Function Template to Abbreviated Form <convert_to_abbreviated_form>
-For the second refactoring a subset of the third idea (@third_idea) should be implemented.
+For the second refactoring, a subset of the third idea (@third_idea) should be implemented.
 It replaces explicit function template declarations with abbreviated declarations using auto parameters.
-This tweak helps to reduce the number of lines and makes the code more readable.
-
+This tweak helps reduce the number of lines and makes the code more readable.
 @second_refactoring_capabilities shows examples of what this refactoring will be able to do.
 
 #figure(
@@ -62,9 +61,10 @@ This tweak helps to reduce the number of lines and makes the code more readable.
 
 #pagebreak()
 == Analysis
-TODO
+The analysis will look at the captured elements (@second_refactoring_captured_elements), call site implications (@call_site_implications),
+and the impact of the refactoring on the abstract syntax tree (@second_refactoring_ast).
 
-=== Captured Elements
+=== Captured Elements <second_refactoring_captured_elements>
 @second_refactoring_captured_elements shows the captured elements and their purpose.
 A reference to them will be stored as a member of the tweak object during the preparation phase and used during the application phase.
 
@@ -101,17 +101,17 @@ A reference to them will be stored as a member of the tweak object during the pr
     ],
   ),
   caption: "Elements captured for the second refactoring",
-) <second_refactoring_captured_elements>
+) <second_refactoring_captured_elements_figure>
 
-=== Call Site Implications
-The refactoring must not change the signature of the method.
-In regards to this specific refactoring the order of type parameters must stay the same.
-This is only the case if the auto parameters are in the same order as their original template arguments.
+=== Call Site Implications <call_site_implications>
+The refactoring must not change the signature of the target method.
+In regard to this specific refactoring, the order of type parameters must stay the same.
+This is only the case if the auto parameters are in the same order as their original template parameters.
 
 For example the two methods in @call_site_differences result in two different signatures.
-When calling these methods with ```cpp foo<int, float>(1.0, 2)``` only the version on the left would compile as the parameter types would be `int` for `param1` and `float` for `param2`. The second version would be the opposite, `int` for `param1` and `float` for `param2`, which then breaks the call as the parameter types don't match.
-
-For the refactoring this means that we can only support cases where the order of type arguments stays the same, so the template type arguments need to appear in the same order as the parameters using those types.
+When calling these methods with ```cpp foo<int, float>(1.0, 2)``` only the version on the left would compile,
+as the parameter types would be `int` for `param1` and `float` for `param2`.
+The second version would be the opposite, `int` for `param1` and `float` for `param2`, which then breaks the call as the parameter types don't match.
 
 #figure(
   grid(
@@ -133,13 +133,9 @@ For the refactoring this means that we can only support cases where the order of
 ) <call_site_differences>
 
 #pagebreak()
-=== AST
-
-// NOTE @vina: same problem as above, the text can be copied...
-To get to know the structure of the code which needs to be refactored, the AST tree gives a good overview.
-In @second_refactoring_ast the AST tree of a function template is shown with the corresponding source code on the right.
-
-TODO: Write actual analysis
+=== Abstract Syntax Tree <second_refactoring_ast>
+As can be seen in @second_refactoring_ast_figure, the AST transformation of this refactoring is very minimal.
+The only change is that the explicit type parameter name is replaced with a generated one.
 
 #figure(
   tablex(
@@ -166,57 +162,70 @@ TODO: Write actual analysis
     hlinex(),
     colspanx(4)[#image("../images/ast_second_refactoring.png")],
   ),
-  caption: "AST example for the \"Inline Concept Requirement\" refactoring",
-) <second_refactoring_ast>
-
-#pagebreak()
-== Testing
-// TODO: add tests to appendix
+  caption: "Example AST tranformation of second refactoring",
+) <second_refactoring_ast_figure>
 
 #pagebreak()
 == Implementation
+The most challenging part of this refactoring was figuring out where template parameters are being used, as the refactoring only applies if there is exactly one usage of the parameter and that usage is as a function parameter type.
+
+Initially it was tried to perform a symbol lookup in the index clangd holds, however this led to no results.
+Our theory is that this is due to the target being a template parameter, which has no proper symbol id in the context of the template declaration, as it is not a concrete instance of a type.
+
+Afterward, we looked at the way the "find references" LSP feature is implemented in clangd and found out that there is a helper class called `XRefs` which implements a `findReferences` function which can deal with template functions.
+Unfortunately the result of this method call cannot be traced back to the AST.
+
+In the end, the `findReferences` call is only being used to find the number of references to a given template parameter.
+
+// To conclude, for each template parameter we call `findReferences` to count how many references to it exist.
+
+
+// - Big preparation phase
+// - Find references for each template parameter
+// - Check order of template parameters
 
 #pagebreak()
-=== Prerequisites
+== Limitations
+TODO
 
-#figure(
-  table(
-    columns: (1fr, 1.5fr),
-    align: start,
-    [*Check*], [*Reasoning*],
-    [
-      A template definition needs to be in place.
-    ],
-    [
-      If the template definition is not present the logic of this refactoring can't be applied.
-    ],
-    [
-      The template type parameter is not used within the body.
-    ],
-    [
-      If the type parameter is used in the body it cannot be replaced with an ```cpp auto``` param.
-    ],
-    [
-      The order of template parameters is the same as their occurence as function parameters.
-    ],
-    [
-      The function signature would change otherwise.
-    ],
-    [
-      The parameter type is not used within a container (e.g. `map`, `set`, `list`, `array`)
-    ],
-    [
-      The ```cpp auto``` keyword cannot be used in this context.
-    ],
-    [
-      No requires clause should be present.
-    ],
-    [
-      As the refactoring is removing the type parameter the ```cpp requires``` clause would not be valid anymore.
-    ]
-  ),
-  caption: "Checks made during the preparation phase of the \"Convert Function Template to Abbreviated Form\" refactoring",
-)
+// #figure(
+//   table(
+//     columns: (1fr, 1.5fr),
+//     align: start,
+//     [*Check*], [*Reasoning*],
+//     [
+//       A template definition needs to be in place.
+//     ],
+//     [
+//       If the template definition is not present the logic of this refactoring can't be applied.
+//     ],
+//     [
+//       The template type parameter is not used within the body.
+//     ],
+//     [
+//       If the type parameter is used in the body it cannot be replaced with an ```cpp auto``` param.
+//     ],
+//     [
+//       The order of template parameters is the same as their occurence as function parameters.
+//     ],
+//     [
+//       The function signature would change otherwise.
+//     ],
+//     [
+//       The parameter type is not used within a container (e.g. `map`, `set`, `list`, `array`)
+//     ],
+//     [
+//       The ```cpp auto``` keyword cannot be used in this context.
+//     ],
+//     [
+//       No requires clause should be present.
+//     ],
+//     [
+//       As the refactoring is removing the type parameter the ```cpp requires``` clause would not be valid anymore.
+//     ]
+//   ),
+//   caption: "Checks made during the preparation phase of the \"Convert Function Template to Abbreviated Form\" refactoring",
+// )
 
 // Kommentar Jeremy: Das bruchemer glaub ned wemmer d'Checks obe dra hend.
 // ==== Not Supported Cases
@@ -254,6 +263,11 @@ TODO: Write actual analysis
 // auto foo(U param, T param2) -> void {}
 // ```
 
+#pagebreak()
+== Testing
+// TODO: add tests to appendix
+
+#pagebreak()
 == Usage
 TODO
 // To use the refactoring the cursor can be anywhere on or within the function. 

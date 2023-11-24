@@ -85,7 +85,7 @@ A reference to them will be stored as a member of the tweak object during the pr
 ) <first_refactoring_captured_elements_figure>
 
 #pagebreak()
-=== AST <first_refactoring_ast_analysis>
+=== Abstract Syntax Tree <first_refactoring_ast_analysis>
 The AST gives a good overview over the structure of the code before and after the refactoring.
 In @first_refactoring_ast the AST trees of a simple template method and its corresponding refactored version are shown.
 
@@ -122,7 +122,7 @@ After looking at this we came to the conclusion that we can look out for `Concep
     hlinex(),
     colspanx(3)[#image("../images/ast_first_refactoring.png")],
   ),
-  caption: "AST example for the \"Inline Concept Requirement\" refactoring",
+  caption: "Example AST tranformation of first refactoring",
 ) <first_refactoring_ast>
 
 #pagebreak()
