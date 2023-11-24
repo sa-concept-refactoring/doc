@@ -1,13 +1,11 @@
-#import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
+#import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx, hlinex
 
 = Refactoring — Inline Concept Requirement <inline_concept_requirement>
-For the first refactoring a subset of the initial idea (@first_idea) was implemented.
-The resulting patch has also been submitted upstream as a pull request on GitHub @pull_request_of_first_refactoring.
+For the first refactoring a subset of the initial idea (@first_idea) should be implemented.
+Specifically the inlining of an explicit ```cpp requires``` clause into a constrained function template.
+@capabilities_of_first_refactoring shows some examples of what this refactoring will be able to do.
 
-Only simple cases are handled for now, however the functionality could easily be expanded upon in the future.
-The restrictions for now are that only function templates are supported and conjunctions & disjunctions of concept requirements are not.
-
-Some examples of what this refactoring can do as of now can be found in the table below.
+Limitations of the refactoring are discussed in @limitations_of_first_refactoring.
 
 #figure(
   table(
@@ -41,14 +39,15 @@ Some examples of what this refactoring can do as of now can be found in the tabl
     ```,
   ),
   caption: "Capabilities of the first refactoring",
-)
+) <capabilities_of_first_refactoring>
 
 #pagebreak()
-== Implementation
+== Analysis
+For our analysis we looked at which elements need to be captured (@first_refactoring_captured_elements) and how the AST looks before and after the refactoring (@first_refactoring_ast_analysis).
 
-=== Captured Elements
-During the preparation phase the following elements need be captured.
-They will be stored as a member of the tweak object and then used during the application phase.
+=== Captured Elements <first_refactoring_captured_elements>
+@first_refactoring_captured_elements_figure shows the captured elements and their purpose.
+A reference to them will be stored as a member of the tweak object during the preparation phase and used during the application phase.
 
 #figure(
   tablex(
@@ -83,84 +82,127 @@ They will be stored as a member of the tweak object and then used during the app
     ],
   ),
   caption: "Elements captured for the \"Inline Concept Requirement\" refactoring",
-)
+) <first_refactoring_captured_elements_figure>
 
 #pagebreak()
-=== Prerequisites
-The refactoring should be as defensive as possible and only apply when it is clear that it will apply correctly.
-The following checks are made during the preparation phase to ensure this.
+=== AST <first_refactoring_ast_analysis>
+The AST gives a good overview over the structure of the code before and after the refactoring.
+In @first_refactoring_ast the AST trees of a simple template method and its corresponding refactored version are shown.
 
-#figure(
-  table(
-    columns: (1fr, 1.5fr),
-    align: start,
-    [*Check*], [*Reasoning*],
-    [
-      The selected ```cpp requires``` clause only contain a single requirement.
-    ],
-    [
-      Combined concept requirements are complex to handle and would increase the complexity drastically.
-      This is a temporary restriction that could be lifted in the future.
-    ],
-    [
-      The selected concept requirement only contain a single type argument.
-    ],
-    [
-      With multiple type arguments inlining would not be possible.
-    ],
-    [
-      The concept requirement has a parent of either a function or a function template.
-    ],
-    [
-      To restrict the refactoring to function templates only.
-      This is a temporary restriction that could be lifted in the future.
-    ],
-  ),
-  caption: "Checks made during the preparation phase of the \"Inline Concept Requirement\" refactoring",
-)
-
-#pagebreak()
-=== AST Analysis
-To get to know the structure of the code which needs to be refactored the AST tree gives a good overview.
-In @first_refactoring_ast the AST tree of a simple template method is shown with the corresponding source code.
-
-The outermost `FunctionTemplate` contains the template type parameters, as well as the function definition.
+Looking at the original version (on the left) it is visible that the outermost `FunctionTemplate` contains the template type parameters, as well as the function definition.
 The `requires` clause is represented by a `ConceptSpecialization` with a corresponding `Concept reference`.
 
-During the refactor operation the AST is traversed upwards from the selected node until a `Concept reference` is hit.
+During the refactor operation most of the AST stays untouched, except for the concept reference (in yellow), which gets moved to the template type parameter and the concept specialization, which gets removed (in red).
 
-Some tokens are not present in the AST itself.
-For example the ```cpp requires``` clause.
-To capture it it was necessary to look at the tokenized version of the code.
+After looking at this we came to the conclusion that we can look out for `ConceptSpecialization` nodes to determine if the refactoring applies and then do further analysis.
 
 #figure(
-  grid(
-    columns: (1fr, 1fr),
-    row-gutter: 8pt,
-    [*AST*], [*Code*],
-    image("../images/screenshot_ast_first_refactoring.png", width: 80%),
-      ```cpp
-      template<typename T>
-      void bar(T a) requires Foo<T> {
-        a.abc();
-      }
-      ```,
+  tablex(
+    columns: (200pt, 50pt, 200pt),
+    align: center,
+    auto-vlines: false,
+    auto-hlines: false,
+    [ *Before* ],
+    [],
+    [ *After* ],
+    hlinex(),
+    ```cpp
+    template<typename T>
+    void bar(T a) requires Foo<T> {
+      a.abc();
+    },
+    ```,
+    [],
+    ```cpp
+    template<Foo T>
+    void bar(T a) {
+      a.abc();
+    }
+    ```,
+    hlinex(),
+    colspanx(3)[#image("../images/ast_first_refactoring.png")],
   ),
   caption: "AST example for the \"Inline Concept Requirement\" refactoring",
 ) <first_refactoring_ast>
 
 #pagebreak()
+== Implementation <first_refactoring_implementation>
+The implementation itself was mostly straight-forward, that is once we figured out how to traverse the AST.
+Discovery was made a bit hard by the fact that some methods we required were global and some required casting.
+Looking at the existing refactorings helped a lot during this time. 
+
+The biggest hurdle of this refactoring was the `requires` keyword itself,
+which was quite hard to track down as it is not part of the AST itself.
+To figure out where exaclty it is located in the source code it was necessary to resort to the token representation of the source range.
+
+=== Pull Request
+Our implementation has been submitted upstream as a Pull Request @pull_request_of_first_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+
+#pagebreak()
+== Limitations <limitations_of_first_refactoring>
+To keep the scope of the implementation managable it was decided to leave some features out.
+These limitations however could be lifted in a future version.
+The implementation is built so it actively looks for these patterns and does not offer the refactoring operation if one is present.
+
+=== Combined Concept Requirements
+Handling combined require clauses would certainly be possible,
+however it would increase the complexity of the refactoring code significantly.
+Since working on the LLVM project is new for both of us we decided to leave it out for now.
+#figure(
+  ```cpp
+  template <typename T, typename U>
+  requires foo<T> && foo<U>
+  void f(T)
+  ```,
+  caption: "Combined concept requirement",
+)
+
+=== Class Templates
+Handling class templates would not have been a big stretch,
+however the testing involved to make sure it works correctly would have taken a significant amount of time.
+To keep the momentum going this was not implemented.
+#figure(
+  ```cpp
+  template <typename T>
+  requires foo<T>
+  class Bar;
+  ```,
+  caption: "Class template",
+)
+
+=== Multiple Type Arguments
+If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
+#figure(
+  ```cpp
+  template <typename T>
+  requires std::convertible_to<int, T>
+  void f(T)
+  ```,
+  caption: "Function template with multiple type arguments",
+)
+
+#pagebreak()
 == Testing
 
-// TODO: add tests to appendix
-To test the implementation unit tests were written as described in @testing. \
-There are a total of 11 tests, which consist of the following:
-- 4 availability tests
-- 4 unavailability tests
-- 3 application tests
+#set terms(
+  hanging-indent: 0pt,
+)
+
+// TODO: Should we write a test protocol?
+/ Manual: #[
+  A lot of manual tests were performed using a test project.
+  Debug inspections were also performed often to verify assumptions.
+]
+
+/ Automated: #[
+  To test the implementation unit tests were written as described in @testing. 
+  A total of 11 tests were written, 4 of them availability tests, 4 unavailability tests and 3 application tests.
+  This is a similar extent to which existing refactorings are tested.
+]
 
 #pagebreak()
 == Usage
+The refactoring is available as a code action to language server clients.
 // TODO: document where the refactoring option is available when right clicking
 
 === VS Code
@@ -174,3 +216,13 @@ To see the possible refactorings the option "Refactoring" needs to be clicked an
     Screenshot showing the option to inline a concept requirement
   ],
 )
+
+=== Vim
+@first_refactoring_usage_in_vim shows how the refactoring looks like before accepting it in Neovim.
+
+#figure(
+  image("../images/first_refactoring_usage_in_vim.png", width: 80%),
+  caption: [
+    Screenshot showing the option to inline a concept requirement
+  ],
+) <first_refactoring_usage_in_vim>

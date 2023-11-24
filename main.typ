@@ -26,13 +26,18 @@
   if (it.level == 1) {
     pagebreak(weak: true)
   }
-  it
+
+  if (it.level >= 3) {
+    block(it.body)
+  } else {
+    it
+  }
 }
 
 #show ref: it =>{
   if it.element != none and it.element.func() == heading {
     let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location())).trim(".", at: end)
-    link(it.target, it.element.supplement + " " + number + ", " + it.element.body)
+    link(it.target, emph(it.element.supplement + " " + number + ", " + it.element.body))
   } else {
     it
   }
