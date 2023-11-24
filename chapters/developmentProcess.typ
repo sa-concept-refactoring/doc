@@ -165,7 +165,7 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
   foregroundColor: white,
   (
     (2, "Analysis"),
-    (2, "Implemenatation"),
+    (2, "Implementation"),
     (2, "Refinement"),
     (2, "Pull Request"),
   ),
@@ -178,7 +178,7 @@ Due to the absence of detailed guidelines, we can only offer a rough plan at thi
   foregroundColor: white,
   (
     (2, "Analysis"),
-    (2, "Implemenatation"),
+    (2, "Implementation"),
     (2, "Refinement"),
     (2, "Pull Request"),
   ),
