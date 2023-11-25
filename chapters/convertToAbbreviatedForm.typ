@@ -182,7 +182,7 @@ In the end, the `findReferences` call is only being used to find the number of r
 This number is an important point of reference to see if the refactoring applies.
 
 - #[
-  If there were *only one reference* it would mean that the template parameter is declared, but never used.
+  If there is *only one reference* it would mean that the template parameter is declared, but never used.
   In this case the refactoring cannot apply. // TODO: Why
 ]
 
@@ -193,16 +193,18 @@ This number is an important point of reference to see if the refactoring applies
 
 - #[
   If there are *more than two references* it means that there are either two function parameters with the same type
-  or there is at least one usage outside outside of function parameters (for example the body of the method).
+  or there is at least one usage outside outside of function parameters (for example the body of the function).
   In both cases the refactoring cannot apply. // TODO: Why?
 ]
 
-// To conclude, for each template parameter we call `findReferences` to count how many references to it exist.
+As a next step the function parameters are iterated over to verify that each template parameter type occurs as a function parameter and that the order is the same.
+In addition the type qualifiers are extracted, which consist of reference kind, constness, and pointer type.
 
+This concludes the preperation phase.
 
-// - Big preparation phase
-// - Find references for each template parameter
-// - Check order of template parameters
+The application phase is rather simple in comparison.
+In a first step the template declaration is removed, and in a second step the types of the function parameters are updated.
+The information needed for this has been collected during the preparation phase.
 
 #pagebreak()
 == Limitations
