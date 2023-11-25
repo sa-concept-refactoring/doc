@@ -167,15 +167,35 @@ The only change is that the explicit type parameter name is replaced with a gene
 
 #pagebreak()
 == Implementation
-The most challenging part of this refactoring was figuring out where template parameters are being used, as the refactoring only applies if there is exactly one usage of the parameter and that usage is as a function parameter type.
+The most challenging part of this refactoring was figuring out where template parameters are being used,
+as the refactoring only applies if there is exactly one usage of the parameter and that usage is as a function parameter type.
 
 Initially it was tried to perform a symbol lookup in the index clangd holds, however this led to no results.
-Our theory is that this is due to the target being a template parameter, which has no proper symbol id in the context of the template declaration, as it is not a concrete instance of a type.
+This is very likely due to the target being a template parameter,
+which has no proper symbol id in the context of the template declaration, as it is not a concrete instance of a type.
 
-Afterward, we looked at the way the "find references" LSP feature is implemented in clangd and found out that there is a helper class called `XRefs` which implements a `findReferences` function which can deal with template functions.
+Afterward, the way the "find references" LSP feature is implemented in clangd was analyzed.
+It uses a helper class called `XRefs` which implements a `findReferences` function which can deal with template functions.
 Unfortunately the result of this method call cannot be traced back to the AST.
 
 In the end, the `findReferences` call is only being used to find the number of references to a given template parameter.
+This number is an important point of reference to see if the refactoring applies.
+
+- #[
+  If there were *only one reference* it would mean that the template parameter is declared, but never used.
+  In this case the refactoring cannot apply. // TODO: Why
+]
+
+- #[
+  If there are *exactly two references* it means that one of those is the definition and there is at least one usage of it.
+  Figuring out if the usage is a function parameter is done it a later step.
+]
+
+- #[
+  If there are *more than two references* it means that there are either two function parameters with the same type
+  or there is at least one usage outside outside of function parameters (for example the body of the method).
+  In both cases the refactoring cannot apply. // TODO: Why?
+]
 
 // To conclude, for each template parameter we call `findReferences` to count how many references to it exist.
 
