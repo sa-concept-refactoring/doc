@@ -137,6 +137,9 @@ The second version would be the opposite, `int` for `param1` and `float` for `pa
 As can be seen in @second_refactoring_ast_figure, the AST transformation of this refactoring is very minimal.
 The only change is that the explicit type parameter name is replaced with a generated one.
 
+It is interesting to see how abstract the abstract syntax tree really is in this case.
+It does not reflect the source code as closely as for the first refactoring we looked at (@first_refactoring_ast_analysis).
+
 #figure(
   tablex(
     columns: (5pt, 160pt, 30pt, 240pt),
