@@ -381,10 +381,10 @@ The toplevel declaration in a translation unit is always the `translation unit d
 ) <clang_ast_example>
 
 When building an AST a root node needs to be found.
-In clang the toplevel declaration in a translation unit is always the `translation unit declaration` @clang_translation_unit_decl.
+In clang, the toplevel declaration in a translation unit is always the `translation unit declaration` @clang_translation_unit_decl.
 For a function for example it would be the `function declaration` @clang_function_declaration.
 When the code has errors the AST can only be built if the toplevel declaration is found.
-for a function this means, that the function name has to present but other than that it can have errors within the code.
+for a function this means, that the function name has to be present but other than that it can have errors within the code.
 
 @ast_dump_possibilities shows in which cases the AST can or can not be built.
 
