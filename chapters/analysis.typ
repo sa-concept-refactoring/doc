@@ -470,10 +470,77 @@ for a function this means, that the function name has to be present but other th
   ],
 ) <ast_dump_possibilities>
 
-
-
-//TODO: maybe explain why it is better to transform ast instead of code itself
-
 == Concepts
 
-// TODO: describe concepts
+Concepts are a new language feature introduced with the new release of C++20.
+They are allowing to put constraints on template parameters which are evaluated at compile time.
+This allows the developer to restrict template parameters in a new convenient way.
+For this the keywords `requires` and `concept` were added to give some language support.
+
+Before C++20 `constexpr` and `if constexpr` was used for restrictions, more about these can be found in the C++ stories @if_const_expr.
+
+/ Concepts using `requires` keyword : #[
+  The `requires` keyword can be used either before the function declaration or between the function declaration and the function body.
+
+  #figure(
+    grid(
+      columns: (auto, 14em),
+      gutter: 1em,
+      ```cpp
+      template <typename T>
+      requires CONDITION
+      void f(T param) 
+      {}
+      ```,
+      ```cpp
+      template <typename T>
+      void f(T param) requires CONDITION
+      {}
+      ```
+    ),
+    caption: [
+      Concepts using `requires` clause
+    ],
+  )
+
+
+  Requirements can also contain `||` or `&&` to specify the parameters even more. 
+
+  #figure(
+    ```cpp
+    requires std::integral<T> || std::floating_point<T>
+    ```,
+    caption: [
+      Condition using `||`
+    ],
+  ) <concept_conditions_or>
+
+    #figure(
+      ```cpp
+      requires std::integral<T> && std::floating_point<T>
+      ```,
+    caption: [
+      Condition using `&&`
+    ],
+  )
+]
+
+/ Concepts using `concept` keyword : #[
+
+  Named sets of requirements can be used to define a concept.
+  // TODO: write more about this
+  // TODO: add reference https://en.cppreference.com/w/cpp/language/constraints
+
+  #figure(
+    ```cpp
+    template<typename T>
+    concept Hashable = requires(T a)
+    {
+        { std::hash<T>{}(a) } -> std::convertible_to<std::size_t>;
+    };
+    ```,
+  caption: [
+    Concepts using `requires` clause
+  ],
+)
+]
