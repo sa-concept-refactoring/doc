@@ -3,7 +3,7 @@
 #let title = "SA - Concept Refactoring"
 #let authors = ( "Jeremy Stucki", "Vina Zahnd" )
 #let supervisor = "Thomas Corbat"
-#let luschtig = false
+#let luschtig = true
 
 #set document(
   title: title,
