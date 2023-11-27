@@ -181,7 +181,7 @@ Afterward, the way the "find references" LSP feature is implemented in clangd wa
 It uses a helper class called `XRefs` which implements a `findReferences` function that can deal with template functions.
 Unfortunately, the result of this method call cannot be traced back to the AST.
 
-In the end, the `findReferences` call is only being used to find the number of references to a given template parameter.
+In the end, the `findReferences` call is only used to find the number of references to a given template parameter.
 This number is an important point of reference to see if the refactoring applies.
 
 - #[
