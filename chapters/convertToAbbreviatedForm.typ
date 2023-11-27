@@ -65,7 +65,7 @@ The analysis will look at the captured elements (@second_refactoring_captured_el
 and the impact of the refactoring on the abstract syntax tree (@second_refactoring_ast).
 
 === Captured Elements <second_refactoring_captured_elements>
-@second_refactoring_captured_elements shows the captured elements and their purpose.
+@second_refactoring_captured_elements_figure shows the captured elements and their purpose.
 A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.
 
 #figure(
