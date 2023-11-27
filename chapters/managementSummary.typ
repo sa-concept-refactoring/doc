@@ -7,4 +7,5 @@
 // - Bilder sind hier sinnvoll
 
 The goal of this project was to add new refactorings to the clangd language server to support the use of concepts which were introduced with C++20.
-For this 
+
+For this the language server of clangd was 
