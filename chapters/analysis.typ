@@ -169,11 +169,11 @@ One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objectiv
 
 Code refactorings for C++ can be found within the clangd language server which is based on the clang compiler. @clangd
 
-=== Coding Guidelines
-
+/ Coding Guidelines : #[
 As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
 The documentation is written really well and is easy to understand which makes it easy to follow.
 A lot of guidelines are described but some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
+]
 
 / Code Formatter : #[
 To fulfill the formatting guidelines there is a formatter `clang-format` @clang_format within the project to style the files according to the guidelines.
