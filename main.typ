@@ -63,6 +63,12 @@
 #include "chapters/abstract.typ"
 #include "chapters/managementSummary.typ"
 
+#outline(
+  title: "Table of Contents",
+  indent: auto,
+  target: heading.where(level: 1).or(heading.where(level: 2))
+)
+
 #set heading(numbering: "1.")
 #show par: set block(below: 2em)
 #show figure: set block(below: 2em)
@@ -82,8 +88,6 @@
 // - Zielerreichung/offene Punkte
 // - Ausblick, weiterführende Schritte
 
-#set heading(numbering: none)
-
 = Outlook
 
 = Learnings
@@ -97,7 +101,11 @@ Parts of this paper were rephrased by GPT-3.5.
 
 #include "chapters/glossary.typ"
 
-#bibliography("bibliography.bib")
+= Bibliography
+#bibliography(
+  title: none,
+  "bibliography.bib",
+)
 
 = Table of Figures
 #outline(
@@ -111,7 +119,32 @@ Parts of this paper were rephrased by GPT-3.5.
   target: figure.where(kind: raw),
 )
 
-= Appendices
+= Appendix
+== Source Code
+#outline(
+  title: none,
+  target: selector(heading).after(label("start_of_appendix")),
+) <start_of_appendix>
+
+#pagebreak()
+
+#set page(flipped: true, columns: 2)
+
+#let showSourceFile(fileName) = {
+  heading(fileName, level: 3, numbering: none)
+  set text(size: 0.75em)
+
+  raw(
+    read("source/" + fileName),
+    lang: "cpp",
+    block: true,
+  )
+}
+
+#showSourceFile("InlineConceptRequirement.cpp")
+#showSourceFile("InlineConceptRequirementTests.cpp")
+#showSourceFile("AbbreviateFunctionTemplate.cpp")
+#showSourceFile("AbbreviateFunctionTemplateTests.cpp")
 
 // - Relevante Anhänge
 // - Meeting Protokolle
