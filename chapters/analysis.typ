@@ -369,8 +369,6 @@ Clangd uses this AST tree to provide features like code completion, code navigat
 
 Clang has a builtin AST-dump mode, which can be enabled with the `-ast-dump` flag. @clang_ast
 
-The top level declaration in a translation unit is always the `translation unit declaration`.
-
 @clang_ast_example shows an example of the ast dump of a simple function.
 
 #figure(
