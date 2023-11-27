@@ -290,7 +290,20 @@ TODO
 
 #pagebreak()
 == Testing
-// TODO: add tests to appendix
+#set terms(
+  hanging-indent: 0pt,
+)
+
+/ Manual: #[
+  A lot of manual tests were performed using a test project.
+  Debug inspections were also performed often to verify assumptions.
+]
+
+/ Automated: #[
+  To test the implementation unit tests were written as described in @testing. 
+  A total of 14 tests were written, 4 of them availability tests, 4 unavailability tests and 6 application tests.
+  This is a similar extent to which existing refactorings are tested.
+]
 
 #pagebreak()
 == Usage
