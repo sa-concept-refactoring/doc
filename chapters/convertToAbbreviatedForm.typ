@@ -1,6 +1,6 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx, hlinex
 
-= Refactoring — Convert Function Template to Abbreviated Form <convert_to_abbreviated_form>
+= Refactoring — Abbreviate Function Template <convert_to_abbreviated_form>
 For the second refactoring, a subset of the third idea (@third_idea) should be implemented.
 It replaces explicit function template declarations with abbreviated declarations using auto parameters.
 This tweak helps reduce the number of lines and makes the code more readable.
@@ -173,40 +173,40 @@ It does not reflect the source code as closely as for the first refactoring we l
 The most challenging part of this refactoring was figuring out where template parameters are being used,
 as the refactoring only applies if there is exactly one usage of the parameter and that usage is as a function parameter type.
 
-Initially it was tried to perform a symbol lookup in the index clangd holds, however this led to no results.
+Initially, it was tried to perform a symbol lookup in the index clangd holds, but this led to no results.
 This is very likely due to the target being a template parameter,
-which has no proper symbol id in the context of the template declaration, as it is not a concrete instance of a type.
+which has no proper symbol ID in the context of the template declaration, as it is not a concrete instance of a type.
 
 Afterward, the way the "find references" LSP feature is implemented in clangd was analyzed.
-It uses a helper class called `XRefs` which implements a `findReferences` function which can deal with template functions.
-Unfortunately the result of this method call cannot be traced back to the AST.
+It uses a helper class called `XRefs` which implements a `findReferences` function that can deal with template functions.
+Unfortunately, the result of this method call cannot be traced back to the AST.
 
 In the end, the `findReferences` call is only being used to find the number of references to a given template parameter.
 This number is an important point of reference to see if the refactoring applies.
 
 - #[
-  If there is *only one reference* it would mean that the template parameter is declared, but never used.
-  In this case the refactoring cannot apply. // TODO: Why
+  If there is *only one reference*, it would mean that the template parameter is declared but never used.
+  In this case, the refactoring cannot apply. // TODO: Why
 ]
 
 - #[
-  If there are *exactly two references* it means that one of those is the definition and there is at least one usage of it.
-  Figuring out if the usage is a function parameter is done it a later step.
+  If there are *exactly two references*, it means that one of those is the definition and there is at least one usage of it.
+  Figuring out if the usage is a function parameter is done in a later step.
 ]
 
 - #[
-  If there are *more than two references* it means that there are either two function parameters with the same type
-  or there is at least one usage outside outside of function parameters (for example the body of the function).
-  In both cases the refactoring cannot apply. // TODO: Why?
+  If there are *more than two references*, it means that there are either two function parameters with the same type
+  or there is at least one usage outside of function parameters (for example the body of the function).
+  In both cases, the refactoring cannot apply. // TODO: Why?
 ]
 
-As a next step the function parameters are iterated over to verify that each template parameter type occurs as a function parameter and that the order is the same.
-In addition the type qualifiers are extracted, which consist of reference kind, constness, and pointer type.
+As a next step, the function parameters are iterated over to verify that each template parameter type occurs as a function parameter and that the order is the same.
+In addition, the type qualifiers are extracted, which consist of reference kind, constness, and pointer type.
 
-This concludes the preperation phase.
+This concludes the preparation phase.
 
 The application phase is rather simple in comparison.
-In a first step the template declaration is removed, and in a second step the types of the function parameters are updated.
+In a first step, the template declaration is removed, and in a second step, the types of the function parameters are updated.
 The information needed for this has been collected during the preparation phase.
 
 #pagebreak()
