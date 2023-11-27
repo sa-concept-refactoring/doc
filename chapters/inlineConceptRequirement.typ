@@ -3,7 +3,7 @@
 = Refactoring — Inline Concept Requirement <inline_concept_requirement>
 For the first refactoring a subset of the initial idea (@first_idea) should be implemented.
 Specifically the inlining of an explicit ```cpp requires``` clause into a constrained function template.
-@capabilities_of_first_refactoring shows some examples of what this refactoring will be able to do.
+@capabilities_of_first_refactoring shows some examples of what this refactoring is able to do.
 
 Limitations of the refactoring are discussed in @limitations_of_first_refactoring.
 
@@ -47,7 +47,7 @@ For our analysis we looked at which elements need to be captured (@first_refacto
 
 === Captured Elements <first_refactoring_captured_elements>
 @first_refactoring_captured_elements_figure shows the captured elements and their purpose.
-A reference to them will be stored as a member of the tweak object during the preparation phase and used during the application phase.
+A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.
 
 #figure(
   tablex(

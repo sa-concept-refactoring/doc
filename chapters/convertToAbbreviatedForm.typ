@@ -4,7 +4,7 @@
 For the second refactoring, a subset of the third idea (@third_idea) should be implemented.
 It replaces explicit function template declarations with abbreviated declarations using auto parameters.
 This tweak helps reduce the number of lines and makes the code more readable.
-@second_refactoring_capabilities shows examples of what this refactoring will be able to do.
+@second_refactoring_capabilities shows examples of what this refactoring is able to do.
 
 #figure(
   table(
@@ -66,7 +66,7 @@ and the impact of the refactoring on the abstract syntax tree (@second_refactori
 
 === Captured Elements <second_refactoring_captured_elements>
 @second_refactoring_captured_elements shows the captured elements and their purpose.
-A reference to them will be stored as a member of the tweak object during the preparation phase and used during the application phase.
+A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.
 
 #figure(
   tablex(
