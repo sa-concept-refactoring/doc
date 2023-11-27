@@ -504,14 +504,14 @@ Before C++20 `constexpr` and `if constexpr` was used for restrictions, more abou
   )
 
 
-  Requirements can also contain `||` or `&&` to specify the parameters even more. 
+  Requirements can also contain disjunctions (`||`) and/or conjunctions (`&&`) to specify the parameters even more. 
 
   #figure(
     ```cpp
     requires std::integral<T> || std::floating_point<T>
     ```,
     caption: [
-      Condition using `||`
+      Condition using disjunctions (`||`) @concepts
     ],
   ) <concept_conditions_or>
 
@@ -520,16 +520,14 @@ Before C++20 `constexpr` and `if constexpr` was used for restrictions, more abou
       requires std::integral<T> && std::floating_point<T>
       ```,
     caption: [
-      Condition using `&&`
+      Condition using conjunctions (`&&`) @concepts
     ],
   )
 ]
 
 / Concepts using `concept` keyword : #[
 
-  Named sets of requirements can be used to define a concept.
-  // TODO: write more about this
-  // TODO: add reference https://en.cppreference.com/w/cpp/language/constraints
+  Using the `concept` keyword the requirements can be named.
 
   #figure(
     ```cpp
@@ -540,7 +538,7 @@ Before C++20 `constexpr` and `if constexpr` was used for restrictions, more abou
     };
     ```,
   caption: [
-    Concepts using `requires` clause
+    Concepts using `requires` clause @concepts
   ],
 )
 ]
