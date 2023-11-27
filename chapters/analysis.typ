@@ -316,22 +316,39 @@ Each circle is representing a value which is referred to as 'node'.
 The relationship within the tree can be described by using names like 'parent node', 'child node', 'sibling node' and so on.
 
 #figure(
-  image("../drawio/ast_structure.drawio.svg", width: 50%),
+  image("../drawio/ast_structure.drawio.png", width: 50%),
   caption: [
     Diagram showing AST structure
   ],
 ) <ast_structure>
 
-A simple calculation like `2 * 7 + 3` for example can be displayed as a tree shown in @ast_calculation_structure.
+The structure of the tree is also used for AST trees.
+A simple function as shown in @fact_function can be visualized as such.
 
 #figure(
-  image("../drawio/ast_calculation_structure.drawio.svg", width: 30%),
+  ```cpp
+  int fact(int n) {
+    if (n == 0)
+        return 1;
+    else
+        return n*fact(n-1);
+  }
+  ```,
   caption: [
-    Diagram showing AST structure
+    Function for calculating factorial of a number
   ],
-) <ast_calculation_structure>
+) <fact_function>
 
-The most common use for these kind of trees are with compilers.
+@ast_fact_function represents the ast tree of the function in @fact_function.
+
+#figure(
+  image("../images/ast_fact_function.png", width: 40%),
+  caption: [
+    Diagram showing AST structure @ast_entropy
+  ],
+) <ast_fact_function>
+
+The most common use for AST trees are with compilers.
 For a compiler to transform source code into compiled code, three steps are needed.
 
 + *Lexical Analysis* - Convert code into set of tokens describing the different parts of the code. 
