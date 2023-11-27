@@ -63,8 +63,6 @@
 #include "chapters/abstract.typ"
 #include "chapters/managementSummary.typ"
 
-#let startOfAppendix = label("start_of_appendix")
-
 #outline(
   title: "Table of Contents",
   indent: auto,
@@ -119,13 +117,13 @@ Parts of this paper were rephrased by GPT-3.5.
 #outline(
   title: none,
   target: figure.where(kind: raw),
-) <list_of_listings>
+)
 
 = Appendix
 == Source Code
 #outline(
   title: none,
-  target: selector(heading).after(startOfAppendix),
+  target: selector(heading).after(label("start_of_appendix")),
 ) <start_of_appendix>
 
 #pagebreak()
