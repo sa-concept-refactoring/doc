@@ -138,7 +138,7 @@ As can be seen in @second_refactoring_ast_figure, the AST transformation of this
 The only change is that the explicit type parameter name is replaced with a generated one.
 
 It is interesting to see how abstract the abstract syntax tree really is in this case.
-It does not reflect the source code as closely as for the first refactoring we looked at (@first_refactoring_ast_analysis).
+It does not reflect the source code as closely as for the first refactoring (@first_refactoring_ast_analysis).
 
 #figure(
   tablex(
