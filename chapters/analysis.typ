@@ -13,9 +13,10 @@ To be able to contribute to the LLVM project @llvm_github it is important to und
 
 == Language Server Protocol (LSP)
 
-// TODO: show different editors with the same refactoring features (maybe with own implementation)
-
-The Language Server Protocol, short LSP, is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers, which provide language-specific features such as code completion, syntax highlighting, error checking and other services to enhance the capabilities of code editors.
+// Note Corbat: Standard-Set an Features und erweiterbar...
+The Language Server Protocol, short LSP, is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers.
+It provides language-specific features such as code completion, syntax highlighting, error checking, and other services to enhance the capabilities of code editors.
+Traditionally this work was done by each development tool as each provides different APIs for implementing the same features.
 
 @language_server_sequence shows an example for how a tool and a language server communicate during a routine editing session.
 
@@ -26,7 +27,7 @@ The Language Server Protocol, short LSP, is an open, JSON-RPC based protocol des
   ],
 ) <language_server_sequence>
 
-The development tool is sending notifications and requests to the language server. 
+The development tool sends notifications and requests to the language server. 
 The language server can then respond with the document URI and position of the symbol's definition inside the document for example.
 
 The idea of the LSP as described by Microsoft:
@@ -44,6 +45,8 @@ Language servers are used within modern IDEs and code editors such as Visual Stu
 / Implementations: #[
 The language servers implementing the LSP for C++ are shown in @cpp-implementation.
 For this project the focus is set on the LLVM-Project which is explained in @lvvm-project.
+
+A list of tools supporting the LSP can be found on the official website @tools_supporting_lsp.
 
 #figure(
   tablex(
@@ -71,6 +74,7 @@ For this project the focus is set on the LLVM-Project which is explained in @lvv
 === LSP Features for Refactoring
 
 To apply a refactoring using the LSP three steps are needed. 
+These steps are the same for all tools using the LSP.
 
 + Action Request
 + Execute Command
@@ -86,12 +90,15 @@ The details of the requests shown in the flow diagram are explained further in t
   ],
 ) <lsp-sequence-diagram>
 
-// TODO: add json examples
 / Code Action Request: #[
 The code action request is sent from client to server to compute commands for a given text document and range.
 To make the server useful in many clients, the command actions should be handled by the server and not by the client.
 
-When a client requests possible code actions, the server computes which ones apply and sends them back in a JSON-encoded response.
+A client first needs to request possible code actions.
+
+// TODO: add json of code action request (Client -> Server)
+
+The server then computes which ones apply and sends them back in a JSON-encoded response.
 @json_code_action_request_response shows an example answer to the Code Action Request.
 
 #figure(
@@ -135,9 +142,17 @@ When a client requests possible code actions, the server computes which ones app
 / Executing a Command: #[
 To apply a code change on the client side the client sends a `workspace/executeCommand` to the server.
 The server can then create a WorkspaceEdit @lsp_workspace_edit structure and apply the changes to the workspace by sending a `workspace/applyEdit` @lsp_workspace_apply_edit command to the client.
+
+// TODO: add json of executeCommand request (Client -> Server)
 ]
 
-// Kommentar Jeremy: Mer sett no sege wie jetz de command usgfüert wird. Bis jetz erkläre mer nur wiemer dezue chonnt.
+/ Apply a WorkspaceEdit: #[
+  The `workspace/applyEdit` command is sent from the server to the client to modify a resource on the client side.
+
+  When the client then applies the provided changes and reports back to the server whether the edit has been successfully applied or not.
+
+  // TODO: add json of applyEdit (Server -> Client)
+]
 
 == LLVM Project <lvvm-project>
 The LLVM project @llvm_github is a collection of modular and reusable compiler and toolchain technologies.
@@ -152,11 +167,23 @@ One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objectiv
   ],
 ) <llvm_illustration>
 
-// TODO: explain how LSP works in general (client, server communication)
 Code refactorings for C++ can be found within the clangd language server which is based on the clang compiler. @clangd
+
+/ Coding Guidelines : #[
+As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
+The documentation is written really well and is easy to understand which makes it easy to follow.
+A lot of guidelines are described but some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
+]
+
+/ Code Formatter : #[
+To fulfill the formatting guidelines there is a formatter `clang-format` @clang_format within the project to style the files according to the guidelines.
+A check run on GitHub is ensuring that the format of the code is correct.
+Only when the formatter has been run successfully a Pull-Request is allowed to be merged.
+]
 
 == The clangd Language Server
 
+// Note Corbat: Aufbau des ganzen Toolings? Welche anderen Komponenten gibt es? Wie hängen diese zusammen?
 // TODO: wie gelangt language server an den code
 
 Clangd is the language server which lives in the llvm-project repository @llvm_github under `clang-tools-extra/clangd`. 
@@ -164,34 +191,26 @@ It understands C++ code and adds smart features like code completion, compile er
 
 The C++ refactoring features can be found within the clangd under the `tweaks` folder.
 
-== Coding Guidelines
-
-As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
-The documentation is written really well and is easy to understand which makes it easy to follow.
-A lot of guidelines are described but some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
-
-=== Code Formatter
-To fulfill the formatting guidelines there is a formatter `clang-format` within the project to style the files according to the guidelines.
-A check run on GitHub is ensuring that the format of the code is correct.
-Only when the formatter has been run successfully a Pull-Request is allowed to be merged.
-
-// TODO: add link
-
 == Refactorings in clangd
+
+// Note Corbat: Was ist ein Refactoring?
+// Note Corbat: Gibt es noch andere Teile, die relevant sein könnten für jemanden der ein Refactoring implementiert?
 Each refactoring option within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
 
-=== Project Structure
+/ Project Structure : #[
 The LLVM project is quite big and it took a while to figure out how it is structured.
 For refactoring features classes can be created in the following directory: \
 `llvm-project/clang-tools-extra/clangd/refactor/tweaks`.
+]
 
-=== Existing Refactorings
+/ Existing Refactorings : #[
 Looking at the refactoring features no feature could be found specific to concepts.
 Some basic ones like symbol rename already work for them.
 As concepts were introduced with C++20 it is quite new to the world of C++ and therefore not much of support exists yet.
 
 For other scenarios multiple refactoring operations already exist (e.g. switching statements within an if).
 Looking at existing refactoring code helped to understand how a refactoring is structured and implemented.
+]
 
 === Testing <testing>
 The LLVM project strictly adheres to a well-defined architecture for testing. 
@@ -199,8 +218,6 @@ To align with project guidelines @clangd_testing, automated unit tests must be a
 The name of these files is usually the name of the class itself and use the googletest framework @googletest_framework.
 
 Unit tests are added to `llvm-project/clang-tools-extra/clangd/unittests`.
-
-// TODO: explain test concept of clangd (for tweaks)
 
 For testing tweaks three functions are typically used: `EXPECT_THAT`, `EXPECT_AVAILABLE`, and `EXPECT_UNAVAILABLE`.
 
@@ -292,7 +309,47 @@ The Abstract Syntax Tree, short AST, is a syntax tree representing the abstract 
 It represents the syntactic structure of source code written in a programming language, capturing its grammar and organization in a tree-like form.
 It provides a structured way to analyze and manipulate the code, making it easier for tools like code analyzers, code editors, and IDEs to understand and work with the code. @ast_twilio
 
-Three steps are needed for a compiler to transform source code into compiled code.
+The tree structure consists of a root node, which is the starting node on top of the three, which is then pointing to other values and these values to others as well.
+@ast_structure shows a simple structure of a possible tree.
+
+Each circle is representing a value which is referred to as 'node'.
+The relationship within the tree can be described by using names like 'parent node', 'child node', 'sibling node' and so on.
+
+#figure(
+  image("../drawio/ast_structure.drawio.png", width: 50%),
+  caption: [
+    Diagram showing AST structure
+  ],
+) <ast_structure>
+
+The structure of the tree is also used for AST trees.
+A simple function as shown in @fact_function can be visualized as such.
+
+#figure(
+  ```cpp
+  int fact(int n) {
+    if (n == 0)
+        return 1;
+    else
+        return n*fact(n-1);
+  }
+  ```,
+  caption: [
+    Function for calculating factorial of a number
+  ],
+) <fact_function>
+
+@ast_fact_function represents the ast tree of the function in @fact_function.
+
+#figure(
+  image("../images/ast_fact_function.png", width: 40%),
+  caption: [
+    Diagram showing AST structure @ast_entropy
+  ],
+) <ast_fact_function>
+
+The most common use for AST trees are with compilers.
+For a compiler to transform source code into compiled code, three steps are needed.
 
 + *Lexical Analysis* - Convert code into set of tokens describing the different parts of the code. 
 + *Syntax Analysis* - Convert tokens into a tree that represents the actual structure of the code.
@@ -310,8 +367,200 @@ Three steps are needed for a compiler to transform source code into compiled cod
 In Clangd, the "AST tree" refers to AST generated by the Clang compiler for a C++ source file.
 Clangd uses this AST tree to provide features like code completion, code navigation, and code analysis in C++ development environments.
 
-//TODO: maybe explain why it is better to transform ast instead of code itself
+Clang has a builtin AST-dump mode, which can be enabled with the `-ast-dump` flag. @clang_ast
+
+@clang_ast_example shows an example of the ast dump of a simple function.
+
+#figure(
+  ```
+  $ cat test.cc
+  int f(int x) {
+    int result = (x / 42);
+    return result;
+  }
+
+  # Clang by default is a frontend for many tools; -Xclang is used to pass
+  # options directly to the C++ frontend.
+  $ clang -Xclang -ast-dump -fsyntax-only test.cc
+  TranslationUnitDecl 0x5aea0d0 <<invalid sloc>>
+  ... cutting out internal declarations of clang ...
+  `-FunctionDecl 0x5aeab50 <test.cc:1:1, line:4:1> f 'int (int)'
+    |-ParmVarDecl 0x5aeaa90 <line:1:7, col:11> x 'int'
+    `-CompoundStmt 0x5aead88 <col:14, line:4:1>
+      |-DeclStmt 0x5aead10 <line:2:3, col:24>
+      | `-VarDecl 0x5aeac10 <col:3, col:23> result 'int'
+      |   `-ParenExpr 0x5aeacf0 <col:16, col:23> 'int'
+      |     `-BinaryOperator 0x5aeacc8 <col:17, col:21> 'int' '/'
+      |       |-ImplicitCastExpr 0x5aeacb0 <col:17> 'int' <LValueToRValue>
+      |       | `-DeclRefExpr 0x5aeac68 <col:17> 'int' lvalue ParmVar 0x5aeaa90 'x' 'int'
+      |       `-IntegerLiteral 0x5aeac90 <col:21> 'int' 42
+      `-ReturnStmt 0x5aead68 <line:3:3, col:10>
+        `-ImplicitCastExpr 0x5aead50 <col:10> 'int' <LValueToRValue>
+          `-DeclRefExpr 0x5aead28 <col:10> 'int' lvalue Var 0x5aeac10 'result' 'int'
+  ```,
+  caption: [
+    Example of ast dump in clang @clang_ast
+  ]
+) <clang_ast_example>
+
+When building an AST a root node needs to be found.
+In clang, the top level declaration in a translation unit is always the `translation unit declaration` @clang_translation_unit_decl.
+For a function for example it would be the `function declaration` @clang_function_declaration.
+When the code has errors the AST can only be built if the toplevel declaration is found.
+For a function this means, that the function name has to be present but other than that it can have errors within the code.
+
+@ast_dump_possibilities shows in which cases the AST can or can not be built.
+
+#let cell(ok: false, body) = box(
+  inset: 8pt,
+  fill: if (ok) {green} else {red},
+  width: 100%,
+  radius: 6pt,
+  text(white, weight: "bold", body)
+)
+
+#figure(
+  grid(
+    columns: (auto, 14em),
+    gutter: 1em,
+    align(start + horizon)[
+      ```cpp
+      int f(int x) {
+        int result = (x / 42);
+        return result;
+      }
+      ```
+    ],
+    align(horizon)[
+      #cell(ok:true)[OK]
+    ],
+     align(horizon)[
+      ```cpp
+      f(int x) {
+        int result = (x / 42);
+        return result;
+      }
+      ```
+    ],
+    align(horizon)[
+      #cell(ok:true)[OK]
+    ],
+     align(start + horizon)[
+      ```cpp
+      int f(int x) {
+        int result = (x / 42);
+      }
+      ```
+    ],
+     align(horizon)[
+      #cell(ok:true)[OK]
+    ],
+    align(start + horizon)[
+      ```cpp
+      int f {
+        int result = (x / 42);
+        return result;
+      }
+      ```
+    ],
+    align(horizon)[
+      #cell(ok:true)[OK]
+    ],
+    align(start + horizon)[
+      ```cpp
+      int (int x) {
+        int result = (x / 42);
+        return result;
+      }
+      ```
+    ],
+    align(horizon)[
+      #cell[NOT OK \ function name missing]
+    ],
+     align(horizon)[
+      ```cpp
+      int f(int x) 
+        int result = (x / 42);
+        return result;
+      ```
+    ],
+    align(horizon)[
+      #cell[NOT OK \ function brackets missing]
+    ],
+  ),
+  caption: [
+    AST dump possibilities for valid and invalid functions
+  ],
+) <ast_dump_possibilities>
 
 == Concepts
 
-// TODO: describe concepts
+Concepts are a new language feature introduced with C++20.
+They allow to put constraints on template parameters which are evaluated at compile time.
+This allows the developer to restrict template parameters in a new convenient way.
+For this the keywords `requires` @keyword_requires and `concept` @keyword_concept were added to give some language support. @concepts
+
+Before C++20 `constexpr` and `if constexpr` was used for restrictions, more about these can be found in the C++ stories @if_const_expr.
+
+/ Concepts using `requires` keyword : #[
+  The `requires` keyword can be used either before the function declaration or between the function declaration and the function body.
+
+  #figure(
+    grid(
+      columns: (auto, 14em),
+      gutter: 1em,
+      ```cpp
+      template <typename T>
+      requires CONDITION
+      void f(T param) 
+      {}
+      ```,
+      ```cpp
+      template <typename T>
+      void f(T param) requires CONDITION
+      {}
+      ```
+    ),
+    caption: [
+      Concepts using `requires` clause @concepts
+    ],
+  )
+
+  Requirements can also contain disjunctions (`||`) and/or conjunctions (`&&`) to restrict the parameter types even more. 
+
+  #figure(
+    ```cpp
+    requires std::integral<T> || std::floating_point<T>
+    ```,
+    caption: [
+      Condition using disjunctions (`||`) @concepts
+    ],
+  ) <concept_conditions_or>
+
+  #figure(
+    ```cpp
+    requires std::integral<T> && std::floating_point<T>
+    ```,
+    caption: [
+      Condition using conjunctions (`&&`) @concepts
+    ],
+  )
+]
+
+/ Concepts using `concept` keyword : #[
+
+  Using the `concept` keyword the requirements can be named.
+
+  #figure(
+    ```cpp
+    template<typename T>
+    concept Hashable = requires(T a)
+    {
+        { std::hash<T>{}(a) } -> std::convertible_to<std::size_t>;
+    };
+    ```,
+    caption: [
+      Concepts using `requires` clause @concepts
+    ],
+  )
+]

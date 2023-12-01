@@ -23,15 +23,11 @@
 }
 
 #show heading: it => {
-  if (it.level == 1) {
+  if (it.level <= 2) {
     pagebreak(weak: true)
   }
 
-  if (it.level >= 3) {
-    block(it.body)
-  } else {
-    it
-  }
+  it
 }
 
 #show ref: it =>{
