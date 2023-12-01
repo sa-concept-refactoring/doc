@@ -57,6 +57,7 @@ Is inlining the defined requirements into the template definition.
 
 The implemented refactoring features are added to the clangd language server to the `refactor/tweaks` directory.
 @refactoring_contribution shows VSCode using the clangd language server to display refactorings in the code editor.
+In the example in @refactoring_contribution VSCode is communicating with the language server using LSP. 
 To use clangd in VSCode the extension "clangd" can be used.
 
 #figure(
@@ -66,27 +67,33 @@ To use clangd in VSCode the extension "clangd" can be used.
   ],
 ) <refactoring_contribution>
 
+#pagebreak()
 
 / Key findings : #[
 
-Finding the correct functions to use could take a while but when they were found the refactorings would progress very quickly.
+- Some code parts within the LLVM Project are quite old and using older language features. 
+- Pull Request are often waiting a long time for reviewers to approve the changes.
+- The clangd documentation is written really well and is a good support.
+- Some functions are a bit confusing and lead to wrong conclusions.
 
 ]
-// Key findings and highlights
-Implementing the refactorings was not always an easy task.
 
-One of the implemented refactoring was finished quite early and a Pull-Request to merge the code into the LLVM Project was created.
+/ Critical Issues and Challenges : #[
 
-// Critical Issues and Challenges
-Building the project was quite a problem at first as this would take hours depending on the system used.
-The first few times the build stopped or had some issues so it needed to build over again.
-But after the first build was successful the adjustment of the codes where build quite quickly and the work could go on.
+- Building clangd the first time takes a lot of time and memory and would have been good to know beforehand.
+- JetBrains announced that they will stop using the clangd language server and implement language support themselves.
+- Finding out how to add reviewers the Pull-Request was quite challenging as there was no mention of what to do. 
+  Apparently the but wasn't working correctly and didn't assign the reviewers.
 
-
+]
 
 / Conclusions : #[
+
 Language servers are a good way to support language support for more than just one IDE. 
 Having an open source project like LLVM is a really good idea and is also appreciated by a lot of developers.
 On the other hand, it also makes the process of adding new changes quite slow as almost all participants are working on it during their free time.
+
+One of the Pull-Request got a review from an other contributor who was writing that he is looking forward to the refactoring to be in clangd as it could be quite useful.
+This comment seems to conclude the work of this project quite well and hopefully others will find it a good addition to the refactoring section as well.
 
 ]
