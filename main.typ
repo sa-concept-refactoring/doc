@@ -1,6 +1,5 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx
 #import "progress-bar.typ": printProgressBar
-
 #import "title-page.typ": luschtig
 
 #show raw: it => {
@@ -69,9 +68,9 @@
   target: heading.where(level: 1).or(heading.where(level: 2))
 )
 
+#show figure: set block(below: 2em)
 #set heading(numbering: "1.")
 #show par: set block(below: 2em)
-#show figure: set block(below: 2em)
 
 #include "chapters/introduction.typ"
 #include "chapters/structureOfThisReport.typ"
