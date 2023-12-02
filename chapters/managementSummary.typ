@@ -27,7 +27,7 @@ Replaces the defined function parameter type with the type `auto` and removes th
     ],
     [
       ```cpp
-      void foo(auto param) {}
+      void foo(std::integral auto param) {}
       ```
     ]
   ),
@@ -36,7 +36,7 @@ Replaces the defined function parameter type with the type `auto` and removes th
 ]
 
 / Inline Concept Requirement : #[
-Is inlining the defined requirements into the template definition.
+Inlines the defined requirements into the template definition.
 #figure(
   table(
     columns: (1fr, 1fr),
@@ -72,7 +72,7 @@ To use clangd in VSCode the extension "clangd" can be used.
 / Key findings : #[
 
 - Some code parts within the LLVM Project are quite old and use older language features. 
-- Pull Request often take a long time for reviewers to approve the changes.
+- Pull Requests often take a long time for reviewers to approve the changes.
 - The clangd documentation is written really well and provides good support.
 - Some functions are a bit confusing and lead to the wrong conclusions.
 
@@ -80,10 +80,10 @@ To use clangd in VSCode the extension "clangd" can be used.
 
 / Critical Issues and Challenges : #[
 
-- Building clangd the first time takes a lot of time and memory, and would have been good to know beforehand.
+- Building clangd for the first time takes a lot of time and memory, and would have been good to know beforehand.
 - JetBrains announced that they will stop using the clangd language server and implement language support themselves.
-- Finding out how to add reviewers the Pull-Request was quite challenging as there was no mention of what to do. 
-  Apparently the bot wasn't working correctly and didn't assign the reviewers.
+- Finding out how to add reviewers to the Pull-Request was quite challenging as there was no mention of what to do. 
+  Apparently the bot wasn't working correctly and didn't assign reviewers.
 
 ]
 
@@ -91,9 +91,9 @@ To use clangd in VSCode the extension "clangd" can be used.
 
 Language servers are a good way to provide language support for more than just one IDE. 
 Having an open source project like LLVM is a excellent idea and is also appreciated by a lot of developers.
-On the other hand, it also makes the process of adding new changes quite slow, as almost all participants are working on it during their free time.
+On the other hand, it also makes the process of adding new changes quite slow, as almost all contributors are working on it during their free time.
 
-One of the Pull-Request got a review from another contributor who was writing that he was looking forward to the refactoring to be in clangd as it could be quite useful.
-This comment seems to conclude the work of this project quite well, and hopefully others will find it a good addition to the refactoring section as well.
+One of the Pull-Requests got a review from another contributor, who commented that he was looking forward to having the refactoring in clangd, as it could be quite useful.
+This comment seems to conclude the work of this project quite well, and hopefully others will find it a good addition to the language server as well.
 
 ]
