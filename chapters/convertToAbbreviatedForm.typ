@@ -1,7 +1,7 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx, hlinex
 
 = Refactoring — Abbreviate Function Template <abbreviate_function_template>
-For the second refactoring, a subset of the third idea (@third_idea) should be implemented.
+For the second refactoring, a subset of the third idea (@third_idea) is implemented.
 It replaces explicit function template declarations with abbreviated declarations using auto parameters.
 This tweak helps reduce the number of lines and makes the code more readable.
 @second_refactoring_capabilities shows examples of what this refactoring is able to do.

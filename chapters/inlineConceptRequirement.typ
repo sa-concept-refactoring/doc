@@ -1,7 +1,7 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx, hlinex
 
 = Refactoring — Inline Concept Requirement <inline_concept_requirement>
-For the first refactoring a subset of the initial idea (@first_idea) should be implemented.
+For the first refactoring a subset of the initial idea (@first_idea) is implemented.
 Specifically the inlining of an explicit ```cpp requires``` clause into a constrained function template.
 @capabilities_of_first_refactoring shows some examples of what this refactoring is able to do.
 
