@@ -1,29 +1,20 @@
 = Abstract <abstract>
 // Introduction
-With C++20 concepts were introduced which allow restricting template parameter types.
+With C++20 concepts were introduced, which allow restricting template parameter types.
 The objective of this project was to find novel refactoring operations related to concepts and to implement them as part of a language server.
 
 // Methods
-An analysis has been performed on the langage server protocol, the clangd language server and C++ concepts.
+An analysis has been performed on the langage server protocol, concepts and the clangd language server.
 This resulted in a few potential refactoring operations,
 two of which have been implemented as a tweak in the clangd language server.
-Testing was performed manually using a test project and automated using unit tests.
 
-The first implemented refactoring enables inlining _require_ clauses into the template declaration.
-// TODO: Details?
+The first implemented refactoring enables inlining _requires_ clauses into the template declaration.
+It reduces the amount of code and in most cases makes the function signature easier to read.
 
-The second implemented refactoring allows converting explicit template declarations to their abbreviated version using _auto_ parameters.
-// TODO: Details?
+The second implemented refactoring allows converting explicit template declarations into their abbreviated form using _auto_ parameters, thus eliminating the template header above the function.
 
-// Results
-The two implemented operations have been submitted upstream as a Pull-Request to the llvm repository and as of the writing of this paper (#datetime.today().display("[month repr:long] [year]")) are awaiting review.
-
-// Discussion
-Due to the limited amount of time available some features were left out.
-They could be implemented as a follow-up.
-
-
-// TODO
+The two implemented refactor operations have been submitted upstream as Pull-Requests to the llvm repository and as of the writing of this paper (#datetime.today().display("[month repr:long] [year]")) are awaiting review.
+Once approved and merged these new refactoring operations will become available to anyone using the clangd language server.
 
 // Der Abstract richtet sich an den Spezialisten auf dem entsprechenden Gebiet und beschreibt
 // daher in erster Linie die (neuen, eigenen) Ergebnisse und Resultate der Arbeit. (Aus
