@@ -1,9 +1,7 @@
 = Abstract <abstract>
-// Introduction
 With C++20 concepts were introduced, which allow restricting template parameter types.
 The objective of this project was to find novel refactoring operations related to concepts and to implement them as part of a language server.
 
-// Methods
 An analysis has been performed on the langage server protocol, concepts and the clangd language server.
 This resulted in a few potential refactoring operations,
 two of which have been implemented as a tweak in the clangd language server.
