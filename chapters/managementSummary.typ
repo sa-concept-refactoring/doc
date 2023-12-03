@@ -81,7 +81,7 @@ To use clangd in VSCode the extension "clangd" can be used.
 / Critical Issues and Challenges : #[
 
 - Building clangd for the first time takes a lot of time and memory, and would have been good to know beforehand.
-- JetBrains announced that they will stop using the clangd language server and implement language support themselves.
+- JetBrains announced that they will stop using the clangd language server and implement language support themselves. @jetbrains_blog
 - Finding out how to add reviewers to the Pull-Request was quite challenging as there was no mention of what to do. 
   Apparently the bot wasn't working correctly and didn't assign reviewers.
 
