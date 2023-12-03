@@ -211,82 +211,50 @@ The information needed for this has been collected during the preparation phase.
 
 #pagebreak()
 == Limitations
-TODO
+There are limits to this refactoring.
+Some of them are given by the language or compiler and some are intentional, because otherwise the scope of the refactoring would have increased drastically.
 
-// #figure(
-//   table(
-//     columns: (1fr, 1.5fr),
-//     align: start,
-//     [*Check*], [*Reasoning*],
-//     [
-//       A template definition needs to be in place.
-//     ],
-//     [
-//       If the template definition is not present the logic of this refactoring can't be applied.
-//     ],
-//     [
-//       The template type parameter is not used within the body.
-//     ],
-//     [
-//       If the type parameter is used in the body it cannot be replaced with an ```cpp auto``` param.
-//     ],
-//     [
-//       The order of template parameters is the same as their occurence as function parameters.
-//     ],
-//     [
-//       The function signature would change otherwise.
-//     ],
-//     [
-//       The parameter type is not used within a container (e.g. `map`, `set`, `list`, `array`)
-//     ],
-//     [
-//       The ```cpp auto``` keyword cannot be used in this context.
-//     ],
-//     [
-//       No requires clause should be present.
-//     ],
-//     [
-//       As the refactoring is removing the type parameter the ```cpp requires``` clause would not be valid anymore.
-//     ]
-//   ),
-//   caption: "Checks made during the preparation phase of the \"Convert Function Template to Abbreviated Form\" refactoring",
-// )
+=== Templated Function Parameters
+If a function parameter is a templated parameter like ```cpp std::vector<T>``` the refactoring cannot apply.
+// TODO: Ask Corbat if he knows why. I could not find the source of the error message.
+The reason for this is that `auto` cannot be used as a template parameter.
 
-// Kommentar Jeremy: Das bruchemer glaub ned wemmer d'Checks obe dra hend.
-// ==== Not Supported Cases
+#figure(
+  ```cpp
+  template <typename T>
+  void foo(std::vector<T> param)
+  ```,
+  caption: "Templated Function Parameter",
+)
 
-// ```cpp
-// // The keyword `auto` can't be used within containers
-// template<typename T>
-// auto foo(vector<T> param) -> void {}
+=== Template Arguments Used Multiple Times
+This is an inherit limitation of the refactoring.
+If for example the same template argument is used for multiple parameters, it means that all of them will have the same type when instantiated.
+Would they be replaced with `auto`, each of them would result in a different type.
 
-// template<typename T>
-// auto foo(list<T> param) -> void {}
+This limitation also applies if the template argument is used anywhere else.
+This includes the return type and the body of the function.
+Replacing one template parameter with multiple `auto` keywords always breaks the behaviour of the function.
 
-// template<class T, size_t N>
-// auto foo(T (&a)[N], int size) -> void {}
+#figure(
+  ```cpp
+   template<std::integral T>
+   auto foo(T param, T anotherParam) -> void {}
+  ```,
+  caption: "Template argument used for multiple parameters",
+)
 
-// // Using template declaration multiple times for function parameters
-// template<std::integral T>
-// auto foo(T param, T anotherParam) -> void {}
+=== Requires Clauses
+Functions with `requires` clauses are not supported.
+As a workaround the previously implemented refactoring (@inline_concept_requirement) can be used first.
 
-// // Template type parameter is used within the function body
-// template<std::integral T>
-// auto foo(T param) -> void {
-//   if constexpr (std::is_unsigned_v<T>) {
-//       std::cout << "The type is an unsigned integer." << std::endl;
-//   } else {
-//       std::cout << "The type is not an unsigned integer." << std::endl;
-//   }
-// }
-
-// // Order in template definition different then the function parameters
-// // destroys calling of the function
-// // e.g.: foo<string, int)(2, "hi");
-// // when making both param auto the order of the types in `<>` changes!! 
-// template <typename T, std::integral U>
-// auto foo(U param, T param2) -> void {}
-// ```
+#figure(
+  ```cpp
+  template <typename T>
+  void f(T) requires foo<T> {}
+  ```,
+  caption: "Requires Clause",
+)
 
 #pagebreak()
 == Testing
