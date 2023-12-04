@@ -75,6 +75,7 @@
 #include "chapters/inlineConceptRequirement.typ"
 #include "chapters/convertToAbbreviatedForm.typ"
 #include "chapters/developmentProcess.typ"
+#include "chapters/projectManagement.typ"
 
 
 = Conclusion <conclusion>
