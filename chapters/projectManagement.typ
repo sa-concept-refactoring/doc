@@ -1,18 +1,42 @@
 = Project Management
-// - Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
-// - Projektplan, Vergleich ursprüngliche Planung, effektive Ausführung
-// - Zeiterfassung (Stunden pro Woche/Stunden pro Task-Kategorie, wie Implementation Doku, Meeting, etc.)
+// [] Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
+// [x] Projektplan, 
+//    [] Vergleich ursprüngliche Planung, effektive Ausführung
+// [x] Zeiterfassung (Stunden pro Woche/Stunden pro Task-Kategorie, wie Implementation Doku, Meeting, etc.)
 // Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro Woche
 
-This section looks at how the project was 
+This section describes the approach of the project as well as the project plan and time tracking.
+In @approach, it is explained how the project was approached.
+@project-plan, looks into the planning of the project, including a comparative analysis between the initial plan and its effective implementation.
+Additionally, @time-tracking, provides a summarized overview of the allocated working hours coupled with a reflective assessment of the time invested in the reflects on the time invested.
 
-== Methods
+== Approach <approach>
+
 Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
 The language server features were tested using Visual Studio Code and the clangd extension.
 
+The project is split into three main steps.
++ Project Setup
++ Analysis
++ Implementation
+
+/ Project Setup : #[
+  Before implementing a project setup needs to be in place, therefore some research needed to be done to figure out what is needed to extend the LLVM project with new features.
+  The setup needed to work on Linux and Windows as both systems were used for this project.
+]
+
+/ Analysis : #[
+  The analysis part consists of a lot of research on how the clangd language server works and how it is communicating with the IDE.
+  This step also contains gaining all knowledge needed for implementation, such as looking into the idea of concepts and figuring out what refactoring features would be a good addition to have within the language server.
+]
+
+/ Implementation : #[
+  The implementation it self was one of the smallest steps beside the project setup.
+]
+
 #set page(flipped: true)
 
-== Project Plan
+== Project Plan <project-plan>
 
 The project plan was developed in week 3 after the ideas for the refactoring features were set.
 Without concrete ideas a good project plan can not be worked out.
@@ -111,7 +135,17 @@ All implementation work should be done two weeks before the end as the documenta
 #pagebreak()
 #set page(flipped: false)
 
-== Time Tracking
-To monitor our working hours effectively, we have established a straightforward Google Sheet where we meticulously record information about our tasks, such as who is assigned to them, the task's nature, and the duration spent on each task. Additionally, each entry includes a brief comment detailing the specific work performed during that time.
+== Time Tracking <time-tracking>
 
-// TODO small summary of time tracking
+To monitor the working hours effectively, a Google Sheet was established where information about the tasks was meticulously recorded.
+Each record contains the date of execution, time spent, name of executioner, task category and a brief comment detailing the specific work performed during that time.
+
+The summary in @time-tracking-report shows the total time spent on each category per week.
+
+// TODO: update image
+#figure(
+  image("../images/time_tracking_report.png"),
+  caption: [
+    Hours worked per week and category.
+  ],
+) <time-tracking-report>
