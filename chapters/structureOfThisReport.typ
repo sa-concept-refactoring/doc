@@ -7,7 +7,7 @@ This report encompasses the analysis, elaboration, and implementation of the pro
 
 *@inline_concept_requirement:* Describes the implementation process and result of the refactoring "Inline Concept Requirement".
 
-*@convert_to_abbreviated_form:* Describes the implementation process and result of the refactoring "Convert Function Template to Abbreviated Form".
+*@abbreviate_function_template:* Describes the implementation process and result of the refactoring "Convert Function Template to Abbreviated Form".
 
 *@development_process:* Gives insight about how the development environment was set up and which steps were needed to make the llvm project compile locally.
 
