@@ -8,8 +8,8 @@
 // - Abhängig vom Projekt: Risikoanalyse
 // - Beschreibung (externen) existierenden Schnittstellen
 
-This chapter documents the research of the Language Server Protocol (LSP), clangd, AST and the newly added construct in C++ 20, concepts.
-To be able to contribute to the LLVM project @llvm_github it is important to understand the fundamentals explained in the following chapters.
+This section documents the research of the Language Server Protocol (LSP), clangd, AST and the newly added construct in C++ 20, concepts.
+To be able to contribute to the LLVM project @llvm_github it is important to understand the fundamentals explained in the following sections.
 
 == Language Server Protocol (LSP)
 
@@ -81,7 +81,7 @@ These steps are the same for all tools using the LSP.
 + Apply Edit
 
 The flow chart @lsp-sequence-diagram shows a quick overview of the requests used for refactoring features.
-The details of the requests shown in the flow diagram are explained further in the following chapters.
+The details of the requests shown in the flow diagram are explained further in the following sections.
 
 #figure(
   image("../images/lsp_sequence_diagram.png", width: 80%),
