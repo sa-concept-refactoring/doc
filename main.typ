@@ -29,7 +29,7 @@
   it
 }
 
-#show ref: it =>{
+#show ref: it => {
   if it.element != none and it.element.func() == heading {
     let number = numbering(it.element.numbering, ..counter(heading).at(it.element.location())).trim(".", at: end)
     link(it.target, emph(it.element.supplement + " " + number + ", " + it.element.body))
