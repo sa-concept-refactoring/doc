@@ -31,7 +31,7 @@ Replaces the defined function parameter type with the type `auto` and removes th
       ```
     ]
   ),
-  caption: "Example of abbreviate function template refactoring",
+  caption: [ Example of "Abbreviate Function Template" refactoring ],
 )
 ]
 
@@ -51,7 +51,7 @@ Inlines the defined requirements into the template definition.
     void foo() {}
     ``` ,
   ),
-  caption: "Example of inline concept requirement refactoring",
+  caption: [ Example of "Inline Concept Requirement" refactoring ],
 )
 ]
 

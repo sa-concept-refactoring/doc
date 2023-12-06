@@ -23,7 +23,7 @@ Traditionally this work was done by each development tool as each provides diffe
 #figure(
   image("../images/language_server_sequence.png"),
   caption: [
-    Diagram showing example communication between IDE and Language Server @lsp_overview
+    Diagram showing example communication between IDE and language server @lsp_overview
   ],
 ) <language_server_sequence>
 
@@ -87,7 +87,7 @@ The details of the requests shown in the flow diagram are explained further in t
 #figure(
   image("../images/lsp_sequence_diagram.png", width: 80%),
   caption: [
-    diagram showing Code Action and Code Action Resolve Request
+    Diagram showing code action and code action resolve request
   ],
 ) <lsp-sequence-diagram>
 
@@ -319,7 +319,7 @@ The relationship within the tree can be described by using names like 'parent no
 #figure(
   image("../drawio/ast_structure.drawio.png", width: 50%),
   caption: [
-    Diagram showing AST structure
+    Diagram showing tree structure
   ],
 ) <ast_structure>
 
@@ -361,7 +361,7 @@ For a compiler to transform source code into compiled code, three steps are need
 #figure(
   image("../images/ast_generation.png"),
   caption: [
-    diagram showing steps for code generation @ast_python
+    Diagram showing steps for code generation @ast_python
   ],
 ) <code_generation>
 
@@ -400,7 +400,7 @@ Clang has a builtin AST-dump mode, which can be enabled with the `-ast-dump` fla
           `-DeclRefExpr 0x5aead28 <col:10> 'int' lvalue Var 0x5aeac10 'result' 'int'
   ```,
   caption: [
-    Example of ast dump in clang @clang_ast
+    Example of AST dump in clang @clang_ast
   ]
 ) <clang_ast_example>
 
@@ -525,7 +525,7 @@ Before C++20 `constexpr` and `if constexpr` was used for restrictions, more abou
       ```
     ),
     caption: [
-      Concepts using `requires` clause @concepts
+      Concepts using requires clause @concepts
     ],
   )
 
@@ -536,7 +536,7 @@ Before C++20 `constexpr` and `if constexpr` was used for restrictions, more abou
     requires std::integral<T> || std::floating_point<T>
     ```,
     caption: [
-      Condition using disjunctions (`||`) @concepts
+      Condition using disjunctions @concepts
     ],
   ) <concept_conditions_or>
 
@@ -545,7 +545,7 @@ Before C++20 `constexpr` and `if constexpr` was used for restrictions, more abou
     requires std::integral<T> && std::floating_point<T>
     ```,
     caption: [
-      Condition using conjunctions (`&&`) @concepts
+      Condition using conjunctions @concepts
     ],
   )
 ]
@@ -563,7 +563,7 @@ Before C++20 `constexpr` and `if constexpr` was used for restrictions, more abou
     };
     ```,
     caption: [
-      Concepts using `requires` clause @concepts
+      Concept using requires clause @concepts
     ],
   )
 ]

@@ -1,6 +1,8 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx, hlinex
 
-= Refactoring — Abbreviate Function Template <abbreviate_function_template>
+#let refactoring_name = "Abbreviate Function Template"
+
+= Refactoring — #refactoring_name <abbreviate_function_template>
 For the second refactoring, a subset of the third idea (@third_idea) is implemented.
 It replaces explicit function template declarations with abbreviated declarations using auto parameters.
 This tweak helps reduce the number of lines and makes the code more readable.
@@ -56,7 +58,7 @@ This tweak helps reduce the number of lines and makes the code more readable.
       ```
     ],
   ),
-  caption: "Capabilities of the second refactoring",
+  caption: [ Capabilities of the "#refactoring_name" refactoring ],
 ) <second_refactoring_capabilities>
 
 #pagebreak()
@@ -100,7 +102,7 @@ A reference to them is stored as a member of the tweak object during the prepara
       Will be replaced with template parameter \ restriction and ```cpp auto```.
     ],
   ),
-  caption: "Elements captured for the second refactoring",
+  caption: [ Elements captured for the "#refactoring_name" refactoring ],
 ) <second_refactoring_captured_elements_figure>
 
 === Call Site Implications <call_site_implications>
@@ -130,7 +132,7 @@ The second version would be the opposite, `int` for `param1` and `float` for `pa
       ```
     ]
   ),
-  caption: [Example to illustrate call site differences of auto params],
+  caption: [Example to illustrate call site differences of auto parameters],
 ) <call_site_differences>
 
 #pagebreak()
@@ -166,7 +168,7 @@ It does not reflect the source code as closely as for the first refactoring (@fi
     hlinex(),
     colspanx(4)[#image("../images/ast_second_refactoring.png")],
   ),
-  caption: "Example AST tranformation of second refactoring",
+  caption: [ Example AST tranformation of "#refactoring_name" refactoring ],
 ) <second_refactoring_ast_figure>
 
 #pagebreak()
@@ -225,12 +227,12 @@ The reason for this is that `auto` cannot be used as a template parameter.
   template <typename T>
   void foo(std::vector<T> param)
   ```,
-  caption: "Templated Function Parameter",
+  caption: "Templated function parameter",
 )
 
 === Template Arguments Used Multiple Times
 This is an inherit limitation of the refactoring.
-If for example the same template argument is used for multiple parameters, it means that all of them will have the same type when instantiated.
+If for example the same template argument is used for multiple function parameters, it means that all of them will have the same type when instantiated.
 Would they be replaced with `auto`, each of them would result in a different type.
 
 This limitation also applies if the template argument is used anywhere else.
@@ -242,7 +244,7 @@ Replacing one template parameter with multiple `auto` keywords always breaks the
    template<std::integral T>
    auto foo(T param, T anotherParam) -> void {}
   ```,
-  caption: "Template argument used for multiple parameters",
+  caption: "Template argument used for multiple function parameters",
 )
 
 === Requires Clauses
@@ -254,7 +256,7 @@ As a workaround the previously implemented refactoring (@inline_concept_requirem
   template <typename T>
   void f(T) requires foo<T> {}
   ```,
-  caption: "Requires Clause",
+  caption: "Function template with requires clause",
 )
 
 #pagebreak()
