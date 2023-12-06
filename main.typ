@@ -108,6 +108,12 @@ Parts of this paper were rephrased by GPT-3.5.
   target: figure.where(kind: image),
 )
 
+= Table of Tables
+#outline(
+  title: none,
+  target: figure.where(kind: table),
+)
+
 = List of Listings
 #outline(
   title: none,
