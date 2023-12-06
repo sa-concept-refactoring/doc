@@ -49,6 +49,7 @@ For this project the focus is set on the LLVM-Project which is explained in @lvv
 A list of tools supporting the LSP can be found on the official website @tools_supporting_lsp.
 
 #figure(
+  kind: table,
   tablex(
     columns: 4,
     auto-vlines: false,
@@ -420,6 +421,7 @@ For a function this means, that the function name has to be present but other th
 )
 
 #figure(
+  kind: table,
   grid(
     columns: (auto, 14em),
     gutter: 1em,
@@ -506,6 +508,7 @@ Before C++20 `constexpr` and `if constexpr` was used for restrictions, more abou
   The `requires` keyword can be used either before the function declaration or between the function declaration and the function body.
 
   #figure(
+    kind: image,
     grid(
       columns: (auto, 14em),
       gutter: 1em,

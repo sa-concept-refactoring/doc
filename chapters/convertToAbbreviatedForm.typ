@@ -114,6 +114,7 @@ as the parameter types would be `int` for `param1` and `float` for `param2`.
 The second version would be the opposite, `int` for `param1` and `float` for `param2`, which then breaks the call as the parameter types do not match.
 
 #figure(
+  kind: image,
   grid(
     columns: (auto, auto),
     gutter: 1em,
