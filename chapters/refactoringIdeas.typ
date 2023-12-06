@@ -1,9 +1,19 @@
 = Refactoring Ideas <refactoring_ideas>
+In this section ideas for potential refactoring operations will be explored.
+This serves as the foundation for deciding which feature to implement.
+A total of two ideas will be explored.
 
 == Requirement Transformation <first_idea>
-A new refactoring could be provided to transform a function template using concepts between alternate forms.
+A refactoring could be provided to transform a function template using constraints between alternate forms.
 @transformation_idea_listing shows the different forms.
 They all result in an identical function signature.
+
+The benefit of this is in many cases a more readable function declaration.
+In our opinion the `requires` clause just causes noise, so the versions on the left (@transformation_idea_listing) should be preferred.
+The potential refactoring would therefore focus on the removal of the `requires` clause.
+
+This idea was inspired by the constraints and concept reference @constraints_and_concepts,
+since it lists all these forms in its first code snippet.
 
 #figure(
   kind: table,
@@ -39,14 +49,16 @@ They all result in an identical function signature.
   ],
 ) <transformation_idea_listing>
 
-#pagebreak(weak: true)
 == Extraction of Conjunctions and Disjunctions
 Sometimes more than one constraint is used in a ```cpp requires``` clause.
 This is expressed by `||` and `&&` operators.
 The proposed refactoring would offer to extract these logical combinations into a new named concept.
 
-One possible hurdle for this refactoring could be that there is no way to trigger a rename of this new concept.
+One possible hurdle for this refactoring could be that there is no way to trigger a rename of the newly created concept.
 This seems to be a limitation of the language server protocol @lsp_issue_724 @lsp_issue_764.
+
+To illustrate: @conjunction_idea_listing shows a method `bar` whose type parameter `T` is constrained by two concepts.
+These requirements are extracted into a new named concept in @refactored_conjunction_idea_listing.
 
 #figure(
   ```cpp
@@ -60,7 +72,7 @@ This seems to be a limitation of the language server protocol @lsp_issue_724 @ls
 
 #figure(
   ```cpp
-  template<class T>
+  template<typename T>
   concept NAME = std::integral<T> && Hashable<T>;
 
   template <typename T>
@@ -69,55 +81,4 @@ This seems to be a limitation of the language server protocol @lsp_issue_724 @ls
   }
   ```,
   caption: [ The proposed refactoring to the conjunction in @conjunction_idea_listing ],
-)
-
-#pagebreak(weak: true)
-== Abbreviation of Function Templates <third_idea>
-
-Regular function templates could be converted to their abbreviated form, which uses auto parameters instead of explicit template arguments.
-
-@abbreviation shows an example of a simple case with a concept constrained type parameter.
-The resulting signature is identical to the original one.
-
-This refactoring could potentially also be combined with the first idea (@first_idea) to directly convert a requires clause into an auto parameter (@combined_refactoring).
-
-#figure(
-  kind: image,
-  grid(
-    columns: (auto, auto),
-    gutter: 1em,
-    align(start)[
-      ```cpp
-      template <std::integral T>
-      auto f(T) -> void {}
-      ```
-    ],
-    align(start + horizon)[
-      ```cpp
-      auto f(std::integral auto Tpl) -> void {}
-      ```
-    ]
-  ),
-  caption: [A function template and its abbreviated form]
-) <abbreviation>
-
-#figure(
-  kind: image,
-  grid(
-    columns: (auto, auto),
-    gutter: 1em,
-    align(start)[
-      ```cpp
-      template <typename T>
-      requires concept<T>
-      auto func(T param) { }
-      ```
-    ],
-    align(start + horizon)[
-      ```cpp
-      auto func(concept auto param) { }
-      ```
-    ]
-  ),
-  caption: [A requires clause directly being converted to an abbreviated function template]
-) <combined_refactoring>
+) <refactored_conjunction_idea_listing>
