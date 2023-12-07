@@ -6,6 +6,7 @@ A new refactoring could be provided to transform a function template using conce
 They all result in an identical function signature.
 
 #figure(
+  kind: table,
   grid(
     columns: (auto, auto),
     gutter: 1em,
@@ -81,6 +82,7 @@ The resulting signature is identical to the original one.
 This refactoring could potentially also be combined with the first idea (@first_idea) to directly convert a requires clause into an auto parameter (@combined_refactoring).
 
 #figure(
+  kind: image,
   grid(
     columns: (auto, auto),
     gutter: 1em,
@@ -100,6 +102,7 @@ This refactoring could potentially also be combined with the first idea (@first_
 ) <abbreviation>
 
 #figure(
+  kind: image,
   grid(
     columns: (auto, auto),
     gutter: 1em,

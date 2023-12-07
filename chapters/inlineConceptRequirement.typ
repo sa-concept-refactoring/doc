@@ -1,6 +1,8 @@
 #import "@preview/tablex:0.0.4": tablex, colspanx, rowspanx, cellx, hlinex
 
-= Refactoring — Inline Concept Requirement <inline_concept_requirement>
+#let refactoring_name = "Inline Concept Requirement"
+
+= Refactoring — #refactoring_name <inline_concept_requirement>
 For the first refactoring a subset of the initial idea (@first_idea) is implemented.
 Specifically the inlining of an explicit ```cpp requires``` clause into a constrained function template.
 @capabilities_of_first_refactoring shows some examples of what this refactoring is able to do.
@@ -38,7 +40,7 @@ Limitations of the refactoring are discussed in @limitations_of_first_refactorin
     void f() {}
     ```,
   ),
-  caption: "Capabilities of the first refactoring",
+  caption: [ Capabilities of the "#refactoring_name" refactoring ],
 ) <capabilities_of_first_refactoring>
 
 #pagebreak()
@@ -81,7 +83,7 @@ A reference to them is stored as a member of the tweak object during the prepara
       Will be removed.
     ],
   ),
-  caption: "Elements captured for the \"Inline Concept Requirement\" refactoring",
+  caption: [ Elements captured for the "#refactoring_name" refactoring ],
 ) <first_refactoring_captured_elements_figure>
 
 #pagebreak()
@@ -122,7 +124,7 @@ After looking at this we came to the conclusion that we can look out for `Concep
     hlinex(),
     colspanx(3)[#image("../images/ast_first_refactoring.png")],
   ),
-  caption: "Example AST tranformation of first refactoring",
+  caption: [ Example AST tranformation of the "#refactoring_name" refactoring ],
 ) <first_refactoring_ast>
 
 #pagebreak()

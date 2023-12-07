@@ -7,7 +7,7 @@ To achieve this refactoring the whole function needs to be checked for usages of
 #figure(
   image("../drawio/project-organisation.drawio.svg", width: 100%),
   caption: [
-    diagram showing structure and workflow of the project
+    Diagram showing structure and workflow of the project
   ],
 )
 
@@ -70,7 +70,7 @@ The hardwae used was a Intel(R) Core(TM) i7-10510U CPU with 16 gigabytes of syst
 #figure(
   image("../images/screenshot_build_options_windows.png", width: 100%),
   caption: [
-    screenshot showing build settings in CLion on Windows
+    Screenshot showing build settings in CLion on Windows
   ],
 )
 
