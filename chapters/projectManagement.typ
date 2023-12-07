@@ -27,7 +27,7 @@ The project is split into three main steps.
 
 / Analysis : #[
   The analysis part consists of a lot of research on how the clangd language server works and how it is communicating with the IDE.
-  This step also contains gaining all knowledge needed for implementation, such as looking into the idea of concepts and figuring out what refactoring features would be a good addition to have within the language server.
+  This step also contains collecting all knowledge needed for implementation, such as looking into the idea of concepts and figuring out what refactoring features would be a good addition to have within the language server.
 ]
 
 / Implementation : #[
