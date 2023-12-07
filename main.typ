@@ -125,21 +125,24 @@ Parts of this paper were rephrased by GPT-3.5.
 
 #set page(flipped: true, columns: 2)
 
-#let showSourceFile(fileName) = {
+#let showSourceFile(filePath) = {
+  let fileName = filePath.split("/").last()
+
   heading(fileName, level: 3, numbering: none)
   set text(size: 0.75em)
 
   raw(
-    read("source/" + fileName),
+    read(filePath),
     lang: "cpp",
     block: true,
   )
 }
 
-#showSourceFile("InlineConceptRequirement.cpp")
-#showSourceFile("InlineConceptRequirementTests.cpp")
-#showSourceFile("AbbreviateFunctionTemplate.cpp")
-#showSourceFile("AbbreviateFunctionTemplateTests.cpp")
+// Will be done by CI
+// #showSourceFile("first-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/InlineConceptRequirement.cpp")
+// #showSourceFile("first-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/InlineConceptRequirementTests.cpp")
+// #showSourceFile("second-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/AbbreviateFunctionTemplate.cpp")
+// #showSourceFile("second-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
 
 // - Relevante Anhänge
 // - Meeting Protokolle
