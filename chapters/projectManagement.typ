@@ -21,7 +21,7 @@ The project is split into three main steps.
 + Implementation
 
 / Project Setup : #[
-  Before implementing a project setup needs to be in place, therefore some research needed to be done to figure out what is needed to extend the LLVM project with new features.
+  Before starting with the implementation, a project setup needs to be in place, which requires some research to be done to figure out what is needed to extend the LLVM project with new features.
   The setup needed to work on Linux and Windows as both systems were used for this project.
 ]
 
