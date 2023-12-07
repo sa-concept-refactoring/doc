@@ -41,7 +41,7 @@ The project is split into three main steps.
 The project plan was developed in week 3 after the ideas for the refactoring features were set.
 Without concrete ideas a good project plan can not be worked out.
 Each phase of a refactoring implementation is planned with the same amount of time as the implementation itself.
-The documentation part is spread over the whole project duration as it is important to keep it up to date and consistent.
+The documentation part is spread over the entire project duration as it is important to keep it up to date and consistent.
 All implementation work should be done two weeks before the end as the documentation needs to be finished and ready for hand in.
 
 #let numberOfWeeks = 15
