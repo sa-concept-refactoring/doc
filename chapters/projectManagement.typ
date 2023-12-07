@@ -137,7 +137,7 @@ All implementation work should be done two weeks before the end as the documenta
 
 == Time Tracking <time-tracking>
 
-To monitor the working hours effectively, a Google Sheet was established where information about the tasks was meticulously recorded.
+To monitor the working hours effectively, a Google Sheet was established where the time spent on each task was meticulously recorded.
 Each record contains the date of execution, time spent, name of executioner, task category and a brief comment detailing the specific work performed during that time.
 
 The summary in @time-tracking-report shows the total time spent on each category per week.
