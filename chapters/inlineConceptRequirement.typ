@@ -136,7 +136,7 @@ which was quite hard to track down as it is not part of the AST itself.
 To figure out where exaclty it is located in the source code it was necessary to resort to the token representation of the source range.
 
 === Pull Request
-Our implementation has been submitted upstream as a Pull Request @pull_request_of_first_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+The implementation has been submitted upstream as a Pull Request @pull_request_of_first_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
 
 #pagebreak()
 == Limitations <limitations_of_first_refactoring>
