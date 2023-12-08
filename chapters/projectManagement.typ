@@ -12,9 +12,6 @@ Additionally, @time-tracking provides a summarized overview of the allocated wor
 
 == Approach <approach>
 
-// Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
-// The language server features were tested using Visual Studio Code and the clangd extension.
-
 To discuss the ongoing process a weekly meeting with the advisor was held were it was discussed what work has been done and what is planned for the next week.
 Receiving a feedback of the ongoing development is quite important as the direction we are going to can be assessed and adjusted in just a week.
 
