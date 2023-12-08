@@ -75,17 +75,7 @@
 #include "chapters/inlineConceptRequirement.typ"
 #include "chapters/convertToAbbreviatedForm.typ"
 #include "chapters/developmentProcess.typ"
-
-
-= Conclusion <conclusion>
-// - Zusammenfassung
-// - Evaluation der Ergebnisse
-// - Zielerreichung/offene Punkte
-// - Ausblick, weiterführende Schritte
-
-= Outlook
-
-= Learnings
+#include "chapters/conclusion.typ"
 
 = Personal Reports
 Notes Jeremy:

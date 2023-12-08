@@ -12,7 +12,7 @@ The programming language C++ is constantly developed further by the standard com
 With C++20 type constraints were introduced which allow specification of requirements for template arguments.
 Concepts are a way of abstracting these constraints. @constraints_and_concepts
 
-Refactoring is a common technique to detect code smells and improve the internal structure of code without changing its external behavior. @refactoring
+Refactoring is a common technique to detect code smells and improve the internal structure of code without changing its external behavior. @refactoring_explanation
 Automated tests often ensure that the correct functionality is retained.
 
 Older versions of integrated development environments (IDE) were implementing support for code analysis and tools like symbol lookup and refactorings themselves.
