@@ -25,9 +25,9 @@ When doing a refactoring the code logic needs to stay the same as before the ref
 To ensure that a refactoring does not affect the logic of a method unit tests are used normally, which is also the case in the clangd language server.
 The testing is described in @testing.
 
-In @refactoring_bad_example an example of a bad refactoring is shown where the function before the applied refactoring defines the function parameters `T`and `U` in the template.
-But in the function the function parameters are used in a different order than defined in the template.
-When a refactoring is applied which converts the function to its abbreviated form, the compiler will throw an error as the function call is no longer valid.
+In @refactoring_bad_example an example of a bad refactoring is shown where the function before the applied refactoring defines the function parameters `T` and `U` in the template.
+But the function parameters are listed in a different order than defined in the template.
+When a refactoring which converts the function to its abbreviated form is applied to such a function, the compiler will throw an error when different parameter types are used, as the function call is no longer valid.
 
 #figure(
   kind: table,
