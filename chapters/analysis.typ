@@ -11,6 +11,23 @@
 This section documents the research of the Language Server Protocol (LSP), clangd, AST and the newly added construct in C++ 20, concepts.
 To be able to contribute to the LLVM project @llvm_github it is important to understand the fundamentals explained in the following sections.
 
+== Refactoring <refactoring>
+
+When doing a refactoring the code logic needs to stay the same as before the refactoring was applied.
+To ensure that a refactoring does not affect the logic of a method unit tests are used normally, which is also the case in the clangd language server.
+The testing is described in @testing.
+
+```cpp
+template <typename T, std::integral U>
+void foo(U param, T param2) {}
+```
+
+```cpp
+void foo(auto std::integral param, auto param2) {}
+```
+// what does it mean implementation wise
+// how to ensure that code logic isn't changed after refactoring is applied
+
 == Language Server Protocol (LSP)
 
 // Note Corbat: Standard-Set an Features und erweiterbar...
