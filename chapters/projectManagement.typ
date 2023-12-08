@@ -7,8 +7,8 @@
 
 This section describes the approach of the project as well as the project plan and time tracking.
 In @approach, it is explained how the project was approached.
-@project-plan, looks into the planning of the project, including a comparative analysis between the initial plan and its effective implementation.
-Additionally, @time-tracking, provides a summarized overview of the allocated working hours coupled with a reflective assessment of the time invested in the reflects on the time invested.
+@project-plan looks into the planning of the project, including a comparative analysis between the initial plan and its effective implementation.
+Additionally, @time-tracking provides a summarized overview of the allocated working hours coupled with a reflective assessment of the time invested in the reflects on the time invested.
 
 == Approach <approach>
 
