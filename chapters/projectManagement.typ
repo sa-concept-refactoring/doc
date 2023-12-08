@@ -60,7 +60,7 @@ All implementation work should be completed two weeks before the end as the docu
   backgroundColor: color,
   foregroundColor: color,
   inset: 6.5pt,
-  textSize: 0.9em,
+  textSize: 0.8em,
   itemStroke: white + 2pt,
   items
 ) = [
@@ -109,7 +109,7 @@ All implementation work should be completed two weeks before the end as the docu
     (2, "Setup"),
     (8, "Ongoing documentation"),
     (2, "Refinement"),
-    (2, [Abstract & MS #footnote[Management Summary]]),
+    (2, [Abstract & MS #footnote[Management Summary]<MS>]),
     (1, "Final"),
   ),
 )
@@ -122,7 +122,7 @@ All implementation work should be completed two weeks before the end as the docu
   (
     (2, "Analysis"),
     (2, "Implementation"),
-    (2, "Refinement"),
+    (2, [Refine #footnote[Refinement]<Refine>]),
     (2, "Pull Request"),
   ),
 )
@@ -135,7 +135,7 @@ All implementation work should be completed two weeks before the end as the docu
   (
     (2, "Analysis"),
     (2, "Implementation"),
-    (2, "Refinement"),
+    (2, [Refine @Refine]),
     (2, "Pull Request"),
   ),
 )
@@ -151,7 +151,7 @@ All implementation work should be completed two weeks before the end as the docu
   (
     (2, "Setup"),
     (8, "Ongoing documentation"),
-    (2, [Abstract & MS #footnote[Management Summary]]), // TODO: use same footnote
+    (2, [Abstract & MS @MS]), // TODO: use same footnote
     (2, "Refinement"),
     (1, "Final"),
   ),
@@ -165,7 +165,7 @@ All implementation work should be completed two weeks before the end as the docu
   (
     (1, "Analysis"),
     (2, "Implementation"),
-    (1, "Refinement"),
+    (1, [Refine @Refine]),
     (2, "Pull Request"),
   ),
 )
@@ -178,7 +178,7 @@ All implementation work should be completed two weeks before the end as the docu
   (
     (1, "Analysis"),
     (4, "Implementation"),
-    (1, "Refinement"),
+    (1, [Refine @Refine]),
     (2, "Pull Request"),
   ),
 )
