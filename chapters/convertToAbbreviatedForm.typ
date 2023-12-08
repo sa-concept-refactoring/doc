@@ -212,6 +212,9 @@ The application phase is rather simple in comparison.
 In a first step, the template declaration is removed, and in a second step, the types of the function parameters are updated.
 The information needed for this has been collected during the preparation phase.
 
+=== Pull Request
+The implementation has been submitted upstream as a Pull Request @pull_request_of_second_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+
 #pagebreak()
 == Limitations
 There are limits to this refactoring.
