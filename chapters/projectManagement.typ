@@ -1,5 +1,5 @@
 = Project Management
-// [] Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
+// [X] Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
 // [x] Projektplan, 
 //    [] Vergleich ursprüngliche Planung, effektive Ausführung
 // [x] Zeiterfassung (Stunden pro Woche/Stunden pro Task-Kategorie, wie Implementation Doku, Meeting, etc.)
@@ -8,15 +8,21 @@
 This section describes the approach of the project as well as the project plan and time tracking.
 In @approach, it is explained how the project was approached.
 @project-plan looks into the planning of the project, including a comparative analysis between the initial plan and its effective implementation.
-Additionally, @time-tracking provides a summarized overview of the allocated working hours coupled with a reflective assessment of the time invested in the reflects on the time invested.
+Additionally, @time-tracking provides a summarized overview of the allocated working hours coupled with a reflective assessment of the time invested.
 
 == Approach <approach>
 
-Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
-The language server features were tested using Visual Studio Code and the clangd extension.
+// Development work occurred on both Linux and Windows utilizing CLion with the Ninja build system.
+// The language server features were tested using Visual Studio Code and the clangd extension.
 
 To discuss the ongoing process a weekly meeting with the advisor was held were it was discussed what work has been done and what is planned for the next week.
-Receiving a feedback of the ongoing development is quite important as missing work can be detected and adjusted just the week after.
+Receiving a feedback of the ongoing development is quite important as the direction we are going to can be assessed and adjusted in just a week.
+
+For tracking the spent time is tracked using google sheets the details and analysis is described in @time-tracking.
+
+The development is managed using Github as described in @development_process.
+For better overview on what is already done, Pull-Requests are used to review each others changes.
+This same method is also used for writing the documentation which allows tracking all changes easily.
 
 The project is split into three main steps.
 + Project Setup
