@@ -196,7 +196,7 @@ The summary in @time-tracking-report shows the total time spent on each category
 #figure(
   image("../images/time_tracking_report.png"),
   caption: [
-    Hours worked per week and category.
+    Hours worked per week and category
   ],
 ) <time-tracking-report>
 
