@@ -3,7 +3,7 @@ In this section ideas for potential refactoring operations will be explored.
 This serves as the foundation for deciding which feature to implement.
 A total of two ideas will be explored.
 
-== Requirement Transformation <first_idea>
+== Requirement Transformation <idea_requirement_transformation>
 A refactoring could be provided to transform a function template using constraints between alternate forms.
 @transformation_idea_listing shows the different forms.
 They all result in an identical function signature.
