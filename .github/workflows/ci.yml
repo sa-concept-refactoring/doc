@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: 'sa-concept-refactoring/llvm-project'
-        ref: 'refactoring-convert-to-auto-parameter'
+        ref: 'abbreviate-function-template'
         path: second-refactoring-source-code
         sparse-checkout: |
           clang-tools-extra/clangd/refactor/tweaks/AbbreviateFunctionTemplate.cpp
