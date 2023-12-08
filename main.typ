@@ -83,13 +83,9 @@
 // - Zielerreichung/offene Punkte
 // - Ausblick, weiterführende Schritte
 
-= Outlook
+== Outlook
 
-= Learnings
-
-= Personal Reports
-Notes Jeremy:
-- No C++20 (no ranges, no concepts) in clangd itself
+== Learnings
 
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
@@ -121,6 +117,11 @@ Parts of this paper were rephrased by GPT-3.5.
 )
 
 = Appendix
+
+== Personal Reports
+Notes Jeremy:
+- No C++20 (no ranges, no concepts) in clangd itself
+
 == Source Code
 #outline(
   title: none,
