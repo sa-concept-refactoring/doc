@@ -1,5 +1,5 @@
 = Refactoring Ideas <refactoring_ideas>
-In this section ideas for potential refactoring operations will be explored.
+In this section ideas for potential refactoring operations are explored.
 This serves as the foundation for deciding which feature to implement.
 A total of two ideas will be explored.
 
