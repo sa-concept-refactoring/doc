@@ -76,10 +76,6 @@
 #include "chapters/developmentProcess.typ"
 #include "chapters/conclusion.typ"
 
-= Personal Reports
-Notes Jeremy:
-- No C++20 (no ranges, no concepts) in clangd itself
-
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
 
@@ -110,6 +106,15 @@ Parts of this paper were rephrased by GPT-3.5.
 )
 
 = Appendix
+== Personal Reports
+
+=== Personal Report - Jeremy Stucki
+
+Notes Jeremy:
+- No C++20 (no ranges, no concepts) in clangd itself
+
+#include "chapters/personalReportVina.typ"
+
 == Source Code
 #outline(
   title: none,
