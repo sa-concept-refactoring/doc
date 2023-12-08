@@ -39,7 +39,7 @@ The project is split into three main steps.
 / Implementation and Finalization: #[
   In the implementation phase the actual refactoring features are implemented according to the analysis.
   To make the implementation ready for contribution it needs to be refined, which means the code need to be readable and following the development guidelines @llvm_coding_standards.
-  When the refinement is done a pull request can be created to contribute the changes upstream and finalize the implementation step.
+  When the refinement is done a pull request can be created to contribute the changes upstream and to finalize the implementation step.
 ]
 
 #set page(flipped: true)
@@ -141,7 +141,7 @@ All implementation work should be completed two weeks before the end as the docu
 )
 
 #line(length: 100%)
-*Actual Project Plan*
+*Initial Project Plan*
 
 #epic(
   title: "Documentation",
