@@ -39,7 +39,7 @@ The project is split into three main steps.
 / Implementation and Finalization: #[
   In the implementation phase the actual refactoring features are implemented according to the analysis.
   To make the implementation ready for contribution it needs to be refined, which means the code need to be readable and following the development guidelines @llvm_coding_standards.
-  When the refinement is done a pull request can be created to finalize the implementation step.
+  When the refinement is done a pull request can be created to contribute the changes upstream and finalize the implementation step.
 ]
 
 #set page(flipped: true)
@@ -48,9 +48,9 @@ The project is split into three main steps.
 
 The project plan was developed in week 3 after the ideas for the refactoring features were set.
 Without concrete ideas a good project plan can not be worked out.
-Each phase of a refactoring implementation is planned with the same amount of time as the implementation itself.
+Each phase of a refactoring feature is planned with the same amount of time as the implementation itself.
 The documentation part is spread over the whole project duration as it is important to keep it up to date and consistent.
-All implementation work should be done two weeks before the end as the documentation needs to be finished and ready for hand in.
+All implementation work should be completed two weeks before the end as the documentation needs to be finished and ready for hand in.
 
 #let numberOfWeeks = 15
 
@@ -188,7 +188,7 @@ All implementation work should be done two weeks before the end as the documenta
 == Time Tracking <time-tracking>
 
 To monitor the working hours effectively, a Google Sheet was established where information about the tasks was meticulously recorded.
-Each record contains the date of execution, time spent, name of executioner, task category and a brief comment detailing the specific work performed during that time.
+Each record contains a date, the amount of time spent, name of executioner, task category and a brief comment detailing the specific work performed during that time.
 
 The summary in @time-tracking-report shows the total time spent on each category per week.
 
