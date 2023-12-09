@@ -3,7 +3,7 @@
 Contributing to an open source project like LLVM was a great experience even though the changes are not yet merged.
 For me this was the first time to work on an open source project and I learned a lot while doing so.
 
-At first it seemed to be a very difficult project work with but we were able to get it to work quickly.
+At first it seemed to be a very difficult project to work with, but we were able to get it running quickly.
 I was struggling a lot with building the project in the beginning as it took a lot of memory to do so and would end in errors. 
 After a few trials I decided to not close my notebook anymore until it has built completely, which worked out in the end.
 Writing the code itself required a lot of trial and error as well as reading the clangd documentation.
