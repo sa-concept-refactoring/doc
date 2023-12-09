@@ -147,8 +147,8 @@ Parts of this paper were rephrased by GPT-3.5.
 // #showSourceFile("Inline Concept Requirement Refactoring", "first-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/InlineConceptRequirement.cpp")
 // #showSourceFile("Inline Concept Requirement Refactoring", "first-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/InlineConceptRequirementTests.cpp")
 
-// #showSourceFile("Abbreivate Function Template Refactoring", "second-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/AbbreviateFunctionTemplate.cpp")
-// #showSourceFile("Abbreivate Function Template Refactoring", "second-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
+// #showSourceFile("Abbreviate Function Template Refactoring", "second-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/AbbreviateFunctionTemplate.cpp")
+// #showSourceFile("Abbreviate Function Template Refactoring", "second-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
 
 // #showSourceFile("Test Project", "test-project-source-code/InlineConceptRequirement.cxx")
 // #showSourceFile("Test Project", "test-project-source-code/AbbreviateFunctionTemplate.cxx")
