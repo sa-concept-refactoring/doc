@@ -151,7 +151,7 @@ All implementation work should be completed two weeks before the end as the docu
   (
     (2, "Setup"),
     (8, "Ongoing documentation"),
-    (2, [Abstract & MS @MS]), // TODO: use same footnote
+    (2, [Abstract & MS @MS]),
     (2, "Refinement"),
     (1, "Final"),
   ),
