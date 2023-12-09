@@ -15,7 +15,8 @@ Additionally, @time-tracking provides a summarized overview of the allocated wor
 To discuss the ongoing process a weekly meeting with the advisor was held were it was discussed what work has been done and what is planned for the next week.
 Receiving a feedback of the ongoing development is quite important as the direction we are going to can be assessed and adjusted in just a week.
 
-For tracking the spent time is tracked using google sheets the details and analysis is described in @time-tracking.
+For tracking the time spent, Google Sheets is used. 
+Details and analysis are described in  @time-tracking.
 
 The development is managed using Github as described in @development_process.
 For better overview on what is already done, Pull-Requests are used to review each others changes.
