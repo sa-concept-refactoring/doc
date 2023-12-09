@@ -16,7 +16,7 @@ To discuss the ongoing process a weekly meeting with the advisor was held were i
 Receiving a feedback of the ongoing development is quite important as the direction we are going to can be assessed and adjusted in just a week.
 
 For tracking the time spent, Google Sheets is used. 
-Details and analysis are described in  @time-tracking.
+Details and analysis are described in @time-tracking.
 
 The development is managed using Github as described in @development_process.
 For better overview on what is already done, Pull-Requests are used to review each others changes.
