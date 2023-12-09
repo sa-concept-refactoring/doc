@@ -76,7 +76,7 @@ When a refactoring which converts the function to its abbreviated form is applie
     ],
     [
       #cell(ok:false)[Not Compiling]
-      Wrong order of function parameters.
+      Template arguments do no longer fulfill the concept requirement.
     ],
   ),
   caption: [
