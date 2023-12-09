@@ -21,8 +21,8 @@ To be able to contribute to the LLVM project @llvm_github it is important to und
 
 == Refactoring <refactoring_explanation>
 
-When doing a refactoring the code logic needs to stay the same as before the refactoring was applied.
-To ensure that a refactoring does not affect the logic of a method unit tests are used normally, which is also the case in the clangd language server.
+When applying a refactoring the logic needs to stay the same as before the refactoring was applied.
+To ensure that a refactoring does not affect the logic of a method, unit tests can be used, which is the case in the clangd language server.
 The testing is described in @testing.
 
 In @refactoring_bad_example an example of a bad refactoring is shown where the function before the applied refactoring defines the function parameters `T` and `U` in the template.
