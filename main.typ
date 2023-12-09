@@ -124,19 +124,14 @@ Parts of this paper were rephrased by GPT-3.5.
 == Source Code
 #outline(
   title: none,
-  target: selector(heading).after(label("start_of_appendix")),
-) <start_of_appendix>
+  target: selector(heading).after(label("source_code_outline"))
+) <source_code_outline>
 
-#pagebreak()
-
-#set page(flipped: true, columns: 2)
-
-#let showSourceFile(filePath) = {
+#let showSourceFile(headingPrefix, filePath) = {
   let fileName = filePath.split("/").last()
+  heading(headingPrefix + " — " + fileName, level: 3, numbering: none)
 
-  heading(fileName, level: 3, numbering: none)
   set text(size: 0.75em)
-
   raw(
     read(filePath),
     lang: "cpp",
@@ -144,11 +139,19 @@ Parts of this paper were rephrased by GPT-3.5.
   )
 }
 
-// Will be done by CI
-// #showSourceFile("first-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/InlineConceptRequirement.cpp")
-// #showSourceFile("first-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/InlineConceptRequirementTests.cpp")
-// #showSourceFile("second-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/AbbreviateFunctionTemplate.cpp")
-// #showSourceFile("second-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
+#pagebreak()
+#set page(flipped: true, columns: 2)
+
+// The source files will be added by CI
+
+// #showSourceFile("Inline Concept Requirement Refactoring", "first-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/InlineConceptRequirement.cpp")
+// #showSourceFile("Inline Concept Requirement Refactoring", "first-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/InlineConceptRequirementTests.cpp")
+
+// #showSourceFile("Abbreivate Function Template Refactoring", "second-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/AbbreviateFunctionTemplate.cpp")
+// #showSourceFile("Abbreivate Function Template Refactoring", "second-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
+
+// #showSourceFile("Test Project", "test-project-source-code/InlineConceptRequirement.cxx")
+// #showSourceFile("Test Project", "test-project-source-code/AbbreviateFunctionTemplate.cxx")
 
 // - Relevante Anhänge
 // - Meeting Protokolle
