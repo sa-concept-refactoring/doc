@@ -38,7 +38,7 @@ The project is split into three main steps.
 
 / Implementation and Finalization: #[
   In the implementation phase the actual refactoring features are implemented according to the analysis.
-  To make the implementation ready for contribution it needs to be refined, which means the code need to be readable and following the development guidelines @llvm_coding_standards.
+  To make the implementation ready for contribution it needs to be refined, which means the code needs to be readable and follow the development guidelines @llvm_coding_standards.
   When the refinement is done a pull request can be created to contribute the changes upstream and to finalize the implementation step.
 ]
 
