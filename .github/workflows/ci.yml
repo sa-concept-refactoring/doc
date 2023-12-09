@@ -28,6 +28,10 @@ jobs:
         sparse-checkout: |
           clang-tools-extra/clangd/refactor/tweaks/AbbreviateFunctionTemplate.cpp
           clang-tools-extra/clangd/unittests/tweaks/AbbreviateFunctionTemplateTests.cpp
+    - uses: actions/checkout@v4
+      with:
+        repository: 'sa-concept-refactoring/test-project'
+        path: test-project-source-code
     - run: sed -i 's|// \#showSourceFile|\#showSourceFile|' main.typ
     - uses: DeterminateSystems/nix-installer-action@v6
     - uses: DeterminateSystems/magic-nix-cache-action@v2
