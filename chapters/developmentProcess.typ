@@ -2,6 +2,22 @@
 
 To achieve this refactoring the whole function needs to be checked for usages of the defined template type parameters
 
+// TODO: Language Server Config in Neovim
+// Configuration of the language server is quite straight forward.
+// Only a single lua command is required, which is provided in @first_refactoring_clangd_config_in_neovim.
+// #figure(
+//   ```lua
+//   :lua vim.lsp.start({
+//     name = 'clangd',
+//     cmd = {'PATH_TO_CLANGD_BINARY'},
+//     root_dir = vim.fs.dirname(
+//       vim.fs.find({'CMakeLists.txt'}, { upward = true })[1]
+//     )
+//   })
+//   ```,
+//   caption: "Configuring clangd in Neovim"
+// ) <first_refactoring_clangd_config_in_neovim>
+
 == Workflow
 
 #figure(

@@ -7,7 +7,10 @@ For the first refactoring a subset of the initial idea (@first_idea) is implemen
 Specifically the inlining of an explicit ```cpp requires``` clause into a constrained function template.
 @capabilities_of_first_refactoring shows some examples of what this refactoring is able to do.
 
-Limitations of the refactoring are discussed in @limitations_of_first_refactoring.
+A detailed analysis can be found in @first_refactoring_analysis.
+Implementation details are discussed in @first_refactoring_implementation
+and limitations are explored in @limitations_of_first_refactoring.
+Finally, the usage of the refactoring is shown in @first_refactoring_usage.
 
 #figure(
   table(
@@ -44,8 +47,8 @@ Limitations of the refactoring are discussed in @limitations_of_first_refactorin
 ) <capabilities_of_first_refactoring>
 
 #pagebreak()
-== Analysis
-For our analysis we looked at which elements need to be captured (@first_refactoring_captured_elements) and how the AST looks before and after the refactoring (@first_refactoring_ast_analysis).
+== Analysis <first_refactoring_analysis>
+The analysis will look at which elements need to be captured (@first_refactoring_captured_elements) and how the refactoring transforms the AST (@first_refactoring_ast_analysis).
 
 === Captured Elements <first_refactoring_captured_elements>
 @first_refactoring_captured_elements_figure shows the captured elements and their purpose.
@@ -138,7 +141,18 @@ which was quite hard to track down as it is not part of the AST itself.
 To figure out where exaclty it is located in the source code it was necessary to resort to the token representation of the source range.
 
 === Pull Request
-The implementation has been submitted upstream as a Pull Request @pull_request_of_first_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+#[
+  #set heading(numbering: none)
+
+  === Testing
+  A lot of manual tests were performed using a test project.
+  Debug inspections were performed often to verify assumptions.
+  Unit tests were also written as described in @testing, which consist of a total of 11 tests, 4 of them availability tests, 4 unavailability tests and 3 application tests.
+  This is a similar extent to which existing refactorings are tested.
+
+  === Pull Request
+  The implementation has been submitted upstream as a pull request @pull_request_of_first_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+]
 
 #pagebreak()
 == Limitations <limitations_of_first_refactoring>
@@ -147,9 +161,9 @@ These limitations however could be lifted in a future version.
 The implementation is built so it actively looks for these patterns and does not offer the refactoring operation if one is present.
 
 === Combined Concept Requirements
-Handling combined require clauses would certainly be possible,
+Handling combined `requires` clauses would certainly be possible,
 however it would increase the complexity of the refactoring code significantly.
-Since working on the LLVM project is new for both of us we decided to leave it out for now.
+Since working on the LLVM project is new for all participants, it was decided that this feature will be left out.
 #figure(
   ```cpp
   template <typename T, typename U>
@@ -174,6 +188,7 @@ To keep the momentum going this was not implemented.
 
 === Multiple Type Arguments
 If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
+The complexity of handling this is quite big and the potential use case so small, that it was decided to not provide the capability.
 #figure(
   ```cpp
   template <typename T>
@@ -184,47 +199,29 @@ If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, 
 )
 
 #pagebreak()
-== Testing
-
-#set terms(
-  hanging-indent: 0pt,
-)
-
-// TODO: Should we write a test protocol?
-/ Manual: #[
-  A lot of manual tests were performed using a test project.
-  Debug inspections were also performed often to verify assumptions.
-]
-
-/ Automated: #[
-  To test the implementation unit tests were written as described in @testing. 
-  A total of 11 tests were written, 4 of them availability tests, 4 unavailability tests and 3 application tests.
-  This is a similar extent to which existing refactorings are tested.
-]
-
-#pagebreak()
-== Usage
+== Usage <first_refactoring_usage>
 The refactoring is available as a code action to language server clients.
 // TODO: document where the refactoring option is available when right clicking
 
 === VS Code
-To use the feature the user needs to hover over the requires clause e.g. `std::integral<T>`.
-Then right click to show the code options. 
-To see the possible refactorings the option "Refactoring" needs to be clicked and then the newly added feature "Inline concept requirement" will appear within the listed options.
+To use the feature the user needs to hover over the requires clause (e.g. `std::integral<T>`),
+then right click to show the code options.
+To see the possible refactorings the option "Refactor..." needs to be clicked and then the newly implemented refactoring "Inline concept requirement" will appear within the listed options.
 
 #figure(
   image("../images/screenshot_inline_concept.png", width: 50%),
   caption: [
-    Screenshot showing the option to inline a concept requirement
+    Screenshot showing the option to inline a concept requirement in VS Code
   ],
 )
 
-=== Vim
+=== Neovim
 @first_refactoring_usage_in_vim shows how the refactoring looks like before accepting it in Neovim.
+The cursor can be placed anywhere within the function before triggering the listing of code actions.
 
 #figure(
   image("../images/first_refactoring_usage_in_vim.png", width: 80%),
   caption: [
-    Screenshot showing the option to inline a concept requirement
+    Screenshot showing the option to inline a concept requirement in Neovim
   ],
 ) <first_refactoring_usage_in_vim>
