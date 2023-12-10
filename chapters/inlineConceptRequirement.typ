@@ -140,7 +140,6 @@ The biggest hurdle of this refactoring was the `requires` keyword itself,
 which was quite hard to track down as it is not part of the AST itself.
 To figure out where exaclty it is located in the source code it was necessary to resort to the token representation of the source range.
 
-=== Pull Request
 #[
   #set heading(numbering: none)
 
@@ -204,16 +203,17 @@ The refactoring is available as a code action to language server clients.
 // TODO: document where the refactoring option is available when right clicking
 
 === VS Code
-To use the feature the user needs to hover over the requires clause (e.g. `std::integral<T>`),
+To use the feature the user needs to hover over the any part of the function (e.g. `std::integral<T>`),
 then right click to show the code options.
 To see the possible refactorings the option "Refactor..." needs to be clicked and then the newly implemented refactoring "Inline concept requirement" will appear within the listed options.
+How this can look like is shown in @inline_concept_requirement_usage_in_vs_code.
 
 #figure(
   image("../images/screenshot_inline_concept.png", width: 50%),
   caption: [
     Screenshot showing the option to inline a concept requirement in VS Code
   ],
-)
+) <inline_concept_requirement_usage_in_vs_code>
 
 === Neovim
 @first_refactoring_usage_in_vim shows how the refactoring looks like before accepting it in Neovim.
