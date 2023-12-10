@@ -38,9 +38,9 @@
 }
 
 #figure(
-  image("images/cpp_meme.jpg", width: if luschtig { 50% } else { 70% }),
+  image("images/newspaper.jpg", width: if luschtig { 50% } else { 70% }),
   caption: [
-    A meme to lighten the mood
+    Art
   ],
 )
 
