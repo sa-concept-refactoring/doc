@@ -72,7 +72,7 @@ To use clangd in VSCode the extension "clangd" can be used.
 / Key findings : #[
 
 - Some code parts within the LLVM Project are quite old and use older language features. 
-- Pull Requests often take a long time for reviewers to approve the changes.
+- Pull requests often take a long time for reviewers to approve the changes.
 - The clangd documentation is written really well and provides good support.
 - Some functions are a bit confusing and lead to the wrong conclusions.
 

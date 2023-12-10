@@ -213,7 +213,7 @@ In a first step, the template declaration is removed, and in a second step, the 
 The information needed for this has been collected during the preparation phase.
 
 === Pull Request
-The implementation has been submitted upstream as a Pull Request @pull_request_of_second_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+The implementation has been submitted upstream as a pull request @pull_request_of_second_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
 
 #pagebreak()
 == Limitations
