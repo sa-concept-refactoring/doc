@@ -69,7 +69,6 @@
 #show par: set block(below: 2em)
 
 #include "chapters/introduction.typ"
-#include "chapters/structureOfThisReport.typ"
 #include "chapters/analysis.typ"
 #include "chapters/refactoringIdeas.typ"
 #include "chapters/inlineConceptRequirement.typ"

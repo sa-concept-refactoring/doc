@@ -1,15 +1,15 @@
-= Management Summary
-
 // - Das Management Summary richtet sich in der Praxis an die "Chefs des Chefs", d.h. an die
 // Vorgesetzten des Auftraggebers (diese sind in der Regel keine Fachspezialisten). Die Sprache
 // soll knapp, klar und stark untergliedert sein. (Aus Anleitung Dokumentation FS21 vom SG-I)
 // - Der Umfang beträgt in der Regel 3-5 Seiten.
 // - Bilder sind hier sinnvoll
 
+= Management Summary
+
 The goal of this project was to add new refactorings to the clangd language server to support the use of concepts that were introduced with C++20.
 
-For this, two new refactorings were implemented to be contributed to the LLVM Project.
-As of #datetime(year: 2023, month: 12, day: 22).display("[day].[month].[year]"), the Pull-Requests opened to merge the implemented refactorings into the LLVM-Project are still open.
+Two new refactoring operations were implemented and the resulting patches have been submitted to the LLVM project.
+As of #datetime(year: 2023, month: 12, day: 22).display("[day].[month].[year]"), the pull requests opened to merge the implemented refactorings into the LLVM-Project are still open.
 
 / Abbreviate Function Template : #[
 Replaces the defined function parameter type with the type `auto` and removes the template definition.
@@ -70,30 +70,24 @@ To use clangd in VSCode the extension "clangd" can be used.
 #pagebreak()
 
 / Key findings : #[
-
-- Some code parts within the LLVM Project are quite old and use older language features. 
-- Pull requests often take a long time for reviewers to approve the changes.
+- Parts of the code within the LLVM Project are quite old and use older language features. 
+- Pull requests often take a significant amount of time for reviewers to approve the changes.
 - The clangd documentation is written really well and provides good support.
-- Some functions are a bit confusing and lead to the wrong conclusions.
-
+- Clangd contains functions which wre irritating and hard to understand and therefore leading to wrong conclusions.
 ]
 
 / Critical Issues and Challenges : #[
-
 - Building clangd for the first time takes a lot of time and memory, and would have been good to know beforehand.
 - JetBrains announced that they will stop using the clangd language server and implement language support themselves. @jetbrains_blog
-- Finding out how to add reviewers to the Pull-Request was quite challenging as there was no mention of what to do. 
-  Apparently the bot wasn't working correctly and didn't assign reviewers.
-
+- Finding out how to add reviewers to the pull request posed a considerable challenge due to the absence of explicit instructions.
+  It appeared that the automated system malfunctioned, failing to allocate reviewers as intended.
 ]
 
 / Conclusions : #[
+Language servers offer an effective method to extend language support across multiple IDEs.
+The presence of an open-source project such as LLVM is not only a commendable initiative but also receives widespread appreciation among developers in the community.
+Conversely, this circumstance contributes to a slower integration of new changes, given that a majority of contributors are engaged in the project during their leisure hours, impacting the pace of development.
 
-Language servers are a good way to provide language support for more than just one IDE. 
-Having an open source project like LLVM is a excellent idea and is also appreciated by a lot of developers.
-On the other hand, it also makes the process of adding new changes quite slow, as almost all contributors are working on it during their free time.
-
-One of the Pull-Requests got a review from another contributor, who commented that he was looking forward to having the refactoring in clangd, as it could be quite useful.
-This comment seems to conclude the work of this project quite well, and hopefully others will find it a good addition to the language server as well.
-
+One of the pull requests got a review from fellow contributor, who expressed anticipation for the integration of the refactoring in clangd, highlighting its potential usefulness. 
+This comment serves as a promising conclusion to the project's development, and it is hoped that others will similarly perceive this addition as beneficial to the language server.
 ]
