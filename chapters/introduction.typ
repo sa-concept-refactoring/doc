@@ -39,4 +39,4 @@ It would make coding much more convenient and make the developer aware of other 
 
 == Project Goal
 The goal of this semester project is to come up with new ideas for refactor operations specific to concepts and to implement some of them.
-Ideally they should be submitted upstream as a Pull Request.
+Ideally they should be submitted upstream as a pull request.
