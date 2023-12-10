@@ -24,7 +24,7 @@
     _Supervisor:_ \ #supervisor
 ]
 
-#v(2em)
+#v(4em)
 
 #if luschtig {
   [*Documentation Progress:*]
@@ -38,9 +38,9 @@
 }
 
 #figure(
-  image("images/newspaper.jpg", width: if luschtig { 50% } else { 70% }),
+  image("images/newspaper.jpg", width: if luschtig { 50% } else { 60% }),
   caption: [
-    Art
+    Artistic interpretation of this project @title_image
   ],
 )
 
