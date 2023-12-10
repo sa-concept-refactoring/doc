@@ -16,5 +16,5 @@ It reduces the amount of code and, in most cases, makes the function signature e
 
 The second implemented refactoring allows converting explicit template declarations into their abbreviated form using _auto_ parameters, thus eliminating the template header above the function.
 
-The two implemented refactor operations have been submitted upstream as Pull Requests to the llvm repository and, as of the writing of this paper (#datetime.today().display("[month repr:long] [year]")), are awaiting review.
+The two implemented refactor operations have been submitted upstream as pull requests to the llvm repository and, as of the writing of this paper (#datetime.today().display("[month repr:long] [year]")), are awaiting review.
 Once approved and merged, these new refactoring operations will become available to anyone using the clangd language server.
