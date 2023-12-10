@@ -51,7 +51,7 @@ The documentation part is spread over the whole project duration as it is import
 All implementation work should be complete two weeks before the end, as the documentation needs to be finished and made ready for hand in.
 
 @project-plan-figure shows the project plan (on top, in lighter hue) compared to the actual progress made (on the bottom, in darker hue).
-There is almost not deviation from the plan, except for the first refactoring, which was implemented faster than expected.
+There is almost no deviation from the plan, except for the first refactoring, which was implemented faster than expected, and the documentation, where the abstract and management summary were written before the refinement phase, because of the earlier submission date.
 
 #[
 #show figure: set block(width: 100%)
