@@ -1,5 +1,13 @@
 #import "@preview/tablex:0.0.4": tablex
 
+#let cell(ok: false, body) = box(
+  inset: 8pt,
+  fill: if (ok) {green} else {red},
+  width: 100%,
+  radius: 6pt,
+  text(white, weight: "bold", body)
+)
+
 = Analysis <analysis>
 // - Beschreibung des System-Kontexts
 // - Funktionale und nicht-Funktionale Anforderungen
@@ -10,6 +18,73 @@
 
 This section documents the research of the Language Server Protocol (LSP), clangd, AST and the newly added construct in C++ 20, concepts.
 To be able to contribute to the LLVM project @llvm_github it is important to understand the fundamentals explained in the following sections.
+
+== Refactoring <refactoring_explanation>
+
+When applying a refactoring the logic needs to stay the same as before the refactoring was applied.
+To ensure that a refactoring does not affect the logic of a method, unit tests can be used, which is the case in the clangd language server.
+The testing is described in @testing.
+
+In @refactoring_bad_example an example of a bad refactoring is shown where the function before the applied refactoring defines the function parameters `T` and `U` in the template.
+But the function parameters are listed in a different order than defined in the template.
+When a refactoring which converts the function to its abbreviated form is applied to such a function, the compiler will throw an error when different parameter types are used, as the function call is no longer valid.
+
+#figure(
+  kind: table,
+  grid(
+    columns: (20em, 9em, 9em),
+    gutter: 1em,
+    [*Function Definition*],
+    [*Same Parameter Types*],
+    [*Different Parameter Types*],
+    [],
+    [
+       ```cpp
+      f<int, int>
+      (24, 42);
+      ```
+    ],
+    [
+       ```cpp
+      f<string, int>
+      (42, "?");
+      ```
+    ],
+    [
+      ```cpp
+      // Before Refactoring
+      template <typename T, std::integral U>
+      void f(U p1, T p2)
+      {}
+      ```
+    ],
+    [
+      #cell(ok:true)[Compiles]
+    ],
+    [
+      #cell(ok:true)[Compiles]
+    ],
+    [
+      ```cpp
+      // After Refactoring
+      void f(auto std::integral p1, auto p2)
+      {}
+      ```
+    ],
+    [
+      #cell(ok:true)[Compiles]
+    ],
+    [
+      #cell(ok:false)[Not Compiling]
+      Template arguments do no longer fulfill the concept requirement.
+    ],
+  ),
+  caption: [
+    Bad example of code refactoring
+  ],
+) <refactoring_bad_example>
+// what does it mean implementation wise
+// how to ensure that code logic isn't changed after refactoring is applied
 
 == Language Server Protocol (LSP)
 
@@ -411,14 +486,6 @@ When the code has errors the AST can only be built if the toplevel declaration i
 For a function this means, that the function name has to be present but other than that it can have errors within the code.
 
 @ast_dump_possibilities shows in which cases the AST can or can not be built.
-
-#let cell(ok: false, body) = box(
-  inset: 8pt,
-  fill: if (ok) {green} else {red},
-  width: 100%,
-  radius: 6pt,
-  text(white, weight: "bold", body)
-)
 
 #figure(
   kind: table,

@@ -3,7 +3,7 @@
 #let refactoring_name = "Abbreviate Function Template"
 
 = Refactoring — #refactoring_name <abbreviate_function_template>
-For the second refactoring, a subset of the third idea (@third_idea) is implemented.
+For the second refactoring, another subset of the first idea (@idea_requirement_transformation) is implemented.
 It replaces explicit function template declarations with abbreviated declarations using auto parameters.
 This tweak helps reduce the number of lines and makes the code more readable.
 @second_refactoring_capabilities shows examples of what this refactoring is able to do.
@@ -213,7 +213,7 @@ In a first step, the template declaration is removed, and in a second step, the 
 The information needed for this has been collected during the preparation phase.
 
 === Pull Request
-The implementation has been submitted upstream as a Pull Request @pull_request_of_second_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+The implementation has been submitted upstream as a pull request @pull_request_of_second_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
 
 #pagebreak()
 == Limitations
