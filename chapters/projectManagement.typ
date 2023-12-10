@@ -45,8 +45,6 @@ The project is split into three main steps.
 
 The project plan was developed in week 3 after the ideas for the refactoring features were set.
 Without concrete ideas a good project plan can not be worked out.
-// TODO: Jeremy - Was isch mit dem Satz gmeint?
-// Each phase of a refactoring feature is planned with the same amount of time as the implementation itself.
 The documentation part is spread over the whole project duration as it is important to keep it up to date and consistent.
 All implementation work should be completed two weeks before the deadline to ensure that the documentation is finished and ready for submission.
 
