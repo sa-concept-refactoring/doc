@@ -9,7 +9,7 @@
 The goal of this project was to add new refactorings to the clangd language server to support the use of concepts that were introduced with C++20.
 
 Two new refactoring operations were implemented and the resulting patches have been submitted to the LLVM project.
-As of #datetime(year: 2023, month: 12, day: 22).display("[day].[month].[year]"), the Pull Requests opened to merge the implemented refactorings into the LLVM-Project are still open.
+As of #datetime(year: 2023, month: 12, day: 22).display("[day].[month].[year]"), the pull requests opened to merge the implemented refactorings into the LLVM-Project are still open.
 
 / Abbreviate Function Template : #[
 Replaces the defined function parameter type with the type `auto` and removes the template definition.
@@ -71,7 +71,7 @@ To use clangd in VSCode the extension "clangd" can be used.
 
 / Key findings : #[
 - Parts of the code within the LLVM Project are quite old and use older language features. 
-- Pull Requests often take a significant amount of time for reviewers to approve the changes.
+- Pull requests often take a significant amount of time for reviewers to approve the changes.
 - The clangd documentation is written really well and provides good support.
 - Clangd contains functions which wre irritating and hard to understand and therefore leading to wrong conclusions.
 ]
@@ -79,7 +79,7 @@ To use clangd in VSCode the extension "clangd" can be used.
 / Critical Issues and Challenges : #[
 - Building clangd for the first time takes a lot of time and memory, and would have been good to know beforehand.
 - JetBrains announced that they will stop using the clangd language server and implement language support themselves. @jetbrains_blog
-- Finding out how to add reviewers to the Pull Request posed a considerable challenge due to the absence of explicit instructions.
+- Finding out how to add reviewers to the pull request posed a considerable challenge due to the absence of explicit instructions.
   It appeared that the automated system malfunctioned, failing to allocate reviewers as intended.
 ]
 
@@ -88,6 +88,6 @@ Language servers offer an effective method to extend language support across mul
 The presence of an open-source project such as LLVM is not only a commendable initiative but also receives widespread appreciation among developers in the community.
 Conversely, this circumstance contributes to a slower integration of new changes, given that a majority of contributors are engaged in the project during their leisure hours, impacting the pace of development.
 
-One of the Pull Requests got a review from fellow contributor, who expressed anticipation for the integration of the refactoring in clangd, highlighting its potential usefulness. 
+One of the pull requests got a review from fellow contributor, who expressed anticipation for the integration of the refactoring in clangd, highlighting its potential usefulness. 
 This comment serves as a promising conclusion to the project's development, and it is hoped that others will similarly perceive this addition as beneficial to the language server.
 ]
