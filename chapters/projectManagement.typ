@@ -48,7 +48,7 @@ Without concrete ideas a good project plan can not be worked out.
 // TODO: Jeremy - Was isch mit dem Satz gmeint?
 // Each phase of a refactoring feature is planned with the same amount of time as the implementation itself.
 The documentation part is spread over the whole project duration as it is important to keep it up to date and consistent.
-All implementation work should be complete two weeks before the end, as the documentation needs to be finished and made ready for hand in.
+All implementation work should be completed two weeks before the deadline to ensure that the documentation is finished and ready for submission.
 
 @project-plan-figure shows the project plan (on top, in lighter hue) compared to the actual progress made (on the bottom, in darker hue).
 There is almost no deviation from the plan, except for the first refactoring, which was implemented faster than expected, and the documentation, where the abstract and management summary were written before the refinement phase, because of the earlier submission date.
