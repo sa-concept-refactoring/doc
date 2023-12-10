@@ -203,7 +203,7 @@ The refactoring is available as a code action to language server clients.
 // TODO: document where the refactoring option is available when right clicking
 
 === VS Code
-To use the feature the user needs to hover over the any part of the function (e.g. `std::integral<T>`),
+To use the feature the user needs to hover over the requires clause (e.g. `std::integral<T>`),
 then right click to show the code options.
 To see the possible refactorings the option "Refactor..." needs to be clicked and then the newly implemented refactoring "Inline concept requirement" will appear within the listed options.
 How this can look like is shown in @inline_concept_requirement_usage_in_vs_code.
@@ -217,7 +217,7 @@ How this can look like is shown in @inline_concept_requirement_usage_in_vs_code.
 
 === Neovim
 @first_refactoring_usage_in_vim shows how the refactoring looks like before accepting it in Neovim.
-The cursor can be placed anywhere within the function before triggering the listing of code actions.
+The cursor needs to be placed on the requires clause before triggering the listing of code actions.
 
 #figure(
   image("../images/first_refactoring_usage_in_vim.png", width: 80%),
