@@ -6,7 +6,7 @@ A total of two ideas will be explored.
 The ideas presented here are intentionally in a very rough form.
 The goal is that subsets of these will get analyzed further and refined for each refactoring operation.
 
-The first idea, found in @idea_requirement_transformation, is inspired by sample code from the constraints and concept reference @constraints_and_concepts.
+The first idea, described in @idea_requirement_transformation, is inspired by sample code from the constraints and concept reference @constraints_and_concepts.
 The second idea, found in @idea_extraction, did come up during experimentation with concepts.
 
 == Requirement Transformation <idea_requirement_transformation>
