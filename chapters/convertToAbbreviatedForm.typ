@@ -67,7 +67,7 @@ Finally, the usage of the refactoring is shown in @abbreviate_function_template_
 
 #pagebreak()
 == Analysis <abbreviate_function_template_analysis>
-The analysis will look at the captured elements (@second_refactoring_captured_elements), call site implications (@call_site_implications),
+The analysis looks at the captured elements (@second_refactoring_captured_elements), call site implications (@call_site_implications),
 and the impact of the refactoring on the abstract syntax tree (@second_refactoring_ast).
 
 === Captured Elements <second_refactoring_captured_elements>
