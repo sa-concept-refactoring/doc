@@ -1,7 +1,13 @@
 = Refactoring Ideas <refactoring_ideas>
 In this section ideas for potential refactoring operations are explored.
-This serves as the foundation for deciding which feature to implement.
+This serves as the foundation for deciding which features to implement.
 A total of two ideas will be explored.
+
+The concepts outlined in this section are intentionally presented in a basic state. 
+The objective is to subject subsets of these concepts to further analysis and refinement for each refactoring operation during the implementation phase.
+
+The first idea, described in @idea_requirement_transformation, is inspired by sample code from the constraints and concept reference @constraints_and_concepts.
+The second idea, described in @idea_extraction, did come up during experimentation with concepts.
 
 == Requirement Transformation <idea_requirement_transformation>
 A refactoring could be provided to transform a function template using constraints between alternate forms.
@@ -49,7 +55,7 @@ since it lists all these forms in its first code snippet.
   ],
 ) <transformation_idea_listing>
 
-== Extraction of Conjunctions and Disjunctions
+== Extraction of Conjunctions and Disjunctions <idea_extraction>
 Sometimes more than one constraint is used in a ```cpp requires``` clause.
 This is expressed by `||` and `&&` operators.
 The proposed refactoring would offer to extract these logical combinations into a new named concept.
