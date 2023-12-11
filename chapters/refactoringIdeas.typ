@@ -4,7 +4,7 @@ This serves as the foundation for deciding which features to implement.
 A total of two ideas will be explored.
 
 The ideas presented here are intentionally in a very rough form.
-The goal is that subsets of these will get analyzed further and refined for each refactoring operation.
+The objective is to subject subsets of these concepts to further analysis and refinement for each refactoring operation during the implementation phase.
 
 The first idea, described in @idea_requirement_transformation, is inspired by sample code from the constraints and concept reference @constraints_and_concepts.
 The second idea, described in @idea_extraction, did come up during experimentation with concepts.
