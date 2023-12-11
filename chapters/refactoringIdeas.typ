@@ -3,7 +3,7 @@ In this section ideas for potential refactoring operations are explored.
 This serves as the foundation for deciding which features to implement.
 A total of two ideas will be explored.
 
-The ideas presented here are intentionally in a very rough form.
+The concepts outlined in this section are intentionally presented in a basic state. 
 The objective is to subject subsets of these concepts to further analysis and refinement for each refactoring operation during the implementation phase.
 
 The first idea, described in @idea_requirement_transformation, is inspired by sample code from the constraints and concept reference @constraints_and_concepts.
