@@ -8,6 +8,10 @@ It replaces explicit function template declarations with abbreviated declaration
 This tweak helps reduce the number of lines and makes the code more readable.
 @second_refactoring_capabilities shows examples of what this refactoring is able to do.
 
+A detailed analysis, including call-site implications, can be found in @abbreviate_function_template_analysis.
+Implementation details are discussed in @abbreviate_function_template_implemenation and limitations are explored in @abbreviate_function_template_limitations.
+Finally, the usage of the refactoring is shown in @abbreviate_function_template_usage.
+
 #figure(
   table(
     columns: (1fr, 1fr),
@@ -62,8 +66,8 @@ This tweak helps reduce the number of lines and makes the code more readable.
 ) <second_refactoring_capabilities>
 
 #pagebreak()
-== Analysis
-The analysis will look at the captured elements (@second_refactoring_captured_elements), call site implications (@call_site_implications),
+== Analysis <abbreviate_function_template_analysis>
+The analysis looks at the captured elements (@second_refactoring_captured_elements), call site implications (@call_site_implications),
 and the impact of the refactoring on the abstract syntax tree (@second_refactoring_ast).
 
 === Captured Elements <second_refactoring_captured_elements>
@@ -172,7 +176,7 @@ It does not reflect the source code as closely as for the first refactoring (@fi
 ) <second_refactoring_ast_figure>
 
 #pagebreak()
-== Implementation
+== Implementation <abbreviate_function_template_implemenation>
 The most challenging part of this refactoring was figuring out where template parameters are being used,
 as the refactoring only applies if there is exactly one usage of the parameter and that usage is as a function parameter type.
 
@@ -212,11 +216,20 @@ The application phase is rather simple in comparison.
 In a first step, the template declaration is removed, and in a second step, the types of the function parameters are updated.
 The information needed for this has been collected during the preparation phase.
 
-=== Pull Request
-The implementation has been submitted upstream as a pull request @pull_request_of_second_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+#[
+  #set heading(numbering: none)
 
-#pagebreak()
-== Limitations
+  === Testing
+  A lot of manual tests were performed using a test project.
+  Debug inspections were performed often to verify assumptions.
+  Unit tests were also written as described in @testing, which consist of a total of 14 tests, 4 of them availability tests, 4 unavailability tests and 6 application tests.
+  This is a similar extent to which existing refactorings are tested.
+
+  === Pull Request
+  The implementation has been submitted upstream as a pull request @pull_request_of_second_refactoring and as of #datetime.today().display("[month repr:long] [year]") is awaiting review.
+]
+
+== Limitations <abbreviate_function_template_limitations>
 There are limits to this refactoring.
 Some of them are given by the language or compiler and some are intentional, because otherwise the scope of the refactoring would have increased drastically.
 
@@ -262,24 +275,29 @@ As a workaround the previously implemented refactoring (@inline_concept_requirem
   caption: "Function template with requires clause",
 )
 
-#pagebreak()
-== Testing
-#set terms(
-  hanging-indent: 0pt,
-)
+== Usage <abbreviate_function_template_usage>
+The refactoring is available as a code action to language server clients.
+To use it the cursor can be placed anywhere within the function.
 
-/ Manual: #[
-  A lot of manual tests were performed using a test project.
-  Debug inspections were also performed often to verify assumptions.
-]
+=== VS Code
+To use the feature the user needs to hover over any part of the function, then right click to show the code options.
+To see the possible refactorings the option "Refactor..." needs to be clicked and then the newly implemented refactoring "Abbreviate Function Template" will appear within the listed options.
+How this can look like is shown in @abbreviate_function_template_usage_in_vs_code.
 
-/ Automated: #[
-  To test the implementation unit tests were written as described in @testing. 
-  A total of 14 tests were written, 4 of them availability tests, 4 unavailability tests and 6 application tests.
-  This is a similar extent to which existing refactorings are tested.
-]
+#figure(
+  image("../images/abbreviate_function_template_usage_in_vs_code.png", width: 50%),
+  caption: [
+    Screenshot showing the option to abbreviate a function template in VS Code
+  ],
+) <abbreviate_function_template_usage_in_vs_code>
 
-#pagebreak()
-== Usage
-TODO
-// To use the refactoring the cursor can be anywhere on or within the function. 
+=== Neovim
+@abbreviate_function_template_usage_in_vim shows how the refactoring looks like before accepting it in Neovim.
+The cursor can be placed anywhere within the function before triggering the listing of code actions.
+
+#figure(
+  image("../images/abbreviate_function_template_usage_in_neovim.png", width: 80%),
+  caption: [
+    Screenshot showing the option to abbreviate a function template in Neovim
+  ],
+) <abbreviate_function_template_usage_in_vim>
