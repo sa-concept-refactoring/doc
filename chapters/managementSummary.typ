@@ -9,7 +9,7 @@
 The goal of this project was to add new refactorings to the clangd language server to support the use of concepts that were introduced with C++20.
 
 Two new refactoring operations were implemented and the resulting patches have been submitted to the LLVM project.
-As of #datetime(year: 2023, month: 12, day: 22).display("[day].[month].[year]"), the pull requests opened to merge the implemented refactorings into the LLVM-Project are still open.
+As of #datetime(year: 2023, month: 12, day: 22).display("[day].[month].[year]"), the pull requests opened to merge the implemented refactorings into the LLVM project are still open.
 
 / Abbreviate Function Template : #[
 Replaces the defined function parameter type with the type `auto` and removes the template definition.

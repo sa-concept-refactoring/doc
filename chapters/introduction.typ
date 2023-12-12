@@ -52,6 +52,6 @@ This report encompasses the analysis, elaboration, and implementation of the pro
 
 *@abbreviate_function_template:* Describes the implementation process and result of the refactoring "Convert Function Template to Abbreviated Form".
 
-*@development_process:* Gives insight about how the development environment was set up and which steps were needed to make the llvm project compile locally.
+*@development_process:* Gives insight about how the development environment was set up and which steps were needed to make the LLVM project compile locally.
 
 *@conclusion:* Summarizes key findings, insights, and implication of the project.

@@ -29,7 +29,7 @@ To achieve this refactoring the whole function needs to be checked for usages of
 
 === Git
 To make life easier it was decided to create a repository on Github and make the whole work open source. 
-As there was an already existing pipeline from the original llvm project it self the decision came rather quick as otherwise there could have popped up a lot of different problems and issues.
+As there was an already existing pipeline from the original LLVM project it self the decision came rather quick as otherwise there could have popped up a lot of different problems and issues.
 
 == Setup
 To build clangd, CLion was used as an IDE since it has great support for CMake as well as very good autocomplete, search and debugging capabilities.
