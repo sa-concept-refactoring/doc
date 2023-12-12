@@ -193,6 +193,7 @@ Most of the time spent was invested into the documentation and implementation.
 // TODO: update image
 #figure(
   image("../images/time_tracking_report.png"),
+  kind: table,
   caption: [
     Hours worked per week and category
   ],
