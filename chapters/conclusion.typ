@@ -4,16 +4,16 @@
 // - Ausblick, weiterführende Schritte
 
 = Conclusion <conclusion>
-To summarize this thesis a conclusion describes the most important parts of the project.
-@learnings looks into what was learned working on this thesis. 
+To summarize this thesis this conclusion describes the most important parts of the project.
+@learnings looks into what was learned working on this project. 
 In @outlook it is described how this project could be extended and what the future of the language server looks like.
 
-This thesis, it was analyzed how the clangd language server works and how additional refactoring features can be added.
-Two new refactoring features were implemented according to the analysis and were submitted to LLVM (pull requests are opened).
+In this thesis, it was analyzed how the clangd language server works and how additional refactoring features can be added.
 
 When first looking at the LLVM project it can be overwhelming at first but once it is clear how it is put together it is easy to get around with.
 
-Two new refactoring features were implemented to be contributed to the clangd language server which should help C++ 20 developers to work with the concepts for which there was no refactoring beforehand.
+Two new refactoring features were implemented according to the analysis and were submitted to LLVM (pull requests are opened).
+The intention for these implementation is to be contributed to the clangd language server which should help C++ 20 developers to work with the concepts for which there was no refactoring beforehand.
 
 / Inline Concept Requirement : #[
   Transforms the concept containing a `requires` clause into a restricted function template.
