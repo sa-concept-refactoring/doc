@@ -117,16 +117,16 @@ Parts of this paper were rephrased by GPT-3.5.
 )
 
 = Appendix
-== Personal Reports
+In this last section the personal reports from both authors can be found in which they reflect on the project (@report_jeremy and @report_vina).
+It also contains the final version of the code written during this project (@source_code), which includes the implemented refactorings and the test project.
 
-=== Personal Report - Jeremy Stucki
+== Personal Report — Jeremy Stucki <report_jeremy>
+#include "chapters/personalReportJeremy.typ"
 
-Notes Jeremy:
-- No C++20 (no ranges, no concepts) in clangd itself
-
+== Personal Report — Vina Zahnd <report_vina>
 #include "chapters/personalReportVina.typ"
 
-== Source Code
+== Source Code <source_code>
 #outline(
   title: none,
   target: selector(heading).after(label("source_code_outline"))
