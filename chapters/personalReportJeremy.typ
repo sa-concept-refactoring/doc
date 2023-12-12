@@ -2,7 +2,7 @@ Contributing to an open source project as part of this SA was very exciting.
 I am really looking forward to our features getting merged and released as part of clangd.
 It was really helpful that I already have experience working with GitHub and open source projects.
 
-Actually programming was quite tedious at times due to long build times and useful functions not being easily discoverable.
+Actually programming was quite tedious at times due to builds taking a long time and useful functions not being easily discoverable.
 Also, some advanced language features could not be used, as clangd itself is using C++17.
 This means that, funnily enough, concepts could not be used.
 However, in the end, the actual code required to add the refactorings was quite simple.
