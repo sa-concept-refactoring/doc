@@ -55,6 +55,10 @@
 
 #include "title-page.typ"
 
+#show figure: set block(below: 2em)
+#set heading(numbering: "1.")
+#show par: set block(below: 2em)
+
 #include "chapters/abstract.typ"
 #include "chapters/managementSummary.typ"
 
@@ -64,10 +68,6 @@
   target: heading.where(level: 1).or(heading.where(level: 2))
 )
 
-#show figure: set block(below: 2em)
-#set heading(numbering: "1.")
-#show par: set block(below: 2em)
-
 #include "chapters/introduction.typ"
 #include "chapters/analysis.typ"
 #include "chapters/refactoringIdeas.typ"
@@ -75,7 +75,6 @@
 #include "chapters/convertToAbbreviatedForm.typ"
 #include "chapters/developmentProcess.typ"
 #include "chapters/projectManagement.typ"
-
 
 = Conclusion <conclusion>
 // - Zusammenfassung
