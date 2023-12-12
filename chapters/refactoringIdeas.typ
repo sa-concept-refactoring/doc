@@ -19,8 +19,7 @@ For more readable code some developers prefer to remove unnecessary code parts l
 The versions on the left in @transformation_idea_listing show how the code looks like without resulting in the same code logic.
 The potential refactoring would therefore focus on the removal of the `requires` clause.
 
-This idea was inspired by the constraints and concept reference @constraints_and_concepts,
-since it lists all these forms in its first code snippet.
+This idea was inspired by the constraints and concept reference @constraints_and_concepts since it lists all these forms in its first code snippet.
 
 #figure(
   kind: table,
