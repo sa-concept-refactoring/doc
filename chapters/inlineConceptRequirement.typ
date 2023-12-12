@@ -3,7 +3,7 @@
 #let refactoring_name = "Inline Concept Requirement"
 
 = Refactoring — #refactoring_name <inline_concept_requirement>
-For the first refactoring a subset of the initial idea (@idea_requirement_transformation) is implemented.
+For this refactoring a subset of the initial idea (@idea_requirement_transformation) is implemented.
 Specifically the inlining of an explicit ```cpp requires``` clause into a constrained function template.
 @capabilities_of_first_refactoring shows some examples of what this refactoring is able to do.
 
@@ -99,7 +99,7 @@ The `requires` clause is represented by a `ConceptSpecialization` with a corresp
 
 During the refactor operation most of the AST stays untouched, except for the concept reference (in yellow), which gets moved to the template type parameter and the concept specialization, which gets removed (in red).
 
-After looking at this we came to the conclusion that we can look out for `ConceptSpecialization` nodes to determine if the refactoring applies and then do further analysis.
+After the examination, it was concluded that `ConceptSpecialization` nodes can be searched to see if the refactoring applies, and then additional analysis can be performed.
 
 #figure(
   tablex(
@@ -132,13 +132,13 @@ After looking at this we came to the conclusion that we can look out for `Concep
 
 #pagebreak()
 == Implementation <first_refactoring_implementation>
-The implementation itself was mostly straight-forward, that is once we figured out how to traverse the AST.
-Discovery was made a bit hard by the fact that some methods we required were global and some required casting.
-Looking at the existing refactorings helped a lot during this time. 
+The implementation process was relatively straightforward, particularly after resolving how to traverse the AST.
+However, there were challenges in discovering certain methods, as some were global and others necessitated casting.
+During this phase, referencing existing refactorings provided significant assistance.
 
 The biggest hurdle of this refactoring was the `requires` keyword itself,
 which was quite hard to track down as it is not part of the AST itself.
-To figure out where exaclty it is located in the source code it was necessary to resort to the token representation of the source range.
+To figure out where exactly it is located in the source code it was necessary to resort to the token representation of the source range.
 
 #[
   #set heading(numbering: none)
@@ -173,9 +173,8 @@ Since working on the LLVM project is new for all participants, it was decided th
 )
 
 === Class Templates
-Handling class templates would not have been a big stretch,
-however the testing involved to make sure it works correctly would have taken a significant amount of time.
-To keep the momentum going this was not implemented.
+Managing class templates would have been feasible,
+but a decision was made to exclude this possibility due to time constraints and in favor of maintaining simplicity in the initial refactoring implementation.
 #figure(
   ```cpp
   template <typename T>
@@ -187,7 +186,8 @@ To keep the momentum going this was not implemented.
 
 === Multiple Type Arguments
 If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
-The complexity of handling this is quite big and the potential use case so small, that it was decided to not provide the capability.
+The complexity associated with managing this particular case is considerable, while the potential use case is minimal.
+As a result, a decision was made not to incorporate this capability.
 #figure(
   ```cpp
   template <typename T>
@@ -199,8 +199,7 @@ The complexity of handling this is quite big and the potential use case so small
 
 #pagebreak()
 == Usage <first_refactoring_usage>
-The refactoring is available as a code action to language server clients.
-// TODO: document where the refactoring option is available when right clicking
+The refactoring is available as a code action to language server clients and is available on the whole `requires` clause.
 
 === VS Code
 To use the feature the user needs to hover over the requires clause (e.g. `std::integral<T>`),
@@ -216,6 +215,7 @@ How this can look like is shown in @inline_concept_requirement_usage_in_vs_code.
 ) <inline_concept_requirement_usage_in_vs_code>
 
 === Neovim
+The refactoring features can also be used within console applications like Neovim.
 @first_refactoring_usage_in_vim shows how the refactoring looks like before accepting it in Neovim.
 The cursor needs to be placed on the requires clause before triggering the listing of code actions.
 
