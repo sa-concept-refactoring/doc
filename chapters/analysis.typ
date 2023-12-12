@@ -262,7 +262,7 @@ Only when the formatter has been run successfully a Pull-Request is allowed to b
 // Note Corbat: Aufbau des ganzen Toolings? Welche anderen Komponenten gibt es? Wie hängen diese zusammen?
 // TODO: wie gelangt language server an den code
 
-Clangd is the language server which lives in the llvm-project repository @llvm_github under `clang-tools-extra/clangd`. 
+Clangd is the language server which lives in the LLVM-project repository @llvm_github under `clang-tools-extra/clangd`.
 It understands C++ code and adds smart features like code completion, compile errors and go-to-definition.
 
 The C++ refactoring features can be found within the clangd under the `tweaks` folder.
