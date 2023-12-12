@@ -26,20 +26,20 @@ The LLVM project @llvm_github is an open source project, whose source code is av
 It contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
 
 Clangd is a language server which lives within the LLVM project. 
-It understands the C++ code and contains smart features like code completion, compile errors and go-to-definitions.
+It understands C++ code and contains smart features like code completion, compile errors and go-to-definitions.
 
 == Problem Description
-When coding in C++ features like code refactorings are a very helpful tool.
-They can help detect bad code or can help to optimize it.
-To make these features available to all IDEs the language server clangd can be used.
+When developing in any programming language features like code refactorings are a very helpful tool.
+They can help to restructure and simplify source code.
+To make these features available to as many IDEs as possible the language server protocol can be used.
 
-Unfortunately not many refactorings are available, especially not for C++20.
+One language server for C++ is clangd, which unfortunately does not havy many refactorings available, especially not for features introduced with C++20.
 Therefore it would be nice to have some support for new language features like concepts.
-It would make coding much more convenient and make the developer aware of other ways of writing code using the newly added features.
+It would make development much more convenient and make the developer aware of other ways of writing code using the newly added features.
 
 == Project Goal
 The goal of this semester project is to come up with new ideas for refactor operations specific to concepts and to implement some of them.
-Ideally they should be submitted upstream as a Pull Request.
+Ideally they should be submitted upstream as a pull request to clangd.
 
 == Structure of This Report
 This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
