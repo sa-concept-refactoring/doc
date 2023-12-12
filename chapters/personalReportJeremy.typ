@@ -1,6 +1,6 @@
 Contributing to an open source project as part of this SA was very exciting.
 I am really looking forward to our features getting merged and released as part of clangd.
-What really helped was my previous experience working with GitHub and open source projects in general.
+It was really helpful that I already have had some experience working with GitHub and open source projects.
 
 Actually programming was quite tedious at times due to long build times and useful functions not being easily discoverable.
 Also, some advanced language features could not be used, as clangd itself is using C++17.
@@ -19,4 +19,4 @@ Especially towards the end, when we had a great workflow with pull requests and 
 The weekly meetings with our advisor were also really helpful, since he has a very deep understanding of C++.
 
 In conclusion, I found the project to be a good learning experience, and I now know a lot more about the language server protocol.
-It felt like time well spent because the entire work was submitted upstream and will hopefully live on.
+It feels like time well spent, because we were able to submit the entire work upstream, where it will hopefully live on.
