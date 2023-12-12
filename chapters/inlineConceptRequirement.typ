@@ -92,7 +92,7 @@ A reference to them is stored as a member of the tweak object during the prepara
 #pagebreak()
 === Abstract Syntax Tree <first_refactoring_ast_analysis>
 The AST gives a good overview over the structure of the code before and after the refactoring.
-In @first_refactoring_ast the AST trees of a simple template method and its corresponding refactored version are shown.
+In @first_refactoring_ast the ASTs of a simple template method and its corresponding refactored version are shown.
 
 Looking at the original version (on the left) it is visible that the outermost `FunctionTemplate` contains the template type parameters, as well as the function definition.
 The `requires` clause is represented by a `ConceptSpecialization` with a corresponding `Concept reference`.
