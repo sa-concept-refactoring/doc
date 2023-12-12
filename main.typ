@@ -40,8 +40,10 @@
 
 #set terms(hanging-indent: 0pt)
 #set text(font: ("Comic Sans MS")) if luschtig
-#set page(numbering: "1 / 1") if not luschtig
 
+#include "title-page.typ"
+
+#set page(numbering: "1 / 1") if not luschtig
 #set page(
   footer: [
     #locate(loc => {
@@ -52,8 +54,6 @@
     })
   ],
 ) if luschtig
-
-#include "title-page.typ"
 
 #include "chapters/abstract.typ"
 #include "chapters/managementSummary.typ"
