@@ -15,7 +15,7 @@ A refactoring could be provided to transform a function template using constrain
 They all result in an identical function signature.
 
 The benefit of this is in many cases a more readable function declaration.
-For more readable code some developers prefer to remove unnecessary code parts like the `requires` keyword.
+For more readable code some developers prefer to remove unnecessary code like the `requires` keyword.
 The versions on the left in @transformation_idea_listing show how the code looks like without resulting in the same code logic.
 The potential refactoring would therefore focus on the removal of the `requires` clause.
 
