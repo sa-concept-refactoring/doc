@@ -1,25 +1,25 @@
 = Refactoring Ideas <refactoring_ideas>
 In this section ideas for potential refactoring operations are explored.
 This serves as the foundation for deciding which features to implement.
-A total of two ideas will be explored.
+A total of two ideas are described.
 
 The concepts outlined in this section are intentionally presented in a basic state. 
 The objective is to subject subsets of these concepts to further analysis and refinement for each refactoring operation during the implementation phase.
 
 The first idea, described in @idea_requirement_transformation, is inspired by sample code from the constraints and concept reference @constraints_and_concepts.
-The second idea, described in @idea_extraction, did come up during experimentation with concepts.
+The second idea, described in @idea_extraction, came up during experimentation with concepts.
 
 == Requirement Transformation <idea_requirement_transformation>
 A refactoring could be provided to transform a function template using constraints between alternate forms.
-@transformation_idea_listing shows the different forms.
+@transformation_idea_listing shows different variations of a function template.
 They all result in an identical function signature.
 
 The benefit of this is in many cases a more readable function declaration.
-In our opinion the `requires` clause just causes noise, so the versions on the left (@transformation_idea_listing) should be preferred.
+For more readable code some developers prefer to remove unnecessary code like the `requires` keyword.
+The versions on the left in @transformation_idea_listing show how the code looks like without the keyword resulting in the same logic.
 The potential refactoring would therefore focus on the removal of the `requires` clause.
 
-This idea was inspired by the constraints and concept reference @constraints_and_concepts,
-since it lists all these forms in its first code snippet.
+This idea was inspired by the constraints and concept reference @constraints_and_concepts since it lists all these forms in its first code snippet.
 
 #figure(
   kind: table,
@@ -27,6 +27,7 @@ since it lists all these forms in its first code snippet.
     columns: (auto, auto),
     gutter: 1em,
     align(start + horizon)[
+
       ```cpp
       template<Hashable T>
       void f(T) {}
@@ -63,7 +64,7 @@ The proposed refactoring would offer to extract these logical combinations into 
 One possible hurdle for this refactoring could be that there is no way to trigger a rename of the newly created concept.
 This seems to be a limitation of the language server protocol @lsp_issue_724 @lsp_issue_764.
 
-To illustrate: @conjunction_idea_listing shows a method `bar` whose type parameter `T` is constrained by two concepts.
+To illustrate the idea, @conjunction_idea_listing shows a method `bar` whose type parameter `T` is constrained by two concepts.
 These requirements are extracted into a new named concept in @refactored_conjunction_idea_listing.
 
 #figure(
