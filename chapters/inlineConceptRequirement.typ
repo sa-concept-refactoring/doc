@@ -215,7 +215,6 @@ How this can look like is shown in @inline_concept_requirement_usage_in_vs_code.
 ) <inline_concept_requirement_usage_in_vs_code>
 
 === Neovim
-The refactoring features can also be used within console applications like Neovim.
 @first_refactoring_usage_in_vim shows how the refactoring looks like before accepting it in Neovim.
 The cursor needs to be placed on the requires clause before triggering the listing of code actions.
 
