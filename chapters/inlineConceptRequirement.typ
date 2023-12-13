@@ -132,7 +132,7 @@ After the examination, it was concluded that `ConceptSpecialization` nodes can b
 
 #pagebreak()
 == Implementation <first_refactoring_implementation>
-The implementation process was relatively straightforward, particularly after resolving how to traverse the AST.
+The implementation process was relatively straightforward, particularly after determining how to traverse the AST.
 However, there were challenges in discovering certain methods, as some were global and others necessitated casting.
 During this phase, referencing existing refactorings provided significant assistance.
 
