@@ -173,7 +173,7 @@ Since working on the LLVM project is new for all participants, it was decided th
 )
 
 === Class Templates
-Managing class templates would have been feasible,
+Supporting class templates would have been feasible,
 but a decision was made to exclude this possibility due to time constraints and in favor of maintaining simplicity in the initial refactoring implementation.
 #figure(
   ```cpp
