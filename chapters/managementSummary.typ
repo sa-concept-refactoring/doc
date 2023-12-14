@@ -29,15 +29,28 @@ It is communicating with the language server using the language server protocol,
   table(
     columns: (1fr, 1fr),
     align: horizon,
-    [*Before*], [*After*],
-    ```cpp
-    template <typename T>
-    void foo(T) requires std::integral<T> {}
-    ```,
-    ```cpp
-    template <std::integral T>
-    void foo() {}
-    ``` ,
+    [
+      #set text(size: 0.9em)
+      *Before*
+    ],
+    [
+      #set text(size: 0.9em)
+      *After*
+    ],
+    [
+      #set text(size: 0.9em)
+      ```cpp
+      template <typename T>
+      void foo(T) requires std::integral<T> {}
+      ```
+    ],
+    [
+      #set text(size: 0.9em)
+      ```cpp
+      template <std::integral T>
+      void foo() {}
+      ```
+    ]
   ),
   caption: [ Example of "Inline Concept Requirement" refactoring ],
 ) <management_summary_inline>
@@ -46,14 +59,23 @@ It is communicating with the language server using the language server protocol,
   table(
     columns: (1fr, 1fr),
     align: horizon,
-    [*Before*], [*After*],
     [
+      #set text(size: 0.9em)
+      *Before*
+    ],
+    [
+      #set text(size: 0.9em)
+      *After*
+    ],
+    [
+      #set text(size: 0.9em)
       ```cpp
       template <std::integral T>
       void foo(T param) {}
       ```
     ],
     [
+      #set text(size: 0.9em)
       ```cpp
       void foo(std::integral auto param) {}
       ```
@@ -63,7 +85,7 @@ It is communicating with the language server using the language server protocol,
 ) <management_summary_abbreviate>
 
 #figure(
-  image("../drawio/refactoring_contribution.drawio.png", width: 90%),
+  image("../drawio/refactoring_contribution.drawio.png"),
   caption: [
     Diagram showing integration of implemented refactoring
   ],
