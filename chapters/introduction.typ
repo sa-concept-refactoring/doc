@@ -27,7 +27,7 @@ Automated tests often ensure that the correct functionality is retained.
 Older versions of integrated development environments (IDE) were implementing support for code analysis and tools like symbol lookup and refactorings themselves.
 This led to the problem that new languages only slowly gained adoption, one editor at a time.
 The goal of the Language Server Protocol was to address this and have the compiler or an adjacent tool implement the logic of these IDE features independently of a specific editor in something called a Language Server.
-Editors then only need to know how to communicate with this Server and they gain support for a wide range of languages. @lsp_wikipedia
+Editors then only need to know how to communicate with this Server and they gain support for a wide range of languages. @lsp_bit_services
 
 The new constructs of C++20 concepts provide the potential to apply established refactorings, and there is also the possibility of developing new refactorings.
 
