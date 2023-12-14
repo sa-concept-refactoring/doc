@@ -42,7 +42,7 @@ When developing in any programming language features like code refactorings are 
 They can help to restructure and simplify source code.
 To make these features available to as many IDEs as possible the language server protocol can be used.
 
-One language server for C++ is clangd, which unfortunately does not heavy many refactorings available, especially not for features introduced with C++20.
+One language server for C++ is clangd, which unfortunately does not have many refactorings available, especially not for features introduced with C++20.
 Therefore it would be nice to have some support for new language features like concepts.
 It would make development much more convenient and make the developer aware of other ways of writing code using the newly added features.
 
