@@ -1,4 +1,4 @@
-= Project Management
+= Project Management <project_management>
 // [X] Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
 // [x] Projektplan, 
 //    [] Vergleich ursprüngliche Planung, effektive Ausführung
@@ -7,7 +7,7 @@
 
 @approach explains how the project was approached.
 @project-plan looks into the planning of the project, including a comparative analysis between the initial plan and its effective implementation.
-Finallly, @time-tracking provides a summarized overview of the allocated working hours coupled with a reflective assessment of the time invested.
+Finally, @time-tracking provides a summarized overview of the allocated working hours coupled with a reflective assessment of the time invested.
 
 == Approach <approach>
 

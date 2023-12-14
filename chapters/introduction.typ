@@ -1,10 +1,10 @@
-= Introduction
-
 // - Beschreibung der Ausgangslage
 // - Beschreibung der Aufgabe
 // - Rahmenbedingungen
 // - Vorarbeiten
 // - Übersicht über die kommende Kapitel
+
+= Introduction
 
 == Initial Situation
 
@@ -18,7 +18,7 @@ Automated tests often ensure that the correct functionality is retained.
 Older versions of integrated development environments (IDE) were implementing support for code analysis and tools like symbol lookup and refactorings themselves.
 This led to the problem that new languages only slowly gained adoption, one editor at a time.
 The goal of the Language Server Protocol was to address this and have the compiler or an adjacent tool implement the logic of these IDE features independently of a specific editor in something called a Language Server.
-Editors then only need to know how to communicate with this Server and they gain support for a wide range of languages.
+Editors then only need to know how to communicate with this Server and they gain support for a wide range of languages. @lsp_wikipedia
 
 The new constructs of C++20 concepts provide the potential to apply established refactorings, and there is also the possibility of developing new refactorings.
 
@@ -26,14 +26,14 @@ The LLVM project @llvm_github is an open source project, whose source code is av
 It contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
 
 Clangd is a language server which lives within the LLVM project. 
-It understands C++ code and contains smart features like code completion, compile errors and go-to-definitions.
+It is able to recognize and make use of C++ code and contains smart features like code completion, compile errors and go-to-definitions.
 
 == Problem Description
 When developing in any programming language features like code refactorings are a very helpful tool.
 They can help to restructure and simplify source code.
 To make these features available to as many IDEs as possible the language server protocol can be used.
 
-One language server for C++ is clangd, which unfortunately does not havy many refactorings available, especially not for features introduced with C++20.
+One language server for C++ is clangd, which unfortunately does not heavy many refactorings available, especially not for features introduced with C++20.
 Therefore it would be nice to have some support for new language features like concepts.
 It would make development much more convenient and make the developer aware of other ways of writing code using the newly added features.
 
@@ -53,5 +53,7 @@ This report encompasses the analysis, elaboration, and implementation of the pro
 *@abbreviate_function_template:* Describes the implementation process and result of the refactoring "Convert Function Template to Abbreviated Form".
 
 *@development_process:* Gives insight about how the development environment was set up and which steps were needed to make the LLVM project compile locally.
+
+*@project_management:* Outlines how the project was approached and explains the project plan and time tracking.
 
 *@conclusion:* Summarizes key findings, insights, and implication of the project.
