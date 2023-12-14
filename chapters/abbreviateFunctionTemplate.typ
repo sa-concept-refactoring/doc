@@ -3,8 +3,8 @@
 #let refactoring_name = "Abbreviate Function Template"
 
 = Refactoring — #refactoring_name <abbreviate_function_template>
-For the second refactoring, another subset of the first idea (@idea_requirement_transformation) is implemented.
-It replaces explicit function template declarations with abbreviated declarations using auto parameters.
+For this refactoring, another subset of the first idea (@idea_requirement_transformation) is implemented.
+It replaces explicit function template declarations with abbreviated declarations using `auto` parameters.
 This tweak helps reduce the number of lines and makes the code more readable.
 @second_refactoring_capabilities shows examples of what this refactoring is able to do.
 
@@ -112,7 +112,7 @@ A reference to them is stored as a member of the tweak object during the prepara
 === Call Site Implications <call_site_implications>
 The refactoring must not change the signature of the target method.
 In regard to this specific refactoring, the order of type parameters must stay the same.
-This is only the case if the auto parameters are in the same order as their original template parameters.
+This is only the case if the `auto` parameters are in the same order as their original template parameters.
 
 For example the two methods in @call_site_differences result in two different signatures.
 When calling these methods with ```cpp foo<int, float>(1.0, 2)``` only the version on the left would compile,
@@ -145,7 +145,7 @@ As can be seen in @second_refactoring_ast_figure, the AST transformation of this
 The only change is that the explicit type parameter name is replaced with a generated one.
 
 It is interesting to see how abstract the abstract syntax tree really is in this case.
-It does not reflect the source code as closely as for the first refactoring (@first_refactoring_ast_analysis).
+It does not reflect the source code as closely as in @inline_concept_requirement (@first_refactoring_ast_analysis).
 
 #figure(
   tablex(
@@ -210,8 +210,6 @@ This number is an important point of reference to see if the refactoring applies
 As a next step, the function parameters are iterated over to verify that each template parameter type occurs as a function parameter and that the order is the same.
 In addition, the type qualifiers are extracted, which consist of reference kind, constness, and pointer type.
 
-This concludes the preparation phase.
-
 The application phase is rather simple in comparison.
 In a first step, the template declaration is removed, and in a second step, the types of the function parameters are updated.
 The information needed for this has been collected during the preparation phase.
@@ -253,7 +251,7 @@ Would they be replaced with `auto`, each of them would result in a different typ
 
 This limitation also applies if the template argument is used anywhere else.
 This includes the return type and the body of the function.
-Replacing one template parameter with multiple `auto` keywords always breaks the behaviour of the function.
+Replacing one template parameter with multiple `auto` keywords always breaks the behavior of the function.
 
 #figure(
   ```cpp
@@ -276,7 +274,7 @@ As a workaround the previously implemented refactoring (@inline_concept_requirem
 )
 
 == Usage <abbreviate_function_template_usage>
-The refactoring is available as a code action to language server clients.
+The refactoring is available as a code action for language server clients.
 To use it the cursor can be placed anywhere within the function.
 
 === VS Code

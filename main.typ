@@ -72,7 +72,7 @@
 #include "chapters/analysis.typ"
 #include "chapters/refactoringIdeas.typ"
 #include "chapters/inlineConceptRequirement.typ"
-#include "chapters/convertToAbbreviatedForm.typ"
+#include "chapters/abbreviateFunctionTemplate.typ"
 #include "chapters/developmentProcess.typ"
 #include "chapters/projectManagement.typ"
 
