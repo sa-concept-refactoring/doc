@@ -1,4 +1,4 @@
-= Project Management
+= Project Management <project_management>
 // [X] Vorgehen (Prozess, Reviews, Workflows, Qualitätssicherung)
 // [x] Projektplan, 
 //    [] Vergleich ursprüngliche Planung, effektive Ausführung
