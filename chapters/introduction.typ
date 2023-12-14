@@ -7,7 +7,7 @@
 = Introduction
 
 Writing clean and readable code is getting more important as programming languages are growing and evolving.
-This is also the case for C++ therefore, refactoring already written code is becoming more important.
+This is also the case for C++, therefore, refactoring already written code is becoming more important.
 
 #set quote(block: true)
 
