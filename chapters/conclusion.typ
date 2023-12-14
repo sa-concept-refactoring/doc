@@ -47,4 +47,4 @@ The LLVM project is an active open source project that receives a lot of pull re
 This is giving hope, that it will continue to grow in the future.
 
 Hopefully, the open pull requests will be accepted so the new refactorings will be available on the clangd language server.
-But it remains unclear if the usage of language servers will increase or if IDEs are going back to implementing their own code support as JetBrains has already announced that they might.
+But it remains unclear if the usage of language servers will increase or if IDEs are going back to implementing their own code support as JetBrains has already announced that they might. @jetbrains_blog
