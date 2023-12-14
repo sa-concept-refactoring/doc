@@ -1,6 +1,6 @@
 #import "progress-bar.typ": printProgressBar
 
-#let title = "SA - Concept Refactoring"
+#let title = "C++ Concept Refactorings"
 #let authors = ( "Jeremy Stucki", "Vina Zahnd" )
 #let supervisor = "Thomas Corbat"
 #let luschtig = false
@@ -12,16 +12,16 @@
 
 #set align(center)
 
-#text(2em)[
+#text(3em)[
     *#title*
 ]
 
 #text(1.5em)[
-    #datetime.today().display("[day].[month].[year]")
-    #line()
     #authors.join("\n")
     #line()
     _Supervisor:_ \ #supervisor
+    #line()
+    #datetime.today().display("[day].[month].[year]")
 ]
 
 #v(4em)
