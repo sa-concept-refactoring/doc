@@ -5,8 +5,9 @@
 // [x] Zeiterfassung (Stunden pro Woche/Stunden pro Task-Kategorie, wie Implementation Doku, Meeting, etc.)
 // Hinweis: Keine Liniendiagramme für die Darstellung von Zeit/Arbeitsaufwand pro Woche
 
-@approach explains how the project was approached.
-@project-plan looks into the planning of the project, including a comparative analysis between the initial plan and its effective implementation.
+The approach of the project is explained in @approach.
+The planning of the project is looked into in @project-plan,
+including a comparative analysis between the initial plan and its effective implementation.
 Finally, @time-tracking provides a summarized overview of the allocated working hours coupled with a reflective assessment of the time invested.
 
 == Approach <approach>
@@ -19,24 +20,21 @@ For better overview on what is already done, pull requests are used to review ea
 This same method is also used for writing the documentation which allows tracking all changes easily.
 
 The project is split into three main steps.
-+ Project Setup
-+ Analysis
-+ Implementation and Finalization
 
 / Project Setup : #[
-  Before implementing a project setup needs to be in place, therefore some research needed to be done to figure out what is needed to build the LLVM project and clangd specifically.
+  Before implementing a project, a setup needs to be in place, therefore some research needed to be done to figure out what is needed to build the LLVM project and clangd specifically.
   The setup needed to work on Linux and Windows as both systems were used for this project.
 ]
 
 / Analysis : #[
   The analysis consists of a lot of research on how the clangd language server works and how it is communicating with the IDE.
-  This step also contains gaining all knowledge needed for implementation, such as looking into the idea of concepts and figuring out what refactoring features would be a good addition to have within the language server.
+  This step also contains cathering all knowledge needed for implementation, such as looking into the idea of concepts and figuring out which refactoring features would be a good addition to have within the language server.
 ]
 
 / Implementation and Finalization: #[
   In the implementation phase the actual refactoring features are implemented according to the analysis.
   To make the implementation ready for contribution it needs to be refined, which means the code needs to be readable and follow the development guidelines @llvm_coding_standards.
-  When the refinement is done a pull request can be created to contribute the changes upstream and to finalize the implementation step.
+  When the refinement is done, a pull request can be created to contribute the changes upstream and to finalize the implementation step.
 ]
 
 #set page(flipped: true)
@@ -185,25 +183,25 @@ There is almost no deviation from the plan, except for the first refactoring, wh
 
 == Time Tracking <time-tracking>
 
-To monitor the working hours effectively, a Google Sheet was established where information about the tasks was meticulously recorded.
+To monitor the working hours effectively, a Google Sheet was established where information about the time spent was meticulously recorded.
 Each record contains a date, the amount of time spent, name of executor, task category and a brief comment detailing the specific work performed during that time.
 
 The summary in @time-tracking-report shows the total time spent on each category per week.
+Most of the time spent was invested into the documentation and implementation.
+@time-spent-per-category shows the time spent per category in percentage.
 
 // TODO: update image
 #figure(
   image("../images/time_tracking_report.png"),
+  kind: table,
   caption: [
     Hours worked per week and category
   ],
 ) <time-tracking-report>
 
-Most of the time was invested into the documentation and implementation.
-@time-spent-per-category shows the time spent per category in percentage. 
-
 #figure(
   image("../images/time_spent_per_category.png", width: 90%),
   caption: [
-    Time spent per category.
+    Time spent per category
   ],
 ) <time-spent-per-category>

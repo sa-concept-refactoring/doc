@@ -1,5 +1,3 @@
-=== Personal Report - Vina Zahnd
-
 Contributing to an open source project like LLVM was a great experience even though the changes are not yet merged.
 For me this was the first time to work on an open source project and I learned a lot while doing so.
 
