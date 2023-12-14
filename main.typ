@@ -75,17 +75,7 @@
 #include "chapters/abbreviateFunctionTemplate.typ"
 #include "chapters/developmentProcess.typ"
 #include "chapters/projectManagement.typ"
-
-
-= Conclusion <conclusion>
-// - Zusammenfassung
-// - Evaluation der Ergebnisse
-// - Zielerreichung/offene Punkte
-// - Ausblick, weiterführende Schritte
-
-= Outlook
-
-= Learnings
+#include "chapters/conclusion.typ"
 
 = Disclaimer
 Parts of this paper were rephrased by GPT-3.5.
