@@ -42,7 +42,7 @@ After the clangd build is completed the language server within VS Code needs to 
 
 
 _Note:_ When using Windows, clangd.exe should not be in use to build clangd successfully.
-In this example this applies to VSCode when the language server has started.
+In this example this applies to VS Code when the language server has started.
 
 === Windows
 

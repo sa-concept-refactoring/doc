@@ -41,8 +41,6 @@
 #set terms(hanging-indent: 0pt)
 #set text(font: ("Comic Sans MS")) if luschtig
 
-#include "title-page.typ"
-
 #set page(numbering: "1 / 1") if not luschtig
 #set page(
   footer: [
@@ -55,6 +53,12 @@
   ],
 ) if luschtig
 
+#include "title-page.typ"
+
+#show figure: set block(below: 2em)
+#set heading(numbering: "1.")
+#show par: set block(below: 2em)
+
 #include "chapters/abstract.typ"
 #include "chapters/managementSummary.typ"
 
@@ -63,10 +67,6 @@
   indent: auto,
   target: heading.where(level: 1).or(heading.where(level: 2))
 )
-
-#show figure: set block(below: 2em)
-#set heading(numbering: "1.")
-#show par: set block(below: 2em)
 
 #include "chapters/introduction.typ"
 #include "chapters/analysis.typ"
