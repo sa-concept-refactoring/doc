@@ -6,6 +6,15 @@
 
 = Introduction
 
+Writing clean and readable code is getting more important as programming languages are growing and evolving.
+This is also the case for C++ therefore, refactoring already written code is becoming more important.
+
+#set quote(block: true)
+
+#quote(attribution: [Dori Exterman @tips_for_cpp_refactoring])[Aside from the problems that could affect any language, C++ developers find code refactoring more challenging, in part because the language is complex. This complexity is compounded with language-extending functionality such as macros and templates, not to mention that the language is large, to begin with, and the syntax is difficult to process.]
+
+To support the C++ community with its refactoring tasks, new refactoring features should be implemented and contributed to the LLVM project.
+
 == Initial Situation
 
 The programming language C++ is constantly developed further by the standard committee @cpp_standard_committee. 
