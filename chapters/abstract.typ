@@ -5,7 +5,7 @@
 // - Keine Bilder
 
 = Abstract <abstract>
-With C++20, template parameter constraints were introduced that allow to specify the expected functionality of the template parameters.
+With C++20, template parameter constraints @concept_iso_standard were introduced that allow to specify the expected functionality of the template parameters.
 The objective of this project was to find novel refactoring operations related to concepts and to implement them as part of a language server.
 
 An analysis has been performed on the language server protocol, concepts, and the clangd language server.
