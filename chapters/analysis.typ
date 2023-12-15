@@ -20,7 +20,7 @@ This section documents the research and analysis of various processes and constr
 First, in @refactoring_explanation, it is explored what a refactoring is.
 Then the language server protocol is described in @lsp_analysis.
 
-@llvm_project_analysis explores the structure of the LLVM project.
+@llvm_project_analysis analyzes the structure of the LLVM project.
 The clangd language server is looked at in @clangd_language_server_analysis, with a focus on refactorings, including their testing in @refactor_operations_in_clangd.
 
 In @ast_analysis, abstract syntax trees are looked at, including their role in compilers and clang specifically.
