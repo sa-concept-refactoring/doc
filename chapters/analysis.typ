@@ -25,7 +25,7 @@ The clangd language server is looked at in @clangd_language_server_analysis, wit
 
 In @ast_analysis, abstract syntax trees are looked at, including their role in compilers and clang specifically.
 
-Finally, C++ concepts are explored in @cpp_concepts.
+Finally, C++ concepts are examined in @cpp_concepts.
 
 
 == Refactoring <refactoring_explanation>
