@@ -98,11 +98,14 @@ When a refactoring which converts the function to its abbreviated form is applie
 == Language Server Protocol (LSP) <lsp_analysis>
 
 // Note Corbat: Standard-Set an Features und erweiterbar...
-The Language Server Protocol, short LSP, is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers.
+The language server protocol, short LSP, is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers.
 It provides language-specific features such as code completion, syntax highlighting, error checking, and other services to enhance the capabilities of code editors.
 Traditionally this work was done by each development tool as each provides different APIs for implementing the same features.
 
 @language_server_sequence shows an example for how a tool and a language server communicate during a routine editing session.
+
+The development tool sends notifications and requests to the language server. 
+The language server can then respond with the document URI and position of the symbol's definition inside the document for example.
 
 #figure(
   image("../images/language_server_sequence.png"),
@@ -111,8 +114,9 @@ Traditionally this work was done by each development tool as each provides diffe
   ],
 ) <language_server_sequence>
 
-The development tool sends notifications and requests to the language server. 
-The language server can then respond with the document URI and position of the symbol's definition inside the document for example.
+By using a common protocol the same language server can be used by different editors which support the protocol.
+This reduces the effort required to integrate language-specific features into various development environments,
+allowing developers to have a more efficient and feature-rich coding experience, regardless of the programming language they are working with. 
 
 The idea of the LSP as described by Microsoft:
 
@@ -120,15 +124,13 @@ The idea of the LSP as described by Microsoft:
 The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how such servers and development tools communicate. This way, a single Language Server can be re-used in multiple development tools, which in turn can support multiple languages with minimal effort.
 ]
 
-By using a common protocol the same language server can be used by different editors which support the protocol.
-This reduces the effort required to integrate language-specific features into various development environments,
-allowing developers to have a more efficient and feature-rich coding experience, regardless of the programming language they are working with. 
-
 Language servers are used within modern IDEs and code editors such as Visual Studio Code, Atom and Sublime Text.
+
+#pagebreak()
 
 / Implementations: #[
 The language servers implementing the LSP for C++ are shown in @cpp-implementation.
-For this project the focus is set on the LLVM project which is explained in @llvm_project_analysis.
+For this project, the focus is set on the LLVM project, which is explored in @llvm_project_analysis.
 
 A list of tools supporting the LSP can be found on the official website @tools_supporting_lsp.
 
@@ -225,8 +227,8 @@ The server then computes which ones apply and sends them back in a JSON-encoded 
 ]
 
 / Executing a Command: #[
-To apply a code change on the client side the client sends a `workspace/executeCommand` to the server.
-The server can then create a WorkspaceEdit @lsp_workspace_edit structure and apply the changes to the workspace by sending a `workspace/applyEdit` @lsp_workspace_apply_edit command to the client.
+To apply a code change the client sends a `workspace/executeCommand` to the server.
+The server can then create one or multiple workspace edit structures @lsp_workspace_edit and apply the changes to the workspace by sending a `workspace/applyEdit` @lsp_workspace_apply_edit command to the client.
 
 // TODO: add json of executeCommand request (Client -> Server)
 ]
