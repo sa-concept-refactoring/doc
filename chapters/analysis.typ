@@ -21,21 +21,28 @@ To be able to contribute to the LLVM project @llvm_github it is important to und
 
 == Refactoring <refactoring_explanation>
 
-When applying a refactoring the logic needs to stay the same as before the refactoring was applied.
-To ensure that a refactoring does not affect the logic of a method, unit tests can be used, which is the case in the clangd language server.
-The testing is described in @testing.
+When applying a refactoring, the behavior needs to stay the same as before the refactoring was applied.
+To ensure that a refactoring does not affect the behavior, an inductive proof can be used.
+However, in practice this is rarely done.
+Instead, unit tests can be used to get at least some assurance of the behavior, which is the case in the clangd language server.
+One would theoretically still need to proof that the expected result has the same behavior as the test input,
+but these tests are often so short that their correctness can be verified with a quick glance.
+The testing of refactorings is explored in more detail in @testing.
 
-In @refactoring_bad_example an example of a bad refactoring is shown where the function before the applied refactoring defines the function parameters `T` and `U` in the template.
-But the function parameters are listed in a different order than defined in the template.
-When a refactoring which converts the function to its abbreviated form is applied to such a function, the compiler will throw an error when different parameter types are used, as the function call is no longer valid.
+In @refactoring_bad_example an example of a bad refactoring is shown.
+A function is defined with the template type parameters `T` and `U` and the function parameters `p1` and `p2`, which use the template type parameters in reverse order.
+If a refactoring, for example one which converts the functions to their abbreviated form using `auto` parameters, would blindly use `auto` for all function parameter types, it would result in a different function signature.
+The compiler will then throw an error at the call-site, because the function call is no longer valid.
 
 #figure(
   kind: table,
-  grid(
-    columns: (20em, 9em, 9em),
+  [
+  #set text(size: 0.9em)
+  #grid(
+    columns: (2fr, 1fr, 1fr),
     gutter: 1em,
-    [*Function Definition*],
-    [*Same Parameter Types*],
+    [],
+    [*Identical Parameter Types*],
     [*Different Parameter Types*],
     [],
     [
@@ -78,9 +85,9 @@ When a refactoring which converts the function to its abbreviated form is applie
       #cell(ok:false)[Not Compiling]
       Template arguments do no longer fulfill the concept requirement.
     ],
-  ),
+  )],
   caption: [
-    Bad example of code refactoring
+    Bad example of refactoring
   ],
 ) <refactoring_bad_example>
 // what does it mean implementation wise
@@ -149,7 +156,7 @@ A list of tools supporting the LSP can be found on the official website @tools_s
 
 === LSP Features for Refactoring
 
-To apply a refactoring using the LSP three steps are needed. 
+To apply a refactoring using the LSP three steps are needed.
 These steps are the same for all tools using the LSP.
 
 + Action Request
