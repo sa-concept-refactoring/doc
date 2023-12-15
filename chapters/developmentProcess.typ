@@ -1,6 +1,10 @@
 = Development Process <development_process>
 
-== Workflow
+Within this section it is explained how the working environment was setup and what tools were used for development.
+@workflow documents how the work process looked like. 
+In @setup it is described how the project was setup for Windows and Linux.
+
+== Workflow <workflow>
 
 #figure(
   image("../drawio/project-organisation.drawio.svg", width: 100%),
@@ -13,7 +17,7 @@
 To make life easier it was decided to create a repository on Github and make the whole work open source. 
 As there was an already existing pipeline from the original LLVM project it self the decision came rather quick as otherwise there could have popped up a lot of different problems and issues.
 
-== Setup
+== Setup <setup>
 To build clangd, CLion was used as an IDE since it has great support for CMake as well as very good autocomplete, search and debugging capabilities.
 VS Code with the clangd extension @clangd_extension and CMake extension @cmake_extension was then configured to use the locally built language server using the `clangd.path` setting.
 
