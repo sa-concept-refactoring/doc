@@ -281,61 +281,53 @@ Only when the formatter has been run successfully a pull request is allowed to b
 // TODO: wie gelangt language server an den code
 
 Clangd is the language server which lives in the LLVM project repository @llvm_github under `clang-tools-extra/clangd`.
-It understands C++ code and adds smart features like code completion, compile errors and go-to-definition.
-
-The C++ refactoring features can be found within the clangd under the `tweaks` folder.
+It understands C++ code and provides smart features like code completion, compiler warnings and errors, as well as go-to-definition and find-references capabilities.
+The C++ refactoring features can be found within clangd under the `tweaks` folder.
 
 == Refactorings in clangd <refactor_operations_in_clangd>
 
 // Note Corbat: Was ist ein Refactoring?
 // Note Corbat: Gibt es noch andere Teile, die relevant sein könnten für jemanden der ein Refactoring implementiert?
-Each refactoring option within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
+Each refactoring operation within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
 
-/ Project Structure : #[
 The LLVM project is quite big and it took a while to figure out how it is structured.
-For refactoring features classes can be created in the following directory: \
-`llvm-project/clang-tools-extra/clangd/refactor/tweaks`.
-]
+For refactoring features, classes can be created in `llvm-project/clang-tools-extra/clangd/refactor/tweaks`.
 
-/ Existing Refactorings : #[
-Looking at the refactoring features no feature could be found specific to concepts.
+Looking at the existing refactoring features no feature could be found specific to concepts.
 Some basic ones like symbol rename already work for them.
 As concepts were introduced with C++20 it is quite new to the world of C++ and therefore not much of support exists yet.
 
-For other scenarios multiple refactoring operations already exist (e.g. switching statements within an if).
+For other operations refactoring operations already exist (e.g. renaming).
 Looking at existing refactoring code helped to understand how a refactoring is structured and implemented.
-]
 
 === Testing <testing>
 The LLVM project strictly adheres to a well-defined architecture for testing. 
-To align with project guidelines @clangd_testing, automated unit tests must be authored prior to the acceptance of any code contributions. 
-The name of these files is usually the name of the class itself and use the googletest framework @googletest_framework.
+To align with project guidelines @clangd_testing, automated unit tests must be authored prior to the acceptance of any code contributions.
+The name of these files is usually the name of the class itself and uses the googletest framework @googletest_framework.
 
-Unit tests are added to `llvm-project/clang-tools-extra/clangd/unittests`.
+Unit tests for tweaks are added to `llvm-project/clang-tools-extra/clangd/unittests`.
+To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`, and `EXPECT_UNAVAILABLE`.
 
-For testing tweaks three functions are typically used: `EXPECT_THAT`, `EXPECT_AVAILABLE`, and `EXPECT_UNAVAILABLE`.
-
-/ `EXPECT_THAT` : #[
-Executes the `apply` function and compares the result with the expected code.
+/ `EXPECT_EQ` : #[
+  Executes the `apply` function for a given snippet at a given cursor location and compares the result with the expected code.
 ]
 
 / `EXPECT_AVAILABLE` : #[
-Check if the refactoring feature is available on certain cursor position within the code. 
-The `prepare` function is executed.
+  Checks if the refactoring feature is available on certain cursor position within the code.
+  The `prepare` function is executed.
 ]
 
 / `EXPECT_UNAVAILABLE` : #[
-Check if the refactoring feature is unavailable on certain cursor position within the code. 
-The `prepare` function is executed.
+  Checks if the refactoring feature is unavailable on certain cursor position within the code.
+  The `prepare` function is executed.
 ]
 
 === Code Actions
 
 All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered through the linker. 
-The return type of a tweak is always a Code Action, which represents a change that can be performed in code. @code_action
-These compact plugins inherit the Tweak class which acts as a interface base.
+These compact plugins inherit the tweak class which acts as an interface base.
 // TODO: Das liesse sich schön visualisieren.
-When presented with a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
+When presented with an AST and a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
 These fundamental components constitute the foundation of the LSP code-actions flow.
 
 Each tweak has its own class. The structure of this class is demonstrated in @tweak_structure.
@@ -376,18 +368,18 @@ Each tweak has its own class. The structure of this class is demonstrated in @tw
     ```
   ],
   caption: [
-    Structure of tweak class
+    Structure of a tweak class
   ],
 ) <tweak_structure>
 
 *```cpp bool prepare(const Selection &Inputs)```:* \
 Within the `prepare` function a check is performed to see if a refactoring is possible on the selected area.
-The function is returning a boolean indicating wether the action is available and should be shown to the user.
+The function is returning a boolean indicating whether the action is available and should be shown to the user.
 As this function should be fast only non-trivial work should be done within.
 If the action requires non-trivial work it should be moved to the `apply` function.
 
 // TODO check if this is correct
-The function is triggered as soon as the "Refactoring" option within the Visual Studio Code is used.
+For example, in Visual Studio Code the function is triggered as soon as the "Refactoring" option is used.
 
 *```cpp Expected<Tweak::Effect> apply(const Selection &Inputs)```:* \
 Within the `apply` function the actual refactoring is taking place.
@@ -395,7 +387,7 @@ The function is triggered as soon as the refactoring tweak has ben selected.
 // Kommentar Jeremy: Erkläre wieso, zb dass mer privati variable initialized.
 It is expected that the `prepare` function has been called before to ensure that the second part of the action is working without problems.
 
-It returns the effect which should be done on the client side.
+It returns the effect which should be applied on the client side.
 
 == Abstract Syntax Tree (AST) <ast_analysis>
 
