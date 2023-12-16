@@ -576,72 +576,73 @@ For a function this means, that the function name has to be present but other th
 == C++ Concepts <cpp_concepts>
 
 Concepts are a new language feature introduced with C++20.
-They allow to put constraints on template parameters which are evaluated at compile time.
-This allows the developer to restrict template parameters in a new convenient way.
+They allow puttign constraints on template parameters, which are evaluated at compile time.
+This allows developers to restrict template parameters in a new convenient way.
 For this the keywords `requires` @keyword_requires and `concept` @keyword_concept were added to give some language support. @concepts
 
-Before C++20 `constexpr` and `if constexpr` was used for restrictions, more about these can be found in the C++ stories @if_const_expr.
+Before C++20 `constexpr` and `if constexpr` were used for such restrictions, more about these can be found in the C++ stories @if_const_expr.
 
-/ Concepts using `requires` keyword : #[
-  The `requires` keyword can be used either before the function declaration or between the function declaration and the function body.
-
-  #figure(
-    kind: image,
-    grid(
-      columns: (auto, 14em),
-      gutter: 1em,
-      ```cpp
-      template <typename T>
-      requires CONDITION
-      void f(T param) 
-      {}
-      ```,
-      ```cpp
-      template <typename T>
-      void f(T param) requires CONDITION
-      {}
-      ```
-    ),
-    caption: [
-      Concepts using requires clause @concepts
-    ],
-  )
-
-  Requirements can also contain disjunctions (`||`) and/or conjunctions (`&&`) to restrict the parameter types even more. 
-
-  #figure(
-    ```cpp
-    requires std::integral<T> || std::floating_point<T>
-    ```,
-    caption: [
-      Condition using disjunctions @concepts
-    ],
-  ) <concept_conditions_or>
-
-  #figure(
-    ```cpp
-    requires std::integral<T> && std::floating_point<T>
-    ```,
-    caption: [
-      Condition using conjunctions @concepts
-    ],
-  )
+/ Usage of the `requires` keyword : #[
+  The `requires` keyword can be used either before the function declaration or between the function declaration and the function body as illustrated in @requires_keyword_usage.
+  The requirements can also contain disjunctions (`||`) and/or conjunctions (`&&`) to restrict the parameter types even more.
+  Examples for these can be found in @concept_conditions_or and @concept_conditions_and.
 ]
 
-/ Concepts using `concept` keyword : #[
-
-  Using the `concept` keyword the requirements can be named.
-
-  #figure(
-    ```cpp
-    template<typename T>
-    concept Hashable = requires(T a)
-    {
-        { std::hash<T>{}(a) } -> std::convertible_to<std::size_t>;
-    };
-    ```,
-    caption: [
-      Concept using requires clause @concepts
-    ],
-  )
+/ Usage of the `concept` keyword : #[
+  Using the `concept` keyword requirements can be named, so they do not have to be repeated for every `requires` clause.
+  An example for a concept declaration can be found in @concept_decleration_example.
 ]
+
+#v(1cm)
+
+#figure(
+  kind: image,
+  grid(
+    columns: (auto, 14em),
+    gutter: 1em,
+    ```cpp
+    template <typename T>
+    requires CONDITION
+    void f(T param)
+    {}
+    ```,
+    ```cpp
+    template <typename T>
+    void f(T param) requires CONDITION
+    {}
+    ```
+  ),
+  caption: [
+    Functions using requires clause
+  ],
+) <requires_keyword_usage>
+
+#figure( ```cpp
+  requires std::integral<T> || std::floating_point<T>
+  ```,
+  caption: [
+    Requires clause using disjunction
+  ],
+) <concept_conditions_or>
+
+#figure(
+  ```cpp
+  requires std::integral<T> && std::floating_point<T>
+  ```,
+  caption: [
+    Requires clause using conjunction
+  ],
+) <concept_conditions_and>
+
+#figure(
+  ```cpp
+  template<typename T>
+  concept Hashable = requires(T a)
+  {
+      { std::hash<T>{}(a) } -> std::convertible_to<std::size_t>;
+  };
+  ```,
+  caption: [
+    Hashable concept declaration
+  ],
+) <concept_decleration_example>
