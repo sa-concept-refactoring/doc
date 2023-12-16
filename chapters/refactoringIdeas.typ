@@ -67,6 +67,7 @@ This seems to be a limitation of the language server protocol @lsp_issue_724 @ls
 To illustrate the idea, @conjunction_idea_listing shows a method `bar` whose type parameter `T` is constrained by two concepts.
 These requirements are extracted into a new named concept in @refactored_conjunction_idea_listing.
 
+// COR How about (more complex) requires requires clauses?
 #figure(
   ```cpp
   template <typename T>
