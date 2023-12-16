@@ -26,7 +26,7 @@ To ensure that a refactoring does not affect the behavior, an inductive proof ca
 However, in practice this is rarely done.
 Instead, unit tests can be used to get at least some assurance of the behavior, which is the case in the clangd language server.
 One would theoretically still be required to proof that the expected result has the same behavior as the test input,
-but these tests are often so short that their correctness can be verified with a quick glance.
+however, due to these tests being very concise, their correctness can typically be verified through a quick inspection.
 The testing of refactorings is explored in more detail in @testing.
 
 In @refactoring_bad_example an example of a bad refactoring is shown.
