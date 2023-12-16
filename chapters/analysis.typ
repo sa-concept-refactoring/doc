@@ -288,7 +288,7 @@ To align with project guidelines @clangd_testing, automated unit tests must be a
 The name of these files is usually the name of the class itself and uses the googletest framework @googletest_framework.
 
 Unit tests for tweaks are added to `llvm-project/clang-tools-extra/clangd/unittests`.
-To test them three functions are typically used: `EXPECT_EQ`, `EXPECT_AVAILABLE`, and `EXPECT_UNAVAILABLE`.
+To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`, and `EXPECT_UNAVAILABLE`.
 
 / `EXPECT_EQ` : #[
   Executes the `apply` function for a given snippet at a given cursor location and compares the result with the expected code.
