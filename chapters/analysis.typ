@@ -245,7 +245,7 @@ The server can then create one or multiple workspace edit structures @lsp_worksp
 The LLVM project @llvm_github is a collection of modular and reusable compiler and toolchain technologies.
 One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objective-C compiler.
 
-@llvm_illustration illustrates how the sub-projects are compiled.
+@llvm_illustration illustrates how different compilers can use the LLVM intermediate language as an intermediate step before being compiled to platform-specific code.
 
 #figure(
   image("../images/llvm_architecture.jpeg", width: 80%),
@@ -259,13 +259,13 @@ Code refactorings for C++ can be found within the clangd language server which i
 / Coding Guidelines : #[
 As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
 The documentation is written really well and is easy to understand which makes it easy to follow.
-A lot of guidelines are described but some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
+A lot of guidelines are described, however some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
 ]
 
 / Code Formatter : #[
-To fulfill the formatting guidelines there is a formatter `clang-format` @clang_format within the project to style the files according to the guidelines.
+To fulfill the formatting guidelines there is a formatter `clang-format` @clang_format within the project to format the files according to the guidelines.
 A check run on GitHub is ensuring that the format of the code is correct.
-Only when the formatter has been run successfully a Pull-Request is allowed to be merged.
+Only when the formatter has been run successfully a pull request is allowed to be merged.
 ]
 
 == The clangd Language Server <clangd_language_server_analysis>
