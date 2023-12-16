@@ -16,8 +16,17 @@
 // - Abhängig vom Projekt: Risikoanalyse
 // - Beschreibung (externen) existierenden Schnittstellen
 
-This section documents the research of the Language Server Protocol (LSP), clangd, AST and the newly added construct in C++ 20, concepts.
-To be able to contribute to the LLVM project @llvm_github it is important to understand the fundamentals explained in the following sections.
+This section documents the research and analysis of various processes and constructs.
+First, in @refactoring_explanation, it is explored what a refactoring is.
+Then the language server protocol is described in @lsp_analysis.
+
+@llvm_project_analysis analyzes the structure of the LLVM project.
+The clangd language server is looked at in @clangd_language_server_analysis, with a focus on refactorings, including their testing in @refactor_operations_in_clangd.
+
+In @ast_analysis, abstract syntax trees are looked at, including their role in compilers and clang specifically.
+
+Finally, C++ concepts are examined in @cpp_concepts.
+
 
 == Refactoring <refactoring_explanation>
 
@@ -86,7 +95,7 @@ When a refactoring which converts the function to its abbreviated form is applie
 // what does it mean implementation wise
 // how to ensure that code logic isn't changed after refactoring is applied
 
-== Language Server Protocol (LSP)
+== Language Server Protocol (LSP) <lsp_analysis>
 
 // Note Corbat: Standard-Set an Features und erweiterbar...
 The Language Server Protocol, short LSP, is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers.
@@ -119,7 +128,7 @@ Language servers are used within modern IDEs and code editors such as Visual Stu
 
 / Implementations: #[
 The language servers implementing the LSP for C++ are shown in @cpp-implementation.
-For this project the focus is set on the LLVM project which is explained in @lvvm-project.
+For this project the focus is set on the LLVM project which is explained in @llvm_project_analysis.
 
 A list of tools supporting the LSP can be found on the official website @tools_supporting_lsp.
 
@@ -230,7 +239,7 @@ The server can then create a WorkspaceEdit @lsp_workspace_edit structure and app
   // TODO: add json of applyEdit (Server -> Client)
 ]
 
-== LLVM Project <lvvm-project>
+== LLVM Project <llvm_project_analysis>
 The LLVM project @llvm_github is a collection of modular and reusable compiler and toolchain technologies.
 One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objective-C compiler.
 
@@ -257,7 +266,7 @@ A check run on GitHub is ensuring that the format of the code is correct.
 Only when the formatter has been run successfully a Pull-Request is allowed to be merged.
 ]
 
-== The clangd Language Server
+== The clangd Language Server <clangd_language_server_analysis>
 
 // Note Corbat: Aufbau des ganzen Toolings? Welche anderen Komponenten gibt es? Wie hängen diese zusammen?
 // TODO: wie gelangt language server an den code
@@ -267,7 +276,7 @@ It understands C++ code and adds smart features like code completion, compile er
 
 The C++ refactoring features can be found within the clangd under the `tweaks` folder.
 
-== Refactorings in clangd
+== Refactorings in clangd <refactor_operations_in_clangd>
 
 // Note Corbat: Was ist ein Refactoring?
 // Note Corbat: Gibt es noch andere Teile, die relevant sein könnten für jemanden der ein Refactoring implementiert?
@@ -379,7 +388,7 @@ It is expected that the `prepare` function has been called before to ensure that
 
 It returns the effect which should be done on the client side.
 
-== Abstract Syntax Tree (AST)
+== Abstract Syntax Tree (AST) <ast_analysis>
 
 The Abstract Syntax Tree, short AST, is a syntax tree representing the abstract syntactic structure of a text.
 It represents the syntactic structure of source code written in a programming language, capturing its grammar and organization in a tree-like form.
@@ -562,7 +571,7 @@ For a function this means, that the function name has to be present but other th
   ],
 ) <ast_dump_possibilities>
 
-== Concepts
+== C++ Concepts <cpp_concepts>
 
 Concepts are a new language feature introduced with C++20.
 They allow to put constraints on template parameters which are evaluated at compile time.
