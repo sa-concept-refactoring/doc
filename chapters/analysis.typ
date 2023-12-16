@@ -25,7 +25,7 @@ When applying a refactoring, the behavior needs to stay the same as before the r
 To ensure that a refactoring does not affect the behavior, an inductive proof can be used.
 However, in practice this is rarely done.
 Instead, unit tests can be used to get at least some assurance of the behavior, which is the case in the clangd language server.
-One would theoretically still need to proof that the expected result has the same behavior as the test input,
+One would theoretically still be required to proof that the expected result has the same behavior as the test input,
 but these tests are often so short that their correctness can be verified with a quick glance.
 The testing of refactorings is explored in more detail in @testing.
 
