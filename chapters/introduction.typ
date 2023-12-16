@@ -19,17 +19,16 @@ To support the C++ community with its refactoring tasks, new refactoring feature
 
 == Initial Situation
 
-// COR strictly speaking it is not only about types
 The programming language C++ is constantly developed further by the standard committee @cpp_standard_committee. 
-With C++20 type constraints were introduced which allow specification of requirements for template arguments.
+With C++20 template parameter constraints were introduced which allow specification of requirements for template arguments.
 Concepts are a way of abstracting these constraints. @constraints_and_concepts
 
 Refactoring is a common technique to resolve code smells and improve the internal structure of code without changing its external behavior. @refactoring
 Automated tests often ensure that the correct functionality is retained.
 
 Older versions of integrated development environments (IDE) were implementing support for code analysis and tools like symbol lookup and refactorings themselves.
-// COR And also that every tool had to spend the effort to implement the whole support.
-This led to the problem that new languages only slowly gained adoption, one editor at a time.
+This led to the problem that new languages only slowly gained adoption, one editor at a time and also that every tool had to spend the effort to implement the whole support.
+Another downside was that every tool had to spend the effort to implement the whole support on their own.
 The goal of the Language Server Protocol was to address this and have the compiler or an adjacent tool implement the logic of these IDE features independently of a specific editor in something called a Language Server.
 Editors then only need to know how to communicate with this Server and they gain support for a wide range of languages. @lsp_bit_services
 
@@ -51,9 +50,20 @@ Therefore, it would be nice to have some support for new language features like 
 It would make development much more convenient and make the developer aware of other ways of writing code using the newly added features.
 
 == Project Goal
-// COR Having a three-line paragraph on a single page is still a bit weird.
-The goal of this semester project is to come up with new ideas for refactor operations specific to concepts and to implement some of them.
+This section describes the goals of this project according to the task assignment @assignment.
+Additionally parts were added to give the project more structure as this project is more explorative than usual.
+
+The goal of this semester project is to come up with new ideas for refactor operations specific to parameter type constraints and to implement some of them.
 Ideally, they should be submitted upstream as a pull request to clangd.
+This is done to support the C++ community while coding as well as helping the LLVM project to grow.
+
+In addition to this, research will also be carried out to determine how the clangd language server is communicating with the development tools.
+This also includes documenting basic knowledge needed to understand the analysis of it.
+
+For the implementation itself it needs to be clear where the code needs to be added, how it should be tested, what the coding guidelines are and how it can be contributed.
+When a feature is completed it needs to be documented so it
+Each implemented refactoring feature should be documented on how it can be used and how it transforms the code. 
+
 
 == Structure of This Report
 This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:

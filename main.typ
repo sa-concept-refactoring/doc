@@ -116,6 +116,14 @@ It also contains the final version of the code written during this project (@sou
 == Personal Report — Vina Zahnd <report_vina>
 #include "chapters/personalReportVina.typ"
 
+== Assignment <assignment>
+
+// TODO use assignment with signature for print version (!do not upload to github)
+// FIXME pdf has 3 pages but the svg is too long and therefore only showing one page
+#figure(
+  image("attachments/assignment_without_signature.svg"),
+)
+
 == Source Code <source_code>
 #outline(
   title: none,
