@@ -361,7 +361,7 @@ As this function should be fast only non-trivial work should be done within.
 If the action requires non-trivial work it should be moved to the `apply` function.
 
 // TODO check if this is correct
-The function is triggered as soon as the "Refactoring" option within Visual Studio Code is used for example.
+For example, in Visual Studio Code the function is triggered as soon as the "Refactoring" option is used.
 
 *```cpp Expected<Tweak::Effect> apply(const Selection &Inputs)```:* \
 Within the `apply` function the actual refactoring is taking place.
