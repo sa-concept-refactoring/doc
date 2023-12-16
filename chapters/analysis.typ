@@ -367,7 +367,7 @@ For example, in Visual Studio Code the function is triggered as soon as the "Ref
 Within the `apply` function the actual refactoring is taking place.
 The function is triggered as soon as the refactoring tweak has ben selected.
 // Kommentar Jeremy: Erkläre wieso, zb dass mer privati variable initialized.
-It is guaranteed that the `prepare` function has been called before to ensure that the second part of the action is working without problems.
+It is expected that the `prepare` function has been called before to ensure that the second part of the action is working without problems.
 
 It returns the effect which should be applied on the client side.
 
