@@ -279,7 +279,7 @@ Looking at the existing refactoring features no feature could be found specific 
 Some basic ones like symbol rename already work for them.
 As concepts were introduced with C++20 it is quite new to the world of C++ and therefore not much of support exists yet.
 
-For other operations refactoring operations already exist (for example renaming).
+For other operations refactoring operations already exist (e.g. renaming).
 Looking at existing refactoring code helped to understand how a refactoring is structured and implemented.
 
 === Testing <testing>
