@@ -6,6 +6,8 @@
 
 = Introduction
 
+// COR Not to dissuade, but the intro would be slightly more compelling if there was a refactoring (idea) that supported the transformation from <C++20 code to constrained code/concepts.
+
 Writing clean and readable code is getting more important as programming languages are growing and evolving.
 This is also the case for C++, therefore, refactoring already written code is becoming more important.
 
@@ -17,14 +19,16 @@ To support the C++ community with its refactoring tasks, new refactoring feature
 
 == Initial Situation
 
+// COR strictly speaking it is not only about types
 The programming language C++ is constantly developed further by the standard committee @cpp_standard_committee. 
 With C++20 type constraints were introduced which allow specification of requirements for template arguments.
 Concepts are a way of abstracting these constraints. @constraints_and_concepts
 
-Refactoring is a common technique to detect code smells and improve the internal structure of code without changing its external behavior. @refactoring
+Refactoring is a common technique to resolve code smells and improve the internal structure of code without changing its external behavior. @refactoring
 Automated tests often ensure that the correct functionality is retained.
 
 Older versions of integrated development environments (IDE) were implementing support for code analysis and tools like symbol lookup and refactorings themselves.
+// COR And also that every tool had to spend the effort to implement the whole support.
 This led to the problem that new languages only slowly gained adoption, one editor at a time.
 The goal of the Language Server Protocol was to address this and have the compiler or an adjacent tool implement the logic of these IDE features independently of a specific editor in something called a Language Server.
 Editors then only need to know how to communicate with this Server and they gain support for a wide range of languages. @lsp_bit_services
@@ -43,12 +47,13 @@ They can help to restructure and simplify source code.
 To make these features available to as many IDEs as possible the language server protocol can be used.
 
 One language server for C++ is clangd, which unfortunately does not have many refactorings available, especially not for features introduced with C++20.
-Therefore it would be nice to have some support for new language features like concepts.
+Therefore, it would be nice to have some support for new language features like concepts.
 It would make development much more convenient and make the developer aware of other ways of writing code using the newly added features.
 
 == Project Goal
+// COR Having a three-line paragraph on a single page is still a bit weird.
 The goal of this semester project is to come up with new ideas for refactor operations specific to concepts and to implement some of them.
-Ideally they should be submitted upstream as a pull request to clangd.
+Ideally, they should be submitted upstream as a pull request to clangd.
 
 == Structure of This Report
 This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:

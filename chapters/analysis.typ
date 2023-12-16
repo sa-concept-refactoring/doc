@@ -8,13 +8,14 @@
   text(white, weight: "bold", body)
 )
 
-= Analysis <analysis>
 // - Beschreibung des System-Kontexts
 // - Funktionale und nicht-Funktionale Anforderungen
 // - Use Cases/Scenarios/User Storys
 // - Bestehende Infrastruktur
 // - Abhängig vom Projekt: Risikoanalyse
 // - Beschreibung (externen) existierenden Schnittstellen
+
+= Analysis <analysis>
 
 This section documents the research and analysis of various processes and constructs.
 First, in @refactoring_explanation, it is explored what a refactoring is.
@@ -30,16 +31,29 @@ Finally, C++ concepts are examined in @cpp_concepts.
 
 == Refactoring <refactoring_explanation>
 
-When applying a refactoring, the behavior needs to stay the same as before the refactoring was applied.
+// COR Quote von Fowler...
+When applying a refactoring, the external behavior needs to stay the same as before the refactoring was applied.
 To ensure that a refactoring does not affect the behavior, an inductive proof can be used.
 However, in practice this is rarely done.
+// COR Topic-jump in the first paragraph. Sure this is true? Really Unit Tests?
 Instead, unit tests can be used to get at least some assurance of the behavior, which is the case in the clangd language server.
 One would theoretically still be required to proof that the expected result has the same behavior as the test input,
 however, due to these tests being very concise, their correctness can typically be verified through a quick inspection.
 The testing of refactorings is explored in more detail in @testing.
 
+// COR Different refactorings vary in complexity.
+// For example renaming of a local variable, typically, has limiited potential for unexpected side-effects.
+// In most cases it is sufficient to check whether the new name already exists in the affected scope.
+//
+// Our "Abbreviate Function Template" refactoring, on the other hand, could have surprising side-effects, in which cases it must not be applied.
+// (Beispiel könnte noch um eine Variante ergänzt werden, welcher die Template-Argumente deduziert werden - Normalfall).
+//
+// ... Zudem sollte man auch noch beachten, dass in einigen Fällen nicht der ganze Code analyisert werden kann, bzw. gar nicht verfügar ist.
+//
+// Zusätzliche Schwierigkeit in C++: Präprozessor, womit quasi fast jeder Name umdefiniert werden kann. 
 In @refactoring_bad_example an example of a bad refactoring is shown.
 A function is defined with the template type parameters `T` and `U` and the function parameters `p1` and `p2`, which use the template type parameters in reverse order.
+// COR It is not a refactoring then, just a code transformation/change.
 If a refactoring, for example one which converts the functions to their abbreviated form using `auto` parameters, would blindly use `auto` for all function parameter types, it would result in a different function signature.
 The compiler will then throw an error at the call-site, because the function call is no longer valid.
 
@@ -99,20 +113,23 @@ The compiler will then throw an error at the call-site, because the function cal
     Bad example of refactoring
   ],
 ) <refactoring_bad_example>
-// what does it mean implementation wise
-// how to ensure that code logic isn't changed after refactoring is applied
+// COR what does it mean implementation wise
+// COR how to ensure that code logic isn't changed after refactoring is applied
 
 == Language Server Protocol (LSP) <lsp_analysis>
 
-// Note Corbat: Standard-Set an Features und erweiterbar...
+// COR Standard-Set an Features und erweiterbar...
 The language server protocol, short LSP, is an open, JSON-RPC based protocol designed to communicate between code editors or integrated development environments (IDEs) and language servers.
 It provides language-specific features such as code completion, syntax highlighting, error checking, and other services to enhance the capabilities of code editors.
-Traditionally this work was done by each development tool as each provides different APIs for implementing the same features.
+Traditionally, this work was done by each development tool as each provides different APIs for implementing the same features.
 
 @language_server_sequence shows an example for how a tool and a language server communicate during a routine editing session.
 
 The development tool sends notifications and requests to the language server. 
 The language server can then respond with the document URI and position of the symbol's definition inside the document for example.
+
+// COR Figure 3 und der Abschnitt danach unterbrechen die zwei (meiner Meinung nach) zusammengehörigen Teile davor und danach.
+// Ich würde das vor "Implementation" platzieren.
 
 #figure(
   image("../images/language_server_sequence.png"),
@@ -263,6 +280,7 @@ One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objectiv
 
 Code refactorings for C++ can be found within the clangd language server which is based on the clang compiler. @clangd
 
+// COR Automated checking?
 / Coding Guidelines : #[
 As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
 The documentation is written really well and is easy to understand which makes it easy to follow.
@@ -277,23 +295,21 @@ Only when the formatter has been run successfully a pull request is allowed to b
 
 == The clangd Language Server <clangd_language_server_analysis>
 
-// Note Corbat: Aufbau des ganzen Toolings? Welche anderen Komponenten gibt es? Wie hängen diese zusammen?
-// TODO: wie gelangt language server an den code
-
+// COR Aufbau des ganzen Toolings? Welche anderen Komponenten gibt es? Wie hängen diese zusammen?
 Clangd is the language server which lives in the LLVM project repository @llvm_github under `clang-tools-extra/clangd`.
 It understands C++ code and provides smart features like code completion, compiler warnings and errors, as well as go-to-definition and find-references capabilities.
 The C++ refactoring features can be found within clangd under the `tweaks` folder.
 
 == Refactorings in clangd <refactor_operations_in_clangd>
 
-// Note Corbat: Was ist ein Refactoring?
-// Note Corbat: Gibt es noch andere Teile, die relevant sein könnten für jemanden der ein Refactoring implementiert?
+// COR Gibt es noch andere Teile, die relevant sein könnten für jemanden der ein Refactoring implementiert?
 Each refactoring operation within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
 
 The LLVM project is quite big and it took a while to figure out how it is structured.
 For refactoring features, classes can be created in `llvm-project/clang-tools-extra/clangd/refactor/tweaks`.
 
 Looking at the existing refactoring features no feature could be found specific to concepts.
+// COR Some? Only rename? Example to show it?
 Some basic ones like symbol rename already work for them.
 As concepts were introduced with C++20 it is quite new to the world of C++ and therefore not much of support exists yet.
 
@@ -324,9 +340,11 @@ To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`
 
 === Code Actions
 
+// COR [linker] really? No registration elsewhere?
+// Sounds like the job of the REGISTER_TWEK macro
 All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered through the linker. 
 These compact plugins inherit the tweak class which acts as an interface base.
-// TODO: Das liesse sich schön visualisieren.
+// COR Das liesse sich schön visualisieren.
 When presented with an AST and a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
 These fundamental components constitute the foundation of the LSP code-actions flow.
 
@@ -384,15 +402,17 @@ For example, in Visual Studio Code the function is triggered as soon as the "Ref
 *```cpp Expected<Tweak::Effect> apply(const Selection &Inputs)```:* \
 Within the `apply` function the actual refactoring is taking place.
 The function is triggered as soon as the refactoring tweak has ben selected.
-// Kommentar Jeremy: Erkläre wieso, zb dass mer privati variable initialized.
+// JEREMY Erkläre wieso, zb dass mer privati variable initialized.
 It is expected that the `prepare` function has been called before to ensure that the second part of the action is working without problems.
 
 It returns the effect which should be applied on the client side.
 
 == Abstract Syntax Tree (AST) <ast_analysis>
 
-The Abstract Syntax Tree, short AST, is a syntax tree representing the abstract syntactic structure of a text.
+The Abstract Syntax Tree, short AST, is a syntax tree representing the abstract syntactic structure of a source code.
+// COR [tree-like] Typically, it is a tree data structure.
 It represents the syntactic structure of source code written in a programming language, capturing its grammar and organization in a tree-like form.
+// COR [manipulate] manipulation typically does not happen directly on the AST.
 It provides a structured way to analyze and manipulate code, making it easier for tools like code analyzers, code editors, and IDEs to understand and work with the code. @ast_twilio
 
 The tree underpinning the AST is a structure consisting of a root node, which is the starting node on top of the tree, which then points to other values and these values to others as well.
@@ -404,6 +424,7 @@ The relationship within the tree can be described by using names like 'parent no
 To illustrate how source code gets mapped to an AST we can look at an example.
 @fact_function shows a simple function that calculates the factorial of n along with a possible AST for it.
 
+// COR Why are all nodes labelled "other value"?
 #figure(
   image("../drawio/ast_structure.drawio.png", width: 50%),
   caption: [
@@ -438,6 +459,9 @@ To illustrate how source code gets mapped to an AST we can look at an example.
 The most common use for ASTs are with compilers.
 For a compiler to transform source code into compiled code, three steps are needed.
 
+// COR Analysis of the semantics?
+// - Type checks
+// - Symbol resolution
 + *Lexical Analysis* - Convert code into set of tokens describing the different parts of the code. 
 + *Syntax Analysis* - Convert tokens into a tree that represents the actual structure of the code.
 + *Code Generation* - Generate code out of the abstract syntax tree.
@@ -500,6 +524,7 @@ For a function for example it would be the `function declaration` @clang_functio
 When the code has errors the AST can only be built if the toplevel declaration is found.
 For a function this means, that the function name has to be present but other than that it can have errors within the code.
 
+// COR How does clang support getting from AST-changes to code changes?
 @ast_dump_possibilities shows in which cases the AST can or can not be built.
 
 #figure(
@@ -584,8 +609,10 @@ They allow puttign constraints on template parameters, which are evaluated at co
 This allows developers to restrict template parameters in a new convenient way.
 For this the keywords `requires` @keyword_requires and `concept` @keyword_concept were added to give some language support. @concepts
 
+// COR ??? Do you mean std::enable_if?
 Before C++20 `constexpr` and `if constexpr` were used for such restrictions, more about these can be found in the C++ stories @if_const_expr.
 
+// COR Analyse der Möglichkeiten der requires-Cause hätte noch etwas ausführlicher sein können.
 / Usage of the `requires` keyword : #[
   The `requires` keyword can be used either before the function declaration or between the function declaration and the function body as illustrated in @requires_keyword_usage.
   The requirements can also contain disjunctions (`||`) and/or conjunctions (`&&`) to restrict the parameter types even more.
@@ -597,6 +624,8 @@ Before C++20 `constexpr` and `if constexpr` were used for such restrictions, mor
   An example for a concept declaration can be found in @concept_decleration_example.
 ]
 
+// COR Why is that?
+// COR CONDITION kann requires enthalten, welches viele weitere Konstrukte erlaubt.
 #v(1cm)
 
 #figure(
