@@ -50,11 +50,16 @@ Finally, the usage of the refactoring is shown in @first_refactoring_usage.
 
 #pagebreak()
 == Analysis <first_refactoring_analysis>
+// COR Preconditions? => Vina: Find au schad das mer die usegrüert hend, ich find s isch ned s gliiche wie d limitations
+// COR [captured] Was bedeutet "captured"?
 The analysis will look at which elements need to be captured (@first_refactoring_captured_elements) and how the refactoring transforms the AST (@first_refactoring_ast_analysis).
 
 === Captured Elements <first_refactoring_captured_elements>
 @first_refactoring_captured_elements_figure shows the captured elements and their purpose.
 A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.
+
+// COR st die Lifetime garantiert von einem Schritt zu anderen? Sprich ist es sicher derselbe AST?
+// COR Diese Info ist eigentlich mehr Implementation als Analyse.
 
 #figure(
   tablex(
@@ -134,10 +139,13 @@ After the examination, it was concluded that `ConceptSpecialization` nodes can b
 
 #pagebreak()
 == Implementation <first_refactoring_implementation>
+// COR [how to traverse the AST] Wie funktioniert das? Clang-AST Analyse?
 The implementation process was relatively straightforward, particularly after determining how to traverse the AST.
+// COR Sehr allgemein beschrieben. Allenfalls wären die Typhierarchien der Knoten noch spannend.
 However, there were challenges in discovering certain methods, as some were global and others necessitated casting.
 During this phase, referencing existing refactorings provided significant assistance.
 
+// COR Hier könnte eine Grafik helfen, mit den relevanten Tokens und den zugehörigen AST-Knoten.
 The biggest hurdle of this refactoring was the `requires` keyword itself,
 which was quite hard to track down as it is not part of the AST itself.
 To figure out where exactly it is located in the source code it was necessary to resort to the token representation of the source range.
@@ -190,6 +198,10 @@ but a decision was made to exclude this possibility due to time constraints and 
 If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
 The complexity associated with managing this particular case is considerable, while the potential use case is minimal.
 As a result, a decision was made not to incorporate this capability.
+
+// COR Wie würde der Code nach dem Refactoring aussehen, wenn erfolgreich?
+// COR Was wenn foo<T> kein concept ist? Könnte ein Variablen Template sein. Es nicht zu transformieren wäre korrekt, da es nicht in der Template-Deklaration verwendet werden kann.
+
 #figure(
   ```cpp
   template <typename T>
