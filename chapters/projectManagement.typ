@@ -15,12 +15,16 @@ Finally, @time-tracking provides a summarized overview of the allocated working 
 To discuss the ongoing process a weekly meeting with the advisor was held where it was discussed what work has been done and what is planned for the next week.
 Receiving a feedback of the ongoing development is quite important as the direction we are going towards can be assessed and adjusted in just a week.
 
+// COR Eingesetzte Tools, wozu?
+// Allenfalls noch erklären, weshalb keine (eigene) CI/CD-Infrastrutkur zum Einsatz kam, was sonst üblich wäre.
 The development is managed using GitHub as described in @development_process.
 For better overview on what is already done, pull requests are used to review each others changes.
 This same method is also used for writing the documentation which allows tracking all changes easily.
 
 The project is split into three main steps.
 
+// COR Hier gäbe es äquivalente RUP-Phasen (Inception, Elaboration, Construction.
+// Transition ist mit den PRs auch schon angefangen.
 / Project Setup : #[
   Before implementing a project, a setup needs to be in place, therefore some research needed to be done to figure out what is needed to build the LLVM project and clangd specifically.
   The setup needed to work on Linux and Windows as both systems were used for this project.
@@ -49,6 +53,7 @@ All implementation work should be completed two weeks before the deadline to ens
 @project-plan-figure shows the project plan (on top, in lighter hue) compared to the actual progress made (on the bottom, in darker hue).
 There is almost no deviation from the plan, except for the first refactoring, which was implemented faster than expected, and the documentation, where the abstract and management summary were written before the refinement phase, because of the earlier submission date.
 
+// COR Warum hat der Plan 15 Wochen?
 #[
 #show figure: set block(width: 100%)
 #figure([
@@ -186,10 +191,12 @@ There is almost no deviation from the plan, except for the first refactoring, wh
 To monitor the working hours effectively, a Google Sheet was established where information about the time spent was meticulously recorded.
 Each record contains a date, the amount of time spent, name of executor, task category and a brief comment detailing the specific work performed during that time.
 
+// COR Falls ihr es noch aufschlüsseln könnt, wäre eine Aufteilung auf Personen noch üblich.
 The summary in @time-tracking-report shows the total time spent on each category per week.
 Most of the time spent was invested into the documentation and implementation.
 @time-spent-per-category shows the time spent per category in percentage.
 
+// COR Allenfalls noch eine Diagramm für die Wochen.
 // TODO: update image
 #figure(
   image("../images/time_tracking_report.png"),
