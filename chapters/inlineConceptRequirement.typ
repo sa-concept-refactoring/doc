@@ -19,30 +19,28 @@ Finally, the usage of the refactoring is shown in @first_refactoring_usage.
     [*Before*], [*After*],
     ```cpp
     template <typename T>
-    void f(T) requires foo<T> {}
+    void f(T) requires foo<T>
     ```,
     ```cpp
     template <foo T>
-    void f(T) {}
+    void f(T)
     ``` ,
     ```cpp
     template <typename T>
     requires foo<T>
-    // COR [void f(T)] Missing Body. Do you need them at all? You could just make the declarations terminated by ; 
-    // Or leave that out as in the examples in Table 8
     void f(T) 
     ```,
     ```cpp
     template <foo T>
-    void f(T) {}
+    void f(T)
     ```,
     ```cpp
     template <typename T>
-    void f() requires std::integral<T> {}
+    void f() requires std::integral<T>
     ```,
     ```cpp
     template <std::integral T> 
-    void f() {}
+    void f()
     ```,
   ),
   caption: [ Capabilities of the "#refactoring_name" refactoring ],
