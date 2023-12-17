@@ -117,6 +117,7 @@ This is only the case if the `auto` parameters are in the same order as their or
 For example the two methods in @call_site_differences result in two different signatures.
 When calling these methods with ```cpp foo<int, float>(1.0, 2)``` only the version on the left would compile,
 as the parameter types would be `int` for `param1` and `float` for `param2`.
+// COR [parameter] parameters? param1 und param2? Arugments?
 The second version would be the opposite, `int` for `param1` and `float` for `param2`, which then breaks the call as the parameter types do not match.
 
 #figure(
@@ -139,11 +140,14 @@ The second version would be the opposite, `int` for `param1` and `float` for `pa
   caption: [Example to illustrate call site differences of auto parameters],
 ) <call_site_differences>
 
+// COR Andere Einschränkungen?
+
 #pagebreak()
 === Abstract Syntax Tree <second_refactoring_ast>
 As can be seen in @second_refactoring_ast_figure, the AST transformation of this refactoring is very minimal.
 The only change is that the explicit type parameter name is replaced with a generated one.
 
+// COR What is missing?
 It is interesting to see how abstract the abstract syntax tree really is in this case.
 It does not reflect the source code as closely as in @inline_concept_requirement (@first_refactoring_ast_analysis).
 

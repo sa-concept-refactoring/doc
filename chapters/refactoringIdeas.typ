@@ -1,4 +1,5 @@
 = Refactoring Ideas <refactoring_ideas>
+// COR Per se wäre es wohl spannend gewesen alle Ideen zu beschreiben, auch wenn sie keine Refactorings sind oder nicht umsetzbar sind.
 In this section ideas for potential refactoring operations are explored.
 This serves as the foundation for deciding which features to implement.
 A total of two ideas are described.
@@ -13,7 +14,10 @@ The second idea, described in @idea_extraction, came up during experimentation w
 A refactoring could be provided to transform a function template using constraints between alternate forms.
 @transformation_idea_listing shows different variations of a function template.
 They all result in an identical function signature.
+// COR [They all result in an identical function signature]
+// Ich glaube das ist nicht ganz korrekt. Können irgendwelche Kombinationen davon koexistieren?
 
+// COR Gute Motivation
 The benefit of this is in many cases a more readable function declaration.
 For more readable code some developers prefer to remove unnecessary code like the `requires` keyword.
 The versions on the left in @transformation_idea_listing show how the code looks like without the keyword resulting in the same logic.
@@ -61,6 +65,7 @@ Sometimes more than one constraint is used in a ```cpp requires``` clause.
 This is expressed by `||` and `&&` operators.
 The proposed refactoring would offer to extract these logical combinations into a new named concept.
 
+// COR Aber keine Einschränkung des Refactorings an sich.
 One possible hurdle for this refactoring could be that there is no way to trigger a rename of the newly created concept.
 This seems to be a limitation of the language server protocol @lsp_issue_724 @lsp_issue_764.
 
