@@ -1,23 +1,24 @@
 = Development Process <development_process>
 
-Within this section it is explained how the working environment was setup and what tools were used for development.
-@workflow documents how the work process looked like. 
-In @setup it is described how the project was setup for Windows and Linux.
+Within this section, it is explained how the working environment was setup and what tools were used for development.
+@workflow documents what the work process looked like. 
+In @setup, it is described how the project was setup for Windows and Linux.
 
 == Workflow <workflow>
 
-As the LLVM project which the new refactoring features should be contributed to, is on GitHub it was decided to also work using GitHub.
-As on GitHub was an already existing pipeline from the original LLVM project it self the decision came rather quick as otherwise there could have popped up a lot of different problems and issues.
-The LLVM project was then forked into a public repository @llvm_fork_github where for each refactoring feature a separate branch was created.
+As the LLVM project, to which the new refactoring features should be contributed, is on GitHub, it was decided to also work using GitHub.
 
-Two different systems where used for development (Windows and Linux) but the IDEs used where the same on both systems.
-To be able to use the local build of the clangd language server a simple settings.json file can be added to VS Code.
-More details about the this setup can be found in @setup.
+As on GitHub was already an existing pipeline from the original LLVM project itself, the decision came rather quickly, as otherwise there could have popped up a lot of different problems and issues.
+The LLVM project was then forked into a public repository @llvm_fork_github, where for each refactoring feature, a separate branch was created.
 
-For testing the local build a test project was created containing the different versions of function templates and concepts.
-These code pieces could than be used to test the refactoring implementations using VS Code.
+Two different systems were used for development (Windows and Linux), but the IDEs used were the same on both systems.
+To be able to use the local build of the clangd language server, a simple settings.json file can be added to VS Code.
+More details about this setup can be found in @setup.
 
-After the implementation of a refactoring feature was finished a pull request to the LLVM project was created.
+For testing the local build, a test project was created containing the different versions of function templates and concepts.
+These code pieces could then be used to test the refactoring implementations using VS Code.
+
+After the implementation of a refactoring feature was finished, a pull request to the LLVM project was created.
 
 @project_organisation_diagram illustrates how the different tools and setups work together.
 
@@ -30,8 +31,8 @@ After the implementation of a refactoring feature was finished a pull request to
 
 
 == Setup <setup>
-To build clangd, CLion was used as an IDE since it has great support for CMake as well as very good autocomplete, search and debugging capabilities.
-VS Code with the clangd extension @clangd_extension and CMake extension @cmake_extension was then configured to use the locally built language server using the `clangd.path` setting as shown in @settings_json.
+To build clangd, CLion was used as an IDE since it has great support for CMake as well as very good autocomplete, search, and debugging capabilities.
+VS Code with the clangd extension @clangd_extension and the CMake extension @cmake_extension was then configured to use the locally built language server using the `clangd.path` setting as shown in @settings_json.
 
 #figure(
   ```cpp
