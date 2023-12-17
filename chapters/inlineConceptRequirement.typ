@@ -28,7 +28,9 @@ Finally, the usage of the refactoring is shown in @first_refactoring_usage.
     ```cpp
     template <typename T>
     requires foo<T>
-    void f(T)
+    // COR [void f(T)] Missing Body. Do you need them at all? You could just make the declarations terminated by ; 
+    // Or leave that out as in the examples in Table 8
+    void f(T) 
     ```,
     ```cpp
     template <foo T>
