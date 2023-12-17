@@ -58,17 +58,17 @@ For building clangd using CLion the following steps were executed.
 + Choose "clangd" in target selector and start building
 
 After the clangd build is completed the language server within VS Code needs to be restarted to use the current build.
-This can be done by pressing Ctrl. + p : `>Restart language Server`
+This can be done by pressing Ctrl + p : `>Restart language Server`
 
 _Note:_ When using Windows, clangd.exe should not be in use to build clangd successfully.
 In this example this applies to VS Code when the language server has started.
 
 === Windows
 
-On Windows the project was build using ninja and Visual Studio.
+On Windows the project was built using ninja and Visual Studio.
 The hardware used was a Intel® Core™ i7-10510U CPU with 16 gigabytes of system memory.
 
-The Visual Studio was installed with the listed components.
+Visual Studio was installed with the following components.
 - C++ ATL for latest v143 build tools
 - Security Issue Analysis
 - C++ Build Insights
