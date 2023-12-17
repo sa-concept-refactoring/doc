@@ -60,10 +60,10 @@ Ideally, new refactorings should be submitted upstream as a pull request to clan
 This is done to support the C++ community as well as helping the LLVM project grow.
 
 In addition to this, research will also be carried out to determine how the clangd language server is communicating with the development tools.
-This also includes documenting the basic knowledge needed to understand the analysis of it.
+This also includes documenting the basic knowledge needed to understand it.
 
 For the implementation itself, it needs to be clear where the code needs to be added, how it should be tested, what the coding guidelines are, and how it can be contributed.
-Each implemented refactoring feature should be documented for how it can be used and how it transforms the code. 
+Each implemented refactoring feature should be documented, including is usage and how it transforms the source code. 
 
 
 == Structure of This Report
