@@ -51,18 +51,19 @@ It would make development much more convenient and make the developer aware of o
 
 == Project Goal
 This section describes the goals of this project according to the task assignment @assignment.
-Additionally parts were added to give the project more structure as this project is more explorative than usual.
+Additionally, parts were added to give the project more structure, as this project is more explorative than usual.
 
-The goal of this semester project is to come up with new ideas for refactor operations specific to parameter type constraints and to implement some of them.
-Ideally, they should be submitted upstream as a pull request to clangd.
-This is done to support the C++ community while coding as well as helping the LLVM project to grow.
+The goal of this semester project is to come up with new ideas for refactoring operations specific to parameter type constraints and to implement some of them.
+It should be checked if currently existing refactorings can be applied to concepts.
+This may already be implemented in the currently available tooling.
+Ideally, new refactorings should be submitted upstream as a pull request to clangd.
+This is done to support the C++ community while coding as well as helping the LLVM project grow.
 
 In addition to this, research will also be carried out to determine how the clangd language server is communicating with the development tools.
-This also includes documenting basic knowledge needed to understand the analysis of it.
+This also includes documenting the basic knowledge needed to understand the analysis of it.
 
-For the implementation itself it needs to be clear where the code needs to be added, how it should be tested, what the coding guidelines are and how it can be contributed.
-When a feature is completed it needs to be documented so it
-Each implemented refactoring feature should be documented on how it can be used and how it transforms the code. 
+For the implementation itself, it needs to be clear where the code needs to be added, how it should be tested, what the coding guidelines are, and how it can be contributed.
+Each implemented refactoring feature should be documented for how it can be used and how it transforms the code. 
 
 
 == Structure of This Report
