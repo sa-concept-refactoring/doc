@@ -8,7 +8,7 @@ In @setup, it is described how the project was setup for Windows and Linux.
 
 As the LLVM project, to which the new refactoring features should be contributed, is on GitHub, it was decided to also work using GitHub.
 
-As on GitHub was already an existing pipeline from the original LLVM project itself, the decision came rather quickly, as otherwise there could have popped up a lot of different problems and issues.
+The LLVM project already had workflows set up on GitHub, so the decision was made to re-use them.
 The LLVM project was then forked into a public repository @llvm_fork_github, where for each refactoring feature, a separate branch was created.
 
 Two different systems were used for development (Windows and Linux), but the IDEs used were the same on both systems.
