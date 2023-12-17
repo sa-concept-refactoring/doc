@@ -57,7 +57,7 @@ The goal of this semester project is to come up with new ideas for refactoring o
 It should be checked if currently existing refactorings can be applied to concepts.
 This may already be implemented in the currently available tooling.
 Ideally, new refactorings should be submitted upstream as a pull request to clangd.
-This is done to support the C++ community while coding as well as helping the LLVM project grow.
+This is done to support the C++ community as well as helping the LLVM project grow.
 
 In addition to this, research will also be carried out to determine how the clangd language server is communicating with the development tools.
 This also includes documenting the basic knowledge needed to understand the analysis of it.
