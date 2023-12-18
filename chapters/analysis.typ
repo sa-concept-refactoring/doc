@@ -8,13 +8,6 @@
   text(white, weight: "bold", body)
 )
 
-// - Beschreibung des System-Kontexts
-// - Funktionale und nicht-Funktionale Anforderungen
-// - Use Cases/Scenarios/User Storys
-// - Bestehende Infrastruktur
-// - Abhängig vom Projekt: Risikoanalyse
-// - Beschreibung (externen) existierenden Schnittstellen
-
 = Analysis <analysis>
 
 This section documents the research and analysis of various processes and constructs.
