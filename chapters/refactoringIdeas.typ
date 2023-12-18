@@ -14,7 +14,8 @@ The second idea, described in @idea_extraction, came up during experimentation w
 == Requirement Transformation <idea_requirement_transformation>
 A refactoring could be provided to transform a function template using constraints between alternate forms.
 @transformation_idea_listing shows different variations of a function template.
-They all result in an identical function signature.
+They all result in an identical function signature after instantiation and thus cannot co-exist.
+This was verified using gcc and clangd.
 
 The benefit of this is in many cases a more readable function declaration.
 For more readable code some developers prefer to remove unnecessary code like the `requires` keyword.
