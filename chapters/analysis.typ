@@ -397,7 +397,7 @@ As this function should be fast only non-trivial work should be done within.
 If the action requires non-trivial work it should be moved to the `apply` function.
 During this phase a refactoring can also set member variables that `apply` is going to use afterwards.
 
-For example, in Visual Studio Code the function is triggered as soon as the "Refactoring" option is used.
+For example, in VS Code the function is triggered as soon as the "Refactoring" option is used.
 However, LSP clients can choose to call the prepare function whenever they want.
 
 *```cpp Expected<Tweak::Effect> apply(const Selection &Inputs)```:* \
