@@ -207,7 +207,7 @@ This number is an important point of reference to see if the refactoring applies
 - #[
   If there are *more than two references*, it means that there are either two function parameters with the same type
   or there is at least one usage outside of function parameters (for example the body of the function).
-  In both cases, the refactoring cannot apply, since replacing both usages with `auto` would result in two template parameters where there used to be just one, thus changing the function signature.
+  In both cases the refactoring cannot apply, since replacing both usages with `auto` would result in two template parameters where there used to be just one, thus changing the function signature.
 ]
 
 // COR Was ist nun mit Funktionen und Arrays?
