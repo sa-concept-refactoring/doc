@@ -24,28 +24,29 @@ Finally, C++ concepts are examined in @cpp_concepts.
 == Refactoring <refactoring_explanation>
 
 When applying a refactoring, the external behavior needs to stay the same as before the refactoring was applied @refactoring_martin_fowler.
-To ensure that a refactoring does not affect the behavior and is not introducing new bugs, tests should be written before a refactoring is applied. 
-Refactoring code is a very important step while developing to improve code readability and to reduce complexities. @refactoring
+To ensure that a refactoring does not affect the behavior and does not introduce new bugs, tests should be written before a refactoring is applied. 
+Refactoring code is a very important step while developing to improve code readability and reduce complexities. @refactoring
 
-Many IDEs offer refactoring features to help the developers to keep their code in a good shape.
-To offer refactorings the offered feature needs to be tested well to ensure that the external behavior stays the same.
-In a lot of cases automated tests are used to do so.
-Even if all tests succeed, one would theoretically still be required to proof that the expected result has the same behavior as the test input,
+Many IDEs offer refactoring features to help the developers keep their code in good shape.
+To offer refactorings, the provided feature needs to be tested well to ensure that the external behavior stays the same.
+In a lot of cases, automated tests are used to do so.
+Even if all tests succeed, one would theoretically still be required to prove that the expected result has the same behavior as the test input,
 however, due to these tests being very concise, their correctness can typically be verified through a quick inspection.
 The testing of refactorings in clangd is explored in more detail in @testing. 
 
 Different refactorings vary in complexity.
-For example renaming of a local variable, typically, has limited potential for unexpected side-effects.
-In most cases it is sufficient to check whether the new name already exists in the affected scope.
-The "Abbreviate Function Template" refactoring (@abbreviate_function_template), on the other hand, could have surprising side-effects, in which cases it must not be applied.
-It also should be considered that in some cases not the whole code can be analyzed or the is not available.
+For example, renaming a local variable typically has limited potential for unexpected side-effects.
+In most cases, it is sufficient to check whether the new name already exists in the affected scope.
+The "Abbreviate Function Template" refactoring (@abbreviate_function_template), on the other hand, could have surprising side-effects,
+in which case it must not be applied.
+It also should be considered that in some cases, not the whole code can be analyzed or is not even available.
 
 // COR Zusätzliche Schwierigkeit in C++: Präprozessor, womit quasi fast jeder Name umdefiniert werden kann. 
 // VINA No idea how to document this...
-In @refactoring_bad_example an example of a bad refactoring is shown.
+In @refactoring_bad_example an example of bad refactoring is shown.
 A function is defined with the template type parameters `T` and `U` and the function parameters `p1` and `p2`, which use the template type parameters in reverse order.
-If a refactoring, for example one which converts the functions to their abbreviated form using `auto` parameters, would blindly use `auto` for all function parameter types, it would result in a different function signature.
-The compiler will then throw an error at the call-site, because the function call is no longer valid.
+If a refactoring, for example, converts the functions to their abbreviated form using `auto` parameters and blindly uses `auto` for all function parameter types, it would result in a different function signature.
+The compiler will then throw an error at the call-site because the function call is no longer valid.
 In fact, this change should not be considered a refactoring, as the external behavior changed.
 Therefore, it is more accurately described as code transformation.
 
