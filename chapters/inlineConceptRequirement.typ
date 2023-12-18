@@ -120,7 +120,7 @@ After the examination, it was concluded that `ConceptSpecialization` nodes can b
     template<typename T>
     void bar(T a) requires Foo<T> {
       a.abc();
-    },
+    }
     ```,
     [],
     ```cpp

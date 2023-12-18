@@ -211,6 +211,7 @@ This number is an important point of reference to see if the refactoring applies
   In both cases, the refactoring cannot apply. // TODO: Why?
 ]
 
+// COR Was ist nun mit Funktionen und Arrays?
 As a next step, the function parameters are iterated over to verify that each template parameter type occurs as a function parameter and that the order is the same.
 In addition, the type qualifiers are extracted, which consist of reference kind, constness, and pointer type.
 
@@ -238,6 +239,7 @@ Some of them are given by the language or compiler and some are intentional, bec
 === Templated Function Parameters
 If a function parameter is a templated parameter like ```cpp std::vector<T>``` the refactoring cannot apply.
 // TODO: Ask Corbat if he knows why. I could not find the source of the error message.
+// COR [parameter] Argument
 The reason for this is that `auto` cannot be used as a template parameter.
 
 #figure(
@@ -250,11 +252,13 @@ The reason for this is that `auto` cannot be used as a template parameter.
 
 === Template Arguments Used Multiple Times
 This is an inherit limitation of the refactoring.
+// COR [argument] parameter
 If for example the same template argument is used for multiple function parameters, it means that all of them will have the same type when instantiated.
 Would they be replaced with `auto`, each of them would result in a different type.
 
 This limitation also applies if the template argument is used anywhere else.
 This includes the return type and the body of the function.
+// COR [always] Also sollte möglich sein ein Gegenbeispiel zu finden. Ich würde sagen "likely". Es muss nicht unbedingt nur das Verhalten sein, es könnte auch den Code semantisch inkorrekt machen.
 Replacing one template parameter with multiple `auto` keywords always breaks the behavior of the function.
 
 #figure(
