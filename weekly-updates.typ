@@ -5,7 +5,7 @@
   margin: (top: 50pt, bottom: 50pt),
   header: [
     #set text(10pt)
-    #smallcaps[SA-C++ Concept Refactorings]
+    #smallcaps[SA — C++ Concept Refactorings]
     #h(1fr) Jeremy Stucki, Vina Zahnd
   ],
 )
