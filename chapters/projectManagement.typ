@@ -191,34 +191,25 @@ There is almost no deviation from the plan, except for the first refactoring, wh
 To monitor the working hours effectively, a Google Sheet was established where information about the time spent was meticulously recorded.
 Each record contains a date, the amount of time spent, name of executor, task category and a brief comment detailing the specific work performed during that time.
 
-The summary in @time-tracking-report shows the total time spent on each category per week.
-@time-tracking-report-diagram shows the share of each category per week.
+The summary in @time-tracking-report shows the total time spent on each category per project week.
+@time-invested-per-category shows the share of time invested per category.
 Most of the time spent was invested into the documentation and implementation, with the former being the main focus at the end of the project.
 
-@time-spent-per-person-and-category show the time spent by each project author per category.
+@time-invested-per-person show the time spent by each project author.
 Both authors contributed a similar amount to both documentation and implementation.
 
 #figure(
-  image("../images/time_tracking_report.png"),
+  image("../images/time_invested_per_category_and_project_week.svg"),
   kind: table,
-  caption: [
-    Time spent per week and category
-  ],
+  caption: "Time invested per category and project week",
 ) <time-tracking-report>
 
 #figure(
-  // 'Diagrams' unde links uf Google Sheets
-  text("TODO"),
-
-  caption: [
-    Time spent per week and category
-  ],
-) <time-tracking-report-diagram>
+  image("../images/time_invested_per_category.svg", width: 80%),
+  caption: "Time invested per category",
+) <time-invested-per-category>
 
 #figure(
-  // 'Hours per Category per Person' uf Google Sheets
-  text("TODO"),
-  caption: [
-    Time spent per category and person
-  ]
-) <time-spent-per-person-and-category>
+  image("../images/time_invested_per_person.svg", width: 80%),
+  caption: "Time invested per person",
+) <time-invested-per-person>
