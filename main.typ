@@ -116,6 +116,19 @@ It also contains the final version of the code written during this project (@sou
 == Personal Report — Vina Zahnd <report_vina>
 #include "chapters/personalReportVina.typ"
 
+== Assignment <assignment>
+
+// TODO use assignment with signature for print version (!do not upload to github)
+#figure(
+  image("attachments/assignment_without_signature/assignment_without_signature_1.svg"),
+)
+#figure(
+  image("attachments/assignment_without_signature/assignment_without_signature_2.svg"),
+)
+#figure(
+  image("attachments/assignment_without_signature/assignment_without_signature_3.svg"),
+)
+
 == Source Code <source_code>
 #outline(
   title: none,
@@ -147,11 +160,3 @@ It also contains the final version of the code written during this project (@sou
 
 // #showSourceFile("Test Project", "test-project-source-code/InlineConceptRequirement.cxx")
 // #showSourceFile("Test Project", "test-project-source-code/AbbreviateFunctionTemplate.cxx")
-
-// - Relevante Anhänge
-// - Meeting Protokolle
-// - Vereinbarungen
-// - (SA/BA): Persönliche Berichte (0.5-1 Seite)
-// - Entwicklerdokumentation
-// - User Dokumentation
-// - Sonstige Protokolle (z.B. von Usability Tests)
