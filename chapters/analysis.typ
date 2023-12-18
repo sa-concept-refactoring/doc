@@ -395,17 +395,16 @@ Within the `prepare` function a check is performed to see if a refactoring is po
 The function is returning a boolean indicating whether the action is available and should be shown to the user.
 As this function should be fast only non-trivial work should be done within.
 If the action requires non-trivial work it should be moved to the `apply` function.
+During this phase a refactoring can also set member variables that `apply` is going to use afterwards.
 
-// TODO check if this is correct
-For example, in Visual Studio Code the function is triggered as soon as the "Refactoring" option is used.
+For example, in VS Code the function is triggered as soon as the "Refactoring" option is used.
+However, LSP clients can choose to call the prepare function whenever they want.
 
 *```cpp Expected<Tweak::Effect> apply(const Selection &Inputs)```:* \
 Within the `apply` function the actual refactoring is taking place.
 The function is triggered as soon as the refactoring tweak has ben selected.
-// JEREMY Erkläre wieso, zb dass mer privati variable initialized.
-It is expected that the `prepare` function has been called before to ensure that the second part of the action is working without problems.
-
-It returns the effect which should be applied on the client side.
+It is guaranteed that the `prepare` function has been called before, so the member variables it prepared can be used.
+It returns the edits which should be applied on the client side.
 
 == Abstract Syntax Tree (AST) <ast_analysis>
 
