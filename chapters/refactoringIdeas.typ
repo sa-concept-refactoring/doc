@@ -20,7 +20,7 @@ They all result in an identical function signature.
 // COR Gute Motivation
 The benefit of this is in many cases a more readable function declaration.
 For more readable code some developers prefer to remove unnecessary code like the `requires` keyword.
-The versions on the left in @transformation_idea_listing show how the code looks like without the keyword resulting in the same logic.
+The versions on the left in @transformation_idea_listing shows how the code looks like without the keyword resulting in the same logic.
 The potential refactoring would therefore focus on the removal of the `requires` clause.
 
 This idea was inspired by the constraints and concept reference @constraints_and_concepts since it lists all these forms in its first code snippet.
