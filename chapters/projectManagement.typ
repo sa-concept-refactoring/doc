@@ -195,7 +195,7 @@ The summary in @time-tracking-report shows the total time spent on each category
 @time-invested-per-category shows the share of time invested per category.
 Most of the time spent was invested into the documentation and implementation, with the former being the main focus at the end of the project.
 
-@time-invested-per-person show the time spent by each project author.
+@time-invested-per-person shows the time spent by each project author.
 Both authors contributed a similar amount to both documentation and implementation.
 
 #figure(
