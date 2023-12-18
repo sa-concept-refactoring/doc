@@ -53,12 +53,11 @@ All implementation work should be completed two weeks before the deadline to ens
 @project-plan-figure shows the project plan (on top, in lighter hue) compared to the actual progress made (on the bottom, in darker hue).
 There is almost no deviation from the plan, except for the first refactoring, which was implemented faster than expected, and the documentation, where the abstract and management summary were written before the refinement phase, because of the earlier submission date.
 
-// COR Warum hat der Plan 15 Wochen?
 #[
 #show figure: set block(width: 100%)
 #figure([
 
-#let numberOfWeeks = 15
+#let numberOfWeeks = 14
 
 #let epic(
   title: none,
@@ -116,7 +115,7 @@ There is almost no deviation from the plan, except for the first refactoring, wh
   foregroundColor: white,
   (
     (2, "Setup"),
-    (8, "Ongoing documentation"),
+    (7, "Ongoing documentation"),
     (2, "Refinement"),
     (2, [Abstract & MS #footnote[Management Summary]<MS>]),
     (1, "Final"),
@@ -128,7 +127,7 @@ There is almost no deviation from the plan, except for the first refactoring, wh
   foregroundColor: white,
   (
     (2, "Setup"),
-    (8, "Ongoing documentation"),
+    (7, "Ongoing documentation"),
     (2, [Abstract & MS @MS]),
     (2, "Refinement"),
     (1, "Final"),
@@ -143,7 +142,7 @@ There is almost no deviation from the plan, except for the first refactoring, wh
   (
     (2, "Analysis"),
     (3, "Implementation"),
-    (3, "Refinement & Pull Request"),
+    (2, [Refinement & PR #footnote[Pull Request]<PR>]),
   ),
 )
 #epic(
@@ -152,8 +151,8 @@ There is almost no deviation from the plan, except for the first refactoring, wh
   foregroundColor: white,
   (
     (1, "Analysis"),
-    (2, "Implementation"),
-    (3, "Refinement & Pull Request"),
+    (3, "Implementation"),
+    (2, [Refinement & PR @PR]),
   ),
 )
 
@@ -165,7 +164,7 @@ There is almost no deviation from the plan, except for the first refactoring, wh
   (
     (2, "Analysis"),
     (3, "Implementation"),
-    (3, "Refinement & Pull Request"),
+    (2, [Refinement & PR @PR]),
   ),
 )
 #epic(
@@ -175,12 +174,12 @@ There is almost no deviation from the plan, except for the first refactoring, wh
   (
     (1, "Analysis"),
     (4, "Implementation"),
-    (3, "Refinement & Pull Request"),
+    (2, [Refinement & PR @PR]),
   ),
 )
 
-#v(0.6cm)
-], caption: "Project Plan") <project-plan-figure>
+#v(1cm)
+], caption: "Project plan") <project-plan-figure>
 ]
 
 #pagebreak()
