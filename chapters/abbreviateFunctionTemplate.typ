@@ -196,7 +196,7 @@ This number is an important point of reference to see if the refactoring applies
 
 - #[
   If there is *only one reference*, it would mean that the template parameter is declared but never used.
-  In this case, the refactoring cannot apply, since the template parameter would seize to exist, resulting in a different function signature.
+  In this case, the refactoring cannot apply, since the template parameter would cease to exist, resulting in a different function signature.
 ]
 
 - #[
