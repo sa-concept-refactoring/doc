@@ -116,8 +116,7 @@ This is only the case if the `auto` parameters are in the same order as their or
 
 For example the two methods in @call_site_differences result in two different signatures.
 When calling these methods with ```cpp foo<int, float>(1.0, 2)``` only the version on the left would compile,
-as the parameter types would be `int` for `param1` and `float` for `param2`.
-// COR [parameter] parameters? param1 und param2? Arugments?
+as the types of the arguments would be `float` for `param1` and `int` for `param2`.
 The second version would be the opposite, `int` for `param1` and `float` for `param2`, which then breaks the call as the parameter types do not match.
 
 #figure(
