@@ -2,6 +2,8 @@
 #import "progress-bar.typ": printProgressBar
 #import "title-page.typ": luschtig
 
+#let confidential_version = false
+
 #show raw: it => {
   let backgroundColor = luma(0xF0)
   if (it.block) {
@@ -110,24 +112,31 @@ Parts of this paper were rephrased by GPT-3.5.
 In this last section the personal reports from both authors can be found in which they reflect on the project (@report_jeremy and @report_vina).
 It also contains the final version of the code written during this project (@source_code), which includes the implemented refactorings and the test project.
 
+Various other documents can also be found here, such as the assignment (@assignment), the declarations of independence (@declaration_of_independence) and the consent for publication (@publication).
+
 == Personal Report — Jeremy Stucki <report_jeremy>
 #include "chapters/personalReportJeremy.typ"
 
 == Personal Report — Vina Zahnd <report_vina>
 #include "chapters/personalReportVina.typ"
 
-== Assignment <assignment>
+#let attachment_path = if confidential_version {
+  "attachments_confidential/"
+} else {
+  "attachments/"
+}
 
-// TODO use assignment with signature for print version (!do not upload to github)
-#figure(
-  image("attachments/assignment_without_signature/assignment_without_signature_1.svg"),
-)
-#figure(
-  image("attachments/assignment_without_signature/assignment_without_signature_2.svg"),
-)
-#figure(
-  image("attachments/assignment_without_signature/assignment_without_signature_3.svg"),
-)
+== Assignment <assignment>
+#image(attachment_path + "assignment/0.png")
+#image(attachment_path + "assignment/1.png")
+#image(attachment_path + "assignment/2.png")
+
+== Declarations of Independence <declaration_of_independence>
+#image(attachment_path + "declaration_of_independence_🇺🇸_jeremy/0.png")
+#image(attachment_path + "declaration_of_independence_🇺🇸_vina/0.png")
+
+== Consent for Publication <publication>
+#image(attachment_path + "consent_for_publication/0.png")
 
 == Source Code <source_code>
 #outline(
