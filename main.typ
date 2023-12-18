@@ -150,13 +150,14 @@ It also contains the final version of the code written during this project (@sou
 #pagebreak()
 #set page(flipped: true, columns: 2)
 
-// The source files will be added by CI
+#let root = "source-code-first-refactoring/clang-tools-extra/clangd/" 
+#showSourceFile("Inline Concept Requirement Refactoring", root + "refactor/tweaks/InlineConceptRequirement.cpp")
+#showSourceFile("Inline Concept Requirement Refactoring", root + "unittests/tweaks/InlineConceptRequirementTests.cpp")
 
-// #showSourceFile("Inline Concept Requirement Refactoring", "first-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/InlineConceptRequirement.cpp")
-// #showSourceFile("Inline Concept Requirement Refactoring", "first-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/InlineConceptRequirementTests.cpp")
+#let root = "source-code-second-refactoring/clang-tools-extra/clangd/" 
+#showSourceFile("Abbreviate Function Template Refactoring", root + "refactor/tweaks/AbbreviateFunctionTemplate.cpp")
+#showSourceFile("Abbreviate Function Template Refactoring", root + "unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
 
-// #showSourceFile("Abbreviate Function Template Refactoring", "second-refactoring-source-code/clang-tools-extra/clangd/refactor/tweaks/AbbreviateFunctionTemplate.cpp")
-// #showSourceFile("Abbreviate Function Template Refactoring", "second-refactoring-source-code/clang-tools-extra/clangd/unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
-
-// #showSourceFile("Test Project", "test-project-source-code/InlineConceptRequirement.cxx")
-// #showSourceFile("Test Project", "test-project-source-code/AbbreviateFunctionTemplate.cxx")
+#let root = "source-code-test-project/" 
+#showSourceFile("Test Project", root + "InlineConceptRequirement.cxx")
+#showSourceFile("Test Project", root + "AbbreviateFunctionTemplate.cxx")
