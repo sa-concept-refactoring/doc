@@ -191,24 +191,25 @@ There is almost no deviation from the plan, except for the first refactoring, wh
 To monitor the working hours effectively, a Google Sheet was established where information about the time spent was meticulously recorded.
 Each record contains a date, the amount of time spent, name of executor, task category and a brief comment detailing the specific work performed during that time.
 
-// COR Falls ihr es noch aufschlüsseln könnt, wäre eine Aufteilung auf Personen noch üblich.
-The summary in @time-tracking-report shows the total time spent on each category per week.
-Most of the time spent was invested into the documentation and implementation.
-@time-spent-per-category shows the time spent per category in percentage.
+The summary in @time-tracking-report shows the total time spent on each category per project week.
+@time-invested-per-category shows the share of time invested per category.
+Most of the time spent was invested into the documentation and implementation, with the former being the main focus at the end of the project.
 
-// COR Allenfalls noch eine Diagramm für die Wochen.
-// TODO: update image
+@time-invested-per-person shows the time spent by each project author.
+Both authors contributed a similar amount to both documentation and implementation.
+
 #figure(
-  image("../images/time_tracking_report.png"),
+  image("../images/time_invested_per_category_and_project_week.svg"),
   kind: table,
-  caption: [
-    Hours worked per week and category
-  ],
+  caption: "Time invested per category and project week",
 ) <time-tracking-report>
 
 #figure(
-  image("../images/time_spent_per_category.png", width: 90%),
-  caption: [
-    Time spent per category
-  ],
-) <time-spent-per-category>
+  image("../images/time_invested_per_category.svg", width: 80%),
+  caption: "Time invested per category",
+) <time-invested-per-category>
+
+#figure(
+  image("../images/time_invested_per_person.svg", width: 80%),
+  caption: "Time invested per person",
+) <time-invested-per-person>
