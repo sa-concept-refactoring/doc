@@ -25,7 +25,7 @@ After the implementation of a refactoring feature was finished, a pull request t
 #figure(
   image("../drawio/project-organisation.drawio.svg", width: 100%),
   caption: [
-    Diagram showing structure and workflow of the project
+    Diagram showing structure and workflow of the project \ (Logos from @logo_clangd, @logo_clion, @logo_git, @logo_github, @logo_llvm, @logo_vscode)
   ],
 ) <project_organisation_diagram>
 
