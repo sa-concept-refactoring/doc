@@ -190,7 +190,7 @@ There is almost no deviation from the plan, except for the first refactoring, wh
 To monitor the working hours effectively, a Google Sheet was established where information about the time spent was meticulously recorded.
 Each record contains a date, the amount of time spent, name of executor, task category and a brief comment detailing the specific work performed during that time.
 
-The summary in @time-tracking-report shows the total time spent on each category per project week.
+@time-tracking-report-1 and @time-tracking-report-2 show the total time spent on each category per project week.
 @time-invested-per-category shows the share of time invested per category.
 Most of the time spent was invested into the documentation and implementation, with the former being the main focus at the end of the project.
 
@@ -198,10 +198,23 @@ Most of the time spent was invested into the documentation and implementation, w
 Both authors contributed a similar amount to both documentation and implementation.
 
 #figure(
-  image("../images/time_invested_per_category_and_project_week.svg"),
+  // [
+  //   #set align(horizon)
+  //   #set text(size: 0.8em)
+  //   #table(
+  //     columns: 7,
+  //     ..csv("../images/time_tracking.csv").flatten()
+  //   )
+  // ],
+  image("../images/time_invested_per_category_and_project_week.png"),
   kind: table,
   caption: "Time invested per category and project week",
-) <time-tracking-report>
+) <time-tracking-report-1>
+
+#figure(
+  image("../images/time_invested_per_category_and_project_week.svg"),
+  caption: "Time invested per category and project week",
+) <time-tracking-report-2>
 
 #figure(
   image("../images/time_invested_per_category.svg", width: 80%),
