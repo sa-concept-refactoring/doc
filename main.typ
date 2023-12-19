@@ -80,7 +80,7 @@
 #include "chapters/conclusion.typ"
 
 = Disclaimer
-Parts of this paper were rephrased by GPT-3.5.
+Parts of this paper were rephrased by GPT-3.5 and GPT-4.
 
 #include "chapters/glossary.typ"
 
