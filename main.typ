@@ -2,7 +2,7 @@
 #import "progress-bar.typ": printProgressBar
 #import "title-page.typ": luschtig
 
-#let confidential_version = false
+#let version_with_code = true
 
 #show raw: it => {
   let backgroundColor = luma(0xF0)
@@ -110,9 +110,11 @@ Parts of this paper were rephrased by GPT-3.5.
 
 = Appendix
 In this last section the personal reports from both authors can be found in which they reflect on the project (@report_jeremy and @report_vina).
-It also contains the final version of the code written during this project (@source_code), which includes the implemented refactorings and the test project.
+#if version_with_code {[
+  It also contains the final version of the code written during this project (@source_code), which includes the implemented refactorings and the test project.
+]}
 
-Various other documents can also be found here, such as the assignment (@assignment), the declarations of independence (@declaration_of_independence) and the consent for publication (@publication).
+The assignment given can be found in @assignment.
 
 == Personal Report — Jeremy Stucki <report_jeremy>
 #include "chapters/personalReportJeremy.typ"
@@ -120,53 +122,43 @@ Various other documents can also be found here, such as the assignment (@assignm
 == Personal Report — Vina Zahnd <report_vina>
 #include "chapters/personalReportVina.typ"
 
-#let attachment_path = if confidential_version {
-  "attachments_confidential/"
-} else {
-  "attachments/"
-}
-
 == Assignment <assignment>
+#let attachment_path = "attachments/"
 #image(attachment_path + "assignment/0.png")
 #image(attachment_path + "assignment/1.png")
 #image(attachment_path + "assignment/2.png")
 
-== Declarations of Independence <declaration_of_independence>
-#image(attachment_path + "declaration_of_independence_🇺🇸_jeremy/0.png")
-#image(attachment_path + "declaration_of_independence_🇺🇸_vina/0.png")
+#if version_with_code {[
+  == Source Code <source_code>
+  #outline(
+    title: none,
+    target: selector(heading).after(label("source_code_outline"))
+  ) <source_code_outline>
 
-== Consent for Publication <publication>
-#image(attachment_path + "consent_for_publication/0.png")
+  #let showSourceFile(headingPrefix, filePath) = {
+    let fileName = filePath.split("/").last()
+    heading(headingPrefix + " — " + fileName, level: 3, numbering: none)
 
-== Source Code <source_code>
-#outline(
-  title: none,
-  target: selector(heading).after(label("source_code_outline"))
-) <source_code_outline>
+    set text(size: 0.75em)
+    raw(
+      read(filePath),
+      lang: "cpp",
+      block: true,
+    )
+  }
 
-#let showSourceFile(headingPrefix, filePath) = {
-  let fileName = filePath.split("/").last()
-  heading(headingPrefix + " — " + fileName, level: 3, numbering: none)
+  #pagebreak()
+  #set page(flipped: true, columns: 2)
 
-  set text(size: 0.75em)
-  raw(
-    read(filePath),
-    lang: "cpp",
-    block: true,
-  )
-}
+  #let root = "source-code-first-refactoring/clang-tools-extra/clangd/"
+  #showSourceFile("Inline Concept Requirement Refactoring", root + "refactor/tweaks/InlineConceptRequirement.cpp")
+  #showSourceFile("Inline Concept Requirement Refactoring", root + "unittests/tweaks/InlineConceptRequirementTests.cpp")
 
-#pagebreak()
-#set page(flipped: true, columns: 2)
+  #let root = "source-code-second-refactoring/clang-tools-extra/clangd/"
+  #showSourceFile("Abbreviate Function Template Refactoring", root + "refactor/tweaks/AbbreviateFunctionTemplate.cpp")
+  #showSourceFile("Abbreviate Function Template Refactoring", root + "unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
 
-#let root = "source-code-first-refactoring/clang-tools-extra/clangd/" 
-#showSourceFile("Inline Concept Requirement Refactoring", root + "refactor/tweaks/InlineConceptRequirement.cpp")
-#showSourceFile("Inline Concept Requirement Refactoring", root + "unittests/tweaks/InlineConceptRequirementTests.cpp")
-
-#let root = "source-code-second-refactoring/clang-tools-extra/clangd/" 
-#showSourceFile("Abbreviate Function Template Refactoring", root + "refactor/tweaks/AbbreviateFunctionTemplate.cpp")
-#showSourceFile("Abbreviate Function Template Refactoring", root + "unittests/tweaks/AbbreviateFunctionTemplateTests.cpp")
-
-#let root = "source-code-test-project/" 
-#showSourceFile("Test Project", root + "InlineConceptRequirement.cxx")
-#showSourceFile("Test Project", root + "AbbreviateFunctionTemplate.cxx")
+  #let root = "source-code-test-project/"
+  #showSourceFile("Test Project", root + "InlineConceptRequirement.cxx")
+  #showSourceFile("Test Project", root + "AbbreviateFunctionTemplate.cxx")
+]}

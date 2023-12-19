@@ -37,6 +37,8 @@ jobs:
     - uses: DeterminateSystems/magic-nix-cache-action@v2
     - run: mkdir out
     - run: nix run github:typst/typst/v0.10.0 -- compile main.typ out/main.pdf
+    - run: sed -i 's|\#let version_with_code = true|\#let version_with_code = false|' main.typ
+    - run: nix run github:typst/typst/v0.10.0 -- compile main.typ out/main_without_code.pdf
     - uses: actions/upload-pages-artifact@v1
       with: { path: 'out' }
 
