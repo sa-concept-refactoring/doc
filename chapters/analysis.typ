@@ -1,19 +1,12 @@
 #import "@preview/tablex:0.0.4": tablex
 
-#let cell(ok: false, body) = box(
+#let cell(fill: green, body) = box(
   inset: 8pt,
-  fill: if (ok) {green} else {red},
+  fill: fill,
   width: 100%,
   radius: 6pt,
   text(white, weight: "bold", body)
 )
-
-// - Beschreibung des System-Kontexts
-// - Funktionale und nicht-Funktionale Anforderungen
-// - Use Cases/Scenarios/User Storys
-// - Bestehende Infrastruktur
-// - Abhängig vom Projekt: Risikoanalyse
-// - Beschreibung (externen) existierenden Schnittstellen
 
 = Analysis <analysis>
 
@@ -28,45 +21,46 @@ In @ast_analysis, abstract syntax trees are looked at, including their role in c
 
 Finally, C++ concepts are examined in @cpp_concepts.
 
-
 == Refactoring <refactoring_explanation>
 
-// COR Quote von Fowler...
-When applying a refactoring, the external behavior needs to stay the same as before the refactoring was applied.
-To ensure that a refactoring does not affect the behavior, an inductive proof can be used.
-However, in practice this is rarely done.
-// COR Topic-jump in the first paragraph. Sure this is true? Really Unit Tests?
-Instead, unit tests can be used to get at least some assurance of the behavior, which is the case in the clangd language server.
-One would theoretically still be required to proof that the expected result has the same behavior as the test input,
-however, due to these tests being very concise, their correctness can typically be verified through a quick inspection.
-The testing of refactorings is explored in more detail in @testing.
+When applying a refactoring, the external behavior needs to stay the same as before the refactoring was applied @refactoring_martin_fowler.
+To ensure that a refactoring does not affect the behavior and does not introduce new bugs, tests should be written before a refactoring is applied.
+Refactoring code is a very important step while developing to improve code readability and reduce complexities. @refactoring
 
-// COR Different refactorings vary in complexity.
-// For example renaming of a local variable, typically, has limiited potential for unexpected side-effects.
-// In most cases it is sufficient to check whether the new name already exists in the affected scope.
-//
-// Our "Abbreviate Function Template" refactoring, on the other hand, could have surprising side-effects, in which cases it must not be applied.
-// (Beispiel könnte noch um eine Variante ergänzt werden, welcher die Template-Argumente deduziert werden - Normalfall).
-//
-// ... Zudem sollte man auch noch beachten, dass in einigen Fällen nicht der ganze Code analyisert werden kann, bzw. gar nicht verfügar ist.
-//
-// Zusätzliche Schwierigkeit in C++: Präprozessor, womit quasi fast jeder Name umdefiniert werden kann. 
-In @refactoring_bad_example an example of a bad refactoring is shown.
+Many IDEs offer refactoring features to help the developers keep their code in good shape.
+To offer refactorings, the provided feature needs to be tested well to ensure that the external behavior stays the same.
+In a lot of cases, automated tests are used to do so.
+Even if all tests succeed, one would theoretically still be required to prove that the expected result has the same behavior as the test input,
+however, due to these tests being very concise, their correctness can typically be verified through a quick inspection.
+The testing of refactorings in clangd is explored in more detail in @testing. 
+
+Different refactorings vary in complexity.
+For example, renaming a local variable typically has limited potential for unexpected side-effects.
+In most cases, it is sufficient to check whether the new name already exists in the affected scope.
+The "Abbreviate Function Template" refactoring (@abbreviate_function_template), on the other hand, could have surprising side-effects,
+in which case it must not be applied.
+It also should be considered that in some cases, not the whole code can be analyzed or is not even available.
+
+// COR Zusätzliche Schwierigkeit in C++: Präprozessor, womit quasi fast jeder Name umdefiniert werden kann. 
+// VINA No idea how to document this...
+In @refactoring_bad_example an example of bad refactoring is shown.
 A function is defined with the template type parameters `T` and `U` and the function parameters `p1` and `p2`, which use the template type parameters in reverse order.
-// COR It is not a refactoring then, just a code transformation/change.
-If a refactoring, for example one which converts the functions to their abbreviated form using `auto` parameters, would blindly use `auto` for all function parameter types, it would result in a different function signature.
-The compiler will then throw an error at the call-site, because the function call is no longer valid.
+If a refactoring, for example, converts the functions to their abbreviated form using `auto` parameters and blindly uses `auto` for all function parameter types, it would result in a different function signature.
+The compiler may throw an error at the call-site because the function call is no longer valid, but the updated source code could also just compile if the parameter types are all inferred.
+In fact, this change should not be considered a refactoring, as the external behavior changed.
+Therefore, it is more accurately described as a code transformation.
 
 #figure(
   kind: table,
   [
-  #set text(size: 0.9em)
+  #set text(size: 0.8em)
   #grid(
-    columns: (2fr, 1fr, 1fr),
+    columns: (2fr, 0.9fr, 1fr, 0.9fr),
     gutter: 1em,
     [],
     [*Identical Parameter Types*],
     [*Different Parameter Types*],
+    [*Standard Usage*],
     [],
     [
        ```cpp
@@ -82,6 +76,11 @@ The compiler will then throw an error at the call-site, because the function cal
     ],
     [
       ```cpp
+      f(42, "?");
+      ```
+    ],
+    [
+      ```cpp
       // Before Refactoring
       template <typename T, std::integral U>
       void f(U p1, T p2)
@@ -89,24 +88,31 @@ The compiler will then throw an error at the call-site, because the function cal
       ```
     ],
     [
-      #cell(ok:true)[Compiles]
+      #cell[Compiles]
     ],
     [
-      #cell(ok:true)[Compiles]
+      #cell[Compiles]
+    ],
+    [
+      #cell[Compiles]
     ],
     [
       ```cpp
       // After Refactoring
-      void f(auto std::integral p1, auto p2)
+      void f(std::integral auto p1, auto p2)
       {}
       ```
     ],
     [
-      #cell(ok:true)[Compiles]
+      #cell[Compiles]
     ],
     [
-      #cell(ok:false)[Not Compiling]
+      #cell(fill: red)[Not Compiling]
       Template arguments do no longer fulfill the concept requirement.
+    ],
+    [
+      #cell(fill: orange)[Compiles]
+      Can throw errors depending on the function body.
     ],
   )],
   caption: [
@@ -114,7 +120,7 @@ The compiler will then throw an error at the call-site, because the function cal
   ],
 ) <refactoring_bad_example>
 // COR what does it mean implementation wise
-// COR how to ensure that code logic isn't changed after refactoring is applied
+// VINA Not sure what to write to resolve this..
 
 == Language Server Protocol (LSP) <lsp_analysis>
 
@@ -540,7 +546,7 @@ For a function this means, that the function name has to be present but other th
       ```
     ],
     align(horizon)[
-      #cell(ok:true)[OK]
+      #cell[OK]
     ],
      align(horizon)[
       ```cpp
@@ -551,7 +557,7 @@ For a function this means, that the function name has to be present but other th
       ```
     ],
     align(horizon)[
-      #cell(ok:true)[OK]
+      #cell[OK]
     ],
      align(start + horizon)[
       ```cpp
@@ -561,7 +567,7 @@ For a function this means, that the function name has to be present but other th
       ```
     ],
      align(horizon)[
-      #cell(ok:true)[OK]
+      #cell[OK]
     ],
     align(start + horizon)[
       ```cpp
@@ -572,7 +578,7 @@ For a function this means, that the function name has to be present but other th
       ```
     ],
     align(horizon)[
-      #cell(ok:true)[OK]
+      #cell[OK]
     ],
     align(start + horizon)[
       ```cpp
@@ -583,7 +589,7 @@ For a function this means, that the function name has to be present but other th
       ```
     ],
     align(horizon)[
-      #cell[NOT OK \ function name missing]
+      #cell(fill: red)[NOT OK \ function name missing]
     ],
      align(horizon)[
       ```cpp
@@ -593,7 +599,7 @@ For a function this means, that the function name has to be present but other th
       ```
     ],
     align(horizon)[
-      #cell[NOT OK \ function brackets missing]
+      #cell(fill: red)[NOT OK \ function brackets missing]
     ],
   ),
   caption: [
