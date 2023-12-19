@@ -24,7 +24,7 @@ Finally, C++ concepts are examined in @cpp_concepts.
 == Refactoring <refactoring_explanation>
 
 When applying a refactoring, the external behavior needs to stay the same as before the refactoring was applied @refactoring_martin_fowler.
-To ensure that a refactoring does not affect the behavior and does not introduce new bugs, tests should be written before a refactoring is applied. 
+To ensure that a refactoring does not affect the behavior and does not introduce new bugs, tests should be written before a refactoring is applied.
 Refactoring code is a very important step while developing to improve code readability and reduce complexities. @refactoring
 
 Many IDEs offer refactoring features to help the developers keep their code in good shape.
@@ -46,9 +46,9 @@ It also should be considered that in some cases, not the whole code can be analy
 In @refactoring_bad_example an example of bad refactoring is shown.
 A function is defined with the template type parameters `T` and `U` and the function parameters `p1` and `p2`, which use the template type parameters in reverse order.
 If a refactoring, for example, converts the functions to their abbreviated form using `auto` parameters and blindly uses `auto` for all function parameter types, it would result in a different function signature.
-The compiler will then throw an error at the call-site because the function call is no longer valid.
+The compiler may throw an error at the call-site because the function call is no longer valid, but the updated source code could also just compile if the parameter types are all inferred.
 In fact, this change should not be considered a refactoring, as the external behavior changed.
-Therefore, it is more accurately described as code transformation.
+Therefore, it is more accurately described as a code transformation.
 
 #figure(
   kind: table,
