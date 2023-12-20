@@ -41,8 +41,12 @@ The "Abbreviate Function Template" refactoring (@abbreviate_function_template), 
 in which case it must not be applied.
 It also should be considered that in some cases, not the whole code can be analyzed or is not even available.
 
-// COR Zusätzliche Schwierigkeit in C++: Präprozessor, womit quasi fast jeder Name umdefiniert werden kann. 
-// VINA No idea how to document this...
+The preprocessor capabilites of C++ @preprocessor pose another challenge to refactoring operations.
+The preprocessor allows almost any name to be redefined, which can significantly complicate the refactoring process.
+This means that a name in the code might not correspond to its final interpretation during compilation, making it difficult to predict the impact of a refactoring.
+For instance, a seemingly harmless rename of a variable or function could inadvertently clash with a name defined by the preprocessor, leading to unexpected behavior or compilation errors.
+To address this would require a thorough analysis and understanding of the entire codebase, including preprocessor directives, to ensure a safe refactoring.
+
 In @refactoring_bad_example an example of bad refactoring is shown.
 A function is defined with the template type parameters `T` and `U` and the function parameters `p1` and `p2`, which use the template type parameters in reverse order.
 If a refactoring, for example, converts the functions to their abbreviated form using `auto` parameters and blindly uses `auto` for all function parameter types, it would result in a different function signature.
@@ -134,16 +138,6 @@ Traditionally, this work was done by each development tool as each provides diff
 The development tool sends notifications and requests to the language server. 
 The language server can then respond with the document URI and position of the symbol's definition inside the document for example.
 
-// COR Figure 3 und der Abschnitt danach unterbrechen die zwei (meiner Meinung nach) zusammengehörigen Teile davor und danach.
-// Ich würde das vor "Implementation" platzieren.
-
-#figure(
-  image("../images/language_server_sequence.png"),
-  caption: [
-    Diagram showing example communication between IDE and language server @lsp_overview
-  ],
-) <language_server_sequence>
-
 By using a common protocol the same language server can be used by different editors which support the protocol.
 This reduces the effort required to integrate language-specific features into various development environments,
 allowing developers to have a more efficient and feature-rich coding experience, regardless of the programming language they are working with. 
@@ -155,6 +149,13 @@ The idea behind the Language Server Protocol (LSP) is to standardize the protoco
 ]
 
 Language servers are used within modern IDEs and code editors such as Visual Studio Code, Atom and Sublime Text.
+
+#figure(
+  image("../images/language_server_sequence.png"),
+  caption: [
+    Diagram showing example communication between IDE and language server @lsp_overview
+  ],
+) <language_server_sequence>
 
 #pagebreak()
 
@@ -286,11 +287,13 @@ One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objectiv
 
 Code refactorings for C++ can be found within the clangd language server which is based on the clang compiler. @clangd
 
-// COR Automated checking?
 / Coding Guidelines : #[
 As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
 The documentation is written really well and is easy to understand which makes it easy to follow.
 A lot of guidelines are described, however some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
+When code is submitted upstream, Clang-Tidy @clang_tidy is running automatically and needs to succeed for the code to be accepted.
+Clang-Tidy is an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis. @clang_tidy
+For any other guidelines, there is no automated checking.
 ]
 
 / Code Formatter : #[
@@ -308,19 +311,17 @@ The C++ refactoring features can be found within clangd under the `tweaks` folde
 
 == Refactorings in clangd <refactor_operations_in_clangd>
 
-// COR Gibt es noch andere Teile, die relevant sein könnten für jemanden der ein Refactoring implementiert?
-Each refactoring operation within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
-
 The LLVM project is quite big and it took a while to figure out how it is structured.
 For refactoring features, classes can be created in `llvm-project/clang-tools-extra/clangd/refactor/tweaks`.
+Each refactoring operation within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
+To understand how a refactoring is implemented it helps to look at already existing code.
+Further information about how this class is used can be found in @code_actions.
 
-Looking at the existing refactoring features no feature could be found specific to concepts.
-// COR Some? Only rename? Example to show it?
+As concepts were introduced with C++20, it is quite new to the world of C++.
+Looking at the existing refactoring operations, only little support for template parameter constraints is provided.
+The only tweaks which can be applied are "Rename", "Dump AST" and "Annotate highlighting tokens" (hidden by default).
+All other refactorings in clangd can not be applied to template parameter constraints.
 Some basic ones like symbol rename already work for them.
-As concepts were introduced with C++20 it is quite new to the world of C++ and therefore not much of support exists yet.
-
-For other operations refactoring operations already exist (e.g. renaming).
-Looking at existing refactoring code helped to understand how a refactoring is structured and implemented.
 
 === Testing <testing>
 The LLVM project strictly adheres to a well-defined architecture for testing. 
@@ -344,17 +345,26 @@ To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`
   The `prepare` function is executed.
 ]
 
-=== Code Actions
+=== Code Actions <code_actions>
 
 // COR [linker] really? No registration elsewhere?
 // Sounds like the job of the REGISTER_TWEK macro
+// VINA didn't find any information on this...
+// only this in Tewak.h
+
+// All tweaks must be registered in the .cpp file next to their definition.
+// #define REGISTER_TWEAK(Subclass)                                               \
+//   ::llvm::Registry<::clang::clangd::Tweak>::Add<Subclass>                      \
+//       TweakRegistrationFor##Subclass(#Subclass, /*Description=*/"");           \
+//   const char *Subclass::id() const { return #Subclass; }
 All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered through the linker. 
-These compact plugins inherit the tweak class which acts as an interface base.
+These compact plugins inherit the tweak class @tweak_class_reference which acts as an interface base.
 // COR Das liesse sich schön visualisieren.
 When presented with an AST and a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
 These fundamental components constitute the foundation of the LSP code-actions flow.
 
-Each tweak has its own class. The structure of this class is demonstrated in @tweak_structure.
+Each tweak has its own class.
+The structure of this class is demonstrated in @tweak_structure.
 
 #figure(
  [
