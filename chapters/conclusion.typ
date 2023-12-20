@@ -33,11 +33,10 @@ Unfortunately, the opened pull requests were not merged until this thesis was ha
 == Learnings <learnings>
 Overall this project was very interesting and enriched working on an open source project like LLVM.
 
-// COR [possible function structures and function types]
-// Ich verstehe nicht ganz was ihr damit meint. Könntet ihr das konkreter erklären?
-For future projects, it should be considered to spend more time with the analysis part and look more into possible function structures and function types.
-// COR [some cases] Sehr vage.Konkrete Beispiele wären besser.
-During the implementation, some cases came up which were not considered in the first place which then took some time to think about and evaluate.
+For future projects, it should be considered to spend more time with the analysis part.
+The implementation was started before all the necessary research was done, resulting in some avoidable pitfalls, slowing down development process.
+Most of these cases came up during the second refactoring @abbreviate_function_template and were related to parameter types that were not considered, such as array types and function pointers.
+Those issues could probable have been avoided, if more time were spent with analysing which parameter types exist and properly documenting them.
 
 Also, the documentation part of this project was underestimated a lot and it would have been good to start documenting the analysis part in the beginning.
 Finding a good structure for the documentation was hard and it was changed many times.
