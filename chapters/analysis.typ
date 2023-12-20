@@ -433,7 +433,7 @@ The tree underpinning the AST is a structure consisting of a root node, which is
 
 Each circle is representing a value which is referred to as 'node'.
 The relationship within the tree can be described by using names like 'parent node', 'child node', 'sibling node' and so on.
-There is no common AST representation and the structure of varies depending on the language. @ast_dev_to
+There is no common AST representation and the structure of it varies depending on the language and compiler. @ast_dev_to
 
 To illustrate how source code gets mapped to an AST we can look at an example.
 @fact_function shows a simple function that calculates the factorial of n along with a possible AST for it.
