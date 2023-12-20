@@ -203,7 +203,7 @@ If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, 
 The complexity associated with managing this particular case is considerable, while the potential use case is minimal.
 As a result, a decision was made not to incorporate this capability.
 
-The refactoring would be available in most scenarios involving multiple type arguments, except when the template arguments are function template parameters and are defined subsequent to the final template argument. To illustrate this, two examples are provided in @multiple_type_arguments_example.
+The refactoring would be available in most scenarios involving multiple type arguments, except when the template arguments are function template parameters and are defined after the final template argument. To illustrate this, two examples are provided in @multiple_type_arguments_example.
 They both show a version after the transformation has been applied.
 Only the version on the left represents a valid refactoring.
 
