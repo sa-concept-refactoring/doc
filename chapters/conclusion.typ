@@ -36,7 +36,7 @@ Overall this project was very interesting and enriched working on an open source
 For future projects, it should be considered to spend more time on the analysis part.
 The implementation was started before all the necessary research was done, resulting in some avoidable pitfalls and slowing down the development process.
 Most of these cases came up during the second refactoring @abbreviate_function_template and were related to parameter types that were not considered, such as array types and function pointers.
-Those issues could probable have been avoided, if more time were spent with analysing which parameter types exist and properly documenting them.
+Those issues could probably have been avoided if more time were spent analyzing which parameter types exist and properly documenting them.
 
 Also, the documentation part of this project was underestimated a lot and it would have been good to start documenting the analysis part in the beginning.
 Finding a good structure for the documentation was hard and it was changed many times.
