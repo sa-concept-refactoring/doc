@@ -345,13 +345,22 @@ To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`
 
 // COR [linker] really? No registration elsewhere?
 // Sounds like the job of the REGISTER_TWEK macro
+// VINA didn't find any information on this...
+// only this in Tewak.h
+
+// All tweaks must be registered in the .cpp file next to their definition.
+// #define REGISTER_TWEAK(Subclass)                                               \
+//   ::llvm::Registry<::clang::clangd::Tweak>::Add<Subclass>                      \
+//       TweakRegistrationFor##Subclass(#Subclass, /*Description=*/"");           \
+//   const char *Subclass::id() const { return #Subclass; }
 All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered through the linker. 
-These compact plugins inherit the tweak class which acts as an interface base.
+These compact plugins inherit the tweak class @tweak_class_reference which acts as an interface base.
 // COR Das liesse sich schön visualisieren.
 When presented with an AST and a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
 These fundamental components constitute the foundation of the LSP code-actions flow.
 
-Each tweak has its own class. The structure of this class is demonstrated in @tweak_structure.
+Each tweak has its own class.
+The structure of this class is demonstrated in @tweak_structure.
 
 #figure(
  [
