@@ -41,7 +41,7 @@ The "Abbreviate Function Template" refactoring (@abbreviate_function_template), 
 in which case it must not be applied.
 It also should be considered that in some cases, not the whole code can be analyzed or is not even available.
 
-The preprocesser capabilites of C++ pose another challenge to refactoring operations.
+The preprocesser capabilites of C++ @preprocesser pose another challenge to refactoring operations.
 The preprocessor allows almost any name to be redefined, which can significantly complicate the refactoring process.
 This means that a name in the code might not correspond to its final interpretation during compilation, making it difficult to predict the impact of a refactoring.
 For instance, a seemingly harmless rename of a variable or function could inadvertently clash with a name defined by the preprocessor, leading to unexpected behavior or compilation errors.
