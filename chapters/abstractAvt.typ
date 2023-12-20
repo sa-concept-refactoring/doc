@@ -30,8 +30,13 @@ With C++20 template parameter constraints were introduced that allow to specify 
 The objective of this project was to add new refactoring operations to the clangd language server to support the use of template parameter constraints.
 Language servers oﬀer an eﬀective method to provide language support across multiple IDEs.
 
+With C++20 template parameter constraints were introduced that allow to specify the expected functionality of template parameters. Clangd is a language server that is part of the open source project LLVM. It provides features like refactorings among other things. These features are not supporting template parameter constraints as of December 2023.
+
 == Definition of Task
 The goal of this project was to analyze if common refactoring features can be applied to concepts or if some already exist. New refactoring features should be implemented to support the use of concepts. Ideally, the new refactorings are submitted upstream as a pull request to clangd to support the C++ community as well as helping the LLVM project grow.
+
+The aim of this project was to analyze whether common refactoring features can be applied to concepts or if any such features already exist.
+New refactoring features should be implemented to support the use of template parameter constraints. Ideally, the new refactorings are submitted upstream to clangd to support the C++ community as well as helping the clangd langauge server grow.
 
 == Result
 Two new refactoring operations were implemented and the resulting patches have been submitted to the LLVM project. As of December 2023, the pull requests opened to merge the implemented refactoring operations into the LLVM project are awaiting review.
