@@ -15,7 +15,7 @@ For better overview on what is already done, pull requests are used to review ea
 This same method is also used for writing the documentation which allows tracking all changes easily.
 
 For the documentation, Typst @typst was used, which is a new markup-based typesetting system.
-In VS Code, there is an extension @typst_extension supporting Typst, no other installation is needed.
+In VS Code, there is an extension supporting Typst @typst_extension, no other tool is needed.
 After the document had a stable state, pull requests were used here as well to double-check that both team members agree on what the other was writing about.
 GitHub issues @github_issues were sometimes also used to keep track of the documentations state.
 
