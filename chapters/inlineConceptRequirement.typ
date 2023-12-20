@@ -195,22 +195,68 @@ but a decision was made to exclude this possibility due to time constraints and 
   caption: "Class template",
 )
 
+#pagebreak()
+
 === Multiple Type Arguments
 If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
 The complexity associated with managing this particular case is considerable, while the potential use case is minimal.
 As a result, a decision was made not to incorporate this capability.
 
-// COR Wie würde der Code nach dem Refactoring aussehen, wenn erfolgreich?
-// COR Was wenn foo<T> kein concept ist? Könnte ein Variablen Template sein. Es nicht zu transformieren wäre korrekt, da es nicht in der Template-Deklaration verwendet werden kann.
+The refactoring would be available in most scenarios involving multiple type arguments, except when the template arguments are function template parameters and are defined subsequent to the final template argument. To illustrate this, two examples are provided in @multiple_type_arguments_example.
+They both show a version after the transformation has been applied.
+Only the version on the left represents a valid refactoring.
+
+#let cell(fill, body) = box(
+  inset: (x: 12pt, y: 8pt),
+  fill: fill,
+  radius: 6pt,
+  text(white, weight: "bold", body)
+)
+
+#let bigArrow = text(size: 1.5em, sym.arrow.b)
 
 #figure(
-  ```cpp
-  template <typename T>
-  requires std::convertible_to<int, T>
-  void f(T)
-  ```,
-  caption: "Function template with multiple type arguments",
-)
+  kind: image,
+  gap: 1.5em,
+  grid(
+    columns: (1fr, 1fr),
+    row-gutter: 10pt,
+    ```cpp
+    template
+    <typename T, typename U>
+    requires std::convertible_to<T, U>
+    void f() {}
+    ```,
+    ```cpp
+    template
+    <typename T, typename U>
+    requires std::convertible_to<U, T>
+    void f() {}
+    ```,
+    bigArrow,
+    bigArrow,
+    ```cpp
+    template
+    <typename T, std::convertible_to<T> U>
+    void f() {}
+    ```,
+    ```cpp
+    template
+    <std::convertible_to<U> T, typename U>
+    void f() {}
+    ```,
+    bigArrow,
+    bigArrow,
+    cell(green, "Compiles"),
+    cell(red, "Does not compile"),
+  ),
+  caption: [
+    Example for "#refactoring_name" refactoring with multiple type arguments
+  ],
+) <multiple_type_arguments_example>
+
+
+// COR Was wenn foo<T> kein concept ist? Könnte ein Variablen Template sein. Es nicht zu transformieren wäre korrekt, da es nicht in der Template-Deklaration verwendet werden kann.
 
 #pagebreak()
 == Usage <first_refactoring_usage>
