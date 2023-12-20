@@ -311,10 +311,10 @@ The LLVM project is quite big and it took a while to figure out how it is struct
 For refactoring features, classes can be created in `llvm-project/clang-tools-extra/clangd/refactor/tweaks`.
 Each refactoring operation within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
 To understand how a refactoring is implemented it helps to look at already existing code.
-Further information about how this class is used can be found in @code_actions
+Further information about how this class is used can be found in @code_actions.
 
-As concepts were introduced with C++20 it is quite new to the world of C++.
-Looking at the existing refactoring only little support for template parameter constraints.
+As concepts were introduced with C++20, it is quite new to the world of C++.
+Looking at the existing refactoring operations, only little support for template parameter constraints is provided.
 The only tweaks which can be applied are "Rename", "Dump AST" and "Annotate highlighting tokens" (hidden by default).
 All other refactorings in clangd can not be applied to template parameter constraints.
 Some basic ones like symbol rename already work for them.
