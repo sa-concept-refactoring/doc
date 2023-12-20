@@ -41,8 +41,12 @@ The "Abbreviate Function Template" refactoring (@abbreviate_function_template), 
 in which case it must not be applied.
 It also should be considered that in some cases, not the whole code can be analyzed or is not even available.
 
-// COR Zusätzliche Schwierigkeit in C++: Präprozessor, womit quasi fast jeder Name umdefiniert werden kann. 
-// VINA No idea how to document this...
+The preprocessor capabilites of C++ @preprocessor pose another challenge to refactoring operations.
+The preprocessor allows almost any name to be redefined, which can significantly complicate the refactoring process.
+This means that a name in the code might not correspond to its final interpretation during compilation, making it difficult to predict the impact of a refactoring.
+For instance, a seemingly harmless rename of a variable or function could inadvertently clash with a name defined by the preprocessor, leading to unexpected behavior or compilation errors.
+To address this would require a thorough analysis and understanding of the entire codebase, including preprocessor directives, to ensure a safe refactoring.
+
 In @refactoring_bad_example an example of bad refactoring is shown.
 A function is defined with the template type parameters `T` and `U` and the function parameters `p1` and `p2`, which use the template type parameters in reverse order.
 If a refactoring, for example, converts the functions to their abbreviated form using `auto` parameters and blindly uses `auto` for all function parameter types, it would result in a different function signature.
