@@ -1,9 +1,5 @@
-// - Zusammenfassung
-// - Evaluation der Ergebnisse
-// - Zielerreichung/offene Punkte
-// - Ausblick, weiterführende Schritte
-
 = Conclusion <conclusion>
+
 To summarize this thesis this conclusion describes the most important parts of the project.
 @learnings looks into what was learned working on this project. 
 In @outlook it is described how this project could be extended and what the future of the language server looks like.
