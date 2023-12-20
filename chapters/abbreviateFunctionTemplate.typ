@@ -66,6 +66,7 @@ Finally, the usage of the refactoring is shown in @abbreviate_function_template_
 ) <second_refactoring_capabilities>
 
 #pagebreak()
+
 == Analysis <abbreviate_function_template_analysis>
 The analysis looks at the captured elements (@second_refactoring_captured_elements), call site implications (@call_site_implications),
 and the impact of the refactoring on the abstract syntax tree (@second_refactoring_ast).
@@ -142,13 +143,16 @@ The second version would be the opposite, `int` for `param1` and `float` for `pa
 // COR Andere Einschränkungen?
 
 #pagebreak()
+
 === Abstract Syntax Tree <second_refactoring_ast>
 As can be seen in @second_refactoring_ast_figure, the AST transformation of this refactoring is very minimal.
 The only change is that the explicit type parameter name is replaced with a generated one.
 
-// COR What is missing?
-It is interesting to see how abstract the abstract syntax tree really is in this case.
+It is interesting to see how abstract the AST really is in this case.
 It does not reflect the source code as closely as in @inline_concept_requirement (@first_refactoring_ast_analysis).
+
+The `template` is not represented as a separate node, instead its information is stored in the `TemplateTypeParam` node.
+Therefore, the AST structure does not change, only the information within the node is.
 
 #figure(
   tablex(
@@ -179,6 +183,7 @@ It does not reflect the source code as closely as in @inline_concept_requirement
 ) <second_refactoring_ast_figure>
 
 #pagebreak()
+
 == Implementation <abbreviate_function_template_implemenation>
 The most challenging part of this refactoring was figuring out where template parameters are being used,
 as the refactoring only applies if there is exactly one usage of the parameter and that usage is as a function parameter type.
@@ -211,6 +216,7 @@ This number is an important point of reference to see if the refactoring applies
 ]
 
 // COR Was ist nun mit Funktionen und Arrays?
+// VINA Hesch du das na welle mache Jeremy?
 As a next step, the function parameters are iterated over to verify that each template parameter type occurs as a function parameter and that the order is the same.
 In addition, the type qualifiers are extracted, which consist of reference kind, constness, and pointer type.
 
@@ -238,8 +244,7 @@ Some of them are given by the language or compiler and some are intentional, bec
 === Templated Function Parameters
 If a function parameter is a templated parameter like ```cpp std::vector<T>``` the refactoring cannot apply.
 // TODO: Ask Corbat if he knows why. I could not find the source of the error message.
-// COR [parameter] Argument
-The reason for this is that `auto` cannot be used as a template parameter.
+The reason for this is that `auto` cannot be used as a template argument.
 
 #figure(
   ```cpp
@@ -251,14 +256,12 @@ The reason for this is that `auto` cannot be used as a template parameter.
 
 === Template Arguments Used Multiple Times
 This is an inherit limitation of the refactoring.
-// COR [argument] parameter
-If for example the same template argument is used for multiple function parameters, it means that all of them will have the same type when instantiated.
+If for example the same template parameter is used for multiple function parameters, it means that all of them will have the same type when instantiated.
 Would they be replaced with `auto`, each of them would result in a different type.
 
 This limitation also applies if the template argument is used anywhere else.
 This includes the return type and the body of the function.
-// COR [always] Also sollte möglich sein ein Gegenbeispiel zu finden. Ich würde sagen "likely". Es muss nicht unbedingt nur das Verhalten sein, es könnte auch den Code semantisch inkorrekt machen.
-Replacing one template parameter with multiple `auto` keywords always breaks the behavior of the function.
+Replacing one template parameter with multiple `auto` keywords likely breaks the behavior of the function.
 
 #figure(
   ```cpp
