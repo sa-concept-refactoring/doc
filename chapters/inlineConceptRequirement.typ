@@ -56,7 +56,8 @@ Capturing an element means finding it in the AST and keeping a reference to it f
 @first_refactoring_captured_elements_figure shows the captured elements and their purpose.
 A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.
 
-// COR st die Lifetime garantiert von einem Schritt zu anderen? Sprich ist es sicher derselbe AST?
+It is never mentioned explicitly that the AST references are guaranteed to be valid until the application phase, but the refactorings already present treat it as such, which is why the refactorings in this project also do so.
+
 // COR Diese Info ist eigentlich mehr Implementation als Analyse.
 
 #figure(
