@@ -106,7 +106,7 @@ The `requires` clause is represented by a `ConceptSpecialization` with a corresp
 During the refactor operation most of the AST stays untouched, except for the concept reference (in yellow), which gets moved to the template type parameter and the concept specialization, which gets removed (in red).
 
 After the examination, it was concluded that `ConceptSpecialization` nodes can be searched to see if the refactoring applies, and then additional analysis can be performed.
-This also guards against accidentally refactoring similar looking expressions that are not concept specializations. For example `foo<T>` could also be a variable template.
+This also guards against accidentally refactoring similar looking expressions that are not concept specializations. For example, `foo<T>` could also be a variable template.
 
 #figure(
   tablex(
