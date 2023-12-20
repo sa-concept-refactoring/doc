@@ -49,10 +49,10 @@ Finally, the usage of the refactoring is shown in @first_refactoring_usage.
 #pagebreak()
 == Analysis <first_refactoring_analysis>
 // COR Preconditions? => Vina: Find au schad das mer die usegrüert hend, ich find s isch ned s gliiche wie d limitations
-// COR [captured] Was bedeutet "captured"?
 The analysis will look at which elements need to be captured (@first_refactoring_captured_elements) and how the refactoring transforms the AST (@first_refactoring_ast_analysis).
 
 === Captured Elements <first_refactoring_captured_elements>
+Capturing an element means finding it in the AST and keeping a reference to it for the application phase.
 @first_refactoring_captured_elements_figure shows the captured elements and their purpose.
 A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.
 
