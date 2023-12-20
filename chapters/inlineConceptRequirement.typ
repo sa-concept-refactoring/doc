@@ -138,8 +138,10 @@ After the examination, it was concluded that `ConceptSpecialization` nodes can b
 
 #pagebreak()
 == Implementation <first_refactoring_implementation>
-// COR [how to traverse the AST] Wie funktioniert das? Clang-AST Analyse?
 The implementation process was relatively straightforward, particularly after determining how to traverse the AST.
+The traversal just requires the current selection, which provides a helper method to get the common ancestor in the AST,
+after which the tree can be traversed upwards using the `Parent` property of each node and checking if the type of the node reached is the correct one.
+
 // COR Sehr allgemein beschrieben. Allenfalls wären die Typhierarchien der Knoten noch spannend.
 However, there were challenges in discovering certain methods, as some were global and others necessitated casting.
 During this phase, referencing existing refactorings provided significant assistance.
