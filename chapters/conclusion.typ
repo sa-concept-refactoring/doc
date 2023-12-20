@@ -33,7 +33,7 @@ Unfortunately, the opened pull requests were not merged until this thesis was ha
 == Learnings <learnings>
 Overall this project was very interesting and enriched working on an open source project like LLVM.
 
-For future projects, it should be considered to spend more time with the analysis part.
+For future projects, it should be considered to spend more time on the analysis part.
 The implementation was started before all the necessary research was done, resulting in some avoidable pitfalls and slowing down the development process.
 Most of these cases came up during the second refactoring @abbreviate_function_template and were related to parameter types that were not considered, such as array types and function pointers.
 Those issues could probable have been avoided, if more time were spent with analysing which parameter types exist and properly documenting them.
