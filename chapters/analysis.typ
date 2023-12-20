@@ -134,16 +134,6 @@ Traditionally, this work was done by each development tool as each provides diff
 The development tool sends notifications and requests to the language server. 
 The language server can then respond with the document URI and position of the symbol's definition inside the document for example.
 
-// COR Figure 3 und der Abschnitt danach unterbrechen die zwei (meiner Meinung nach) zusammengehörigen Teile davor und danach.
-// Ich würde das vor "Implementation" platzieren.
-
-#figure(
-  image("../images/language_server_sequence.png"),
-  caption: [
-    Diagram showing example communication between IDE and language server @lsp_overview
-  ],
-) <language_server_sequence>
-
 By using a common protocol the same language server can be used by different editors which support the protocol.
 This reduces the effort required to integrate language-specific features into various development environments,
 allowing developers to have a more efficient and feature-rich coding experience, regardless of the programming language they are working with. 
@@ -155,6 +145,13 @@ The idea behind the Language Server Protocol (LSP) is to standardize the protoco
 ]
 
 Language servers are used within modern IDEs and code editors such as Visual Studio Code, Atom and Sublime Text.
+
+#figure(
+  image("../images/language_server_sequence.png"),
+  caption: [
+    Diagram showing example communication between IDE and language server @lsp_overview
+  ],
+) <language_server_sequence>
 
 #pagebreak()
 
@@ -286,11 +283,13 @@ One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objectiv
 
 Code refactorings for C++ can be found within the clangd language server which is based on the clang compiler. @clangd
 
-// COR Automated checking?
 / Coding Guidelines : #[
 As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
 The documentation is written really well and is easy to understand which makes it easy to follow.
 A lot of guidelines are described, however some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
+When code is submitted upstream, Clang-Tidy @clang_tidy is running automatically and needs to succeed for the code to be accepted.
+Clang-Tidy is an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis. @clang_tidy
+For any other guidelines, there is no automated checking.
 ]
 
 / Code Formatter : #[
@@ -308,19 +307,17 @@ The C++ refactoring features can be found within clangd under the `tweaks` folde
 
 == Refactorings in clangd <refactor_operations_in_clangd>
 
-// COR Gibt es noch andere Teile, die relevant sein könnten für jemanden der ein Refactoring implementiert?
-Each refactoring operation within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
-
 The LLVM project is quite big and it took a while to figure out how it is structured.
 For refactoring features, classes can be created in `llvm-project/clang-tools-extra/clangd/refactor/tweaks`.
+Each refactoring operation within clangd is implemented as a class, which inherits from a common `Tweak` ancestor.
+To understand how a refactoring is implemented it helps to look at already existing code.
+Further information about how this class is used can be found in @code_actions
 
-Looking at the existing refactoring features no feature could be found specific to concepts.
-// COR Some? Only rename? Example to show it?
+As concepts were introduced with C++20 it is quite new to the world of C++.
+Looking at the existing refactoring only little support for template parameter constraints.
+The only tweaks which can be applied are "Rename", "Dump AST" and "Annotate highlighting tokens" (hidden by default).
+All other refactorings in clangd can not be applied to template parameter constraints.
 Some basic ones like symbol rename already work for them.
-As concepts were introduced with C++20 it is quite new to the world of C++ and therefore not much of support exists yet.
-
-For other operations refactoring operations already exist (e.g. renaming).
-Looking at existing refactoring code helped to understand how a refactoring is structured and implemented.
 
 === Testing <testing>
 The LLVM project strictly adheres to a well-defined architecture for testing. 
@@ -344,7 +341,7 @@ To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`
   The `prepare` function is executed.
 ]
 
-=== Code Actions
+=== Code Actions <code_actions>
 
 // COR [linker] really? No registration elsewhere?
 // Sounds like the job of the REGISTER_TWEK macro
