@@ -1,9 +1,3 @@
-// Der Abstract richtet sich an den Spezialisten auf dem entsprechenden Gebiet und beschreibt
-// daher in erster Linie die (neuen, eigenen) Ergebnisse und Resultate der Arbeit. (Aus
-// Anleitung Dokumentation FS21 vom SG-I).
-// - Der Umfang beträgt in der Regel eine halbe Seite Text
-// - Keine Bilder
-
 = Abstract <abstract>
 With C++20, template parameter constraints @concept_iso_standard were introduced that allow to specify the expected functionality of the template parameters.
 The objective of this project was to find novel refactoring operations related to concepts and to implement them as part of a language server.
