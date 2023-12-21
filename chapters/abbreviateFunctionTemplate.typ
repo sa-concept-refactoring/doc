@@ -62,7 +62,7 @@ Finally, the usage of the refactoring is shown in @abbreviate_function_template_
       ```
     ],
   ),
-  caption: [ Capabilities of the "#refactoring_name" refactoring ],
+  caption: [Capabilities of the "#refactoring_name" refactoring],
 ) <second_refactoring_capabilities>
 
 #pagebreak()
@@ -173,7 +173,7 @@ A reference to them is stored as a member of the tweak object during the prepara
       Will be replaced with template parameter \ restriction and ```cpp auto```.
     ],
   ),
-  caption: [ Elements captured for the "#refactoring_name" refactoring ],
+  caption: [Elements captured for the "#refactoring_name" refactoring],
 ) <second_refactoring_captured_elements_figure>
 
 === Call Site Implications <call_site_implications>
@@ -245,7 +245,7 @@ Therefore, the AST structure does not change, only the information within the no
     hlinex(),
     colspanx(4)[#image("../images/ast_second_refactoring.png")],
   ),
-  caption: [ Example AST tranformation of "#refactoring_name" refactoring ],
+  caption: [Example AST tranformation of "#refactoring_name" refactoring],
 ) <second_refactoring_ast_figure>
 
 #pagebreak()
@@ -361,9 +361,7 @@ How this can look like is shown in @abbreviate_function_template_usage_in_vs_cod
 
 #figure(
   image("../images/abbreviate_function_template_usage_in_vs_code.png", width: 50%),
-  caption: [
-    Screenshot showing the option to abbreviate a function template in VS Code
-  ],
+  caption: [Screenshot showing the option to abbreviate a function template in VS Code],
 ) <abbreviate_function_template_usage_in_vs_code>
 
 === Neovim
@@ -372,7 +370,5 @@ The cursor can be placed anywhere within the function before triggering the list
 
 #figure(
   image("../images/abbreviate_function_template_usage_in_neovim.png", width: 80%),
-  caption: [
-    Screenshot showing the option to abbreviate a function template in Neovim
-  ],
+  caption: [Screenshot showing the option to abbreviate a function template in Neovim],
 ) <abbreviate_function_template_usage_in_vim>

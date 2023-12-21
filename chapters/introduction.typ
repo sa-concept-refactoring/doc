@@ -35,11 +35,11 @@ The new constructs of C++20 concepts provide the potential to apply established 
 The LLVM project @llvm_github is an open source project, whose source code is available on GitHub.
 It contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
 Clangd is a language server which lives within the LLVM project. 
-It is able to recognize and make use of C++ code and contains smart features like code completion, compile errors and go-to-definitions.
+It is able to recognize and make use of C⁠+⁠+ code and contains smart features like code completion, compile errors and go-to-definitions.
 
 #pagebreak()
 == Problem Description
-When developing in any programming language features like code refactorings are a very helpful tool.
+When developing in any programming language features like code refactorings are a helpful tool.
 They can help to restructure and simplify source code.
 To make these features available to as many IDEs as possible the language server protocol can be used.
 
@@ -51,7 +51,7 @@ It would make development much more convenient and make the developer aware of o
 This section describes the goals of this project according to the task assignment @assignment.
 Additionally, parts were added to give the project more structure, as this project is more explorative than usual.
 
-The goal of this semester project is to come up with new ideas for refactoring operations specific to parameter type constraints and to implement some of them.
+The goal of this semester thesis is to come up with new ideas for refactoring operations specific to parameter type constraints and to implement some of them.
 It should be checked if currently existing refactorings can be applied to concepts.
 This may already be implemented in the currently available tooling.
 Ideally, new refactorings should be submitted upstream as a pull request to clangd.

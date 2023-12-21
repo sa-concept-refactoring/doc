@@ -39,9 +39,7 @@
 
 #figure(
   image("images/newspaper.jpg", width: if luschtig { 50% } else { 60% }),
-  caption: [
-    Artistic interpretation of this project @title_image
-  ],
+  caption: [Artistic interpretation of this project @title_image],
 )
 
 #set align(bottom)

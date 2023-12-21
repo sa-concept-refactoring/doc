@@ -43,7 +43,7 @@ Finally, the usage of the refactoring is shown in @first_refactoring_usage.
     void f()
     ```,
   ),
-  caption: [ Capabilities of the "#refactoring_name" refactoring ],
+  caption: [Capabilities of the "#refactoring_name" refactoring],
 ) <capabilities_of_first_refactoring>
 
 #pagebreak()
@@ -152,7 +152,7 @@ It is never mentioned explicitly that the AST references are guaranteed to be va
       Will be removed.
     ],
   ),
-  caption: [ Elements captured for the "#refactoring_name" refactoring ],
+  caption: [Elements captured for the "#refactoring_name" refactoring],
 ) <first_refactoring_captured_elements_figure>
 
 #pagebreak()
@@ -195,7 +195,7 @@ This also guards against accidentally refactoring similar looking expressions th
     hlinex(),
     colspanx(3)[#image("../images/ast_first_refactoring.png")],
   ),
-  caption: [ Example AST tranformation of the "#refactoring_name" refactoring ],
+  caption: [Example AST tranformation of the "#refactoring_name" refactoring],
 ) <first_refactoring_ast>
 
 #pagebreak()
@@ -312,9 +312,7 @@ Only the version on the left represents a valid refactoring.
     cell(green, "Compiles"),
     cell(red, "Does not compile"),
   ),
-  caption: [
-    Example for "#refactoring_name" refactoring with multiple type arguments
-  ],
+  caption: [Example for "#refactoring_name" refactoring with multiple type arguments],
 ) <multiple_type_arguments_example>
 
 #pagebreak()
@@ -329,9 +327,7 @@ How this can look like is shown in @inline_concept_requirement_usage_in_vs_code.
 
 #figure(
   image("../images/screenshot_inline_concept.png", width: 50%),
-  caption: [
-    Screenshot showing the option to inline a concept requirement in VS Code
-  ],
+  caption: [Screenshot showing the option to inline a concept requirement in VS Code],
 ) <inline_concept_requirement_usage_in_vs_code>
 
 === Neovim
@@ -340,7 +336,5 @@ The cursor needs to be placed on the requires clause before triggering the listi
 
 #figure(
   image("../images/first_refactoring_usage_in_vim.png", width: 80%),
-  caption: [
-    Screenshot showing the option to inline a concept requirement in Neovim
-  ],
+  caption: [Screenshot showing the option to inline a concept requirement in Neovim],
 ) <first_refactoring_usage_in_vim>
