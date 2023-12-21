@@ -92,7 +92,9 @@ In @inline-concept-requirement-preconditions checks are explained which are made
       This is a temporary restriction that could be lifted in the future.
     ],
   ),
-  caption: "Checks made during the preparation phase of the \"Inline Concept Requirement\" refactoring",
+  caption: [
+    Checks made during the preparation phase of the \"#refactoring_name\" refactoring
+  ],
 ) <inline-concept-requirement-preconditions>
 
 #pagebreak()

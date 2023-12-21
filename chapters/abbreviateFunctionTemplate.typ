@@ -115,7 +115,9 @@ In @abbreviate-function-template-preconditions checks are explained which are ma
       As the refactoring is removing the type parameter the `requires` clause would not be valid anymore.
     ]
   ),
-  caption: "Checks made during the preparation phase of the \"Inline Concept Requirement\" refactoring",
+  caption: [
+    Checks made during the preparation phase of the \"#refactoring_name\" refactoring
+  ],
 ) <abbreviate-function-template-preconditions>
 
 #pagebreak()
