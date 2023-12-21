@@ -15,12 +15,11 @@ Two different systems were used for development (Windows and Linux), but the IDE
 To be able to use the local build of the clangd language server, a simple settings.json file can be added to VS Code.
 More details about this setup can be found in @setup.
 
-For testing the local build, a test project was created containing the different versions of function templates and concepts.
-These code pieces could then be used to test the refactoring implementations using VS Code.
+For testing the local build, a test project was created containing different versions of function templates and concepts.
+These code snippets were then used to test the refactoring implementations using VS Code.
+@project_organisation_diagram illustrates how the different tools and setups work together.
 
 After the implementation of a refactoring feature was finished, a pull request to the LLVM project was created.
-
-@project_organisation_diagram illustrates how the different tools and setups work together.
 
 #figure(
   image("../drawio/project-organisation.drawio.svg", width: 100%),

@@ -149,7 +149,7 @@ As can be seen in @second_refactoring_ast_figure, the AST transformation of this
 The only change is that the explicit type parameter name is replaced with a generated one.
 
 It is interesting to see how abstract the AST really is in this case.
-It does not reflect the source code as closely as in @inline_concept_requirement (@first_refactoring_ast_analysis).
+It does not reflect the source code as closely as in the AST of the previous refactoring (@first_refactoring_ast_analysis).
 
 The `template` is not represented as a separate node, instead its information is stored in the `TemplateTypeParam` node.
 Therefore, the AST structure does not change, only the information within the node is.
