@@ -76,16 +76,28 @@ In @inline-concept-requirement-preconditions checks are explained which are made
       This is a temporary restriction that could be lifted in the future.
     ],
     [
-      The concept requirement has a parent of either a *function* or a *function template*,
-      e.g.
-      ```cpp 
-      template<>
-      void f() requires CONDITION {}
+      The concept requirement has a parent of either a *function*, e.g.
+      #[
+        #set text(size: 0.9em)
+        #v(-4mm)
+        ```cpp 
+        template<>
+        void f() requires CONDITION {}
+        ```
+      ]
 
-      template<>
-      requires CONDITION
-      void f() {}
-      ```
+      #v(-4mm)
+      or a *function template*, e.g.
+
+      #[
+        #set text(size: 0.9em)
+        #v(-4mm)
+        ```cpp
+        template<>
+        requires CONDITION
+        void f() {}
+        ```
+      ]
     ],
     [
       To restrict the refactoring operation only function templates are allowed.
