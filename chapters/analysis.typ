@@ -347,7 +347,7 @@ To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`
 
 === Code Actions <code_actions>
 
-All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered using the `REGISTER_TWEAK` macro.
+All refactoring features, so-called "tweaks", reside in the `refactor/tweaks` directory, where they are registered using the `REGISTER_TWEAK` macro.
 These compact plugins inherit the tweak class @tweak_class_reference, which acts as an interface base (@refactor_example_class_diagram).
 The structure of this class is demonstrated in @tweak_structure.
 When presented with an AST and a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
