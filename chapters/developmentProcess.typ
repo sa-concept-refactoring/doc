@@ -20,9 +20,7 @@ These code snippets were then used to test the refactoring implementations using
 
 #figure(
   image("../drawio/project-organisation.drawio.svg", width: 100%),
-  caption: [
-    Diagram showing structure and workflow of the project \ (Logos from @logo_clangd, @logo_clion, @logo_git, @logo_github, @logo_llvm, @logo_vscode)
-  ],
+  caption: [Diagram showing structure and workflow of the project \ (Logos from @logo_clangd, @logo_clion, @logo_git, @logo_github, @logo_llvm, @logo_vscode)],
 ) <project_organisation_diagram>
 
 == Setup <setup>
@@ -39,7 +37,7 @@ VS Code with the clangd extension @clangd_extension and the CMake extension @cma
       "clangd.path": "../llvm-project/llvm/cmake-build-release/bin/clangd"
   }
   ```,
-  caption: [ Configuration in settings.json file for to VS Code ],
+  caption: [Configuration in settings.json file for to VS Code],
 ) <settings_json>
 
 For building clangd using CLion the following steps were executed.
@@ -50,13 +48,13 @@ For building clangd using CLion the following steps were executed.
 + Open folder `llvm/CMake.txt` in CLion and execute cmake
 + File -> Settings -> Build, Execution, Deployment -> CMake -> CMake options
 	- add `-DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra'`
-+ Choose "clangd" in target selector and start building
++ Choose "clangd" in target selector and start building #footnote[
+  When using Windows, clangd.exe should not be in use to build clangd successfully.
+  In this example this applies to VS Code when the language server has started.
+]
 
 After the clangd build is completed the language server within VS Code needs to be restarted to use the current build.
-This can be done by pressing Ctrl + p : `>Restart language Server`
-
-_Note:_ When using Windows, clangd.exe should not be in use to build clangd successfully.
-In this example this applies to VS Code when the language server has started.
+This can be done by pressing `Ctrl + p` : `>Restart language server`.
 
 === Linux
 
@@ -102,7 +100,5 @@ Visual Studio was installed with the following components.
 
 #figure(
   image("../images/screenshot_build_options_windows.png", width: 100%),
-  caption: [
-    Screenshot showing build settings in CLion on Windows
-  ],
+  caption: [Screenshot showing build settings in CLion on Windows],
 )
