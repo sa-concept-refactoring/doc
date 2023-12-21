@@ -216,7 +216,7 @@ This number is an important point of reference to see if the refactoring applies
 ]
 
 As a next step, the function parameters are iterated over to verify that each template parameter type occurs as a function parameter and that the order is the same.
-In addition, the type qualifiers are extracted, which consist of reference kind, constness, pointer type and array specifiers.
+In addition, the type qualifiers are extracted, which consist of reference kind, constness, pointer type, and array specifiers.
 Function parameters are not supported for now, since their qualifiers are structured quite differently.
 
 The application phase is rather simple in comparison.
