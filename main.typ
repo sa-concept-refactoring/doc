@@ -24,7 +24,7 @@
 }
 
 #show heading: it => {
-  if (it.level <= 2) {
+  if (it.level == 1) {
     pagebreak(weak: true)
   }
 
@@ -126,12 +126,15 @@ In this last section the personal reports from both authors can be found in whic
 
 The assignment given can be found in @assignment.
 
+#pagebreak()
 == Personal Report — Jeremy Stucki <report_jeremy>
 #include "chapters/personalReportJeremy.typ"
 
+#pagebreak()
 == Personal Report — Vina Zahnd <report_vina>
 #include "chapters/personalReportVina.typ"
 
+#pagebreak()
 == Assignment <assignment>
 #let attachment_path = "attachments/"
 #image(attachment_path + "assignment/0.png")
@@ -139,6 +142,7 @@ The assignment given can be found in @assignment.
 #image(attachment_path + "assignment/2.png")
 
 #if version_with_code {[
+  #pagebreak()
   == Source Code <source_code>
   #outline(
     title: none,

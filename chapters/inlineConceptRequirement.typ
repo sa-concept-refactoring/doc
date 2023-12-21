@@ -96,6 +96,7 @@ It is never mentioned explicitly that the AST references are guaranteed to be va
 ) <first_refactoring_captured_elements_figure>
 
 #pagebreak()
+
 === Abstract Syntax Tree <first_refactoring_ast_analysis>
 The AST gives a good overview over the structure of the code before and after the refactoring.
 In @first_refactoring_ast the ASTs of a simple template method and its corresponding refactored version are shown.

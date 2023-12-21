@@ -37,6 +37,7 @@ It contains the source code for LLVM, a toolkit for the construction of highly o
 Clangd is a language server which lives within the LLVM project. 
 It is able to recognize and make use of C++ code and contains smart features like code completion, compile errors and go-to-definitions.
 
+#pagebreak()
 == Problem Description
 When developing in any programming language features like code refactorings are a very helpful tool.
 They can help to restructure and simplify source code.
@@ -62,7 +63,7 @@ This also includes documenting the basic knowledge needed to understand it.
 For the implementation itself, it needs to be clear where the code needs to be added, how it should be tested, what the coding guidelines are, and how it can be contributed.
 Each implemented refactoring feature should be documented, including is usage and how it transforms the source code. 
 
-
+#pagebreak()
 == Structure of This Report
 This report encompasses the analysis, elaboration, and implementation of the project's work. It is structured into the following sections:
 

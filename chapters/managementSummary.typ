@@ -85,7 +85,6 @@ It is communicating with the language server using the language server protocol,
   ],
 ) <refactoring_contribution>
 
-#pagebreak()
 #set heading(numbering: none)
 
 === Key Findings

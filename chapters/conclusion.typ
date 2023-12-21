@@ -37,6 +37,8 @@ Those issues could probably have been avoided if more time were spent analyzing 
 Also, the documentation part of this project was underestimated a lot and it would have been good to start documenting the analysis part in the beginning.
 Finding a good structure for the documentation was hard and it was changed many times.
 
+#pagebreak()
+
 == Outlook <outlook>
 The content of this project could have been extended a lot more as there are almost unlimited options to add new refactorings.
 As long as the C++ language is evolving more refactorings can be added to help support the developers.

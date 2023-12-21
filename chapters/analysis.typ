@@ -47,6 +47,8 @@ This means that a name in the code might not correspond to its final interpretat
 For instance, a seemingly harmless rename of a variable or function could inadvertently clash with a name defined by the preprocessor, leading to unexpected behavior or compilation errors.
 To address this would require a thorough analysis and understanding of the entire codebase, including preprocessor directives, to ensure a safe refactoring.
 
+#pagebreak()
+
 In @refactoring_bad_example an example of bad refactoring is shown.
 A function is defined with the template type parameters `T` and `U` and the function parameters `p1` and `p2`, which use the template type parameters in reverse order.
 If a refactoring, for example, converts the functions to their abbreviated form using `auto` parameters and blindly uses `auto` for all function parameter types, it would result in a different function signature.
@@ -126,6 +128,7 @@ Therefore, it is more accurately described as a code transformation.
 // COR what does it mean implementation wise
 // VINA Not sure what to write to resolve this..
 
+#pagebreak()
 == Language Server Protocol (LSP) <lsp_analysis>
 
 // COR Standard-Set an Features und erweiterbar...
@@ -272,6 +275,8 @@ The server can then create one or multiple workspace edit structures @lsp_worksp
   // TODO: add json of applyEdit (Server -> Client)
 ]
 
+#pagebreak()
+
 == LLVM Project <llvm_project_analysis>
 The LLVM project @llvm_github is a collection of modular and reusable compiler and toolchain technologies.
 One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objective-C compiler.
@@ -308,6 +313,8 @@ Only when the formatter has been run successfully a pull request is allowed to b
 Clangd is the language server which lives in the LLVM project repository @llvm_github under `clang-tools-extra/clangd`.
 It understands C++ code and provides smart features like code completion, compiler warnings and errors, as well as go-to-definition and find-references capabilities.
 The C++ refactoring features can be found within clangd under the `tweaks` folder.
+
+#pagebreak()
 
 == Refactorings in clangd <refactor_operations_in_clangd>
 
@@ -413,6 +420,8 @@ Within the `apply` function the actual refactoring is taking place.
 The function is triggered as soon as the refactoring tweak has ben selected.
 It is guaranteed that the `prepare` function has been called before, so the member variables it prepared can be used.
 It returns the edits which should be applied on the client side.
+
+#pagebreak()
 
 == Abstract Syntax Tree (AST) <ast_analysis>
 
@@ -604,6 +613,8 @@ For a function this means, that the function name has to be present but other th
     AST dump possibilities for valid and invalid functions
   ],
 ) <ast_dump_possibilities>
+
+#pagebreak()
 
 == C++ Concepts <cpp_concepts>
 

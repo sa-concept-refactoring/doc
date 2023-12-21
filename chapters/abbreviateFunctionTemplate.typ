@@ -282,6 +282,8 @@ As a workaround the previously implemented refactoring (@inline_concept_requirem
   caption: "Function template with requires clause",
 )
 
+#pagebreak()
+
 == Usage <abbreviate_function_template_usage>
 The refactoring is available as a code action for language server clients.
 To use it the cursor can be placed anywhere within the function.
