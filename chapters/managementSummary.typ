@@ -46,7 +46,7 @@ It is communicating with the language server using the language server protocol,
       ```
     ]
   ),
-  caption: [ Example of "Inline Concept Requirement" refactoring ],
+  caption: [Example of "Inline Concept Requirement" refactoring],
 ) <management_summary_inline>
 
 #figure(
@@ -75,14 +75,12 @@ It is communicating with the language server using the language server protocol,
       ```
     ]
   ),
-  caption: [ Example of "Abbreviate Function Template" refactoring ],
+  caption: [Example of "Abbreviate Function Template" refactoring],
 ) <management_summary_abbreviate>
 
 #figure(
   image("../drawio/refactoring_contribution.drawio.png"),
-  caption: [
-    Diagram showing integration of implemented refactoring
-  ],
+  caption: [Diagram showing integration of implemented refactoring],
 ) <refactoring_contribution>
 
 #set heading(numbering: none)

@@ -39,7 +39,7 @@ For example, renaming a local variable typically has limited potential for unexp
 In most cases, it is sufficient to check whether the new name already exists in the affected scope.
 The "Abbreviate Function Template" refactoring (@abbreviate_function_template), on the other hand, could have surprising side-effects,
 in which case it must not be applied.
-It also should be considered that in some cases, not the whole code can be analyzed or is not even available.
+It should also be considered that in some cases, not the whole code can be analyzed or is not even available.
 
 The preprocessor capabilites of C++ @preprocessor pose another challenge to refactoring operations.
 The preprocessor allows almost any name to be redefined, which can significantly complicate the refactoring process.
@@ -121,9 +121,7 @@ Therefore, it is more accurately described as a code transformation.
       Can throw errors depending on the function body.
     ],
   )],
-  caption: [
-    Bad example of refactoring
-  ],
+  caption: [A bad example of refactoring],
 ) <refactoring_bad_example>
 // COR what does it mean implementation wise
 // VINA Not sure what to write to resolve this..
@@ -155,9 +153,7 @@ Language servers are used within modern IDEs and code editors such as Visual Stu
 
 #figure(
   image("../images/language_server_sequence.png"),
-  caption: [
-    Diagram showing example communication between IDE and language server @lsp_overview
-  ],
+  caption: [Diagram showing example communication between IDE and language server @lsp_overview],
 ) <language_server_sequence>
 
 #pagebreak()
@@ -186,9 +182,7 @@ A list of tools supporting the LSP can be found on the official website @tools_s
     [C/C++/Objective-C], [Jacob Dufault, MaskRay, topisani], [cquery], [C++],
     [C/C++/Objective-C], [Jacob Dufault, MaskRay, topisani], [MaskRay], [C++]
   ),
-  caption: [
-    C++ language servers implementing the LSP @lsp_implementations
-  ]
+  caption: [C++ language servers implementing the LSP @lsp_implementations]
 ) <cpp-implementation>
 ]
 
@@ -196,6 +190,8 @@ A list of tools supporting the LSP can be found on the official website @tools_s
 
 To apply a refactoring using the LSP three steps are needed.
 These steps are the same for all tools using the LSP.
+
+#v(-3mm)
 
 + Action Request
 + Execute Command
@@ -206,9 +202,7 @@ The details of the requests shown in the flow diagram are explained further in t
 
 #figure(
   image("../images/lsp_sequence_diagram.png", width: 80%),
-  caption: [
-    Diagram showing code action and code action resolve request
-  ],
+  caption: [Diagram showing code action and code action resolve request],
 ) <lsp-sequence-diagram>
 
 / Code Action Request: #[
@@ -216,11 +210,26 @@ The code action request is sent from client to server to compute commands for a 
 To make the server useful in many clients, the command actions should be handled by the server and not by the client.
 
 A client first needs to request possible code actions.
-
 // TODO: add json of code action request (Client -> Server)
-
 The server then computes which ones apply and sends them back in a JSON-encoded response.
 @json_code_action_request_response shows an example answer to the Code Action Request.
+
+/ Executing a Command: #[
+To apply a code change the client sends a `workspace/executeCommand` to the server.
+The server can then create one or multiple workspace edit structures @lsp_workspace_edit and apply the changes to the workspace by sending a `workspace/applyEdit` @lsp_workspace_apply_edit command to the client.
+
+// TODO: add json of executeCommand request (Client -> Server)
+]
+
+/ Apply a WorkspaceEdit: #[
+  The `workspace/applyEdit` command is sent from the server to the client to modify a resource on the client side.
+
+  When the client then applies the provided changes and reports back to the server whether the edit has been successfully applied or not.
+
+  // TODO: add json of applyEdit (Server -> Client)
+]
+
+#v(1cm)
 
 #figure(
    [
@@ -254,25 +263,8 @@ The server then computes which ones apply and sends them back in a JSON-encoded 
     ]
     ```
   ],
-  caption: [
-    Example answer to a code action request
-  ],
+  caption: [Example answer to a code action request],
 ) <json_code_action_request_response>
-]
-
-/ Executing a Command: #[
-To apply a code change the client sends a `workspace/executeCommand` to the server.
-The server can then create one or multiple workspace edit structures @lsp_workspace_edit and apply the changes to the workspace by sending a `workspace/applyEdit` @lsp_workspace_apply_edit command to the client.
-
-// TODO: add json of executeCommand request (Client -> Server)
-]
-
-/ Apply a WorkspaceEdit: #[
-  The `workspace/applyEdit` command is sent from the server to the client to modify a resource on the client side.
-
-  When the client then applies the provided changes and reports back to the server whether the edit has been successfully applied or not.
-
-  // TODO: add json of applyEdit (Server -> Client)
 ]
 
 #pagebreak()
@@ -285,9 +277,7 @@ One of the primary sub-projects is Clang which is a "LLVM native" C/C++/Objectiv
 
 #figure(
   image("../images/llvm_architecture.jpeg", width: 80%),
-  caption: [
-    Diagram showing architecture of LLVM @LLVM_compiler_architecture
-  ],
+  caption: [Diagram showing the architecture of LLVM @LLVM_compiler_architecture],
 ) <llvm_illustration>
 
 Code refactorings for C++ can be found within the clangd language server which is based on the clang compiler. @clangd
@@ -295,7 +285,7 @@ Code refactorings for C++ can be found within the clangd language server which i
 / Coding Guidelines : #[
 As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
 The documentation is well-written and is easy to understand which makes it easy to follow.
-A lot of guidelines are described, however some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
+A lot of guidelines are described, however, some things seem to be missing, like the usage of trailing return types introduced with C++ 11 @function_declaration.
 When code is submitted upstream, Clang-Tidy @clang_tidy is running automatically and needs to succeed for the code to be accepted.
 Clang-Tidy is an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis. @clang_tidy
 For any other guidelines, there is no automated checking.
@@ -400,9 +390,7 @@ These fundamental components constitute the foundation of the LSP code-actions f
     } // namespace clang
     ```
   ],
-  caption: [
-    Structure of a tweak class
-  ],
+  caption: [Structure of a tweak class],
 ) <tweak_structure>
 
 *```cpp bool prepare(const Selection &Inputs)```:* \
@@ -432,7 +420,7 @@ It provides a structured way to analyze code, making it easier for tools like co
 The tree underpinning the AST is a structure consisting of a root node, which is the starting node on top of the tree, which then points to other values and these values to others as well.
 @ast_structure shows a simple tree.
 
-Each circle is representing a value which is referred to as 'node'.
+Each circle is representing a value which is referred to as a 'node'.
 The relationship within the tree can be described by using names like 'parent node', 'child node', 'sibling node' and so on.
 There is no common AST representation and the structure of it varies depending on the language and compiler. @ast_dev_to
 
@@ -441,9 +429,7 @@ To illustrate how source code gets mapped to an AST we can look at an example.
 
 #figure(
   image("../drawio/ast_structure.drawio.png", width: 50%),
-  caption: [
-    Diagram showing tree structure
-  ],
+  caption: [Diagram showing tree structure],
 ) <ast_structure>
 
 #[
@@ -462,9 +448,7 @@ To illustrate how source code gets mapped to an AST we can look at an example.
       ```,
     image("../images/ast_fact_function.png", width: 35%),
   ),
-  caption: [
-    Function for calculating factorial of a number
-  ],
+  caption: [Function for calculating the factorial of a number],
 ) <fact_function>
 ]
 
@@ -473,6 +457,8 @@ To illustrate how source code gets mapped to an AST we can look at an example.
 The most common use for ASTs are with compilers.
 For a compiler to transform source code into compiled code, three steps are needed. @ast_python
 @code_generation shows a visualization of the conversion steps.
+
+#v(-3mm)
 
 + *Lexical Analysis* - Convert code into set of tokens describing the different parts of the code. 
 + *Syntax Analysis* - Convert tokens into a tree that represents the actual structure of the code.
@@ -487,9 +473,7 @@ All Clang AST nodes are described in the generated online documentation Doxygen 
 
 #figure(
   image("../images/ast_generation.png", width: 90%),
-  caption: [
-    Diagram showing steps for code generation @ast_python
-  ],
+  caption: [Diagram showing steps for code generation @ast_python],
 ) <code_generation>
 
 #figure(
@@ -522,9 +506,7 @@ All Clang AST nodes are described in the generated online documentation Doxygen 
             `-DeclRefExpr 0x5aead28 <col:10> 'int' lvalue Var 0x5aeac10 'result' 'int'
     ```
   ],
-  caption: [
-    Example of AST dump in clang @clang_ast
-  ]
+  caption: [Example of AST dump in clang @clang_ast]
 ) <clang_ast_example>
 
 #pagebreak()
@@ -609,9 +591,7 @@ For a function this means, that the function name has to be present but other th
       #cell(fill: red)[NOT OK \ function brackets missing]
     ],
   ),
-  caption: [
-    AST dump possibilities for valid and invalid functions
-  ],
+  caption: [AST dump possibilities for valid and invalid functions],
 ) <ast_dump_possibilities>
 
 #pagebreak()
@@ -658,26 +638,20 @@ Before C++20 `std::enable_if` @enable_if was used for such restrictions, more ab
     {}
     ```
   ),
-  caption: [
-    Functions using requires clause
-  ],
+  caption: [Functions using requires clause],
 ) <requires_keyword_usage>
 
 #figure( ```cpp
   requires std::integral<T> || std::floating_point<T>
   ```,
-  caption: [
-    Requires clause using disjunction
-  ],
+  caption: [Requires clause using disjunction],
 ) <concept_conditions_or>
 
 #figure(
   ```cpp
   requires std::integral<T> && std::floating_point<T>
   ```,
-  caption: [
-    Requires clause using conjunction
-  ],
+  caption: [Requires clause using conjunction],
 ) <concept_conditions_and>
 
 #figure(
@@ -688,7 +662,5 @@ Before C++20 `std::enable_if` @enable_if was used for such restrictions, more ab
       { std::hash<T>{}(a) } -> std::convertible_to<std::size_t>;
   };
   ```,
-  caption: [
-    Hashable concept declaration
-  ],
+  caption: [Hashable concept declaration],
 ) <concept_decleration_example>
