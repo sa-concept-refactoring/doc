@@ -43,6 +43,10 @@
 #set terms(hanging-indent: 0pt)
 #set text(font: ("Comic Sans MS")) if luschtig
 
+#set page(numbering: none)
+
+#include "title-page.typ"
+
 #set page(numbering: "1 / 1") if not luschtig
 #set page(
   footer: [
@@ -55,7 +59,7 @@
   ],
 ) if luschtig
 
-#include "title-page.typ"
+#counter(page).update(1)
 
 #show figure: set block(below: 2em)
 #set heading(numbering: "1.")
