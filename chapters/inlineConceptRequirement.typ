@@ -72,7 +72,8 @@ In @inline-concept-requirement-preconditions checks are explained which are made
       \ e.g. ```cpp requires std::integral<T>```.
     ],
     [
-      With multiple type arguments inlining would not be possible.
+      This case is complex to handle and would increase the complexity drastically.
+      This is a temporary restriction that could be lifted in the future.
     ],
     [
       The concept requirement has a parent of either a *function* or a *function template*,
