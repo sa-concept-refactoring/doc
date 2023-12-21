@@ -347,17 +347,7 @@ To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`
 
 === Code Actions <code_actions>
 
-// COR [linker] really? No registration elsewhere?
-// Sounds like the job of the REGISTER_TWEK macro
-// VINA didn't find any information on this...
-// only this in Tewak.h
-
-// All tweaks must be registered in the .cpp file next to their definition.
-// #define REGISTER_TWEAK(Subclass)                                               \
-//   ::llvm::Registry<::clang::clangd::Tweak>::Add<Subclass>                      \
-//       TweakRegistrationFor##Subclass(#Subclass, /*Description=*/"");           \
-//   const char *Subclass::id() const { return #Subclass; }
-All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered through the linker. 
+All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered using the `REGISTER_TWEAK` macro. 
 These compact plugins inherit the tweak class @tweak_class_reference which acts as an interface base.
 // COR Das liesse sich schön visualisieren.
 When presented with an AST and a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
@@ -438,7 +428,6 @@ There is no common AST representation and the structure of it varies depending o
 To illustrate how source code gets mapped to an AST we can look at an example.
 @fact_function shows a simple function that calculates the factorial of n along with a possible AST for it.
 
-// COR Why are all nodes labelled "other value"?
 #figure(
   image("../drawio/ast_structure.drawio.png", width: 50%),
   caption: [
