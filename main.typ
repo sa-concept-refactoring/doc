@@ -80,7 +80,9 @@
 #include "chapters/conclusion.typ"
 
 = Disclaimer
-Parts of this paper were rephrased by GPT-3.5 and GPT-4.
+Parts of this paper were rephrased by GPT-3.5 @chat_gpt_3.5 and GPT-4 @chat_gpt_4.
+This paper was reviewed by the advisor and corrections were applied according the comments made.
+For spell checking and translations DeepL @deepl, LanguageTool @language_tool, grammarly @grammarly and QuillBot @quill_bot was used.
 
 #include "chapters/glossary.typ"
 
