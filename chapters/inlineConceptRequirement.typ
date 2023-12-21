@@ -48,8 +48,68 @@ Finally, the usage of the refactoring is shown in @first_refactoring_usage.
 
 #pagebreak()
 == Analysis <first_refactoring_analysis>
-// COR Preconditions? => Vina: Find au schad das mer die usegrüert hend, ich find s isch ned s gliiche wie d limitations
 The analysis will look at which elements need to be captured (@first_refactoring_captured_elements) and how the refactoring transforms the AST (@first_refactoring_ast_analysis).
+
+=== Preconditions
+The refactoring should be as defensive as possible and only apply when it is clear that it will apply correctly.
+In @inline-concept-requirement-preconditions checks are explained which are made during the preparation phase to ensure the refactoring feature can be applied.
+
+#figure(
+  table(
+    columns: (1fr, 1.5fr),
+    align: start,
+    [*Check*], [*Reasoning*],
+    [
+      The selected ```cpp requires``` clause only contains *a single requirement*,
+      \ e.g. ```cpp requires CONDITION```
+    ],
+    [
+      Combined concept requirements are complex to handle and would increase the complexity drastically.
+      This is a temporary restriction that could be lifted in the future.
+    ],
+    [
+      The selected ```cpp requires``` clause only contains *a single type argument*,
+      \ e.g. ```cpp requires std::integral<T>```.
+    ],
+    [
+      This case is complex to handle and would increase the complexity drastically.
+      This is a temporary restriction that could be lifted in the future.
+    ],
+    [
+      The concept requirement has a parent of either a *function*, e.g.
+      #[
+        #set text(size: 0.9em)
+        #v(-4mm)
+        ```cpp 
+        template<>
+        void f() requires CONDITION {}
+        ```
+      ]
+
+      #v(-4mm)
+      or a *function template*, e.g.
+
+      #[
+        #set text(size: 0.9em)
+        #v(-4mm)
+        ```cpp
+        template<>
+        requires CONDITION
+        void f() {}
+        ```
+      ]
+    ],
+    [
+      To restrict the refactoring operation only function templates are allowed.
+      This is a temporary restriction that could be lifted in the future.
+    ],
+  ),
+  caption: [
+    Checks made during the preparation phase of the \"#refactoring_name\" refactoring
+  ],
+) <inline-concept-requirement-preconditions>
+
+#pagebreak()
 
 === Captured Elements <first_refactoring_captured_elements>
 Capturing an element means finding it in the AST and keeping a reference to it for the application phase.
