@@ -49,14 +49,15 @@ Finally, the usage of the refactoring is shown in @first_refactoring_usage.
 #pagebreak()
 == Analysis <first_refactoring_analysis>
 // COR Preconditions? => Vina: Find au schad das mer die usegrüert hend, ich find s isch ned s gliiche wie d limitations
-// COR [captured] Was bedeutet "captured"?
 The analysis will look at which elements need to be captured (@first_refactoring_captured_elements) and how the refactoring transforms the AST (@first_refactoring_ast_analysis).
 
 === Captured Elements <first_refactoring_captured_elements>
+Capturing an element means finding it in the AST and keeping a reference to it for the application phase.
 @first_refactoring_captured_elements_figure shows the captured elements and their purpose.
 A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.
 
-// COR st die Lifetime garantiert von einem Schritt zu anderen? Sprich ist es sicher derselbe AST?
+It is never mentioned explicitly that the AST references are guaranteed to be valid until the application phase, but the refactorings already present treat it as such, which is why the refactorings in this project also do so.
+
 // COR Diese Info ist eigentlich mehr Implementation als Analyse.
 
 #figure(
@@ -105,6 +106,7 @@ The `requires` clause is represented by a `ConceptSpecialization` with a corresp
 During the refactor operation most of the AST stays untouched, except for the concept reference (in yellow), which gets moved to the template type parameter and the concept specialization, which gets removed (in red).
 
 After the examination, it was concluded that `ConceptSpecialization` nodes can be searched to see if the refactoring applies, and then additional analysis can be performed.
+This also guards against accidentally refactoring similar looking expressions that are not concept specializations. For example, `foo<T>` could also be a variable template.
 
 #figure(
   tablex(
@@ -137,8 +139,10 @@ After the examination, it was concluded that `ConceptSpecialization` nodes can b
 
 #pagebreak()
 == Implementation <first_refactoring_implementation>
-// COR [how to traverse the AST] Wie funktioniert das? Clang-AST Analyse?
 The implementation process was relatively straightforward, particularly after determining how to traverse the AST.
+The traversal just requires the current selection, which provides a helper method to get the common ancestor in the AST,
+after which the tree can be traversed upwards using the `Parent` property of each node and checking if the type of the node reached is the correct one.
+
 // COR Sehr allgemein beschrieben. Allenfalls wären die Typhierarchien der Knoten noch spannend.
 However, there were challenges in discovering certain methods, as some were global and others necessitated casting.
 During this phase, referencing existing refactorings provided significant assistance.
@@ -192,22 +196,65 @@ but a decision was made to exclude this possibility due to time constraints and 
   caption: "Class template",
 )
 
+#pagebreak()
+
 === Multiple Type Arguments
 If a concept has multiple type arguments, such as ```cpp std::convertible_to<T, U>``` the refactoring will not be applicable.
 The complexity associated with managing this particular case is considerable, while the potential use case is minimal.
 As a result, a decision was made not to incorporate this capability.
 
-// COR Wie würde der Code nach dem Refactoring aussehen, wenn erfolgreich?
-// COR Was wenn foo<T> kein concept ist? Könnte ein Variablen Template sein. Es nicht zu transformieren wäre korrekt, da es nicht in der Template-Deklaration verwendet werden kann.
+The refactoring would be available in most scenarios involving multiple type arguments, except when the template arguments are function template parameters and are defined after the final template argument. To illustrate this, two examples are provided in @multiple_type_arguments_example.
+They both show a version after the transformation has been applied.
+Only the version on the left represents a valid refactoring.
+
+#let cell(fill, body) = box(
+  inset: (x: 12pt, y: 8pt),
+  fill: fill,
+  radius: 6pt,
+  text(white, weight: "bold", body)
+)
+
+#let bigArrow = text(size: 1.5em, sym.arrow.b)
 
 #figure(
-  ```cpp
-  template <typename T>
-  requires std::convertible_to<int, T>
-  void f(T)
-  ```,
-  caption: "Function template with multiple type arguments",
-)
+  kind: image,
+  gap: 1.5em,
+  grid(
+    columns: (1fr, 1fr),
+    row-gutter: 10pt,
+    ```cpp
+    template
+    <typename T, typename U>
+    requires std::convertible_to<T, U>
+    void f() {}
+    ```,
+    ```cpp
+    template
+    <typename T, typename U>
+    requires std::convertible_to<U, T>
+    void f() {}
+    ```,
+    bigArrow,
+    bigArrow,
+    ```cpp
+    template
+    <typename T, std::convertible_to<T> U>
+    void f() {}
+    ```,
+    ```cpp
+    template
+    <std::convertible_to<U> T, typename U>
+    void f() {}
+    ```,
+    bigArrow,
+    bigArrow,
+    cell(green, "Compiles"),
+    cell(red, "Does not compile"),
+  ),
+  caption: [
+    Example for "#refactoring_name" refactoring with multiple type arguments
+  ],
+) <multiple_type_arguments_example>
 
 #pagebreak()
 == Usage <first_refactoring_usage>
