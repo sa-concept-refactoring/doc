@@ -347,14 +347,16 @@ To test them three functions are typically used, `EXPECT_EQ`, `EXPECT_AVAILABLE`
 
 === Code Actions <code_actions>
 
-All refactoring features, so called "tweaks", reside in the `refactor/tweaks` directory, where they are registered using the `REGISTER_TWEAK` macro. 
-These compact plugins inherit the tweak class @tweak_class_reference which acts as an interface base.
-// COR Das liesse sich schön visualisieren.
+All refactoring features, so-called "tweaks", reside in the `refactor/tweaks` directory, where they are registered using the `REGISTER_TWEAK` macro.
+These compact plugins inherit the tweak class @tweak_class_reference, which acts as an interface base (@refactor_example_class_diagram).
+The structure of this class is demonstrated in @tweak_structure.
 When presented with an AST and a selection, they can swiftly assess if they are applicable and, if necessary, create the edits, potentially at a slower pace.
 These fundamental components constitute the foundation of the LSP code-actions flow.
 
-Each tweak has its own class.
-The structure of this class is demonstrated in @tweak_structure.
+#figure(
+  image("../drawio/refactor_example_class_diagram.drawio.png", width: 40%),
+  caption: "Class digram for clangd tweak and refactor example"
+) <refactor_example_class_diagram>
 
 #figure(
  [
