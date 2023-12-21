@@ -215,10 +215,9 @@ This number is an important point of reference to see if the refactoring applies
   In both cases the refactoring cannot apply, since replacing both usages with `auto` would result in two template parameters where there used to be just one, thus changing the function signature.
 ]
 
-// COR Was ist nun mit Funktionen und Arrays?
-// VINA Hesch du das na welle mache Jeremy?
 As a next step, the function parameters are iterated over to verify that each template parameter type occurs as a function parameter and that the order is the same.
-In addition, the type qualifiers are extracted, which consist of reference kind, constness, and pointer type.
+In addition, the type qualifiers are extracted, which consist of reference kind, constness, pointer type, and array specifiers.
+Function parameters are not supported for now, since their qualifiers are structured quite differently.
 
 The application phase is rather simple in comparison.
 In a first step, the template declaration is removed, and in a second step, the types of the function parameters are updated.
