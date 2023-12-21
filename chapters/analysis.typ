@@ -289,7 +289,7 @@ Code refactorings for C++ can be found within the clangd language server which i
 
 / Coding Guidelines : #[
 As all big projects LLVM also has defined coding guidelines @llvm_coding_standards which should be followed.
-The documentation is written really well and is easy to understand which makes it easy to follow.
+The documentation is well-written and is easy to understand which makes it easy to follow.
 A lot of guidelines are described, however some things seem to be missing like the usage of trailing return types introduced with C++ 11 @function_declaration.
 When code is submitted upstream, Clang-Tidy @clang_tidy is running automatically and needs to succeed for the code to be accepted.
 Clang-Tidy is an extensible framework for diagnosing and fixing typical programming errors, like style violations, interface misuse, or bugs that can be deduced via static analysis. @clang_tidy
