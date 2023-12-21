@@ -2,7 +2,7 @@
 
 #let title = "C++ Concept Refactorings"
 #let authors = ( "Jeremy Stucki", "Vina Zahnd" )
-#let supervisor = "Thomas Corbat"
+#let advisor = "Thomas Corbat"
 #let luschtig = false
 
 #set document(
@@ -19,7 +19,7 @@
 #text(1.5em)[
     #authors.join("\n")
     #line()
-    _Supervisor:_ \ #supervisor
+    _Advisor:_ \ #advisor
     #line()
     #datetime.today().display("[day].[month].[year]")
 ]

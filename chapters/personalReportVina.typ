@@ -15,7 +15,7 @@ Whenever we had a disagreement, we were able to solve it in a good manner.
 As Jeremy is more experienced in C++ he needed to help me from time to time and was way faster then me in making development progress.
 He explained certain things which was a good addition to my knowledge and was appreciated.
 
-Our supervisor was always friendly and helpful at all times.
+Our advisor was always friendly and helpful at all times.
 We had good discussions within our weekly meetings and I felt to be in good hands. 
 
 My personal highlight was when we first got comments on our Pull Request.
