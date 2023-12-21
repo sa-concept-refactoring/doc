@@ -81,35 +81,50 @@ In @abbreviate-function-template-preconditions checks are explained which are ma
     align: start,
     [*Check*], [*Reasoning*],
     [
-      A template definition needs to be in place,
-      \ e.g. ```cpp template <>```
+      A template definition needs to be in place.
     ],
     [
       If the template definition is not present the logic of this refactoring can not be applied.
     ],
     [
       The template type parameter is not used multiple times,
-      \ e.g. ```cpp template<typename T> void f(T p1, T p2) {}```
+      e.g.
+      #[
+        #set text(size: 0.9em)
+        #v(-4mm)
+        ```cpp
+        template<typename T>
+        void f(T p1, T p2) {}
+        ```
+      ]
+     
     ],
     [
       If the type parameter is used in the body it cannot be replaced with an `auto` param.
     ],
     [
       The order of template parameters is the same as their occurrence as function parameters,
-      \ e.g. ```cpp template<typename T, typename U> void f(T p1, Up2) {}```
+      e.g. 
+      #[
+        #set text(size: 0.9em)
+        #v(-4mm)
+        ```cpp
+        template<typename T, typename U>
+        void f(T p1, U p2) {}
+        ```
+      ]
     ],
     [
       The function signature would change otherwise.
     ],
     [
-      The parameter type is not used within a container (e.g. `map`, `set`, `list`, `array`)
+      The parameter type is not used within a container \ (e.g. `map`, `set`, `list`, `array`)
     ],
     [
       The `auto` keyword cannot be used in this context.
     ],
     [
-      No `requires` clause should be present,
-      \ e.g. ```cpp template<typename T> void f(T p) {}``` 
+      No `requires` clause should be present.
     ],
     [
       As the refactoring is removing the type parameter the `requires` clause would not be valid anymore.
