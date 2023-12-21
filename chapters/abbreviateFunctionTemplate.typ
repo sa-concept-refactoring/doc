@@ -118,6 +118,8 @@ In @abbreviate-function-template-preconditions checks are explained which are ma
   caption: "Checks made during the preparation phase of the \"Inline Concept Requirement\" refactoring",
 ) <abbreviate-function-template-preconditions>
 
+#pagebreak()
+
 === Captured Elements <second_refactoring_captured_elements>
 @second_refactoring_captured_elements_figure shows the captured elements and their purpose.
 A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.

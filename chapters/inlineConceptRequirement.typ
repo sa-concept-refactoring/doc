@@ -95,6 +95,8 @@ In @inline-concept-requirement-preconditions checks are explained which are made
   caption: "Checks made during the preparation phase of the \"Inline Concept Requirement\" refactoring",
 ) <inline-concept-requirement-preconditions>
 
+#pagebreak()
+
 === Captured Elements <first_refactoring_captured_elements>
 Capturing an element means finding it in the AST and keeping a reference to it for the application phase.
 @first_refactoring_captured_elements_figure shows the captured elements and their purpose.
