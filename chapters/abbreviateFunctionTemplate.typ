@@ -71,6 +71,53 @@ Finally, the usage of the refactoring is shown in @abbreviate_function_template_
 The analysis looks at the captured elements (@second_refactoring_captured_elements), call site implications (@call_site_implications),
 and the impact of the refactoring on the abstract syntax tree (@second_refactoring_ast).
 
+=== Preconditions
+The refactoring should be as defensive as possible and only apply when it is clear that it will apply correctly.
+In @abbreviate-function-template-preconditions checks are explained which are made during the preparation phase to ensure the refactoring feature can be applied.
+
+#figure(
+  table(
+    columns: (1fr, 1.5fr),
+    align: start,
+    [*Check*], [*Reasoning*],
+    [
+      A template definition needs to be in place,
+      \ e.g. ```cpp template <>```
+    ],
+    [
+      If the template definition is not present the logic of this refactoring can not be applied.
+    ],
+    [
+      The template type parameter is not used multiple times,
+      \ e.g. ```cpp template<typename T> void f(T p1, T p2) {}```
+    ],
+    [
+      If the type parameter is used in the body it cannot be replaced with an `auto` param.
+    ],
+    [
+      The order of template parameters is the same as their occurrence as function parameters,
+      \ e.g. ```cpp template<typename T, typename U> void f(T p1, Up2) {}```
+    ],
+    [
+      The function signature would change otherwise.
+    ],
+    [
+      The parameter type is not used within a container (e.g. `map`, `set`, `list`, `array`)
+    ],
+    [
+      The `auto` keyword cannot be used in this context.
+    ],
+    [
+      No `requires` clause should be present,
+      \ e.g. ```cpp template<typename T> void f(T p) {}``` 
+    ],
+    [
+      As the refactoring is removing the type parameter the `requires` clause would not be valid anymore.
+    ]
+  ),
+  caption: "Checks made during the preparation phase of the \"Inline Concept Requirement\" refactoring",
+) <abbreviate-function-template-preconditions>
+
 === Captured Elements <second_refactoring_captured_elements>
 @second_refactoring_captured_elements_figure shows the captured elements and their purpose.
 A reference to them is stored as a member of the tweak object during the preparation phase and used during the application phase.
