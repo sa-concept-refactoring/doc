@@ -89,7 +89,7 @@ It is communicating with the language server using the language server protocol,
 #set heading(numbering: none)
 
 === Key Findings
-- The clangd documentation is written really well and provides good support.
+- The clangd documentation is well-written and provides good support.
 - Parts of the code within the LLVM project are quite old and use older language features. 
 - Pull requests often take a significant amount of time for reviewers to approve or even review.
 - Clangd contains functions which were irritating and hard to understand and therefore leading to wrong conclusions.

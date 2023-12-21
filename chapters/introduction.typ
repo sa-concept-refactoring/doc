@@ -15,27 +15,25 @@ This is also the case for C++, therefore, refactoring already written code is be
 
 #quote(attribution: [Dori Exterman @tips_for_cpp_refactoring])[Aside from the problems that could affect any language, C++ developers find code refactoring more challenging, in part because the language is complex. This complexity is compounded with language-extending functionality such as macros and templates, not to mention that the language is large, to begin with, and the syntax is difficult to process.]
 
-To support the C++ community with its refactoring tasks, new refactoring features should be implemented and contributed to the LLVM project.
+The task of the project involves implementing and contributing new refactoring features to the LLVM project in order to assist the C++ community with their refactoring tasks.
 
 == Initial Situation
 
-The programming language C++ is constantly developed further by the standard committee @cpp_standard_committee. 
-With C++20 template parameter constraints were introduced which allow specification of requirements for template arguments.
+The C++ programming language is constantly developed further by the standard committee @cpp_standard_committee. 
+With C++20, template parameter constraints were introduced which allow specification of requirements for template arguments.
 Concepts are a way of abstracting these constraints. @constraints_and_concepts
 
 Refactoring is a common technique to resolve code smells and improve the internal structure of code without changing its external behavior. @refactoring
 Automated tests often ensure that the correct functionality is retained.
 
-Older versions of integrated development environments (IDE) were implementing support for code analysis and tools like symbol lookup and refactorings themselves.
+Older versions of integrated development environments (IDEs) were implementing support for code analysis and tools like symbol lookup and refactorings themselves.
 This led to the problem that new languages only slowly gained adoption, one editor at a time, each of them having to spend the effort to implement support for it.
 The goal of the Language Server Protocol was to address this and have the compiler or an adjacent tool implement the logic of these IDE features independently of a specific editor in something called a Language Server.
 Editors then only need to know how to communicate with this Server and they gain support for a wide range of languages. @lsp_bit_services
 
 The new constructs of C++20 concepts provide the potential to apply established refactorings, and there is also the possibility of developing new refactorings.
-
 The LLVM project @llvm_github is an open source project, whose source code is available on GitHub.
 It contains the source code for LLVM, a toolkit for the construction of highly optimized compilers, optimizers, and run-time environments. 
-
 Clangd is a language server which lives within the LLVM project. 
 It is able to recognize and make use of C++ code and contains smart features like code completion, compile errors and go-to-definitions.
 
