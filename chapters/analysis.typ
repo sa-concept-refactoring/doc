@@ -621,13 +621,13 @@ They allow puttign constraints on template parameters, which are evaluated at co
 This allows developers to restrict template parameters in a new convenient way.
 For this the keywords `requires` @keyword_requires and `concept` @keyword_concept were added to give some language support. @concepts
 
-// COR ??? Do you mean std::enable_if?
-Before C++20 `constexpr` and `if constexpr` were used for such restrictions, more about these can be found in the C++ stories @if_const_expr.
+Before C++20 `std::enable_if` @enable_if was used for such restrictions, more about these can be found in the C++ stories @if_const_expr.
 
 // COR Analyse der Möglichkeiten der requires-Cause hätte noch etwas ausführlicher sein können.
 / Usage of the `requires` keyword : #[
   The `requires` keyword can be used either before the function declaration or between the function declaration and the function body as illustrated in @requires_keyword_usage.
-  The requirements can also contain disjunctions (`||`) and/or conjunctions (`&&`) to restrict the parameter types even more.
+  The requirements can also contain disjunctions ( `||` ) and/or conjunctions ( `&&` ) to restrict the parameter types even more.
+  It should be noted that nested require clauses are possible, which allows for many additional constructs.
   Examples for these can be found in @concept_conditions_or and @concept_conditions_and.
 ]
 
@@ -637,7 +637,6 @@ Before C++20 `constexpr` and `if constexpr` were used for such restrictions, mor
 ]
 
 // COR Why is that?
-// COR CONDITION kann requires enthalten, welches viele weitere Konstrukte erlaubt.
 #v(1cm)
 
 #figure(
