@@ -43,7 +43,11 @@
 #set terms(hanging-indent: 0pt)
 #set text(font: ("Comic Sans MS")) if luschtig
 
-#set page(numbering: "1 / 1") if not luschtig
+#include "title-page.typ"
+#pagebreak()
+#pagebreak()
+
+#set page(numbering: "i") if not luschtig
 #set page(
   footer: [
     #locate(loc => {
@@ -55,10 +59,9 @@
   ],
 ) if luschtig
 
-#include "title-page.typ"
+#counter(page).update(1)
 
 #show figure: set block(below: 2em)
-#set heading(numbering: "1.")
 #show par: set block(below: 2em)
 
 #include "chapters/abstract.typ"
@@ -69,6 +72,11 @@
   indent: auto,
   target: heading.where(level: 1).or(heading.where(level: 2))
 )
+
+#set page(numbering: "1 / 1") if not luschtig
+#counter(page).update(1)
+
+#set heading(numbering: "1.")
 
 #include "chapters/introduction.typ"
 #include "chapters/analysis.typ"
